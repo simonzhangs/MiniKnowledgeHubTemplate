@@ -1,0 +1,3 @@
+<!--example/basic-types/basic-types.wxml-->
+<import src="../../towxml/entry.wxml"/>
+<template is="entry" data="{{...article}}"/>

@@ -1,0 +1,3 @@
+<!--example/nil-slices/nil-slices.wxml-->
+<import src="../../towxml/entry.wxml"/>
+<template is="entry" data="{{...article}}"/>

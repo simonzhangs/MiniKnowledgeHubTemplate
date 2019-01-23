@@ -1,0 +1,3 @@
+<!--example/nil-interface-values/nil-interface-values.wxml-->
+<import src="../../towxml/entry.wxml"/>
+<template is="entry" data="{{...article}}"/>

@@ -1,0 +1,3 @@
+<!--example/type-inference/type-inference.wxml-->
+<import src="../../towxml/entry.wxml"/>
+<template is="entry" data="{{...article}}"/>

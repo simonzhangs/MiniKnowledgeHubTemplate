@@ -1,0 +1,3 @@
+<!--example/slice-len-cap/slice-len-cap.wxml-->
+<import src="../../towxml/entry.wxml"/>
+<template is="entry" data="{{...article}}"/>

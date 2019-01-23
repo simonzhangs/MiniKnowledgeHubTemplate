@@ -1,0 +1,3 @@
+<!--example/interfaces-are-satisfied-implicitly/interfaces-are-satisfied-implicitly.wxml-->
+<import src="../../towxml/entry.wxml"/>
+<template is="entry" data="{{...article}}"/>

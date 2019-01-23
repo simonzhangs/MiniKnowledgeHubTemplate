@@ -1,0 +1,3 @@
+<!--example/function-closures/function-closures.wxml-->
+<import src="../../towxml/entry.wxml"/>
+<template is="entry" data="{{...article}}"/>

@@ -1,0 +1,3 @@
+<!--example/short-variable-declarations/short-variable-declarations.wxml-->
+<import src="../../towxml/entry.wxml"/>
+<template is="entry" data="{{...article}}"/>

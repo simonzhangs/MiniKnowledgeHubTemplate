@@ -1,0 +1,3 @@
+<!--example/named-results/named-results.wxml-->
+<import src="../../towxml/entry.wxml"/>
+<template is="entry" data="{{...article}}"/>
