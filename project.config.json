@@ -14,7 +14,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "2.5.1",
 	"appid": "wx4e37655ebd5fd6f8",
-	"projectname": "visit",
+	"projectname": "golang-visit",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},

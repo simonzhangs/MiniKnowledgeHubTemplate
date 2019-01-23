@@ -11,7 +11,7 @@ Page({
                 open: false,
                 pages: [
                     { id: 'packages', name: '包' },
-                    { id: 'imports', name: '导入' },
+                    { id: 'go-imports', name: '导入' },
                     { id: 'exported-names', name: '导出名' },
                     { id: 'functions', name: '函数' },
                     { id: 'functions-continued', name: '函数（续）' },

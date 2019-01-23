@@ -2,7 +2,7 @@
     "pages": [
         "example/index",
         "example/packages/packages",
-        "example/imports/imports",
+        "example/go-imports/go-imports",
         "example/exported-names/exported-names",
         "example/functions/functions",
         "example/functions-continued/functions-continued",
