@@ -1,20 +1,103 @@
 {
-  "pages": [
-    "example/index",
-    "example/packages/packages"
-    
-  ],
-  "window": {
-    "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "Golang观光",
-    "navigationBarBackgroundColor": "#f8f8f8",
-    "backgroundColor": "#f8f8f8"
-  },
-  "networkTimeout": {
-    "request": 10000,
-    "connectSocket": 10000,
-    "uploadFile": 10000,
-    "downloadFile": 10000
-  },
-  "debug": true
+    "pages": [
+        "example/index",
+        "example/packages/packages",
+        "example/imports/imports",
+        "example/exported-names/exported-names",
+        "example/functions/functions",
+        "example/functions-continued/functions-continued",
+        "example/multiple-results/multiple-results",
+        "example/named-results/named-results",
+        "example/variables/variables",
+        "example/variables-with-initializers/variables-with-initializers",
+        "example/short-variable-declarations/short-variable-declarations",
+        "example/basic-types/basic-types",
+        "example/zeros/zeros",
+        "example/type-conversions/type-conversions",
+        "example/type-inference/type-inference",
+        "example/constants/constants",
+        "example/numeric-constants/numeric-constants",
+        "example/go-for/go-for",
+        "example/for-continued/for-continued",
+        "example/for-is-gos-while/for-is-gos-while",
+        "example/forever/forever",
+        "example/go-if/go-if",
+        "example/if-with-a-short-statement/if-with-a-short-statement",
+        "example/if-and-else/if-and-else",
+        "example/go-switch/go-switch",
+        "example/switch-evaluation-order/switch-evaluation-order",
+        "example/switch-with-no-condition/switch-with-no-condition",
+        "example/go-defer/go-defer",
+        "example/defer-multi/defer-multi",
+        "example/pointers/pointers",
+        "example/structs/structs",
+        "example/struct-fields/struct-fields",
+        "example/struct-pointers/struct-pointers",
+        "example/struct-literals/struct-literals",
+        "example/go-array/go-array",
+        "example/slices/slices",
+        "example/slices-pointers/slices-pointers",
+        "example/slice-literals/slice-literals",
+        "example/slice-bounds/slice-bounds",
+        "example/slice-len-cap/slice-len-cap",
+        "example/nil-slices/nil-slices",
+        "example/making-slices/making-slices",
+        "example/slices-of-slice/slices-of-slice",
+        "example/append/append",
+        "example/range/range",
+        "example/range-continued/range-continued",
+        "example/go-maps/go-maps",
+        "example/map-literals/map-literals",
+        "example/map-literals-continued/map-literals-continued",
+        "example/mutating-maps/mutating-maps",
+        "example/function-values/function-values",
+        "example/function-closures/function-closures",
+        "example/methods/methods",
+        "example/methods-funcs/methods-funcs",
+        "example/methods-continued/methods-continued",
+        "example/methods-pointers/methods-pointers",
+        "example/methods-pointers-explained/methods-pointers-explained",
+        "example/indirection/indirection",
+        "example/indirection-values/indirection-values",
+        "example/methods-with-pointer-receivers/methods-with-pointer-receivers",
+        "example/interfaces/interfaces",
+        "example/interfaces-are-satisfied-implicitly/interfaces-are-satisfied-implicitly",
+        "example/interface-values/interface-values",
+        "example/interface-values-with-nil/interface-values-with-nil",
+        "example/nil-interface-values/nil-interface-values",
+        "example/empty-interface/empty-interface",
+        "example/type-assertions/type-assertions",
+        "example/type-switches/type-switches",
+        "example/stringer/stringer",
+        "example/errors/errors",
+        "example/reader/reader",
+        "example/go-images/go-images",
+        "example/goroutines/goroutines",
+        "example/channels/channels",
+        "example/buffered-channels/buffered-channels",
+        "example/range-and-close/range-and-close",
+        "example/select/select",
+        "example/default-selection/default-selection",
+        "example/mutex-counter/mutex-counter",
+        "example/exercise-web-crawler/exercise-web-crawler"
+
+
+
+
+
+
+    ],
+    "window": {
+        "navigationBarTextStyle": "black",
+        "navigationBarTitleText": "Golang观光",
+        "navigationBarBackgroundColor": "#f8f8f8",
+        "backgroundColor": "#f8f8f8"
+    },
+    "networkTimeout": {
+        "request": 10000,
+        "connectSocket": 10000,
+        "uploadFile": 10000,
+        "downloadFile": 10000
+    },
+    "debug": true
 }
