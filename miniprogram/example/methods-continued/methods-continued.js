@@ -22,7 +22,7 @@ Page({
             name: 'getArticle',
             // 传递给云函数的参数
             data: {
-                articleName: 'packages.md'
+                articleName: 'methods-continued.md'
             },
             success: res => {
                 console.log(res.result)
