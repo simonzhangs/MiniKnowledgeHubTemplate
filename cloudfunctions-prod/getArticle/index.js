@@ -17,6 +17,6 @@ exports.main = async(event, context) => {
   })
   const buffer = res.fileContent
   //Markdown转towxml数据
-  let data = towxml.toJson(buffer.toString('utf8'), 'markdown');
+  const data = towxml.toJson(buffer.toString('utf8'), 'markdown');
   return data
 }
