@@ -1,2 +1,3 @@
-# golang-visit
-golang观光微信小程序。
+## 爱上Go语言
+golang-visit 是学习golang语言的一个工具
+
