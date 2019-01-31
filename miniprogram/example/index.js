@@ -134,7 +134,30 @@ Page({
                 { id: 'package-os', name: 'Os包' },
                 { id: 'package-context', name: 'Context包' },
                 { id: 'package-archive', name: 'Archive包' },
-                { id: 'package-bufio', name: 'Bufio包' }
+                { id: 'package-bufio', name: 'Bufio包' },
+                { id: 'package-builtin', name: 'Builtin包' },
+                { id: 'package-bytes', name: 'Bytes包' },
+                { id: 'package-compress', name: 'Compress包' },
+                { id: 'package-container', name: 'Container包' },
+                { id: 'package-crypto', name: 'crypto包' },
+                { id: 'package-database', name: 'Database包' },
+                { id: 'package-encoding', name: 'Encoding包' },
+                { id: 'package-flag', name: 'Flag包' },
+                { id: 'package-hash', name: 'Hash包' },
+                { id: 'package-html', name: 'Html包' },
+                { id: 'package-image', name: 'Image包' },
+                { id: 'package-index', name: 'Index包' },
+                { id: 'package-io', name: 'IO包' },
+                { id: 'package-net', name: 'Net包' },
+                { id: 'package-path', name: 'Path包' },
+                { id: 'package-regexp', name: 'Regexp包' },
+                { id: 'package-runtime', name: 'Runtime包' },
+                { id: 'package-sort', name: 'Sort包' },
+                { id: 'package-strconv', name: 'Strconv包' },
+                { id: 'package-strings', name: 'Strings包' },
+                { id: 'package-sync', name: 'Sync包' },
+                { id: 'package-text', name: 'Text包' }
+
               ]
             }
         ]
