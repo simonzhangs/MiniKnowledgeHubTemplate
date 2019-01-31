@@ -79,7 +79,15 @@
         "example/select/select",
         "example/default-selection/default-selection",
         "example/mutex-counter/mutex-counter",
-        "example/exercise-web-crawler/exercise-web-crawler"
+        "example/exercise-web-crawler/exercise-web-crawler",
+        "example/package-fmt/package-fmt",
+        "example/package-os/package-os",
+        "example/package-time/package-time",
+        "example/package-log/package-log",
+        "example/package-math/package-math",
+        "example/package-archive/package-archive",
+        "example/package-bufio/package-bufio",
+        "example/package-context/package-context"
 
 
 
@@ -89,7 +97,7 @@
     ],
     "window": {
         "navigationBarTextStyle": "black",
-        "navigationBarTitleText": "Golang观光",
+        "navigationBarTitleText": "爱上Go语言",
         "navigationBarBackgroundColor": "#f8f8f8",
         "backgroundColor": "#f8f8f8"
     },

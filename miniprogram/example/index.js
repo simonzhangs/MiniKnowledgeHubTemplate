@@ -121,6 +121,21 @@ Page({
                     { id: 'mutex-counter', name: 'sync.Mutex' },
                     { id: 'exercise-web-crawler', name: 'Web爬虫' }
                 ]
+            },
+            {
+              id: 'packages',
+              name: 'Golang自带常用包',
+              open: false,
+              pages: [
+                { id: 'package-fmt', name: 'Fmt包' },
+                { id: 'package-log', name: 'Log包' },
+                { id: 'package-time', name: 'Time包' },
+                { id: 'package-math', name: 'Math包' },
+                { id: 'package-os', name: 'Os包' },
+                { id: 'package-context', name: 'Context包' },
+                { id: 'package-archive', name: 'Archive包' },
+                { id: 'package-bufio', name: 'Bufio包' }
+              ]
             }
         ]
     },
