@@ -79,7 +79,37 @@
         "example/select/select",
         "example/default-selection/default-selection",
         "example/mutex-counter/mutex-counter",
-        "example/exercise-web-crawler/exercise-web-crawler"
+        "example/exercise-web-crawler/exercise-web-crawler",
+        "example/package-fmt/package-fmt",
+        "example/package-os/package-os",
+        "example/package-time/package-time",
+        "example/package-log/package-log",
+        "example/package-math/package-math",
+        "example/package-context/package-context",
+        "example/package-archive/package-archive",
+        "example/package-bufio/package-bufio",
+        "example/package-builtin/package-builtin",
+        "example/package-bytes/package-bytes",
+        "example/package-compress/package-compress",
+        "example/package-container/package-container",
+        "example/package-crypto/package-crypto",
+        "example/package-database/package-database",
+        "example/package-encoding/package-encoding",
+        "example/package-flag/package-flag",
+        "example/package-hash/package-hash",
+        "example/package-html/package-html",
+        "example/package-image/package-image",
+        "example/package-index/package-index",
+        "example/package-io/package-io",
+        "example/package-net/package-net",
+        "example/package-path/package-path",
+        "example/package-regexp/package-regexp",
+        "example/package-runtime/package-runtime",
+        "example/package-sort/package-sort",
+        "example/package-strconv/package-strconv",
+        "example/package-strings/package-strings",
+        "example/package-sync/package-sync",
+        "example/package-text/package-text"
 
 
 
@@ -89,7 +119,7 @@
     ],
     "window": {
         "navigationBarTextStyle": "black",
-        "navigationBarTitleText": "Golang观光",
+        "navigationBarTitleText": "爱上Go语言",
         "navigationBarBackgroundColor": "#f8f8f8",
         "backgroundColor": "#f8f8f8"
     },
