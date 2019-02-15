@@ -1,2 +1,4 @@
 <!--example/package-time/package-time.wxml-->
-<text>example/package-time/package-time.wxml</text>
+<import src="../../towxml/entry.wxml"/>
+<template is="entry" data="{{...article}}"/>
+

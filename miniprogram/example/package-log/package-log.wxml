@@ -1,2 +1,3 @@
 <!--example/package-log/package-log.wxml-->
-<text>example/package-log/package-log.wxml</text>
+<import src="../../towxml/entry.wxml"/>
+<template is="entry" data="{{...article}}"/>
