@@ -1,2 +1,4 @@
 <!--example/package-bufio/package-bufio.wxml-->
-<text>example/package-bufio/package-bufio.wxml</text>
+<import src="../../towxml/entry.wxml"/>
+<template is="entry" data="{{...article}}"/>
+
