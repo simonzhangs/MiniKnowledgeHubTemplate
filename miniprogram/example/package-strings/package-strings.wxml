@@ -1,2 +1,4 @@
 <!--example/package-strings/package-strings.wxml-->
-<text>example/package-strings/package-strings.wxml</text>
+<import src="../../towxml/entry.wxml"/>
+<template is="entry" data="{{...article}}"/>
+

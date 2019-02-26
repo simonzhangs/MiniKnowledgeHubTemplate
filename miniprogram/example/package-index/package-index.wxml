@@ -1,2 +1,4 @@
 <!--example/package-index/package-index.wxml-->
-<text>example/package-index/package-index.wxml</text>
+<import src="../../towxml/entry.wxml"/>
+<template is="entry" data="{{...article}}"/>
+

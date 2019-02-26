@@ -5,14 +5,41 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    //article将用来存储towxml数据
+    article: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.showLoading({
+      title: '正在加载文章中...',
+    })
+    const _ts = this;
+    wx.cloud.callFunction({
+      // 要调用的云函数名称
+      name: 'getArticle',
+      // 传递给云函数的参数
+      data: {
+        articleName: 'package-html.md'
+      },
+      success: res => {
+        console.log(res.result)
+        _ts.setData({
+          article: res.result
+        })
 
+      },
+      fail: err => {
+        wx.showToast({
+          title: '获取文章失败',
+        })
+      },
+      complete: () => {
+        wx.hideLoading()
+      }
+    })
   },
 
   /**

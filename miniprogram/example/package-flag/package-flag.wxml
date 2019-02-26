@@ -1,2 +1,3 @@
 <!--example/package-flag/package-flag.wxml-->
-<text>example/package-flag/package-flag.wxml</text>
+<import src="../../towxml/entry.wxml"/>
+<template is="entry" data="{{...article}}"/>
