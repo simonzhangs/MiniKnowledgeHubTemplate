@@ -128,13 +128,9 @@
         "example/gin-16/gin-16",
         "example/gin-17/gin-17",
         "example/gin-18/gin-18",
-        "example/gin-19/gin-19"
-
-
-
-
-
-
+        "example/gin-19/gin-19",
+        "example/third-toml/third-toml",
+        "example/third-ini/third-ini"
 
     ],
     "window": {
