@@ -130,7 +130,8 @@
         "example/gin-18/gin-18",
         "example/gin-19/gin-19",
         "example/third-toml/third-toml",
-        "example/third-ini/third-ini"
+        "example/third-ini/third-ini",
+        "example/third-gorm/third-gorm"
 
     ],
     "window": {
