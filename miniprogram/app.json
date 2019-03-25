@@ -131,7 +131,8 @@
         "example/gin-19/gin-19",
         "example/third-toml/third-toml",
         "example/third-ini/third-ini",
-        "example/third-gorm/third-gorm"
+        "example/third-gorm/third-gorm",
+        "example/third-excelize/third-excelize"
 
     ],
     "window": {

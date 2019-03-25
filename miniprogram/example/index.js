@@ -497,6 +497,10 @@ Page({
           {
             id:'third-gorm',
             name:'go数据库框架gorm'
+          },
+          {
+            id: 'third-excelize',
+            name: 'go Excel操作包'
           }
          
         ]
