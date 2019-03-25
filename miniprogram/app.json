@@ -132,7 +132,8 @@
         "example/third-toml/third-toml",
         "example/third-ini/third-ini",
         "example/third-gorm/third-gorm",
-        "example/third-excelize/third-excelize"
+        "example/third-excelize/third-excelize",
+        "example/third-qrcode/third-qrcode"
 
     ],
     "window": {

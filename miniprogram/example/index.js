@@ -501,6 +501,10 @@ Page({
           {
             id: 'third-excelize',
             name: 'go Excel操作包'
+          },
+          {
+            id:'third-qrcode',
+            name:'go 二维码编码包'
           }
          
         ]
