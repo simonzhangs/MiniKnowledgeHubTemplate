@@ -133,7 +133,8 @@
     "example/third-ini/third-ini",
     "example/third-gorm/third-gorm",
     "example/third-excelize/third-excelize",
-    "example/third-qrcode/third-qrcode"
+    "example/third-qrcode/third-qrcode",
+    "example/common/common"
   ],
   "window": {
     "navigationBarTextStyle": "black",

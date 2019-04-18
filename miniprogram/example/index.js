@@ -610,7 +610,13 @@ Page({
       list: list
     });
   },
+jump:function(options){
+  console.log(options.currentTarget.dataset.pageid)
+  wx.navigateTo({
+    url: 'common/common?title=' + options.currentTarget.dataset.pageid,
+  })
 
+},
   /**
    * 生命周期函数--监听页面加载
    */
