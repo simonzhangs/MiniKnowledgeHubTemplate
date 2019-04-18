@@ -29,9 +29,7 @@
   <view class="page__ft">
     <view class="weui-footer">
 
-      <view class="weui-footer__text">email:422964429@qq.com</view>
+      <view class="weui-footer__text">爱上golang</view>
     </view>
-
-
   </view>
 </view>
