@@ -109,12 +109,31 @@
         "example/package-strconv/package-strconv",
         "example/package-strings/package-strings",
         "example/package-sync/package-sync",
-        "example/package-text/package-text"
-
-
-
-
-
+        "example/package-text/package-text",
+        "example/gin-01/gin-01",
+        "example/gin-02/gin-02",
+        "example/gin-03/gin-03",
+        "example/gin-04/gin-04",
+        "example/gin-05/gin-05",
+        "example/gin-06/gin-06",
+        "example/gin-07/gin-07",
+        "example/gin-08/gin-08",
+        "example/gin-09/gin-09",
+        "example/gin-10/gin-10",
+        "example/gin-11/gin-11",
+        "example/gin-12/gin-12",
+        "example/gin-13/gin-13",
+        "example/gin-14/gin-14",
+        "example/gin-15/gin-15",
+        "example/gin-16/gin-16",
+        "example/gin-17/gin-17",
+        "example/gin-18/gin-18",
+        "example/gin-19/gin-19",
+        "example/third-toml/third-toml",
+        "example/third-ini/third-ini",
+        "example/third-gorm/third-gorm",
+        "example/third-excelize/third-excelize",
+        "example/third-qrcode/third-qrcode"
 
     ],
     "window": {

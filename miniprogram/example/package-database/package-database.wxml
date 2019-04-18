@@ -1,2 +1,4 @@
 <!--example/package-database/package-database.wxml-->
-<text>example/package-database/package-database.wxml</text>
+<import src="../../towxml/entry.wxml"/>
+<template is="entry" data="{{...article}}"/>
+
