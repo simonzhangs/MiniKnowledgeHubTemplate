@@ -12,7 +12,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options.title)
+    // console.log(options.title)
     var mytitle=options.title+'.md'
     wx.showLoading({
       title: '正在加载文章中...',
@@ -26,7 +26,7 @@ Page({
         articleName: mytitle
       },
       success: res => {
-        console.log(res.result)
+        // console.log(res.result)
         _ts.setData({
           article: res.result
         })

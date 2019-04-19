@@ -1,3 +1,0 @@
-<!--example/type-conversions/type-conversions.wxml-->
-<import src="../../towxml/entry.wxml"/>
-<template is="entry" data="{{...article}}"/>

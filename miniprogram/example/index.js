@@ -495,18 +495,18 @@ Page({
             name: 'ini文件格式golang包'
           },
           {
-            id:'third-gorm',
-            name:'go数据库框架gorm'
+            id: 'third-gorm',
+            name: 'go数据库框架gorm'
           },
           {
             id: 'third-excelize',
             name: 'go Excel操作包'
           },
           {
-            id:'third-qrcode',
-            name:'go 二维码编码包'
+            id: 'third-qrcode',
+            name: 'go 二维码编码包'
           }
-         
+
         ]
 
       },
@@ -610,13 +610,13 @@ Page({
       list: list
     });
   },
-jump:function(options){
-  console.log(options.currentTarget.dataset.pageid)
-  wx.navigateTo({
-    url: 'common/common?title=' + options.currentTarget.dataset.pageid,
-  })
+  jump: function(options) {
+    // console.log(options.currentTarget.dataset.pageid)
+    wx.navigateTo({
+      url: 'common/common?title=' + options.currentTarget.dataset.pageid,
+    })
 
-},
+  },
   /**
    * 生命周期函数--监听页面加载
    */

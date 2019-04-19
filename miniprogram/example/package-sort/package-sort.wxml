@@ -1,4 +1,0 @@
-<!--example/package-sort/package-sort.wxml-->
-<import src="../../towxml/entry.wxml"/>
-<template is="entry" data="{{...article}}"/>
-

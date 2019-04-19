@@ -1,3 +1,0 @@
-<!--example/if-with-a-short-statement/if-with-a-short-statement.wxml-->
-<import src="../../towxml/entry.wxml"/>
-<template is="entry" data="{{...article}}"/>

@@ -1,3 +1,0 @@
-<!--example/slice-literals/slice-literals.wxml-->
-<import src="../../towxml/entry.wxml"/>
-<template is="entry" data="{{...article}}"/>

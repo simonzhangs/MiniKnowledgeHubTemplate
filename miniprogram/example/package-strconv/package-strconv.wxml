@@ -1,4 +1,0 @@
-<!--example/package-strconv/package-strconv.wxml-->
-<import src="../../towxml/entry.wxml"/>
-<template is="entry" data="{{...article}}"/>
-
