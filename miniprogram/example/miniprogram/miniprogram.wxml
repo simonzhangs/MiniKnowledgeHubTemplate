@@ -1,8 +1,8 @@
-<!--example/golang/golang.wxml-->
+<!--example/miniprogram/miniprogram.wxml-->
 <view class="page">
   <view class="page__hd">
-    <view class="page__title">Golang</view>
-    <view class="page__desc">欢迎参观Go编程语言，该导览涵盖了该语言最重要的功能。</view>
+    <view class="page__title">微信小程序</view>
+    <view class="page__desc">小程序是一种全新的连接用户与服务的方式，它可以在微信内被便捷地获取和传播，同时具有出色的使用体验。</view>
   </view>
   <view class="page__bd page__bd_spacing">
     <view class="kind-list">
@@ -33,3 +33,4 @@
     </view>
   </view>
 </view>
+

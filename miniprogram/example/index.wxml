@@ -1,35 +1,44 @@
 <!--example/index.wxml-->
 <view class="page">
-    <view class="page__hd">
-        <view class="page__title">爱上编程屋</view>
-        <view class="page__desc">包含主流常用编程语言入门教程</view>
+  <view class="page__hd">
+    <view class="page__title">爱上编程屋</view>
+    <view class="page__desc">主流常用编程语言入门指南</view>
+  </view>
+  <view class="page__bd">
+    <view class="weui-panel weui-panel_access">
+      <view class="weui-panel__hd">编程语言列表</view>
+      <view class="weui-panel__bd">
+        <navigator url="golang/golang" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+          <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+            <image class="weui-media-box__thumb" src="images/golang.png" />
+          </view>
+          <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+            <view class="weui-media-box__title">Golang</view>
+            <view class="weui-media-box__desc">Go是Google开发的一种静态强类型、编译型、并发型，并具有垃圾回收功能的编程语言。</view>
+          </view>
+        </navigator>
+        <navigator url="java/java" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+          <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+            <image class="weui-media-box__thumb" src="images/java.png" />
+          </view>
+          <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+            <view class="weui-media-box__title">Java</view>
+            <view class="weui-media-box__desc">Java是一种拥有跨平台、面向对象、泛型编程的特性，广泛应用于企业级Web应用开发和移动应用开发的编程语言。</view>
+          </view>
+        </navigator>
+        <navigator url="miniprogram/miniprogram" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+          <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+            <image class="weui-media-box__thumb" src="images/miniprogram.png" />
+          </view>
+          <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+            <view class="weui-media-box__title">微信小程序</view>
+            <view class="weui-media-box__desc">小程序提供了一个简单、高效的应用开发框架和丰富的组件及API，帮助开发者在微信中开发具有原生 APP 体验的服务。</view>
+          </view>
+        </navigator>
+      </view>
+
     </view>
-    <view class="page__bd">
-        <view class="weui-panel weui-panel_access">
-            <view class="weui-panel__hd">编程语言列表</view>
-            <view class="weui-panel__bd">
-                <navigator url="golang/golang" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
-                    <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-                        <image class="weui-media-box__thumb" src="images/golang.png" />
-                    </view>
-                    <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-                        <view class="weui-media-box__title">Golang</view>
-                        <view class="weui-media-box__desc">Go是Google开发的一种静态强类型、编译型、并发型，并具有垃圾回收功能的编程语言。</view>
-                    </view>
-                </navigator>
-                <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
-                    <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-                        <image class="weui-media-box__thumb" src="images/java.png" />
-                    </view>
-                    <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-                        <view class="weui-media-box__title">Java</view>
-                        <view class="weui-media-box__desc">Java是一种拥有跨平台、面向对象、泛型编程的特性，广泛应用于企业级Web应用开发和移动应用开发的编程语言。</view>
-                    </view>
-                </navigator>
-            </view>
-            
-        </view>
-        
-       
-    </view>
+
+
+  </view>
 </view>

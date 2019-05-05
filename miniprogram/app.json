@@ -2,7 +2,9 @@
   "pages": [
     "example/index",
     "example/common/common",
-    "example/golang/golang"
+    "example/golang/golang",
+    "example/java/java",
+    "example/miniprogram/miniprogram"
   ],
   "window": {
     "navigationBarTextStyle": "black",

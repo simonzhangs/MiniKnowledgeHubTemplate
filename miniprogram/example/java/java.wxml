@@ -1,8 +1,8 @@
-<!--example/golang/golang.wxml-->
+<!--example/java/java.wxml-->
 <view class="page">
   <view class="page__hd">
-    <view class="page__title">Golang</view>
-    <view class="page__desc">欢迎参观Go编程语言，该导览涵盖了该语言最重要的功能。</view>
+    <view class="page__title">Java</view>
+    <view class="page__desc">一次编译，到处运行。</view>
   </view>
   <view class="page__bd page__bd_spacing">
     <view class="kind-list">
