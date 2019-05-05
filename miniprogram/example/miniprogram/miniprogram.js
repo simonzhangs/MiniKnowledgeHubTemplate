@@ -45,8 +45,17 @@ Page({
           id: 'mp_2-4',
           name: 'WXSS样式'
         },
+        
         {
           id: 'mp_2-5',
+          name: 'WXML语法'
+        },
+        {
+          id: 'mp_2-6',
+          name: 'WXS语法'
+        },
+        {
+          id: 'mp_2-7',
           name: 'JavaScript脚本'
         },
       ]
