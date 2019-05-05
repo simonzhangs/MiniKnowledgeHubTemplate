@@ -1,7 +1,8 @@
 {
   "pages": [
     "example/index",
-    "example/common/common"
+    "example/common/common",
+    "example/golang/golang"
   ],
   "window": {
     "navigationBarTextStyle": "black",
