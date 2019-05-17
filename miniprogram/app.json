@@ -4,7 +4,8 @@
     "example/common/common",
     "example/golang/golang",
     "example/java/java",
-    "example/miniprogram/miniprogram"
+    "example/miniprogram/miniprogram",
+    "example/beego/beego"
   ],
   "window": {
     "navigationBarTextStyle": "black",
