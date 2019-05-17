@@ -26,7 +26,7 @@
             <view class="weui-media-box__desc">Java是一种拥有跨平台、面向对象、泛型编程的特性，广泛应用于企业级Web应用开发和移动应用开发的编程语言。</view>
           </view>
         </navigator>
-        <navigator url="miniprogram/miniprogram" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+        <navigator url="wexin/wexin" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
           <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
             <image class="weui-media-box__thumb" src="images/miniprogram.png" />
           </view>
@@ -44,6 +44,7 @@
             <view class="weui-media-box__desc">beego 是一个快速开发 Go 应用的 HTTP 框架，他可以用来快速开发 API、Web 及后端服务等各种应用，是一个 RESTful 的框架。</view>
           </view>
         </navigator>
+       
       </view>
 
     </view>

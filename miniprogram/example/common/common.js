@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    article:{}
   },
 
   /**
@@ -18,6 +18,7 @@ Page({
       title: '正在加载文章中...',
     })
     const _ts = this;
+    
     wx.cloud.callFunction({
       // 要调用的云函数名称
       name: 'getArticle',
@@ -25,6 +26,7 @@ Page({
       data: {
         articleName: mytitle
       },
+      
       success: res => {
         // console.log(res.result)
         _ts.setData({

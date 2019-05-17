@@ -73,4 +73,4 @@ func init() {
 
 通过这个代码的分析我们了解了 beego 运行起来的过程，以及内部的一些机制。接下来让我们去剥离 Controller 如何来处理逻辑的。
 
-[controller 运行机制](common?title=beego_controler)
+[controller 运行机制](../../example/common/common?title=beego_controller)

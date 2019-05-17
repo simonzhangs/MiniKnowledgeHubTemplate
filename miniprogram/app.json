@@ -4,7 +4,7 @@
     "example/common/common",
     "example/golang/golang",
     "example/java/java",
-    "example/miniprogram/miniprogram",
+    "example/wexin/wexin",
     "example/beego/beego"
   ],
   "window": {
