@@ -1,11 +1,13 @@
 // example/index.js
+const app = getApp();
+const db = wx.cloud.database()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    
+    bookList:[]
   },
   test:function(e){
     wx.navigateTo({
@@ -18,7 +20,24 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    let skip = 0
+    var that = this
+    db.collection('books')
+      .where({
+        status: 99, // 填入当前用户 openid
+      })
+      .skip(skip) // 跳过结果集中的前 10 条，从第 11 条开始返回
+      .limit(10) // 限制返回数量为 10 条
+      .get()
+      .then(res => {
+        console.log(res.data)
+        that.setData({
+          bookList:res.data
+        })
+      })
+      .catch(err => {
+        console.error(err)
+      })
   },
 
   /**

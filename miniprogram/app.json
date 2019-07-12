@@ -5,7 +5,8 @@
     "example/golang/golang",
     "example/java/java",
     "example/wexin/wexin",
-    "example/beego/beego"
+    "example/beego/beego",
+    "example/book/book"
   ],
   "window": {
     "navigationBarTextStyle": "black",
