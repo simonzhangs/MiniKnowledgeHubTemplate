@@ -8,7 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    index: 0,
+    index: -1,
     bookList:[],
     resultMessage: '',
     disabled: false
@@ -55,6 +55,12 @@ Page({
     })
     var cloudpath = ''
     var filepath = ''
+    if (that.data.index == -1){
+      wx.showToast({
+        title: '先添加书籍！',
+      })
+      return
+    }
     if (utils.isEmpty(e.detail.value.title)) {
       wx.showToast({
         title: '未输入标题！',

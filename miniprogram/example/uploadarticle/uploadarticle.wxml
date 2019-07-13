@@ -20,7 +20,7 @@
 		<view class="title">选择书籍</view>
 		<picker bindchange="bindPickerChange" value="{{index}}" range="{{ bookList }}" range-key="title">
 			<view class="picker">
-			   当前选择：{{bookList[index].title}}
+			   当前选择：{{ index==-1?'先添加书籍':bookList[index].title}}
 			</view>
 		</picker>
 	</view>

@@ -23,9 +23,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    
     this.getBooks(0)
   },
   getBooks:function(skip){
+    wx.showLoading({
+      title: '加载中...',
+    })
     var that = this
     wx.cloud.callFunction({
       // 要调用的云函数名称
@@ -36,6 +40,7 @@ Page({
       }
     }).then(res => {
       console.log(res.result)
+      wx.hideLoading()
       openid = res.result.openid
       app.globalData.OPENID = res.result.openid
       that.setData({
@@ -45,6 +50,7 @@ Page({
     }).catch(err => {
       // handle 
       console.log(err)
+      wx.hideLoading()
     })
   },
 
