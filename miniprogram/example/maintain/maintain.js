@@ -8,18 +8,18 @@ Page({
     funcList: [{
       icon: 'edit',
       color: 'red',
-      url: '',
+      url: '../addbook/addbook',
       name: '添加书籍'
     }, {
         icon: 'edit',
-      color: 'orange',
-      url: '',
+        color: 'yellow',
+      url: '../uploadarticle/uploadarticle',
       name: '添加章节'
     }, {
-        icon: 'edit',
-      color: 'yellow',
-      url: '',
-      name: '写文章'
+        icon: 'explore',
+      color: 'blue',
+        url: '../openminiprogram/openminiprogram',
+      name: '爱上随机数'
     },]
   },
 

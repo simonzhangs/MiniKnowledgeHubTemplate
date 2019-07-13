@@ -36,6 +36,7 @@ Page({
       tag:options.tag
     })
     console.log(bid,skip,acount,this.data.tag)
+
     let a = {
       skip: 0,
       bid: bid,
@@ -43,6 +44,21 @@ Page({
     }
     this.getArticles(a)
     this.getArticlesCount(a)
+    this.updateBookWeight(bid)
+  },
+  updateBookWeight:function(bid){
+    wx.cloud.callFunction({
+      // 要调用的云函数名称
+      name: 'updateBookWeight',
+      // 传递给云函数的event参数
+      data: {
+        bid: bid,
+      }
+    }).then(res => {
+     console.log(res)
+    }).catch(err => {
+     console.log(err)
+    })
   },
   next:function(){
     console.log(skip)

@@ -1,6 +1,9 @@
 // example/index.js
 const app = getApp();
-const db = wx.cloud.database()
+
+let skip =0
+let openid = ''
+let bcount = 0
 Page({
 
   /**
@@ -20,32 +23,48 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    //wx.showLoading({
-    //  title: '正在加载...',
-    //})
-    let skip = 0
+    this.getBooks(0)
+  },
+  getBooks:function(skip){
     var that = this
-    db.collection('books')
-      .where({
-        status: 99, // 填入当前用户 openid
+    wx.cloud.callFunction({
+      // 要调用的云函数名称
+      name: 'getBooks',
+      // 传递给云函数的event参数
+      data: {
+        skip:skip
+      }
+    }).then(res => {
+      console.log(res.result)
+      openid = res.result.openid
+      app.globalData.OPENID = res.result.openid
+      that.setData({
+        bookList:res.result.bookList.data,
+        bcount:res.result.bcount.total
       })
-      .skip(skip) // 跳过结果集中的前 10 条，从第 11 条开始返回
-      .limit(10) // 限制返回数量为 10 条
-      .get()
-      .then(res => {
-       // wx.hideLoading()
-        console.log(res.data)
-        that.setData({
-          bookList:res.data
-        })
-        
-      })
-      .catch(err => {
-       // wx.hideLoading()
-        console.error(err)
-      })
+    }).catch(err => {
+      // handle 
+      console.log(err)
+    })
   },
 
+  next: function () {
+    console.log(skip)
+    // 刷新一下，满足不够10的情况
+    this.getBooks(skip)
+    var prenum = skip
+    skip = skip + 10
+    if (skip > bcount) {
+      wx.showToast({
+        title: '没有数据了！',
+      })
+      skip = prenum
+      return
+    }
+    
+    this.getBooks(skip)
+  },
+ 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

@@ -7,7 +7,11 @@
     "example/wexin/wexin",
     "example/beego/beego",
     "example/book/book",
-    "example/maintain/maintain"
+    "example/maintain/maintain",
+    "example/addbook/addbook",
+    "example/uploadarticle/uploadarticle",
+    "example/openminiprogram/openminiprogram"
+    
   ],
   "window": {
     "navigationBarTextStyle": "black",
@@ -38,5 +42,8 @@
     ]
   },
   "debug": true,
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "navigateToMiniProgramAppIdList": [
+    "wx4f0e6ddeb1080cd3"
+  ]
 }

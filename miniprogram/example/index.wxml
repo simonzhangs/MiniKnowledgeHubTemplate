@@ -9,6 +9,9 @@
   <view class="action">
     <text class="cuIcon-title text-orange "></text> 书籍列表
   </view>
+  <view class='action'>
+    <button class='cu-btn round bg-green sm'  bindtap='next'>下一页</button>
+  </view>
 </view>
 <!--logo尺寸为48x48px,标签列表见全局定义TagsList，标题不能超过12个字,Logo支持云文件id，支持小程序本地-->
 <view class="cu-list menu sm-border ">
