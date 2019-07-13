@@ -41,7 +41,7 @@ Page({
   },
   formReset() {
     this.setData({
-      index: 0,
+      index: -1,
       resultMessage: '',
       disabled: false
     })
