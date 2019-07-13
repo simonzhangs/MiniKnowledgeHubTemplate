@@ -25,6 +25,6 @@ App({
   },
   globalData: {
   
-    TagsList: ["Golang","Java","JavaScript","Dart","Python","Ruby","C#"]
+    TagsList: ["golang","java","javascript","dart","python","ruby","csharp"]
   }
 });

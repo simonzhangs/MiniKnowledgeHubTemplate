@@ -1,176 +1,155 @@
 // example/book/book.js
+const db = wx.cloud.database()
+let bid = ''
+let skip = 0
+let search = ''
+let acount = 0
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    articlesList:[
-      {
-        id: "beego_Introduction",
-        name: "beego 简介"
-      },
-      {
-        id: "beego_contributing",
-        name: "为 beego 做贡献"
-      },
-      {
-        id: "beego_releases",
-        name: "发布版本"
-      },
-      {
-        id: "beego_upgrade",
-        name: "升级指南"
-      },
-      {
-        id: "beego_new",
-        name: "bee 工具新建项目"
-      },
-      {
-        id: "beego_router",
-        name: "路由设置"
-      },
-      {
-        id: "beego_controller",
-        name: "controller 运行机制"
-      },
-      {
-        id: "beego_model",
-        name: "model 逻辑"
-      },
-      {
-        id: "beego_view",
-        name: "view 渲染"
-      },
-      {
-        id: "beego_static",
-        name: "静态文件处理"
-      },
-      {
-        id: "beego_3_1",
-        name: "参数配置"
-
-      },
-      {
-        id: "beego_3_2",
-        name: "路由设置"
-      },
-      {
-        id: "beego_3_3",
-        name: "控制器函数"
-      },
-      {
-        id: "beego_3_4",
-        name: "xsrf 过滤"
-      },
-      {
-        id: "beego_3_5",
-        name: "请求数据处理"
-      },
-      {
-        id: "beego_3_6",
-        name: "session 控制"
-      },
-      {
-        id: "beego_3_7",
-        name: "过滤器"
-      },
-      {
-        id: "beego_3_8",
-        name: "flash 数据"
-      },
-      {
-        id: "beego_3_9",
-        name: "URL构建"
-      },
-      {
-        id: "beego_3_10",
-        name: "多种格式数据输出"
-      },
-      {
-        id: "beego_3_11",
-        name: "表单数据验证"
-      },
-      {
-        id: "beego_3_12",
-        name: "错误处理"
-      },
-      {
-        id: "beego_3_13",
-        name: "日志处理"
-      }
-    ]
+    articlesList: [],
+    tag:''
   },
   searchArticle(e) {
     let key = e.detail.value.toLowerCase();
-    let list = this.data.icon;
-    for (let i = 0; i < list.length; i++) {
-      let a = key;
-      let b = list[i].name.toLowerCase();
-      if (b.search(a) != -1) {
-        list[i].isShow = true
-      } else {
-        list[i].isShow = false
-      }
+    search = key
+    let a = {
+      skip: 0,
+      bid: bid,
+      search: search,
     }
-    this.setData({
-      icon: list
-    })
+    this.getArticles(a)
+    this.getArticlesCount(a)
   },
- 
+
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
+    // 根据传过来的参数获取章节列表
+    bid = options.bid
+    this.setData({
+      tag:options.tag
+    })
+    console.log(bid,skip,acount,this.data.tag)
+    let a = {
+      skip: 0,
+      bid: bid,
+      search: '',
+    }
+    this.getArticles(a)
+    this.getArticlesCount(a)
+  },
+  next:function(){
+    console.log(skip)
+    skip = skip + 10
+    if (skip > acount){
+      wx.showToast({
+        title: '没有数据了！',
+      })
+      return
+    }
+    let a = {
+      skip: skip,
+      bid: bid,
+      search: search,
+    }
+    this.getArticles(a)
+  },
+  getArticlesCount:function(e){
+    var that = this
+    // 查询记录总数
+    db.collection('articles').where({
+      bid: e.bid,
+      aname: db.RegExp({
+        regexp: e.search,
+        options: 'i',
+      })
+    }).count().then(res => {
+      console.log(res.total)
+      acount = res.total
+    })
+  },
+  getArticles: function(e) {
+    var that = this
+    const skip = e.skip
+   
+    // 查询章节
+    db.collection('articles')
+      .where({
+        bid: e.bid,
+        aname: db.RegExp({
+          regexp: e.search,
+          options: 'i',
+        })
+      })
+      .skip(skip) // 跳过结果集中的前 10 条，从第 11 条开始返回
+      .limit(10) // 限制返回数量为 10 条
+      .get()
+      .then(res => {
+        console.log(res.data)
+        that.setData({
+          articlesList:res.data
+        })
 
+      })
+      .catch(err => {
+        console.error(err)
+      })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
+    skip = 0
+    acount = 0
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })

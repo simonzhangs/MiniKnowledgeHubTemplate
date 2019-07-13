@@ -1,3 +1,7 @@
 <!--example/common/common.wxml-->
 <import src="../../towxml/entry.wxml"/>
 <template is="entry" data="{{...article}}"/>
+
+ 
+<view class="padding">编程是一项非常有用的技巧，知识是无价的！</view>
+

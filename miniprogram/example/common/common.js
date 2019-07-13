@@ -14,17 +14,20 @@ Page({
   onLoad: function (options) {
     // console.log(options.title)
     var mytitle=options.title+'.md'
+    let tag = options.tag
+   
+    const _ts = this;
     wx.showLoading({
       title: '正在加载文章中...',
     })
-    const _ts = this;
-    
     wx.cloud.callFunction({
+      
       // 要调用的云函数名称
-      name: 'getArticle',
+      name: 'getArticleA',
       // 传递给云函数的参数
       data: {
-        articleName: mytitle
+        articleName: mytitle,
+        tag:tag
       },
       
       success: res => {

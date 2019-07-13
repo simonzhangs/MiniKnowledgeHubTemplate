@@ -20,6 +20,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    //wx.showLoading({
+    //  title: '正在加载...',
+    //})
     let skip = 0
     var that = this
     db.collection('books')
@@ -30,12 +33,15 @@ Page({
       .limit(10) // 限制返回数量为 10 条
       .get()
       .then(res => {
+       // wx.hideLoading()
         console.log(res.data)
         that.setData({
           bookList:res.data
         })
+        
       })
       .catch(err => {
+       // wx.hideLoading()
         console.error(err)
       })
   },

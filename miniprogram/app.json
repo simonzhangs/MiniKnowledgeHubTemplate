@@ -6,7 +6,8 @@
     "example/java/java",
     "example/wexin/wexin",
     "example/beego/beego",
-    "example/book/book"
+    "example/book/book",
+    "example/maintain/maintain"
   ],
   "window": {
     "navigationBarTextStyle": "black",
@@ -19,6 +20,22 @@
     "connectSocket": 10000,
     "uploadFile": 10000,
     "downloadFile": 10000
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "example/index",
+        "text": "首页",
+        "iconPath": "./example/images/tabbar/home.png",
+        "selectedIconPath": "./example/images/tabbar/home_cur.png"
+      },
+      {
+        "pagePath": "example/maintain/maintain",
+        "text": "维护",
+        "iconPath": "./example/images/tabbar/plugin.png",
+        "selectedIconPath": "./example/images/tabbar/plugin_cur.png"
+      }
+    ]
   },
   "debug": true,
   "sitemapLocation": "sitemap.json"

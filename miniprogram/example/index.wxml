@@ -15,7 +15,7 @@
   <block wx:for="{{ bookList }}" wx:key="id">
 
     <view class="cu-item arrow">
-      <navigator class="content"  hover-class="none"  url="{{ item.url }}/{{ item.url }}">
+      <navigator class="content"  hover-class="none"  url="book/book?bid={{ item._id }}&tag={{ item.tag }}">
         <image src="{{ item.logo }}" class="png" mode="aspectFit"></image>
         <text class="text-grey">{{ item.title }}</text>
 

@@ -1,4 +1,5 @@
 // example/java/java.js
+const db = wx.cloud.database()
 Page({
   /**
    * 页面的初始数据
@@ -202,8 +203,39 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {},
+  onLoad: function(options) {
+   // this.uploadArticle(this.data.list[4].pages)
+  },
 
+  uploadArticle: function (pages) {
+    const bid = "c28d0146-09f8-4c3b-aa57-8488073d1369"
+    console.log(pages.length)
+    // 从列表中读取name，和id，存储到临时列表中
+    // 插入到数据库，返回_id
+    // 根据_id,从files文件夹中读取文件并上传到云存储。名称为返回的_id 
+    for (let j = 0; j < pages.length; j++) {
+      console.log(bid, pages[j].id, pages[j].name)
+      setTimeout(this.upload1, 1000, pages[j].id, pages[j].name, bid)
+    }
+    clearTimeout()
+
+  },
+  upload1: function (aid, aname, bid) {
+    db.collection('articles').add({
+      // data 字段表示需新增的 JSON 数据
+      data: {
+        aid: aid,
+        aname: aname,
+        bid: bid
+      }
+    })
+      .then(res => {
+        console.log(res)
+
+      })
+      .catch(console.error)
+
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

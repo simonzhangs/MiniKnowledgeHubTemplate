@@ -1,0 +1,24 @@
+<!--example/maintain/maintain.wxml-->
+<view class="padding-lr bg-white">
+  <view class="solid-bottom text-xl padding">
+    <text class="text-black text-bold">维护页面</text>
+  </view>
+  <view class="padding">添加书籍，添加章节</view>
+</view>
+
+<!--logo尺寸为48x48px,标签列表见全局定义TagsList，标题不能超过12个字,Logo支持云文件id，支持小程序本地-->
+<view class="cu-bar bg-white solid-bottom margin-top">
+  <view class="action">
+    <text class="cuIcon-title text-orange "></text> 功能列表
+  </view>
+
+</view>
+
+<view class="cu-list grid col-3 no-border">
+  <view class="cu-item" wx:for="{{funcList}}" wx:key="name">
+    <navigator url="{{item.url}}">
+      <view class="cuIcon-{{item.icon}} text-{{item.color}}"></view>
+      <text>{{item.name}}</text>
+    </navigator>
+  </view>
+</view>
