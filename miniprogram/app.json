@@ -39,8 +39,6 @@
     ]
   },
   "debug": true,
-  "sitemapLocation": "sitemap.json",
-  "navigateToMiniProgramAppIdList": [
-    "wx4f0e6ddeb1080cd3"
-  ]
+  "sitemapLocation": "sitemap.json"
+ 
 }
