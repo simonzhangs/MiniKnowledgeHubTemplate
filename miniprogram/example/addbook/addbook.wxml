@@ -1,0 +1,66 @@
+<!--example/addbook/addbook.wxml-->
+<view class="solid-bottom text-lg padding">
+  <text class="text-black">
+  添加书籍
+  标签为书籍所属编程语言类型，必填；Logo为首页的图标，推荐48x48px，不能超256x256px。
+  目前你所增加的书籍都只能自己看到，若想分享，请在小程序中的反馈与投诉中提交申请。
+  </text>
+
+</view>
+
+
+<view class="cu-bar bg-white solid-bottom margin-top">
+  <view class="action">
+    <text class="cuIcon-title text-orange"></text> 添加书籍表单
+  </view>
+
+</view>
+<form bindsubmit="formSubmit" bindreset="formReset">
+
+  <view class="cu-form-group ">
+    <view class="title">书籍标题</view>
+    <input name="title" type="text" placeholder="请输入标题，不能超过12个字" maxlength="12"></input>
+  </view>
+ 
+ 	<view class="cu-form-group">
+		<view class="title">书籍标签</view>
+		<picker bindchange="bindPickerChange" value="{{index}}" range="{{ TagsList }}">
+			<view class="picker">
+			   当前选择：{{TagsList[index]}}
+			</view>
+		</picker>
+	</view>
+
+  <view class="cu-bar bg-white">
+		<view class="action">
+			Logo上传
+		</view>
+		<view class="action">
+			推荐48px x 48px
+		</view>
+	</view>
+  <view class="cu-form-group">
+		<view class="grid col-4 grid-square flex-sub">
+			<view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
+				<image src='{{imgList[index]}}' mode='aspectFit'></image>
+				
+			</view>
+			<view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<2}}">
+				<text class="cuIcon-cameraadd"></text>
+			</view>
+		</view>
+	</view>
+
+  <view class="cu-form-group">
+    <view class="solid-bottom text-xl padding">
+      <text class="text-black text-bold">{{ resultMessage }}</text>
+    </view>
+  </view>
+  <view class="flex solid-bottom padding justify-around">
+    <button form-type="reset" class="cu-btn bg-grey lg">重置</button>
+    <button form-type="submit" class="cu-btn bg-green lg" disabled='{{disabled}}'>提交</button>
+  </view>
+ 
+
+</form>
+

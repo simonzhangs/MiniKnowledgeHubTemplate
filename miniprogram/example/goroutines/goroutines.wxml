@@ -1,3 +1,0 @@
-<!--example/goroutines/goroutines.wxml-->
-<import src="../../towxml/entry.wxml"/>
-<template is="entry" data="{{...article}}"/>

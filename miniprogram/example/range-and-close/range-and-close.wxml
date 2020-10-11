@@ -1,3 +1,0 @@
-<!--example/range-and-close/range-and-close.wxml-->
-<import src="../../towxml/entry.wxml"/>
-<template is="entry" data="{{...article}}"/>

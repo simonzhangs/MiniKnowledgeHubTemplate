@@ -1,3 +1,0 @@
-<!--example/map-literals-continued/map-literals-continued.wxml-->
-<import src="../../towxml/entry.wxml"/>
-<template is="entry" data="{{...article}}"/>

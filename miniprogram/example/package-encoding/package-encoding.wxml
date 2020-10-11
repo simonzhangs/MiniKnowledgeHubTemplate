@@ -1,3 +1,0 @@
-<!--example/package-encoding/package-encoding.wxml-->
-<import src="../../towxml/entry.wxml"/>
-<template is="entry" data="{{...article}}"/>

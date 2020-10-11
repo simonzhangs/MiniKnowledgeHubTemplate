@@ -1,3 +1,0 @@
-<!--example/gin-04/gin-04.wxml-->
-<import src="../../towxml/entry.wxml"/>
-<template is="entry" data="{{...article}}"/>
