@@ -1,18 +1,18 @@
 {
   "pages": [
-    "example/index",
-    "example/common/common",
+    "pages/index",
+    "pages/common/common",
   
-    "example/book/book",
-    "example/maintain/maintain",
-    "example/addbook/addbook",
-    "example/uploadarticle/uploadarticle",
-    "example/openminiprogram/openminiprogram"
+    "pages/book/book",
+    "pages/maintain/maintain",
+    "pages/addbook/addbook",
+    "pages/uploadarticle/uploadarticle",
+    "pages/openminiprogram/openminiprogram"
     
   ],
   "window": {
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "爱上编程屋",
+    "navigationBarTitleText": "Go技术前沿",
     "navigationBarBackgroundColor": "#f8f8f8",
     "backgroundColor": "#f8f8f8"
   },
@@ -25,19 +25,20 @@
   "tabBar": {
     "list": [
       {
-        "pagePath": "example/index",
+        "pagePath": "pages/index",
         "text": "首页",
-        "iconPath": "./example/images/tabbar/home.png",
-        "selectedIconPath": "./example/images/tabbar/home_cur.png"
+        "iconPath": "./pages/images/tabbar/home.png",
+        "selectedIconPath": "./pages/images/tabbar/home_cur.png"
       },
       {
-        "pagePath": "example/maintain/maintain",
+        "pagePath": "pages/maintain/maintain",
         "text": "维护",
-        "iconPath": "./example/images/tabbar/plugin.png",
-        "selectedIconPath": "./example/images/tabbar/plugin_cur.png"
+        "iconPath": "./pages/images/tabbar/plugin.png",
+        "selectedIconPath": "./pages/images/tabbar/plugin_cur.png"
       }
     ]
   },
+  "style": "v2",
   "debug": true,
   "sitemapLocation": "sitemap.json"
  

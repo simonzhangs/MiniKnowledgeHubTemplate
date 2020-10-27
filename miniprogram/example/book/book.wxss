@@ -1,4 +1,0 @@
-/* example/book/book.wxss */
-page{
-  padding-top: 100rpx;
-}

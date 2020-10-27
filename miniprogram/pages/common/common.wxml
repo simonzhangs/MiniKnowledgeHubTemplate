@@ -1,0 +1,12 @@
+<!--example/common/common.wxml-->
+<view class="page" data-weui-theme="{{theme}}">
+  <view class="page__hd">
+    <view class="page__title">Article</view>
+    <view class="page__desc">文章</view>
+  </view>
+  <view class="page__bd">
+    <towxml nodes="{{article}}"/>
+
+    <view class="padding">编程是一项非常有用的技巧，知识是无价的！</view>
+  </view>
+</view>
