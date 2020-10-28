@@ -65,7 +65,7 @@ Page({
         keyword: that.data.keyword,
       }
     }).then(res => {
-      console.log(res.result)
+      
       wx.hideLoading()
       that.setData({
         artList: res.result.data
@@ -79,7 +79,7 @@ Page({
   },
 
   jump: function (e) {
-    console.log(e.currentTarget.dataset)
+   
     // 更新点击量
     wx.cloud.callFunction({
       name: 'updateArtViews',
