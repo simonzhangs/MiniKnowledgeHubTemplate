@@ -13,23 +13,24 @@ exports.main = async(event, context) => {
   var tag = event.tag
   var title = event.title
   var fileid = event.fileid 
-  
-  await db.collection('artList').add({
-    // data 字段表示需新增的 JSON 数据
-    data: {
-      openid: openid,
-      title: title,
-      num: 0,
-      tag:tag,
-      fileid:fileid,
-      status:true,
-      createTime:db.serverDate()
-    }
-  }).then(res => {
-    return res 
-  }).catch(err => {
-    console.log(err)
-    return err 
-  })
+  try{
+    const result=await db.collection('artList').add({
+      // data 字段表示需新增的 JSON 数据
+      data: {
+        openid: openid,
+        title: title,
+        num: 0,
+        tag:tag,
+        fileid:fileid,
+        status:true,
+        createTime:db.serverDate()
+      }
+    })
+    return result
+
+  }catch(e){
+    console.error(e)
+    
+  }
 
 }

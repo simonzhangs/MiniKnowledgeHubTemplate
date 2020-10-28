@@ -2,8 +2,6 @@
   "pages": [
     "pages/index",
     "pages/common/common"
-  
-    
   ],
   "window": {
     "navigationBarTextStyle": "black",
@@ -20,7 +18,6 @@
   },
   
   "style": "v2",
-  "debug": false,
   "sitemapLocation": "sitemap.json"
  
 }
