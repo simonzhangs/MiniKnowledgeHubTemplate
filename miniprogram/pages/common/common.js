@@ -6,39 +6,56 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isLoading: true,
-    article: {
-
-    },
+   
+    article: {},
   },
 
-
   getArticle: function (e) {
+    var that = this 
     wx.showLoading({
-      title: '加载中...',
+      title: '文章加载中',
     })
-    let result = app.towxml(`# Markdown`, 'markdown', {
-      theme: 'light',
-      events: {
-        tap: (e) => {
-          console.log('tap', e);
-        }
+    wx.cloud.downloadFile({
+      fileID:e.fileid,
+      success:res=>{
+        wx.getFileSystemManager().readFile({
+          filePath:res.tempFilePath,
+          encoding:'utf8',
+          success:(r)=>{
+            wx.hideLoading()
+            let result = app.towxml(r.data, 'markdown', {
+            });
+            that.setData({
+              article: result
+              
+            })
+          },
+          fail:(err)=>{
+            console.error(err)
+            wx.hideLoading()
+            wx.showToast({
+              title: '发生错误请重试',
+            })
+          }
+        })
+
+      },
+      fail:err=>{
+        console.error(err)
+        wx.hideLoading()
+        wx.showToast({
+          title: '发生错误请重试',
+        })
       }
-    });
-    this.setData({
-      article: result
     })
-    wx.hideLoading({
-      success: (res) => {},
-    })
+
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options.fileid)
-    this.getArticle()
-  
+    this.getArticle(options)
+    
   },
 
   /**

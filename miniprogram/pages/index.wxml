@@ -1,19 +1,18 @@
 <view class="page" data-weui-theme="{{theme}}">
   <view class="page__hd">
-    <view class="page__title">Go技术前沿</view>
-    <view class="page__desc">文章碎片</view>
+    <view class="page__desc">跟踪技术潮流、记录代码碎片。可搜索文章标题关键词、开发语言</view>
   </view>
   <view class="page__bd">
 
 
     <!-- 搜索框-->
     <view class="weui-search-bar {{inputShowed ? 'weui-search-bar_focusing' : ''}}" id="searchBar">
-      <form class="weui-search-bar__form">
+      <form class="weui-search-bar__form" >
         <view class="weui-search-bar__box">
           <i class="weui-icon-search"></i>
-          <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}"
-            focus="{{inputShowed}}" bindinput="inputTyping" />
-          <span class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput"></span>
+          <input type="text" confirm-type="search" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}"
+            focus="{{inputShowed}}" bindinput="inputTyping" bindconfirm="search"/>
+         
         </view>
         <label class="weui-search-bar__label" bindtap="showInput">
           <i class="weui-icon-search"></i>
@@ -22,36 +21,18 @@
       </form>
       <view class="weui-search-bar__cancel-btn" bindtap="hideInput">取消</view>
     </view>
-    <view class="weui-cells searchbar-result" wx:if="{{inputVal.length > 0}}">
-      <view class="weui-cell weui-cell_active weui-cell_access">
-        <view class="weui-cell__bd weui-cell_primary">
-          <view>实时搜索文本</view>
-        </view>
-      </view>
-      <view class="weui-cell weui-cell_active weui-cell_access">
-        <view class="weui-cell__bd weui-cell_primary">
-          <view>实时搜索文本</view>
-        </view>
-      </view>
-      <view class="weui-cell weui-cell_active weui-cell_access">
-        <view class="weui-cell__bd weui-cell_primary">
-          <view>实时搜索文本</view>
-        </view>
-      </view>
-      <view class="weui-cell weui-cell_active weui-cell_access">
-        <view class="weui-cell__bd weui-cell_primary">
-          <view>实时搜索文本</view>
-        </view>
-      </view>
-    </view>
-
+    
     <!-- 内容-->
-    <view class="weui-cells__title">代码碎片</view>
-    <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cells__title">文章代码碎片列表</view>
+    <view class="weui-cells">
       <block wx:for="{{artList}}" wx:key="title">
-        <view  class="weui-cell weui-cell_access" hover-class="weui-cell_active" bindtap="jump" data-fileid="{{item.fileid}}">
-          <view class="weui-cell__bd">{{item.title}}</view>
-          <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+        <view class="weui-cell weui-cell_active weui-cell_access"  bindtap="jump"
+          data-fileid="{{item.fileid}}" data-id="{{item._id}}">
+          <view class="weui-cell__bd">
+            <text style="vertical-align: middle;">{{item.title}}</text>
+            <text class="weui-badge" style="margin-left: 5px;">{{item.num}}</text>
+          </view>
+          <view class="weui-cell__ft ">{{item.tag}}</view>
         </view>
       </block>
 

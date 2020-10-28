@@ -1,20 +1,16 @@
 {
   "pages": [
     "pages/index",
-    "pages/common/common",
+    "pages/common/common"
   
-    "pages/book/book",
-    "pages/maintain/maintain",
-    "pages/addbook/addbook",
-    "pages/uploadarticle/uploadarticle",
-    "pages/openminiprogram/openminiprogram"
     
   ],
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "Go技术前沿",
     "navigationBarBackgroundColor": "#f8f8f8",
-    "backgroundColor": "#f8f8f8"
+    "backgroundColor": "#f8f8f8",
+    "enablePullDownRefresh":true
   },
   "networkTimeout": {
     "request": 10000,
@@ -22,24 +18,9 @@
     "uploadFile": 10000,
     "downloadFile": 10000
   },
-  "tabBar": {
-    "list": [
-      {
-        "pagePath": "pages/index",
-        "text": "首页",
-        "iconPath": "./pages/images/tabbar/home.png",
-        "selectedIconPath": "./pages/images/tabbar/home_cur.png"
-      },
-      {
-        "pagePath": "pages/maintain/maintain",
-        "text": "维护",
-        "iconPath": "./pages/images/tabbar/plugin.png",
-        "selectedIconPath": "./pages/images/tabbar/plugin_cur.png"
-      }
-    ]
-  },
+  
   "style": "v2",
-  "debug": true,
+  "debug": false,
   "sitemapLocation": "sitemap.json"
  
 }

@@ -1,8 +1,6 @@
 // example/index.js
 const app = getApp();
 
-let skip = 0
-let bcount = 0
 Page({
   mixins: [require('../mixin/themeChanged')],
 
@@ -10,33 +8,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    artList: [{
-        title: 'Golang 1.5版本发布',
-        num: 1,
-        tag: 'golang',
-        fileid: '1',
-      },
-      {
-        title: 'Golang 1.6版本发布',
-        num: 1,
-        tag: 'golang',
-        fileid: '2',
-      },
-      {
-        title: 'Golang 1.7版本发布',
-        num: 1,
-        tag: 'golang',
-        fileid: '3',
-      },
-      {
-        title: 'Golang 1.8版本发布',
-        num: 1,
-        tag: 'golang',
-        fileid: '4',
-      },
-    ],
+    artList: [],
     inputShowed: false,
-    inputVal: ""
+    inputVal: "",
+    keyword: ""
   },
   showInput: function () {
     this.setData({
@@ -46,18 +21,26 @@ Page({
   hideInput: function () {
     this.setData({
       inputVal: "",
-      inputShowed: false
+      inputShowed: false,
+      keyword:""
     });
+    this.getArticles()
   },
-  clearInput: function () {
-    this.setData({
-      inputVal: ""
-    });
-  },
+  
+  
   inputTyping: function (e) {
     this.setData({
       inputVal: e.detail.value
     });
+  },
+
+
+  search(e) {
+    var keyword = this.data.inputVal.toLowerCase()
+    this.setData({
+      keyword: keyword
+    })
+    this.getArticles()
   },
 
 
@@ -66,57 +49,53 @@ Page({
    */
   onLoad: function (options) {
 
-    //this.getBooks(0)
+    this.getArticles()
   },
-  getBooks: function (skip) {
+  getArticles: function () {
     var that = this
     wx.showLoading({
       title: '加载中...',
+      mask: true,
     })
-
     wx.cloud.callFunction({
       // 要调用的云函数名称
-      name: 'getBooks',
+      name: 'getArtList',
       // 传递给云函数的event参数
       data: {
-        skip: skip
+        keyword: that.data.keyword,
       }
     }).then(res => {
       console.log(res.result)
       wx.hideLoading()
-      openid = res.result.openid
-      app.globalData.OPENID = res.result.openid
       that.setData({
-        bookList: res.result.bookList.data,
-        bcount: res.result.bcount.total
+        artList: res.result.data
       })
     }).catch(err => {
       // handle 
       console.log(err)
       wx.hideLoading()
     })
+
   },
 
-  next: function () {
-    console.log(skip)
-    // 刷新一下，满足不够10的情况
-    this.getBooks(skip)
-    var prenum = skip
-    skip = skip + 10
-    if (skip > bcount) {
-      wx.showToast({
-        title: '没有数据了！',
-      })
-      skip = prenum
-      return
-    }
+  jump: function (e) {
+    console.log(e.currentTarget.dataset)
+    // 更新点击量
+    wx.cloud.callFunction({
+      name: 'updateArtViews',
+      data: {
+        id: e.currentTarget.dataset.id
+      },
+      fail: err => {
+        console.error(err)
+      }
+    })
+    // 调整到文章页面
+    wx.navigateTo({
+      url: './common/common?fileid=' + e.currentTarget.dataset.fileid,
+    })
 
-    this.getBooks(skip)
   },
- jump:function(e){
-   console.log(e.currentTarget.dataset.fileid)
-
- },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -149,6 +128,10 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
+
+    this.getArticles()
+    wx.stopPullDownRefresh()
+
 
   },
 
