@@ -25,7 +25,7 @@
     <!-- 内容-->
     <view class="weui-cells__title">文章代码碎片列表</view>
     <view class="weui-cells">
-      <block wx:for="{{artList}}" wx:key="title">
+      <block wx:for="{{artList}}" wx:key="_id">
         <view class="weui-cell weui-cell_active weui-cell_access"  bindtap="jump"
           data-fileid="{{item.fileid}}" data-id="{{item._id}}">
           <view class="weui-cell__bd">
