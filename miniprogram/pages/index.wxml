@@ -1,6 +1,9 @@
 <view class="page" data-weui-theme="{{theme}}">
   <view class="page__hd">
-    <view class="page__desc">跟踪技术潮流、记录代码碎片。可搜索文章标题关键词、开发语言</view>
+   
+    <view class="page__title">跟踪技术潮流、记录代码碎片。</view>
+   
+    <button size="mini" type="default">上传碎片</button>
   </view>
   <view class="page__bd">
 

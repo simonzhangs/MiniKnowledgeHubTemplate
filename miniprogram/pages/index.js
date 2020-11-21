@@ -11,7 +11,7 @@ Page({
     artList: [],
     inputShowed: false,
     inputVal: "",
-    keyword: ""
+    keyword: "",
   },
   showInput: function () {
     this.setData({
@@ -48,12 +48,25 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
+    var that = this
     if(options.id==='wander'){
-      console.log('来自于小程序')
+      wx.showModal({
+        title: '提示',
+        content: '看到本页面说明您来自于《爱上随机数》小程序。欢迎您，朋友！',
+        showCancel:false,
+        confirmText:'欢迎光临',
+        success (res) {
+        
+        },
+        complete:function(){
+          that.getArticles()
+        }
+      })
+    }else{
+      that.getArticles()
     }
 
-    this.getArticles()
+
   },
   getArticles: function () {
     var that = this

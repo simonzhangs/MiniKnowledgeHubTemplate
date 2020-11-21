@@ -48,26 +48,21 @@
   "simulatorPluginLibVersion": {},
   "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
   "condition": {
-    "search": {
-      "list": []
-    },
-    "conversation": {
-      "list": []
-    },
     "plugin": {
       "list": []
     },
     "game": {
-      "currentL": -1,
+      "list": []
+    },
+    "gamePlugin": {
       "list": []
     },
     "miniprogram": {
       "list": [
         {
-          "id": 0,
-          "name": "test",
-          "pathName": "example/openminiprogram/openminiprogram",
-          "query": "",
+          "name": "pages/index",
+          "pathName": "pages/index",
+          "query": "id=wander",
           "scene": null
         },
         {
