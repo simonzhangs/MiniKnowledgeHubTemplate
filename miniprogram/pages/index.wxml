@@ -2,8 +2,8 @@
   <view class="page__hd">
    
     <view class="page__title">跟踪技术潮流、记录代码碎片。</view>
-   
-    <button size="mini" type="default">上传碎片</button>
+   <view class="page__desc">可通过关键字或标签进行搜索</view>
+    <!--<button size="mini" type="default">上传碎片</button> 待实现-->
   </view>
   <view class="page__bd">
 
