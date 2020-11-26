@@ -52,7 +52,7 @@ Page({
     if(options.id==='wander'){
       wx.showModal({
         title: '提示',
-        content: '看到本页面说明您来自于《爱上随机数》小程序。欢迎您，朋友！',
+        content: '看到本页面说明您通过其它小程序跳转过来。欢迎您，朋友！',
         showCancel:false,
         confirmText:'欢迎光临',
         success (res) {
