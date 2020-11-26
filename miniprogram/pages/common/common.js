@@ -6,33 +6,36 @@ Page({
    * 页面的初始数据
    */
   data: {
-   
+    isLoading: true,
     article: {},
   },
 
   getArticle: function (e) {
-    var that = this 
-    wx.showLoading({
+    var that = this
+    /**
+     * wx.showLoading({
       title: '文章加载中',
-    })
+    }) 
+     */
+
+
     wx.cloud.downloadFile({
-      fileID:e.fileid,
-      success:res=>{
+      fileID: e.fileid,
+      success: res => {
         wx.getFileSystemManager().readFile({
-          filePath:res.tempFilePath,
-          encoding:'utf8',
-          success:(r)=>{
-            wx.hideLoading()
-            let result = app.towxml(r.data, 'markdown', {
-            });
+          filePath: res.tempFilePath,
+          encoding: 'utf8',
+          success: (r) => {
+            //wx.hideLoading()
+            let result = app.towxml(r.data, 'markdown', {});
             that.setData({
-              article: result
-              
+              article: result,
+              isLoading: false
             })
           },
-          fail:(err)=>{
+          fail: (err) => {
             console.error(err)
-            wx.hideLoading()
+            //wx.hideLoading()
             wx.showToast({
               title: '发生错误请重试',
             })
@@ -40,9 +43,9 @@ Page({
         })
 
       },
-      fail:err=>{
+      fail: err => {
         console.error(err)
-        wx.hideLoading()
+        //wx.hideLoading()
         wx.showToast({
           title: '发生错误请重试',
         })
@@ -55,7 +58,7 @@ Page({
    */
   onLoad: function (options) {
     this.getArticle(options)
-    
+
   },
 
   /**
