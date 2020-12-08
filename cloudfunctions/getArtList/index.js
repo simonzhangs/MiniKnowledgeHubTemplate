@@ -9,12 +9,22 @@ const db = cloud.database()
 const _ = db.command
 // 云函数入口函数
 exports.main = async (event, context) => {
+  const wxContext = cloud.getWXContext()
+  const openid = wxContext.OPENID 
   // 获取集合中的内容
   // 搜索获取内容
   var keyword = event.keyword
   var result = {}
   // 获取前50项
   if (keyword !== "") {
+    await db.collection('searchHis').add({
+      // data 字段表示需新增的 JSON 数据
+      data: {
+        openid: openid,
+        keyword: keyword,
+        createTime:db.serverDate()
+      }
+    })
     result = await db.collection('artList')
       .field({
         title: true,

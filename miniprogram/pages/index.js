@@ -32,8 +32,8 @@ Page({
     this.setData({
       inputVal: e.detail.value
     });
+    
   },
-
 
   search(e) {
     var keyword = this.data.inputVal.toLowerCase()
