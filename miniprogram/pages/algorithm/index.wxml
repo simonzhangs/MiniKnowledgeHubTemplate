@@ -1,0 +1,2 @@
+<!--pages/algorithm/index.wxml-->
+<canvas type="2d" id="myCanvas" disable-scroll="true" bindtouchstart="onTouchstart" bindtouchmove="onTouchmove" bindtouchend="onTouchend" bindtouchcancel="onTouchcancel" binderror="onError"></canvas>

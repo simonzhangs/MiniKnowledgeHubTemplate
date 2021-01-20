@@ -37,7 +37,7 @@
     "packNpmRelationList": []
   },
   "compileType": "miniprogram",
-  "libVersion": "2.9.4",
+  "libVersion": "2.14.3",
   "appid": "wx4e37655ebd5fd6f8",
   "projectname": "golang-visit",
   "debugOptions": {
@@ -48,6 +48,14 @@
   "simulatorPluginLibVersion": {},
   "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
   "condition": {
+    "search": {
+      "current": -1,
+      "list": []
+    },
+    "conversation": {
+      "current": -1,
+      "list": []
+    },
     "plugin": {
       "list": []
     },
@@ -60,15 +68,9 @@
     "miniprogram": {
       "list": [
         {
-          "name": "pages/index",
-          "pathName": "pages/index",
-          "query": "id=wander",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "test1",
-          "pathName": "example/test1/test1",
+          "id": 0,
+          "name": "pages/algorithm/index",
+          "pathName": "pages/algorithm/index",
           "query": "",
           "scene": null
         }
