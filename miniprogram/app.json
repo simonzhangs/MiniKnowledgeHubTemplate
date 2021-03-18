@@ -8,9 +8,9 @@
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "Go技术前沿",
-    "navigationBarBackgroundColor": "#f8f8f8",
-    "backgroundColor": "#f8f8f8",
-    "enablePullDownRefresh":true
+    "navigationBarBackgroundColor": "#EDEDED",
+    "backgroundColor": "#EDEDED",
+    "enablePullDownRefresh":false
   },
   "networkTimeout": {
     "request": 10000,

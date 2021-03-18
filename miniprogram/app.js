@@ -2,6 +2,7 @@
 require('./libs/Mixins.js');
 
 const themeListeners = [];
+
 App({
 
   onLaunch: function () {
@@ -10,7 +11,7 @@ App({
     } else {
       wx.cloud.init({
         env: 'visit-prod-d4ca13',
-       // env: 'visit-3c98f4',
+        // env: 'visit-3c98f4',
         traceUser: true,
       })
     }
@@ -22,6 +23,9 @@ App({
 
 
 
+  globalData: {
+    theme: 'light', // dark
+  },
   themeChanged(theme) {
     this.globalData.theme = theme;
     themeListeners.forEach((listener) => {
@@ -39,8 +43,4 @@ App({
       themeListeners.splice(index, 1);
     }
   },
-  globalData: {
-
-    theme: 'light', // dark
-  }
 });
