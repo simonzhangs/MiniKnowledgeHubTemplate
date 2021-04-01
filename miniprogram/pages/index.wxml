@@ -1,112 +1,52 @@
+<wxs src="./dateformat.wxs" module="tools" />
 <view class="page" data-weui-theme="{{theme}}">
   <view class="page__hd">
-    <view class="page__title">跟踪技术潮流、记录代码碎片</view>
-    <view class="page__desc">应怜屐齿印苍苔，小扣柴扉久不开。
-春色满园关不住，一枝红杏出墙来。使用小程序来展示一些功能特色，技术难点。</view>
+    <view class="page__title">常用软件库及代码碎片</view>
+    <view class="page__desc">介绍常用软件库、代码碎片等，可通过关键字或标签进行搜索。</view>
 
   </view>
   <view class="page__bd">
+
+    <!-- 搜索框-->
+    <view class="weui-search-bar {{inputShowed ? 'weui-search-bar_focusing' : ''}}" id="searchBar">
+      <form class="weui-search-bar__form" >
+        <view class="weui-search-bar__box">
+          <i class="weui-icon-search"></i>
+          <input type="text" confirm-type="search" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}"
+            focus="{{inputShowed}}" bindinput="inputTyping" bindconfirm="search"/>
+         
+        </view>
+        <label class="weui-search-bar__label" bindtap="showInput">
+          <i class="weui-icon-search"></i>
+          <span class="weui-search-bar__text">搜索</span>
+        </label>
+      </form>
+      <view class="weui-search-bar__cancel-btn" bindtap="hideInput">取消</view>
+    </view>
     <!-- 内容-->
-    <view class="weui-panel weui-panel_access">
-      <view class="weui-panel__hd">开发语言列表 </view>
-      <view class="weui-panel__bd">
-        <a class="weui-media-box weui-media-box_appmsg">
-          <view class="weui-media-box__hd">
-            <image class="weui-media-box__thumb" src="./images/java.png" alt></image>
-          </view>
-          <view class="weui-media-box__bd">
-            <h4 class="weui-media-box__title">JAVA</h4>
-            <view class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</view>
-          </view>
-        </a>
-        <a class="weui-media-box weui-media-box_appmsg">
-          <view class="weui-media-box__hd">
-            <image class="weui-media-box__thumb" src="./images/golang.png" alt></image>
-          </view>
-          <view class="weui-media-box__bd">
-            <h4 class="weui-media-box__title">Golang</h4>
-            <view class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</view>
-          </view>
-        </a>
-        <a class="weui-media-box weui-media-box_appmsg">
-          <view class="weui-media-box__hd">
-            <image class="weui-media-box__thumb" src="./images/flutter_72.png" alt></image>
-          </view>
-          <view class="weui-media-box__bd">
-            <h4 class="weui-media-box__title">Flutter</h4>
-            <view class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</view>
-          </view>
-        </a>
-      </view>
-      <view class="weui-panel__ft">
-        <a class="weui-cell weui-cell_active weui-cell_access weui-cell_link">
-          <view class="weui-cell__bd">查看更多</view>
-          <text class="weui-cell__ft"></text>
-        </a>
-      </view>
-    </view>
-    <view class="weui-panel weui-panel_access">
-      <view class="weui-panel__hd">文字组合列表</view>
-      <view class="weui-panel__bd">
-        <view class="weui-media-box weui-media-box_text">
-          <h4 class="weui-media-box__title">标题一</h4>
-          <view class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</view>
-        </view>
-        <view class="weui-media-box weui-media-box_text">
-          <h4 class="weui-media-box__title">标题二</h4>
-          <view class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</view>
-        </view>
-      </view>
-      <view class="weui-panel__ft">
-        <a class="weui-cell weui-cell_active weui-cell_access weui-cell_link">
-          <view class="weui-cell__bd">查看更多</view>
-          <text class="weui-cell__ft"></text>
-        </a>
-      </view>
-    </view>
     <view class="weui-panel">
-      <view class="weui-panel__hd">小图文组合列表</view>
+      <view class="weui-panel__hd">收录列表</view>
       <view class="weui-panel__bd">
-        <view class="weui-media-box weui-media-box_small-appmsg">
-          <view class="weui-cells">
-            <a class="weui-cell weui-cell_active weui-cell_access weui-cell_example">
-              <view class="weui-cell__hd">
-                <image
-                  src="./images/flutter_48.png"
-                  alt></image>
-              </view>
-              <view class="weui-cell__bd weui-cell_primary">
-                <view>文字标题</view>
-              </view>
-              <text class="weui-cell__ft"></text>
-            </a>
-            <a class="weui-cell weui-cell_active weui-cell_access weui-cell_example">
-              <view class="weui-cell__hd">
-                <image
-                  src="./images/flutter_48.png"
-                  alt></image>
-              </view>
-              <view class="weui-cell__bd weui-cell_primary">
-                <view>文字标题</view>
-              </view>
-              <text class="weui-cell__ft"></text>
-            </a>
-          </view>
-        </view>
-      </view>
-    </view>
-    <view class="weui-panel">
-      <view class="weui-panel__hd">文字列表附来源</view>
-      <view class="weui-panel__bd">
+        <!-- 广告-->
         <view class="weui-media-box weui-media-box_text">
-          <h4 class="weui-media-box__title">标题一</h4>
-          <view class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</view>
-          <view class="weui-media-box__info">
-            <view class="weui-media-box__info__meta">文字来源</view>
-            <view class="weui-media-box__info__meta">时间</view>
-            <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">其它信息</view>
-          </view>
+          <ad unit-id="adunit-62a65ad78c1b3f40"></ad>
         </view>
+        <!--循环输出-->
+        <block wx:for="{{artList}}" wx:key="_id">
+
+          <view class="weui-media-box weui-media-box_text" bindtap="jump" data-fileid="{{item.fileid}}" data-id="{{item._id}}">
+            <h4 class="weui-media-box__title">{{item.title}}</h4>
+            <view class="weui-media-box__desc">{{item.desc}}</view>
+            <view class="weui-media-box__info">
+              <view class="weui-media-box__info__meta">标签:{{item.tag}}</view>
+              <view class="weui-media-box__info__meta">创建时间:{{tools.dateFormat(item.createTime)}}</view>
+              <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">浏览次数:{{item.num}}</view>
+            </view>
+          </view>
+
+        </block>
+
+
       </view>
     </view>
 

@@ -16,7 +16,6 @@ exports.main = async (event, context) => {
   // 搜索获取内容
   var keyword = event.keyword
   var result = {}
-  // 获取12条记录，根据实际情况测试，获取12条记录就可以了。
   if (keyword !== "") {
     // 当搜索不为空时，记录搜索内容
     await db.collection('searchHis').add({
@@ -30,9 +29,11 @@ exports.main = async (event, context) => {
     result = await db.collection('artList')
       .field({
         title: true,
+        desc:true,
         tag: true,
         num: true,
         fileid: true,
+        createTime:true,
       })
       .where(
         _.and([{
@@ -56,22 +57,24 @@ exports.main = async (event, context) => {
       )
       .orderBy('createTime', 'desc')
       .orderBy('num', 'desc')
-      .limit(12)
+      .limit(20)
       .get()
   } else {
     result = await db.collection('artList')
-      .field({
-        title: true,
-        tag: true,
-        num: true,
-        fileid: true,
-      })
+    .field({
+      title: true,
+      desc:true,
+      tag: true,
+      num: true,
+      fileid: true,
+      createTime:true,
+    })
       .where({
         status: true,
       })
       .orderBy('createTime', 'desc')
       .orderBy('num', 'desc')
-      .limit(12)
+      .limit(20)
       .get()
   }
 

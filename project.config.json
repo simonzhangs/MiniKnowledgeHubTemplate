@@ -23,19 +23,19 @@
     "checkSiteMap": true,
     "uploadWithSourceMap": true,
     "compileHotReLoad": false,
-    "useMultiFrameRuntime": true,
+    "useMultiFrameRuntime": false,
     "useApiHook": true,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
       "outputPath": ""
     },
+    "bundle": false,
     "useIsolateContext": true,
     "useCompilerModule": true,
     "userConfirmedUseCompilerModuleSwitch": false,
     "packNpmManually": false,
     "packNpmRelationList": [],
-    "bundle": false,
     "useApiHostProcess": true
   },
   "compileType": "miniprogram",
@@ -66,15 +66,7 @@
       "list": []
     },
     "miniprogram": {
-      "list": [
-        {
-          "id": 0,
-          "name": "pages/algorithm/index",
-          "pathName": "pages/algorithm/index",
-          "query": "",
-          "scene": null
-        }
-      ]
+      "list": []
     }
   }
 }

@@ -2,6 +2,7 @@
 <view class="page" data-weui-theme="{{theme}}">
 
   <view class="page__bd">
+    <ad unit-id="adunit-62a65ad78c1b3f40"></ad>
     <!--loading-->
     <view class="loading" wx:if="{{isLoading}}">
       <image class="loading__icon" src="../images/loading.svg"></image>

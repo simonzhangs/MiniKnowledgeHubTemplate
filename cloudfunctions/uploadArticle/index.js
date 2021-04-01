@@ -13,12 +13,14 @@ exports.main = async(event, context) => {
   var tag = event.tag
   var title = event.title
   var fileid = event.fileid 
+  var desc = event.desc
   try{
     const result=await db.collection('artList').add({
       // data 字段表示需新增的 JSON 数据
       data: {
         openid: openid,
         title: title,
+        desc:desc,
         num: 0,
         tag:tag,
         fileid:fileid,

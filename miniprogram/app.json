@@ -2,8 +2,7 @@
   "pages": [
     "pages/index",
     "pages/common/common",
-    "pages/chip/index",
-    "pages/algorithm/index"
+    "pages/chip/index"
   ],
   "window": {
     "navigationBarTextStyle": "black",

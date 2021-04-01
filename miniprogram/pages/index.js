@@ -87,6 +87,7 @@ Page({
       that.setData({
         artList: res.result.data
       })
+      console.log(that.data.artList)
     }).catch(err => {
       // handle 
       console.log(err)
