@@ -8,7 +8,7 @@ cloud.init({
 const db = cloud.database()
 exports.main = async(event, context) => {
   // 数据库结构，openid，title，浏览数量num，标签，创建时间，文件名（对应云存储），状态（是否显示）
-  // 上传的参数，文件名，标签，title
+  // 上传的参数，文件名，文件简介，标签，title
   var openid = event.openid
   var tag = event.tag
   var title = event.title
