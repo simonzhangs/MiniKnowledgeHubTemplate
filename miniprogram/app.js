@@ -25,7 +25,7 @@ App({
 
 
   globalData: {
-    theme: 'light', // dark
+    theme: 'light', // dark,light
   },
   themeChanged(theme) {
     this.globalData.theme = theme;
