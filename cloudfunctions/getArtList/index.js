@@ -11,8 +11,8 @@ const _ = db.command
 exports.main = async (event, context) => {
   // 获取openid，作为记录搜索记录使用
   const wxContext = cloud.getWXContext()
-  const openid = wxContext.OPENID 
-  
+  const openid = wxContext.OPENID
+
   // 搜索获取内容
   var keyword = event.keyword
   var result = {}
@@ -23,17 +23,18 @@ exports.main = async (event, context) => {
       data: {
         openid: openid,
         keyword: keyword,
-        createTime:db.serverDate()
+        createTime: db.serverDate()
       }
     })
     result = await db.collection('artList')
       .field({
         title: true,
-        desc:true,
+        desc: true,
         tag: true,
         num: true,
         fileid: true,
-        createTime:true,
+        stars: true,
+        createTime: true,
       })
       .where(
         _.and([{
@@ -61,14 +62,15 @@ exports.main = async (event, context) => {
       .get()
   } else {
     result = await db.collection('artList')
-    .field({
-      title: true,
-      desc:true,
-      tag: true,
-      num: true,
-      fileid: true,
-      createTime:true,
-    })
+      .field({
+        title: true,
+        desc: true,
+        tag: true,
+        num: true,
+        fileid: true,
+        stars: true,
+        createTime: true,
+      })
       .where({
         status: true,
       })

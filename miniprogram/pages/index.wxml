@@ -34,7 +34,7 @@
         <!--循环输出-->
         <block wx:for="{{artList}}" wx:key="_id">
 
-          <view class="weui-media-box weui-media-box_text" bindtap="jump" data-fileid="{{item.fileid}}" data-id="{{item._id}}">
+          <view class="weui-media-box weui-media-box_text" bindtap="jump" data-stars="{{item.stars}}" data-idx="{{index}}" data-id="{{item._id}}" data-fileid = "{{item.fileid}}"> 
             <h4 class="weui-media-box__title">{{item.title}}</h4>
             <view class="weui-media-box__desc">{{item.desc}}</view>
             <view class="weui-media-box__info">
