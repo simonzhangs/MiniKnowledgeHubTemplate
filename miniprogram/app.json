@@ -2,7 +2,8 @@
   "pages": [
     "pages/index",
     "pages/common/common",
-    "pages/chip/index"
+    "pages/chip/index",
+    "pages/article/index"
   ],
   "window": {
     "navigationBarTextStyle": "black",

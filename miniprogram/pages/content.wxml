@@ -1,0 +1,31 @@
+<!--
+  title: string
+  desc: string
+  url: string
+  lang: string
+  views: int
+  status: int
+  openid: string
+  createTime: string
+-->
+<template name="msgItem">
+  
+  <view class="weui-article">
+   
+    <view aria-role="heading" aria-level="4" class="weui-article__h1">{{title}}</view>
+    
+    <view class="weui-article__section">
+      <view class="weui-article__h3">相关信息</view>
+      <view class="weui-article__ul">
+        <view class="weui-article__li">Github地址：{{url}}</view>
+        <view class="weui-article__li">编程语言：{{lang}}</view>
+        <view class="weui-article__li">浏览总数：{{views}}</view>
+        <view class="weui-article__li">收录时间：{{createTime}}</view>
+      </view>
+      <view class="weui-article__p">
+        {{content}}
+      </view>
+    </view>
+    <ad unit-id="adunit-62a65ad78c1b3f40"></ad>
+  </view>
+</template>

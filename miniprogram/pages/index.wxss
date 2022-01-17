@@ -1,2 +1,12 @@
 
-.weui-cell_example .weui-cell__hd image{width:20px;height:20px;display:block;margin-right:16px}
+
+.weui-cell__hd {
+  font-size: 0
+}
+
+.weui-cell__hd image {
+  margin-right: 32rpx;
+  vertical-align: middle;
+  width: 40rpx;
+  height: 40rpx
+}
