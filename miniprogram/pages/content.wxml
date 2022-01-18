@@ -17,7 +17,7 @@
     <view class="weui-article__section">
       <view class="weui-article__h3">相关信息</view>
       <view class="weui-article__ul">
-        <view class="weui-article__li">Github地址：{{url}}</view>
+        <view class="weui-article__li">URL地址：{{url}}</view>
         <view class="weui-article__li">编程语言：{{lang}}</view>
         <view class="weui-article__li">浏览总数：{{views}}</view>
         <view class="weui-article__li">收录时间：{{createTime}}</view>
