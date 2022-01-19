@@ -26,19 +26,16 @@ exports.main = async (event, context) => {
         createTime: db.serverDate()
       }
     })
-    result = await db.collection('artList')
+    result = await db.collection('homeList')
       .field({
         title: true,
         desc: true,
-        tag: true,
-        num: true,
-        fileid: true,
-        stars: true,
-        createTime: true,
+        guid:true,
+        views:true,
       })
       .where(
         _.and([{
-            status: true,
+            status: 1,
           },
           _.or([{
               title: db.RegExp({
@@ -47,37 +44,34 @@ exports.main = async (event, context) => {
               })
             },
             {
-              tag: keyword
+              desc: db.RegExp({
+                regexp: keyword,
+                options: 'i',
+              })
             }
 
           ])
 
         ])
-
-
       )
       .orderBy('createTime', 'desc')
-      .orderBy('num', 'desc')
       .limit(20)
       .get()
   } else {
-    result = await db.collection('artList')
+    result = await db.collection('homeList')
       .field({
         title: true,
         desc: true,
-        tag: true,
-        num: true,
-        fileid: true,
-        stars: true,
-        createTime: true,
+        guid:true,
+        views:true,
       })
       .where({
-        status: true,
+        status: 1,
       })
       .orderBy('createTime', 'desc')
-      .orderBy('num', 'desc')
       .limit(20)
       .get()
+      
   }
 
   return result

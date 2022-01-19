@@ -1,0 +1,13 @@
+{
+  "triggers": [
+    {
+      "name": "articleTrigger",
+      "type": "timer",
+      "config": "*/30 * * * * * *"
+    }
+  ],
+  "permissions": {
+    "openapi": [
+    ]
+  }
+}

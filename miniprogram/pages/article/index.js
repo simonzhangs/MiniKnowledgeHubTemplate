@@ -12,15 +12,43 @@ Page({
       lang:'golang',
       views:150,
       url:'https://githbu.com/gin',
-
     }
+  },
+
+  getArticle(e){
+    console.log(e.guid)
+    var that = this
+    wx.showLoading({
+      title: '加载中...',
+      mask: true,
+    })
+    wx.cloud.callFunction({
+      // 要调用的云函数名称
+      name: 'getArtDetail',
+      // 传递给云函数的event参数
+      data: {
+        guid: e.guid,
+      }
+    }).then(res => {
+      wx.hideLoading()
+      console.log(res.result)
+      let item = res.result.data[0];
+      that.setData({
+        item:item,
+      })
+      
+    }).catch(err => {
+      // handle 
+      console.log(err)
+      wx.hideLoading()
+    })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getArticle(options);
   },
 
   /**

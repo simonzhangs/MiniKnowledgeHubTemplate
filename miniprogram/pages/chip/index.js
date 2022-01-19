@@ -76,9 +76,7 @@ Page({
           wx.showToast({
             title: '重复提交',
           })
-        }
-       
-        
+        }  
       },
       fail: console.error,
       

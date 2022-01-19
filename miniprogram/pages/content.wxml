@@ -8,6 +8,7 @@
   openid: string
   createTime: string
 -->
+<wxs src="./dateformat.wxs" module="tools" />
 <template name="msgItem">
   
   <view class="weui-article">
@@ -20,7 +21,7 @@
         <view class="weui-article__li">URL地址：{{url}}</view>
         <view class="weui-article__li">编程语言：{{lang}}</view>
         <view class="weui-article__li">浏览总数：{{views}}</view>
-        <view class="weui-article__li">收录时间：{{createTime}}</view>
+        <view class="weui-article__li">收录时间：{{tools.dateFormat(createTime)}}</view>
       </view>
       <view class="weui-article__p">
         {{content}}

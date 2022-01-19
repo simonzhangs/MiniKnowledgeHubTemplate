@@ -1,5 +1,5 @@
 <wxs src="./dateformat.wxs" module="tools" />
-<view class="page" data-weui-theme="{{theme}}">
+<view class="page">
   <view class="page__hd">
     <view class="page__title">常用软件库及代码碎片</view>
     <view class="page__desc">介绍常用软件库、代码碎片等，可通过关键字进行搜索。</view>
@@ -34,7 +34,7 @@
     <view class="weui-cells weui-cells_after-title">
 
       <block wx:for="{{artList}}" wx:key="_id">
-        <view aria-labelledby="js_cell_l1_bd" class="weui-cell weui-cell_access" hover-class="weui-cell_active" bindtap="jump" data-stars="{{item.stars}}" data-idx="{{index}}" data-id="{{item._id}}" data-fileid="{{item.fileid}}">
+        <view aria-labelledby="js_cell_l1_bd" class="weui-cell weui-cell_access" hover-class="weui-cell_active" bindtap="jump" data-guid="{{item.guid}}">
           <view class="weui-cell__bd" id="js_cell_l1_bd" aria-hidden="true">
             <view>{{item.title}}</view>
             <view class="weui-cell__desc">{{item.desc}}</view>

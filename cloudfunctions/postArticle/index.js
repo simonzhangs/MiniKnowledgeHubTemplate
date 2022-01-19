@@ -18,12 +18,12 @@ exports.main = async (event, context) => {
   const url = event.url
   const content = event.content
   const q1 = await db.collection('postArticle').where({
-    openid: openid,
-    title: title,
-  })
-  .field({
-    _id: true,
-  }).get()
+      openid: openid,
+      title: title,
+    })
+    .field({
+      _id: true,
+    }).get()
   if (q1.data.length != 0) {
     return 2
   }
@@ -38,11 +38,12 @@ exports.main = async (event, context) => {
       url: url,
       content: content,
       status: 1,
-      createTime: db.serverDate()
+      createTime: db.serverDate(),
+      updateTime: db.serverDate(),
     },
   })
 
   console.log(res)
-  
+
   return 1
 }

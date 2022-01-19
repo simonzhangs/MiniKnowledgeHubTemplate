@@ -1,6 +1,7 @@
 <!--pages/article/index.wxml-->
 <page-meta root-font-size="system"/>
 <import src="../content.wxml"/>
+
 <view class="page">
 
   <template is="msgItem" data="{{...item}}"/>

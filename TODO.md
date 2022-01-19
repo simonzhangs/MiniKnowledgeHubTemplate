@@ -18,7 +18,7 @@
 
 重新架构，首页使用列表，详情页使用模板，这样可以方便使用数据库，不再使用markdown解析，长文章可以写到公众号去。
 
-首页实体(title,desc,openid,stars,createTime,uuid,status)
+首页实体(uuid,title,desc,openid,views,createTime,status)
 详情实体(uuid,title,content,views,lang,url,createTime,status)
 星星大于5，开始跳出视频，每10个view换一个星星。
 uuid作为主键关联。
