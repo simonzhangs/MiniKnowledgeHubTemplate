@@ -34,7 +34,7 @@
     <view class="weui-cells weui-cells_after-title">
 
       <block wx:for="{{artList}}" wx:key="_id">
-        <view aria-labelledby="js_cell_l1_bd" class="weui-cell weui-cell_access" hover-class="weui-cell_active" bindtap="jump" data-guid="{{item.guid}}">
+        <view aria-labelledby="js_cell_l1_bd" class="weui-cell weui-cell_access" hover-class="weui-cell_active" bindtap="jump" data-guid="{{item.guid}}" data-stars="{{item.stars}}">
           <view class="weui-cell__bd" id="js_cell_l1_bd" aria-hidden="true">
             <view>{{item.title}}</view>
             <view class="weui-cell__desc">{{item.desc}}</view>

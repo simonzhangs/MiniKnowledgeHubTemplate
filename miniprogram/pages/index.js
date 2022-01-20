@@ -12,7 +12,8 @@ Page({
     inputShowed: false,
     inputVal: "",
     keyword: "",
-
+    guid:"",
+    index:0,
   },
   showInput: function () {
     this.setData({
@@ -51,30 +52,30 @@ Page({
   onLoad: function (options) {
     var that = this
     that.getArticles()
-    // if (wx.createRewardedVideoAd) {
-    //   videoAd = wx.createRewardedVideoAd({
-    //     adUnitId: 'adunit-2ce6db3cb1e45a86'
-    //   })
-    //   videoAd.onLoad(() => {})
-    //   videoAd.onError((err) => {
-    //     console.log('onError event emit', err)
-    //     wx.showToast({
+    if (wx.createRewardedVideoAd) {
+      videoAd = wx.createRewardedVideoAd({
+        adUnitId: 'adunit-2ce6db3cb1e45a86'
+      })
+      videoAd.onLoad(() => {})
+      videoAd.onError((err) => {
+        console.log('onError event emit', err)
+        wx.showToast({
 
-    //       title: '稍后再试',
-    //     })
-    //   })
-    //   videoAd.onClose((res) => {
-    //     if (res && res.isEnded) {
-    //       // 正常播放结束，可以下发游戏奖励 
-    //       that.jumpToPage(that.data.fileid)
-    //     } else {
-    //       // 播放中途退出，不下发游戏奖励 
-    //       wx.showToast({
-    //         title: '求支持啊',
-    //       })
-    //     }
-    //   })
-    // }
+          title: '稍后再试',
+        })
+      })
+      videoAd.onClose((res) => {
+        if (res && res.isEnded) {
+          // 正常播放结束，可以下发游戏奖励 
+          that.jumpToPage(that.data.guid)
+        } else {
+          // 播放中途退出，不下发游戏奖励 
+          wx.showToast({
+            title: '求支持啊',
+          })
+        }
+      })
+    }
 
 
   },
@@ -86,7 +87,7 @@ Page({
     })
     wx.cloud.callFunction({
       // 要调用的云函数名称
-      name: 'getArtList',
+      name: 'getLibList',
       // 传递给云函数的event参数
       data: {
         keyword: that.data.keyword,
@@ -115,23 +116,27 @@ Page({
 
   jump: function (e) {
     var that = this;
-    that.jumpToPage(e.currentTarget.dataset.guid)
-    // if (e.currentTarget.dataset.views >= 50) {
+    that.setData({
+      guid:e.currentTarget.dataset.guid,
+      
+    })
+    //that.jumpToPage(e.currentTarget.dataset.guid)
+    if (e.currentTarget.dataset.stars >= 5) {
 
-    //   if (videoAd) {
-    //     videoAd.show().catch(() => {
-    //       // 失败重试 
-    //       videoAd.load()
-    //         .then(() => videoAd.show())
-    //         .catch(err => {
-    //           console.log('激励视频 广告显示失败')
-    //         })
-    //     })
-    //   }
-    // } else {
-    //   console.log(e.currentTarget.dataset.guid);
-    //   that.jumpToPage(e.currentTarget.dataset.guid)
-    // }
+      if (videoAd) {
+        videoAd.show().catch(() => {
+          // 失败重试 
+          videoAd.load()
+            .then(() => videoAd.show())
+            .catch(err => {
+              console.log('激励视频 广告显示失败')
+            })
+        })
+      }
+    } else {
+      console.log(e.currentTarget.dataset.guid);
+      that.jumpToPage(e.currentTarget.dataset.guid)
+    }
 
   },
 

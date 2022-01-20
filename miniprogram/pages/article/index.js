@@ -6,12 +6,12 @@ Page({
    */
   data: {
     item: {
-      title: 'gin库',
-      content: 'Gin是golang的第三方http开发库,Gin是golang的第三方http开发库Gin是golang的第三方http开发库Gin是golang的第三方http开发库Gin是golang的第三方http开发库Gin是golang的第三方http开发库Gin是golang的第三方http开发库Gin是golang的第三方http开发库Gin是golang的第三方http开发库`import golang....`',
-      createTime: '2016-09-15',
-      lang:'golang',
-      views:150,
-      url:'https://githbu.com/gin',
+      title: '',
+      content: '',
+      createTime: '',
+      lang:'',
+      views:0,
+      url:'',
     }
   },
 

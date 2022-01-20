@@ -10,6 +10,7 @@ const _ = db.command
 // status 1，待审核 2，审核通过 3，审核不通过 4，已处理
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
+  // 1，处理上传的文章
   const getdata = await db.collection('postArticle')
     .where({
       status: 2
@@ -37,7 +38,7 @@ exports.main = async (event, context) => {
         desc: objrec.desc,
         openid:objrec.openid,
         status: 1,
-        views:0,
+        stars:0,
         createTime: db.serverDate(),
       },
     });
@@ -49,6 +50,7 @@ exports.main = async (event, context) => {
         url:objrec.url,
         lang:objrec.lang,
         views:0,
+        lastNum:0,
         status: 1,
         createTime: db.serverDate(),
         
@@ -62,5 +64,7 @@ exports.main = async (event, context) => {
           }
         })
   }
+
+
   return 'ok'
 }
