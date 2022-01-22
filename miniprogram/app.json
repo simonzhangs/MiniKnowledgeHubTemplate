@@ -1,7 +1,6 @@
 {
   "pages": [
     "pages/index",
-    "pages/common/common",
     "pages/chip/index",
     "pages/article/index"
   ],

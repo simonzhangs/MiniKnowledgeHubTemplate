@@ -53,7 +53,7 @@ exports.main = async (event, context) => {
         lastNum:0,
         status: 1,
         createTime: db.serverDate(),
-        
+        updateTime: db.serverDate(),
       },
     });
     await db.collection('postArticle').doc(objrec._id)

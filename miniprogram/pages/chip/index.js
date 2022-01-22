@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    array3: ['','Golang', 'Rust', 'Javascript','Flutter','Java'],
+    array3: ['','Golang', 'Rust', 'JavaScript','Java','C/C++','C#','Python','Dart','Sql','Swift','Kotlin','Shell','Ruby'],
     value3: 0,
     err:'',
   },

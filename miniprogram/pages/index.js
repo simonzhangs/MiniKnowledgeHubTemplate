@@ -12,8 +12,10 @@ Page({
     inputShowed: false,
     inputVal: "",
     keyword: "",
-    guid:"",
-    index:0,
+    guid: "",
+    index: 0,
+    pages: 0,
+    page:1,
   },
   showInput: function () {
     this.setData({
@@ -51,7 +53,7 @@ Page({
    */
   onLoad: function (options) {
     var that = this
-    that.getArticles()
+    that.getArticles(1)
     if (wx.createRewardedVideoAd) {
       videoAd = wx.createRewardedVideoAd({
         adUnitId: 'adunit-2ce6db3cb1e45a86'
@@ -79,8 +81,9 @@ Page({
 
 
   },
-  getArticles: function () {
+  getArticles: function (pageNo) {
     var that = this
+    that.loading = true
     wx.showLoading({
       title: '加载中...',
       mask: true,
@@ -91,18 +94,23 @@ Page({
       // 传递给云函数的event参数
       data: {
         keyword: that.data.keyword,
+        pageNo:pageNo,
       }
     }).then(res => {
-
+      that.loading = false
       wx.hideLoading()
       console.log(res.result)
+      const articles = res.result.list
       that.setData({
-        artList: res.result.data
+        page: pageNo,     //当前的页号
+        pages: res.result.pages,  //总页数
+        artList: that.data.artList.concat(articles)
       })
 
     }).catch(err => {
       // handle 
       console.log(err)
+      that.loading = false
       wx.hideLoading()
     })
 
@@ -117,8 +125,8 @@ Page({
   jump: function (e) {
     var that = this;
     that.setData({
-      guid:e.currentTarget.dataset.guid,
-      
+      guid: e.currentTarget.dataset.guid,
+
     })
     //that.jumpToPage(e.currentTarget.dataset.guid)
     if (e.currentTarget.dataset.stars >= 5) {
@@ -134,7 +142,7 @@ Page({
         })
       }
     } else {
-      console.log(e.currentTarget.dataset.guid);
+
       that.jumpToPage(e.currentTarget.dataset.guid)
     }
 
@@ -183,7 +191,11 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    // 下拉触底，先判断是否有请求正在进行中
+    // 以及检查当前请求页数是不是小于数据总页数，如符合条件，则发送请求
+    if (!this.loading && this.data.page < this.data.pages) {
+      this.getArticles(this.data.page + 1)
+    }
   },
 
   /**
