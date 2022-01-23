@@ -1,6 +1,7 @@
 var dateFormat = function (dateStr) {
-  date1 = getDate(dateStr);
-  return date1.toLocaleDateString();
+  
+    date1 = getDate(dateStr);
+    return date1.toLocaleDateString();
 }
 
 module.exports = {

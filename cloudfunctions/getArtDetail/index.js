@@ -16,7 +16,6 @@ exports.main = async (event, context) => {
     .update({
       data: {
         views: _.inc(1),
-        updateTime:db.serverDate(),
       },
     })
   result = await db.collection('detailList')

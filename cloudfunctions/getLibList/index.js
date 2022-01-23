@@ -7,7 +7,7 @@ cloud.init({
 
 const db = cloud.database()
 const _ = db.command
-const MAX_LIMIT = 50
+const MAX_LIMIT = 20
 // 云函数入口函数
 exports.main = async (event, context) => {
   const countResult = await db.collection('homeList').count()
@@ -37,6 +37,7 @@ exports.main = async (event, context) => {
         desc: true,
         guid: true,
         stars: true,
+        flag:true,
       })
       .where(
         _.and([{
@@ -71,12 +72,13 @@ exports.main = async (event, context) => {
         desc: true,
         guid: true,
         stars: true,
+        flag:true,
       })
       .where({
         status: 1,
       })
       .orderBy('createTime', 'desc')
-      .skip(pageNo * MAX_LIMIT)
+      .skip((pageNo-1) * MAX_LIMIT)
       .limit(MAX_LIMIT)
       .get()
 

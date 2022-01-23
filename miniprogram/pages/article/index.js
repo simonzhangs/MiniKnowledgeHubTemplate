@@ -1,4 +1,5 @@
 // pages/article/index.js
+const utils = require('../../utils/utils.js')
 Page({
 
   /**
@@ -32,7 +33,15 @@ Page({
     }).then(res => {
       wx.hideLoading()
       console.log(res.result)
-      let item = res.result.data[0];
+      let data = res.result.data[0];
+      let item = {
+        "title":data.title,
+        "content":data.content,
+        "lang":data.lang,
+        "views":data.views,
+        "url":data.url,
+        "createTime":utils.formatDateStr(data.createTime)
+      }
       that.setData({
         item:item,
       })

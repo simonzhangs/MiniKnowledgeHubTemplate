@@ -16,13 +16,13 @@ exports.main = async (event, context) => {
       status: 2
     })
     .field({
-      _id:true,
+      _id: true,
       title: true,
       desc: true,
       content: true,
       url: true,
       lang: true,
-      openid:true,
+      openid: true,
     })
     .orderBy('createTime', 'asc')
     .get()
@@ -31,14 +31,16 @@ exports.main = async (event, context) => {
   for (let i = 0; i < getdata.data.length; i++) {
     let objrec = getdata.data[i]
     let guid = utils.guid()
+    let ts = new Date().getTime();
     await db.collection('homeList').add({
       data: {
         guid: guid,
         title: objrec.title,
         desc: objrec.desc,
-        openid:objrec.openid,
+        openid: objrec.openid,
         status: 1,
-        stars:0,
+        stars: 0,
+        flag: true,
         createTime: db.serverDate(),
       },
     });
@@ -47,22 +49,22 @@ exports.main = async (event, context) => {
         guid: guid,
         title: objrec.title,
         content: objrec.content,
-        url:objrec.url,
-        lang:objrec.lang,
-        views:0,
-        lastNum:0,
+        url: objrec.url,
+        lang: objrec.lang,
+        views: 0,
+        lastNum: 0,
         status: 1,
+        uts: ts,
         createTime: db.serverDate(),
-        updateTime: db.serverDate(),
       },
     });
     await db.collection('postArticle').doc(objrec._id)
-        .update({
-          data: {
-            status:4,
-            updateTime:db.serverDate()
-          }
-        })
+      .update({
+        data: {
+          status: 4,
+          updateTime: db.serverDate()
+        }
+      })
   }
 
 

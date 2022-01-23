@@ -128,9 +128,9 @@ Page({
       guid: e.currentTarget.dataset.guid,
 
     })
+    console.log(e.currentTarget.dataset)
     //that.jumpToPage(e.currentTarget.dataset.guid)
     if (e.currentTarget.dataset.stars >= 5) {
-
       if (videoAd) {
         videoAd.show().catch(() => {
           // 失败重试 
@@ -142,7 +142,6 @@ Page({
         })
       }
     } else {
-
       that.jumpToPage(e.currentTarget.dataset.guid)
     }
 
