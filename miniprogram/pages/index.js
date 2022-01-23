@@ -15,7 +15,7 @@ Page({
     guid: "",
     index: 0,
     pages: 0,
-    page:1,
+    page: 1,
   },
   showInput: function () {
     this.setData({
@@ -26,9 +26,10 @@ Page({
     this.setData({
       inputVal: "",
       inputShowed: false,
-      keyword: ""
+      keyword: "",
+      artList:[],
     });
-    this.getArticles()
+    this.getArticles(1)
   },
 
 
@@ -44,7 +45,7 @@ Page({
     this.setData({
       keyword: keyword
     })
-    this.getArticles()
+    this.getArticles(1)
   },
 
 
@@ -88,13 +89,18 @@ Page({
       title: '加载中...',
       mask: true,
     })
+    if (pageNo === 1 ){
+      that.setData({
+        artList:[],
+      })
+    }
     wx.cloud.callFunction({
       // 要调用的云函数名称
       name: 'getLibList',
       // 传递给云函数的event参数
       data: {
         keyword: that.data.keyword,
-        pageNo:pageNo,
+        pageNo: pageNo,
       }
     }).then(res => {
       that.loading = false
@@ -102,8 +108,8 @@ Page({
       console.log(res.result)
       const articles = res.result.list
       that.setData({
-        page: pageNo,     //当前的页号
-        pages: res.result.pages,  //总页数
+        page: pageNo, //当前的页号
+        pages: res.result.pages, //总页数
         artList: that.data.artList.concat(articles)
       })
 
@@ -197,6 +203,16 @@ Page({
     }
   },
 
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+    this.setData({
+      artList: [],
+    })
+    this.getArticles(1)
+    wx.stopPullDownRefresh()
+  },
   /**
    * 用户点击右上角分享
    */
