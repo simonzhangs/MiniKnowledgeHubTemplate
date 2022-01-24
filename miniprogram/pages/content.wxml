@@ -16,7 +16,7 @@
     <view aria-role="heading" aria-level="4" class="weui-article__h1">{{title}}</view>
     
     <view class="weui-article__section">
-      <view class="weui-article__h3">相关信息</view>
+      <view class="weui-article__h2">相关信息</view>
       <view class="weui-article__ul">
         <view class="weui-article__li">URL地址：{{url}}</view>
         <view class="weui-article__li">编程语言：{{lang}}</view>

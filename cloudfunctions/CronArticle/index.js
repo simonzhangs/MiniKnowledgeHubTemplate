@@ -41,6 +41,7 @@ exports.main = async (event, context) => {
         status: 1,
         stars: 0,
         flag: true,
+        cts: ts,
         createTime: db.serverDate(),
       },
     });

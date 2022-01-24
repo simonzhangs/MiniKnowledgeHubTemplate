@@ -56,7 +56,7 @@ exports.main = async (event, context) => {
     await db.collection('homeList').where({
         status: 1,
         flag:true,
-        createTime:_.lt(yts),
+        cts:_.lt(yts),
     }).update({
         data: {
             flag: false,
