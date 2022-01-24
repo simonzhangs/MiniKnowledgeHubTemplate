@@ -49,7 +49,7 @@
         <view class="weui-cells weui-cells_form">
           <view class="weui-cell" hover-class="weui-cell_active">
             <view class="weui-cell__bd">
-              <textarea class="weui-textarea" placeholder="请简要描述库的使用方法" placeholder-class="weui-input__placeholder" rows="5" maxlength="500" name="content"></textarea>
+              <textarea class="weui-textarea" placeholder="请简要描述库的使用场景" placeholder-class="weui-input__placeholder" rows="5" maxlength="500" name="content"></textarea>
             </view>
           </view>
         </view>

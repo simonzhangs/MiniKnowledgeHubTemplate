@@ -9,8 +9,8 @@ App({
     } else {
       wx.cloud.init({
        
-        //env: 'visit-prod-d4ca13',
-        env: 'visit-3c98f4',
+        env: 'visit-prod-d4ca13',
+        // env: 'visit-3c98f4',
         traceUser: true,
       })
     }
