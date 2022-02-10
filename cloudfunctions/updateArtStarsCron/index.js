@@ -10,39 +10,32 @@ cloud.init({
 const db = cloud.database()
 const _ = db.command
 exports.main = async (event, context) => {
-    const getdata = await db.collection('detailList')
+    const getdata = await db.collection('artList')
         .where({
-            num: _.gt(0),
-            status:1,
+            num: _.gt(0)
         })
         .field({
-            _id:true,
-            guid: true,
-            views: true,
-            lastNum:true,
-            
+            _id: true,
+            num: true,
+            lastnum: true,
         })
-        .orderBy('views', 'desc')
+        .orderBy('num', 'desc')
         .get()
     console.log(getdata.data.length)
     for (let i = 0; i < getdata.data.length; i++) {
         let objrec = getdata.data[i]
-        if (objrec.views - objrec.lastNum >= 10) {
-            let star = objrec.views / 10
-            await db.collection('homeList').where(
-                {
-                    status:1,
-                    guid:objrec.guid
-                }
-            ).update({
+        let lastnum = 0
+        if (objrec.hasOwnProperty(lastnum)) {
+            lastnum = objrec.lastnum
+        }
+
+        if (objrec.num - lastnum >= 10) {
+            let star = objrec.num / 10
+            await db.collection('artList').doc(objrec._id)
+                .update({
                     data: {
                         stars: parseInt(star),
-                    }
-                })
-
-                await db.collection('detailList').doc(objrec._id).update({
-                    data:{
-                        lastNum:objrec.views,
+                        lastnum: objrec.num
                     }
                 })
         }
