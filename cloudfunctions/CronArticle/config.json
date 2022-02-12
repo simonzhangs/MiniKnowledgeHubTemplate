@@ -3,7 +3,7 @@
     {
       "name": "articleTrigger",
       "type": "timer",
-      "config": "10 * * * * * *"
+      "config": "0 */30 8-18 * * * *"
     }
   ],
   "permissions": {
