@@ -1,6 +1,6 @@
 // example/index.js
 const app = getApp();
-let videoAd = null;
+// let videoAd = null;
 Page({
 
 
@@ -27,7 +27,7 @@ Page({
       inputVal: "",
       inputShowed: false,
       keyword: "",
-      artList:[],
+      artList: [],
     });
     this.getArticles(1)
   },
@@ -55,30 +55,30 @@ Page({
   onLoad: function (options) {
     var that = this
     that.getArticles(1)
-    if (wx.createRewardedVideoAd) {
-      videoAd = wx.createRewardedVideoAd({
-        adUnitId: 'adunit-2ce6db3cb1e45a86'
-      })
-      videoAd.onLoad(() => {})
-      videoAd.onError((err) => {
-        console.log('onError event emit', err)
-        wx.showToast({
+    // if (wx.createRewardedVideoAd) {
+    //   videoAd = wx.createRewardedVideoAd({
+    //     adUnitId: 'adunit-2ce6db3cb1e45a86'
+    //   })
+    //   videoAd.onLoad(() => { })
+    //   videoAd.onError((err) => {
+    //     console.log('onError event emit', err)
+    //     wx.showToast({
 
-          title: '稍后再试',
-        })
-      })
-      videoAd.onClose((res) => {
-        if (res && res.isEnded) {
-          // 正常播放结束，可以下发游戏奖励 
-          that.jumpToPage(that.data.guid)
-        } else {
-          // 播放中途退出，不下发游戏奖励 
-          wx.showToast({
-            title: '求支持啊',
-          })
-        }
-      })
-    }
+    //       title: '稍后再试',
+    //     })
+    //   })
+    //   videoAd.onClose((res) => {
+    //     if (res && res.isEnded) {
+    //       // 正常播放结束，可以下发游戏奖励 
+    //       that.jumpToPage(that.data.guid)
+    //     } else {
+    //       // 播放中途退出，不下发游戏奖励 
+    //       wx.showToast({
+    //         title: '求支持啊',
+    //       })
+    //     }
+    //   })
+    // }
 
 
   },
@@ -89,9 +89,9 @@ Page({
       title: '加载中...',
       mask: true,
     })
-    if (pageNo === 1 ){
+    if (pageNo === 1) {
       that.setData({
-        artList:[],
+        artList: [],
       })
     }
     wx.cloud.callFunction({
@@ -135,21 +135,21 @@ Page({
 
     })
     console.log(e.currentTarget.dataset)
-    //that.jumpToPage(e.currentTarget.dataset.guid)
-    if (e.currentTarget.dataset.stars >= 5) {
-      if (videoAd) {
-        videoAd.show().catch(() => {
-          // 失败重试 
-          videoAd.load()
-            .then(() => videoAd.show())
-            .catch(err => {
-              console.log('激励视频 广告显示失败')
-            })
-        })
-      }
-    } else {
-      that.jumpToPage(e.currentTarget.dataset.guid)
-    }
+    that.jumpToPage(e.currentTarget.dataset.guid)
+    // if (e.currentTarget.dataset.stars >= 5) {
+    //   if (videoAd) {
+    //     videoAd.show().catch(() => {
+    //       // 失败重试 
+    //       videoAd.load()
+    //         .then(() => videoAd.show())
+    //         .catch(err => {
+    //           console.log('激励视频 广告显示失败')
+    //         })
+    //     })
+    //   }
+    // } else {
+    //   that.jumpToPage(e.currentTarget.dataset.guid)
+    // }
 
   },
 
@@ -217,6 +217,6 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-   
+
   }
 })
