@@ -43,6 +43,13 @@ uuid作为主键关联。
 
 上拉加载更多的列表内容。
 
+# 2022-07-19
+
+重新架构，首页使用列表，列表详情页使用towxml，每篇帖子用心更新，里面的连接可以调转到特定页面。
+
+文章内容使用mongo存储，它的结构为：
+title,desc,detail,views,status,createTime
+
 
 
 
