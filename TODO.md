@@ -32,6 +32,7 @@
 
 首页实体(uuid,title,desc,openid,views,createTime,status)
 详情实体(uuid,title,content,views,lang,url,createTime,status)
+
 星星大于5，开始跳出视频，每10个view换一个星星。
 uuid作为主键关联。
 
@@ -48,7 +49,9 @@ uuid作为主键关联。
 重新架构，首页使用列表，列表详情页使用towxml，每篇帖子用心更新，里面的连接可以调转到特定页面。
 
 文章内容使用mongo存储，它的结构为：
-title,desc,detail,views,status,createTime
+首页实体(uuid,title,desc,createTime,status)
+详情实体(uuid,content,views,createTime,status)
+
 
 
 
