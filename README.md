@@ -1,5 +1,6 @@
-## 爱上Go语言
-golang-visit项目是学习golang语言的一个工具
+## visit
+
+visit是小程序，用来展示存储相关的信息以及演示。
 
 
 

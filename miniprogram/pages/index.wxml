@@ -3,7 +3,6 @@
   <view class="page__hd">
     <view class="page__title">常用软件库及代码碎片</view>
     <view class="page__desc">介绍常用软件库、代码碎片等，可通过关键字进行搜索。</view>
-
   </view>
   <view class="page__bd">
     <!-- 搜索框-->
