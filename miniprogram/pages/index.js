@@ -48,12 +48,24 @@ Page({
     this.getArticles(1)
   },
 
+  logid() {
+    wx.cloud.callFunction({
+      // 要调用的云函数名称
+      name: 'logid',
+      // 传递给云函数的event参数
+      data: {}
+    }).then(res => {
+      console.log(res)
+    })
+  },
+
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     var that = this
+    that.logid()
     that.getArticles(1)
     // if (wx.createRewardedVideoAd) {
     //   videoAd = wx.createRewardedVideoAd({
@@ -79,8 +91,6 @@ Page({
     //     }
     //   })
     // }
-
-
   },
   getArticles: function (pageNo) {
     var that = this
