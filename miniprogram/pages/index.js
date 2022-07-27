@@ -2,8 +2,6 @@
 const app = getApp();
 // let videoAd = null;
 Page({
-
-
   /**
    * 页面的初始数据
    */
