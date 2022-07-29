@@ -1,8 +1,8 @@
 <wxs src="./dateformat.wxs" module="tools" />
 <view class="page">
   <view class="page__hd">
-    <view class="page__title">五味碎片</view>
-    <view class="page__desc">介绍存储相关软件知识、使用方式、使用经验，希望能够帮助到有使用存储相关需求的人。</view>
+    <view class="page__title">简介</view>
+    <view class="page__desc">介绍存储相关知识、软件使用方法、使用经验，希望能够帮助到有使用存储需求的朋友。</view>
   </view>
   <view class="page__bd">
     <!-- 搜索框-->
@@ -34,13 +34,13 @@
     <view class="weui-cells weui-cells_after-title">
 
       <block wx:for="{{artList}}" wx:key="_id">
-        <view aria-labelledby="js_cell_l1_bd " aria-describedby="js_cell_l1_note" class="weui-cell weui-cell_access" hover-class="weui-cell_active" bindtap="jump" data-guid="{{item.guid}}" data-stars="{{item.stars}}">
+        <view aria-labelledby="js_cell_l1_bd " aria-describedby="js_cell_l1_note" class="weui-cell weui-cell_access" hover-class="weui-cell_active" bindtap="jump" data-guid="{{item.uuid}}" data-stars="{{item.views}}">
           <view class="weui-cell__bd" id="js_cell_l1_bd" aria-hidden="true">
             <view>{{item.title}}</view>
             <view class="weui-cell__desc">{{item.desc}}</view>
           </view>
           <view class="weui-cell__ft weui-cell__ft_in-access" aria-hidden="true">
-            <text wx:if="{{item.flag}}" id="js_cell_l1_note" aria-label="，有更新" class="weui-badge weui-badge_dot">新</text>
+            <text wx:if="{{item.createTime > yestTime}}" id="js_cell_l1_note" aria-label="，有更新" class="weui-badge weui-badge_dot">新</text>
           </view>
         </view>
       </block>

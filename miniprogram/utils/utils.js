@@ -74,9 +74,14 @@ function formatDateStr(str){
   
 }
 // 获取毫秒时间戳
-function getMsTime() {
+function getNowMsTime() {
 	return new Date().getTime();
 }
+// 获取昨天的毫秒时间戳
+function getYestMsTime() {
+	return new Date().getTime()-24*60*60*1000;
+}
+
 
 module.exports = {
   formatTime: formatTime,
@@ -85,5 +90,6 @@ module.exports = {
   formatDateShort: formatDateShort,
   guid:guid,
   formatDateStr:formatDateStr,
-  getMsTime:getMsTime,
+  getNowMsTime:getNowMsTime,
+  getYestMsTime:getYestMsTime,
 }
