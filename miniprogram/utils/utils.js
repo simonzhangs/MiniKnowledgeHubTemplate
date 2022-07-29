@@ -73,6 +73,10 @@ function formatDateStr(str){
   return [year, month, day].map(formatNumber).join('-') + ' ' + [hour, minute, second].map(formatNumber).join(':')
   
 }
+// 获取毫秒时间戳
+function getMsTime() {
+	return new Date().getTime();
+}
 
 module.exports = {
   formatTime: formatTime,
@@ -81,4 +85,5 @@ module.exports = {
   formatDateShort: formatDateShort,
   guid:guid,
   formatDateStr:formatDateStr,
+  getMsTime:getMsTime,
 }

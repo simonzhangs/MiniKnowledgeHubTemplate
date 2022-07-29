@@ -1,5 +1,4 @@
 <!--pages/mkart/index.wxml-->
-<text>pages/mkart/index.wxml</text>
 <view class="container">
   <towxml nodes="{{article}}"/>
 </view>

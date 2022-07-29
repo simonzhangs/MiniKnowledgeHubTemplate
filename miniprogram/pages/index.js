@@ -90,6 +90,49 @@ Page({
     //   })
     // }
   },
+  
+  getArtList:function(pageNo) {
+	  var that = this
+	  that.loading = true
+	  wx.showLoading({
+	    title: '加载中...',
+	    mask: true,
+	  })
+	  if (pageNo === 1) {
+	    that.setData({
+	      artList: [],
+	    })
+	  }
+	  wx.request({
+		  url:'',
+	  })
+	  wx.cloud.callFunction({
+	    // 要调用的云函数名称
+	    name: 'getLibList',
+	    // 传递给云函数的event参数
+	    data: {
+	      keyword: that.data.keyword,
+	      pageNo: pageNo,
+	    }
+	  }).then(res => {
+	    that.loading = false
+	    wx.hideLoading()
+	    console.log(res.result)
+	    const articles = res.result.list
+	    that.setData({
+	      page: pageNo, //当前的页号
+	      pages: res.result.pages, //总页数
+	      artList: that.data.artList.concat(articles)
+	    })
+	  
+	  }).catch(err => {
+	    // handle 
+	    console.log(err)
+	    that.loading = false
+	    wx.hideLoading()
+	  })
+	  
+  },
   getArticles: function (pageNo) {
     var that = this
     that.loading = true

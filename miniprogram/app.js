@@ -7,7 +7,7 @@ App({
 		wx.request({
 			url: url,
 			header: {
-				'content-type': 'application/x-www-form-urlencoded'
+				'content-type': 'application/json'
 			},
 			success: (res) => {
 				if (typeof callback === 'function') {
