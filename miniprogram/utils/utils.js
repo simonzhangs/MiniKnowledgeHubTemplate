@@ -82,6 +82,10 @@ function getYestMsTime() {
 	return new Date().getTime()-24*60*60*1000;
 }
 
+function decodeBase64(data){
+  let decode = atob(data);
+  return decodeURIComponent(decode);
+}
 
 module.exports = {
   formatTime: formatTime,
@@ -92,4 +96,5 @@ module.exports = {
   formatDateStr:formatDateStr,
   getNowMsTime:getNowMsTime,
   getYestMsTime:getYestMsTime,
+  decodeBase64:decodeBase64,
 }
