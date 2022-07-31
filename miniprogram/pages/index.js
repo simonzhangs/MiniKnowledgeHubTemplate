@@ -29,7 +29,7 @@ Page({
       keyword: "",
       artList: [],
     });
-    this.getArticles(1)
+    this.getArtList(1);
   },
 
 
@@ -37,7 +37,6 @@ Page({
     this.setData({
       inputVal: e.detail.value
     });
-
   },
 
   search(e) {
@@ -217,12 +216,6 @@ Page({
       wx.hideLoading()
     })
 
-  },
-
-  contribute: function () {
-    wx.navigateTo({
-      url: 'chip/index',
-    })
   },
 
   jump: function (e) {

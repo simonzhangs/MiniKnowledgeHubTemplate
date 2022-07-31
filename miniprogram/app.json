@@ -1,8 +1,6 @@
 {
   "pages": [
     "pages/index",
-    "pages/chip/index",
-    "pages/article/index",
     "pages/mkart/index"
   ],
   "window": {
