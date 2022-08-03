@@ -40,17 +40,18 @@ Page({
 
           _ts.setData({
             article: obj,
-           
           });
+		  
+		  wx.hideLoading({
+		    success: (res) => {},
+		  })
         }
       },
       fail: (err) => {
         console.log(err);
-      },
-      complete:()=>{
-        wx.hideLoading({
-          success: (res) => {},
-        })
+		wx.hideLoading({
+		  success: (res) => {},
+		})
       }
     })
 

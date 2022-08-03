@@ -1,7 +1,6 @@
-
 <view class="page">
   <view class="page__hd">
-    <view class="page__title">简介</view>
+    <view class="page__title">简 介</view>
     <view class="page__desc">介绍存储相关知识、软件使用方法、使用经验，希望能够帮助到有使用存储需求的朋友。</view>
   </view>
   <view class="page__bd">
