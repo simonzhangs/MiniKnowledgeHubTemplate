@@ -1,7 +1,7 @@
 <view class="page">
   <view class="page__hd">
     <view class="page__title">简 介</view>
-    <view class="page__desc">介绍存储相关知识、软件使用方法、使用经验，希望能够帮助到有使用存储需求的朋友。</view>
+    <view class="page__desc">介绍微信小程序存储使用方法，主要介绍以下几种：1，存储到本地文件 2，存储到缓存 3，存储到云开发 4，存储到服务器后台 5，存储到七牛云 6，存储到Minio</view>
   </view>
   <view class="page__bd">
     <!-- 搜索框-->
