@@ -1,58 +1,17 @@
-.weui-cell__hd {
-  font-size: 0
+.page {
+  background-color: var(--weui-BG-2)
 }
 
-.weui-cell__hd image {
-  margin-right: 32rpx;
-  vertical-align: middle;
-  width: 40rpx;
-  height: 40rpx
+.weui-steps {
+  margin: 80rpx auto;
+  max-width: 75%;
+  padding-bottom: 80rpx
 }
 
-
-image {
-  height: 100rpx
+.weui-steps__item__title {
+  font-size: large;
 }
 
-.weui-cell__desc{
-    font-size: 30rpx;
-}
-
-.weui-cells .demo_badge_tips {
-  font-size: 34rpx;
-  vertical-align: middle
-}
-
-.weui-cells .demo_badge_tips+.weui-badge {
-  margin-left: 10rpx;
-  margin-right: 10rpx
-}
-
-.demo_badge_cells .weui-cell__hd {
-  position: relative;
-  margin-right: 20rpx
-}
-
-.demo_badge_cells .weui-cell__hd image {
-  width: 100rpx;
-  display: block
-}
-
-.demo_badge_cells .weui-cell__hd .weui-badge {
-  position: absolute;
-  top: -.4em;
-  right: -.4em
-}
-
-.demo_badge_cells .weui-cell__bd .demo_badge_title {
-  vertical-align: middle
-}
-
-.demo_badge_cells .weui-cell__bd .demo_badge_title+.weui-badge {
-  margin-left: 10rpx
-}
-
-.demo_badge_cells .weui-cell__bd .demo_badge_desc {
-  font-size: 26rpx;
-  color: #888
+.weui-steps__item__desc{
+  font-size: medium;
 }

@@ -52,7 +52,23 @@ uuid作为主键关联。
 首页实体(uuid,title,desc,createTime,status)
 详情实体(uuid,content,views,createTime,status)
 
+# 2022-08-17
 
+首页以步骤条展示，然后每个步骤可以切入进去，具体到每一大类。然后展示列表。后面的流程不变。使用towxml展示。
+
+数据库结构就要变更，只有文章标题和内容，去除描述。
+库列表(uuid,category,title,createdTime,updatedTime,status,views)
+库详情(uuid,content)
+
+需要开发管理后台，来管理文章列表。
+
+第一步骤 Go编程语言
+
+第二步骤 Minio存储
+
+第三步骤 小程序
+
+第四步骤 Rust编程语言
 
 
 
