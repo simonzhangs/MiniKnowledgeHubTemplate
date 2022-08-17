@@ -7,7 +7,7 @@
       "list": [
         {
           "name": "demo",
-          "pathName": "pages/mkart/index",
+          "pathName": "pages/home/index",
           "query": "",
           "launchMode": "default",
           "scene": null

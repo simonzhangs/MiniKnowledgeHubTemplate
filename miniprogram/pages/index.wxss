@@ -4,7 +4,7 @@
 
 .weui-steps {
   margin: 80rpx auto;
-  max-width: 75%;
+  max-width: 80%;
   padding-bottom: 80rpx
 }
 
