@@ -7,7 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    title:'',
+    category: 0,
+    title: '',
     artList: [],
     inputShowed: false,
     inputVal: "",
@@ -45,7 +46,7 @@ Page({
     this.setData({
       keyword: keyword
     })
-    this.searchArt(1,keyword)
+    this.searchArt(1, keyword)
   },
 
 
@@ -56,35 +57,39 @@ Page({
     const that = this
     console.log(options.category)
     let category = options.category;
-    if (category==1){
+    if (category == 1) {
       that.setData({
-        title:'Golang编程语言'
+        category: category,
+        title: 'Golang编程语言'
       })
-    }else if(category == 2){
+    } else if (category == 2) {
       that.setData({
-        title:'Minio存储'
+        category: category,
+        title: 'Minio存储'
       })
-    }else if(category == 3){
+    } else if (category == 3) {
       that.setData({
-        title:'微信小程序'
+        category: category,
+        title: '微信小程序'
       })
-    }else if (category == 4){
+    } else if (category == 4) {
       that.setData({
-        title:'Rust编程语言'
+        category: category,
+        title: 'Rust编程语言'
       })
-    }else{
+    } else {
       that.setData({
-        title:'五味碎片'
+        category: category,
+        title: '五味碎片'
       })
     }
-    
-    that.getArtList(1)
+    that.getArtList(1, category)
     that.setData({
       yestTime: utils.getYestMsTime()
     })
   },
 
-  getArtList: function (pageNo) {
+  getArtList: function (pageNo, category) {
     var that = this
     that.loading = true
     wx.showLoading({
@@ -100,6 +105,8 @@ Page({
       url: 'https://mp1.91demo.top/mp3/artList',
       data: {
         'pageNo': pageNo,
+        'category': category,
+
       },
       methed: 'GET',
       success: (res) => {
@@ -124,7 +131,7 @@ Page({
     })
 
   },
-  searchArt: function (pageNo, keyword) {
+  searchArt: function (pageNo, keyword, category) {
     var that = this
     that.loading = true
     wx.showLoading({
@@ -140,7 +147,8 @@ Page({
       url: 'https://mp1.91demo.top/mp3/searchArt',
       data: {
         'pageNo': pageNo,
-        'keyword': keyword
+        'keyword': keyword,
+        'category': category
       },
       methed: 'GET',
       success: (res) => {
@@ -165,44 +173,44 @@ Page({
     })
 
   },
-  getArticles: function (pageNo) {
-    var that = this
-    that.loading = true
-    wx.showLoading({
-      title: '加载中...',
-      mask: true,
-    })
-    if (pageNo === 1) {
-      that.setData({
-        artList: [],
-      })
-    }
-    wx.cloud.callFunction({
-      // 要调用的云函数名称
-      name: 'getLibList',
-      // 传递给云函数的event参数
-      data: {
-        keyword: that.data.keyword,
-        pageNo: pageNo,
-      }
-    }).then(res => {
-      that.loading = false
-      wx.hideLoading()
-      console.log(res.result)
-      const articles = res.result.list
-      that.setData({
-        page: pageNo, //当前的页号
-        pages: res.result.pages, //总页数
-        artList: that.data.artList.concat(articles)
-      })
-    }).catch(err => {
-      // handle 
-      console.log(err)
-      that.loading = false
-      wx.hideLoading()
-    })
+  // getArticles: function (pageNo) {
+  //   var that = this
+  //   that.loading = true
+  //   wx.showLoading({
+  //     title: '加载中...',
+  //     mask: true,
+  //   })
+  //   if (pageNo === 1) {
+  //     that.setData({
+  //       artList: [],
+  //     })
+  //   }
+  //   wx.cloud.callFunction({
+  //     // 要调用的云函数名称
+  //     name: 'getLibList',
+  //     // 传递给云函数的event参数
+  //     data: {
+  //       keyword: that.data.keyword,
+  //       pageNo: pageNo,
+  //     }
+  //   }).then(res => {
+  //     that.loading = false
+  //     wx.hideLoading()
+  //     console.log(res.result)
+  //     const articles = res.result.list
+  //     that.setData({
+  //       page: pageNo, //当前的页号
+  //       pages: res.result.pages, //总页数
+  //       artList: that.data.artList.concat(articles)
+  //     })
+  //   }).catch(err => {
+  //     // handle 
+  //     console.log(err)
+  //     that.loading = false
+  //     wx.hideLoading()
+  //   })
 
-  },
+  // },
 
   jump: function (e) {
     var that = this;
@@ -276,7 +284,7 @@ Page({
     // 	this.getArticles(this.data.page + 1)
     // }
     if (!this.loading && this.data.page < this.data.pages) {
-      this.searchArt(this.data.page + 1, this.data.keyword)
+      this.searchArt(this.data.page + 1, this.data.keyword, this.data.category)
     }
   },
 
@@ -288,7 +296,7 @@ Page({
       artList: [],
     })
     // this.getArticles(1)
-    this.getArtList(1)
+    this.getArtList(1, this.data.category)
     wx.stopPullDownRefresh()
   },
   /**
