@@ -1,10 +1,13 @@
 <view class="page">
   <view class="page__hd">
     <view class="page__title">{{title}}</view>
-    
+
   </view>
   <view class="page__bd">
-	
+    <!-- 广告-->
+    <view class="weui-cell">
+      <ad unit-id="adunit-62a65ad78c1b3f40"></ad>
+    </view>
     <!-- 搜索框-->
     <view class="weui-search-bar {{inputShowed ? 'weui-search-bar_focusing' : ''}}" id="searchBar">
       <form class="weui-search-bar__form">
@@ -21,17 +24,13 @@
       <view class="weui-search-bar__cancel-btn" bindtap="hideInput">取消</view>
     </view>
     <!-- 内容-->
-    <!-- 广告-->
-    <view class="weui-cells">
-      <view class="weui-cell">
-        <ad unit-id="adunit-62a65ad78c1b3f40"></ad>
-      </view>
-    </view>
+
+
     <!--循环输出-->
     <view class="weui-cells__title">收录列表
     </view>
 
-    <view class="weui-cells weui-cells_after-title"> 
+    <view class="weui-cells weui-cells_after-title">
       <block wx:for="{{artList}}" wx:key="_id">
         <view aria-labelledby="js_cell_l1_bd " aria-describedby="js_cell_l1_note" class="weui-cell weui-cell_access" hover-class="weui-cell_active" bindtap="jump" data-guid="{{item.uuid}}" data-stars="{{item.views}}">
           <view class="weui-cell__bd" id="js_cell_l1_bd" aria-hidden="true">
