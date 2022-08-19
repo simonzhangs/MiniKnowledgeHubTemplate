@@ -31,7 +31,7 @@ Page({
       keyword: "",
       artList: [],
     });
-    this.getArtList(1);
+   // this.getArtList(1);
   },
 
 
@@ -46,7 +46,7 @@ Page({
     this.setData({
       keyword: keyword
     })
-    this.searchArt(1, keyword)
+    this.searchArt(1, keyword,this.data.category)
   },
 
 
@@ -83,7 +83,7 @@ Page({
         title: '五味碎片'
       })
     }
-    that.getArtList(1, category)
+    //that.getArtList(1, category)
     that.setData({
       yestTime: utils.getYestMsTime()
     })
@@ -162,6 +162,10 @@ Page({
             page: pageNo, //当前的页号
             pages: result.count, //总页数
             artList: that.data.artList.concat(articles)
+          })
+        }else{
+          wx.showToast({
+            title: '没有找到记录',
           })
         }
       },
@@ -296,7 +300,7 @@ Page({
       artList: [],
     })
     // this.getArticles(1)
-    this.getArtList(1, this.data.category)
+   // this.getArtList(1, this.data.category)
     wx.stopPullDownRefresh()
   },
   /**

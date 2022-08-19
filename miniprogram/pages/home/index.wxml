@@ -14,7 +14,6 @@
         <view class="weui-search-bar__box">
           <i class="weui-icon-search"></i>
           <input type="text" confirm-type="search" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" bindconfirm="search" />
-
         </view>
         <label class="weui-search-bar__label" bindtap="showInput">
           <i class="weui-icon-search"></i>
@@ -27,8 +26,7 @@
 
 
     <!--循环输出-->
-    <view class="weui-cells__title">收录列表
-    </view>
+    
 
     <view class="weui-cells weui-cells_after-title">
       <block wx:for="{{artList}}" wx:key="_id">
