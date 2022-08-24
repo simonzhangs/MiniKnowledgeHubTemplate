@@ -1,6 +1,5 @@
 {
   "pages": [
-    "pages/index",
     "pages/home/index",
     "pages/mkart/index"
   ],

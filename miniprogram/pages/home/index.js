@@ -7,8 +7,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    category: 0,
-    title: '',
     artList: [],
     inputShowed: false,
     inputVal: "",
@@ -46,43 +44,26 @@ Page({
     this.setData({
       keyword: keyword
     })
-    this.searchArt(1, keyword,this.data.category)
+    this.searchArt(1, keyword)
   },
 
+  logid() {
+    wx.cloud.callFunction({
+      // 要调用的云函数名称
+      name: 'logid',
+      // 传递给云函数的event参数
+      data: {}
+    }).then(res => {
+      console.log(res)
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     const that = this
-    console.log(options.category)
-    let category = options.category;
-    if (category == 1) {
-      that.setData({
-        category: category,
-        title: 'Golang编程语言'
-      })
-    } else if (category == 2) {
-      that.setData({
-        category: category,
-        title: 'Minio存储'
-      })
-    } else if (category == 3) {
-      that.setData({
-        category: category,
-        title: '微信小程序'
-      })
-    } else if (category == 4) {
-      that.setData({
-        category: category,
-        title: 'Rust编程语言'
-      })
-    } else {
-      that.setData({
-        category: category,
-        title: '五味碎片'
-      })
-    }
+    that.logid()
     //that.getArtList(1, category)
     that.setData({
       yestTime: utils.getYestMsTime()
@@ -131,7 +112,7 @@ Page({
     })
 
   },
-  searchArt: function (pageNo, keyword, category) {
+  searchArt: function (pageNo, keyword) {
     var that = this
     that.loading = true
     wx.showLoading({
@@ -147,8 +128,7 @@ Page({
       url: 'https://mp1.91demo.top/mp3/searchArt',
       data: {
         'pageNo': pageNo,
-        'keyword': keyword,
-        'category': category
+        'keyword': keyword
       },
       methed: 'GET',
       success: (res) => {
@@ -288,7 +268,7 @@ Page({
     // 	this.getArticles(this.data.page + 1)
     // }
     if (!this.loading && this.data.page < this.data.pages) {
-      this.searchArt(this.data.page + 1, this.data.keyword, this.data.category)
+      this.searchArt(this.data.page + 1, this.data.keyword)
     }
   },
 
@@ -298,6 +278,8 @@ Page({
   onPullDownRefresh: function () {
     this.setData({
       artList: [],
+      keyword:"",
+      page:1
     })
     // this.getArticles(1)
    // this.getArtList(1, this.data.category)
