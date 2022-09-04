@@ -63,7 +63,7 @@ Page({
    */
   onLoad: function (options) {
     const that = this
-    that.logid()
+    
     //that.getArtList(1, category)
     that.setData({
       yestTime: utils.getYestMsTime()
