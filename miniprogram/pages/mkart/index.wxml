@@ -1,6 +1,6 @@
 <!--pages/mkart/index.wxml-->
 <view class="page">
-  <!-- <ad unit-id="adunit-62a65ad78c1b3f40"></ad> -->
+  <ad unit-id="adunit-62a65ad78c1b3f40"></ad>
   <!--使用towxml-->
   <towxml nodes="{{article}}" />
 </view>

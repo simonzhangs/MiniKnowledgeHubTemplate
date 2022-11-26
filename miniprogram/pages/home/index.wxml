@@ -1,7 +1,7 @@
 <view class="page">
   <view class="page__hd">
-    <view class="page__title">简介</view>
-    <view class="page__desc">Go、Rust、JavaScript等编程语言的代码片段和经典代码库，可以根据库名或者关键字进行搜索以查询详情！</view>
+    <view class="page__title">使用说明</view>
+    <view class="page__desc">可以通过搜索诗人、诗句查找完整唐诗！</view>
   </view>
   <view class="page__bd">
 
@@ -10,7 +10,7 @@
       <form class="weui-search-bar__form">
         <view class="weui-search-bar__box">
           <i class="weui-icon-search"></i>
-          <input type="text" confirm-type="search" class="weui-search-bar__input" placeholder="输入库名或关键字" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" bindconfirm="search" />
+          <input type="text" confirm-type="search" class="weui-search-bar__input" placeholder="请输入您要查找的内容" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" bindconfirm="search" />
         </view>
         <label class="weui-search-bar__label" bindtap="showInput">
           <i class="weui-icon-search"></i>
@@ -30,7 +30,7 @@
           </view>
           <view class="weui-cell__ft weui-cell__ft_in-access" aria-hidden="true">
             <text wx:if="{{ item.createdTime > yestTime }}" id="js_cell_l1_note" aria-label="，有更新" class="weui-badge weui-badge_dot">新</text>
-            <text wx:elif="{{ item.updatedTime > item.createdTime }}" id="js_cell_l1_note" aria-label="，有更新" class="weui-badge weui-badge_dot">修</text>
+            <!-- <text wx:elif="{{ item.updatedTime > item.createdTime }}" id="js_cell_l1_note" aria-label="，有更新" class="weui-badge weui-badge_dot">修</text> -->
             <text wx:elif="{{ item.views > 100 }}" id="js_cell_l1_note" aria-label="，有更新" class="weui-badge weui-badge_dot">热</text>
           </view>
         </view>
