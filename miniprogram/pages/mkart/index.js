@@ -7,8 +7,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    uuid: '',
-    showbtn: '2',
     article: {} // 内容数据
   },
 
@@ -23,10 +21,6 @@ Page({
     })
     const url = 'https://mp1.91demo.top/mp3/artDetail?uuid=';
     let vurl = url + options.guid;
-    _ts.setData({
-      uuid: options.guid,
-      showbtn: options.showbtn,
-    })
     wx.request({
       url: vurl,
       method: 'GET',

@@ -4,6 +4,4 @@
   <!--使用towxml-->
   <towxml nodes="{{article}}" />
 
-  <!--审核按钮-->
-  <view wx:if="{{showbtn=='1'}}">按钮显示区域</view>
 </view>

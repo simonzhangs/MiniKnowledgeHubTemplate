@@ -1,14 +1,14 @@
 // example/index.js
 const app = getApp();
 const utils = require('../../utils/utils.js')
-// let videoAd = null;
+let videoAd = null;
+let adFen = 0;
 Page({
   /**
    * 页面的初始数据
    */
   data: {
     artList: [],
-    auditList: [],
     inputShowed: false,
     inputVal: "",
     keyword: "",
@@ -44,6 +44,7 @@ Page({
     this.setData({
       keyword: keyword,
     })
+
     this.searchArt(1, keyword)
   },
 
@@ -58,13 +59,22 @@ Page({
   //   })
   // },
 
+  initAdData: function () {
+    const that = this;
+    that.adFen = wx.getStorageSync("ad");
+    if (utils.isEmpty(that.adFen)) {
+      that.adFen = 10;
+      wx.setStorageSync('ad', that.adFen);
+    }
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const that = this
+    const that = this;
 
-    //that.getArtList(1, category)
+    that.initAdData();
     that.setData({
       yestTime: utils.getYestMsTime()
     })
@@ -113,7 +123,25 @@ Page({
 
   // },
   searchArt: function (pageNo, keyword) {
-    var that = this
+    const that = this
+    if (that.adFen < 2) {
+      // 弹窗错误
+      wx.showModal({
+        title: '提示',
+        content: '您现在使用频繁，需要观看广告补充能量',
+        confirmText: '观看广告',
+        cancelText: '关闭',
+        success(res) {
+          if (res.confirm) {
+            // 播放广告
+            that.showAd();
+          } else if (res.cancel) {
+
+          }
+        }
+      })
+      return
+    }
     that.loading = true
     wx.showLoading({
       title: '加载中...',
@@ -143,6 +171,8 @@ Page({
             pages: result.count, //总页数
             artList: that.data.artList.concat(articles)
           })
+          that.adFen = that.adFen - 2;
+          wx.setStorageSync('ad', that.adFen);
         } else {
           wx.showToast({
             title: '没有找到记录',
@@ -199,7 +229,7 @@ Page({
   jump: function (e) {
     const that = this;
     // console.log(e.currentTarget.dataset)
-    that.jumpToPage(e.currentTarget.dataset.guid, '2')
+    that.jumpToPage(e.currentTarget.dataset.guid)
     // if (e.currentTarget.dataset.stars >= 5) {
     //   if (videoAd) {
     //     videoAd.show().catch(() => {
@@ -217,18 +247,78 @@ Page({
 
   },
 
-  // 审核跳转
-  jumpV2: function (e) {
-    const that = this;
-    that.jumpToPageV2(e.currentTarget.dataset.guid, '1')
-  },
+  // // 审核跳转
+  // jumpV2: function (e) {
+  //   const that = this;
+  //   that.jumpToPageV2(e.currentTarget.dataset.guid, '1')
+  // },
 
-  jumpToPage: function (guid, showbtn) {
+  jumpToPage: function (guid) {
     // 调整到文章页面 
     wx.navigateTo({
-      url: '../mkart/index?guid=' + guid + '&showbtn=' + showbtn,
+      url: '../mkart/index?guid=' + guid,
     })
 
+  },
+
+  loadAd: function () {
+    const that = this;
+    if (wx.createRewardedVideoAd) {
+      videoAd = wx.createRewardedVideoAd({
+        adUnitId: 'adunit-8fae1b0724504346' // 需要替换
+      })
+      videoAd.onLoad(() => { })
+      videoAd.onError((err) => {
+        console.log('onError event emit', err)
+      })
+      videoAd.onClose((res) => {
+        // 用户点击了【关闭广告】按钮
+        if (res && res.isEnded) {
+          // 正常播放结束，可以下发游戏奖励
+          that.adFen = that.adFen + 10
+          wx.setStorageSync('ad', that.adFen);
+
+          wx.showToast({
+            title: '获得奖励',
+          })
+        } else {
+          // 播放中途退出，不下发游戏奖励
+        }
+      })
+    }
+  },
+
+  showAd: function () {
+    wx.showLoading({
+      title: '广告加载中',
+    });
+    const that = this;
+    if (videoAd) {
+
+    } else {
+      that.loadAd();
+    }
+
+    if (videoAd) {
+      videoAd.show().then(() => {
+        wx.hideLoading();
+      }).catch(() => {
+        // 失败重试
+        videoAd.load()
+          .then(() => videoAd.show().then(() => {
+            wx.hideLoading();
+          }))
+          .catch(err => {
+            console.log('激励视频 广告显示失败')
+          })
+      })
+    } else {
+      wx.hideLoading();
+      wx.showToast({
+        title: '请稍后再试',
+      })
+      return
+    }
   },
 
 
@@ -285,8 +375,6 @@ Page({
       keyword: "",
       page: 1
     })
-    // this.getArticles(1)
-    // this.getArtList(1, this.data.category)
     wx.stopPullDownRefresh()
   },
   /**
