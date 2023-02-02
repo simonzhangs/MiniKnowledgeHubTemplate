@@ -14,7 +14,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    console.log(options)
+    
     const _ts = this;
     wx.showLoading({
       title: '加载中',
@@ -25,7 +25,7 @@ Page({
       url: vurl,
       method: 'GET',
       success: (res) => {
-        console.log(res);
+       
         const result = res.data;
         if (result.code == 1) {
           let content = result.data;

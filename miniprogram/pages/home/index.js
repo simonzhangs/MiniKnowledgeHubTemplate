@@ -61,10 +61,11 @@ Page({
 
   initAdData: function () {
     const that = this;
-    that.adFen = wx.getStorageSync("ad");
-    if (utils.isEmpty(that.adFen)) {
-      that.adFen = 10;
-      wx.setStorageSync('ad', that.adFen);
+    let vad1 = wx.getStorageSync("ad");
+    if (utils.isEmpty(vad1)) {
+      that.adFen = 6;
+    }else{
+      that.adFen = vad1;
     }
   },
 
@@ -265,11 +266,14 @@ Page({
     const that = this;
     if (wx.createRewardedVideoAd) {
       videoAd = wx.createRewardedVideoAd({
-        adUnitId: 'adunit-8fae1b0724504346' // 需要替换
+        adUnitId: 'adunit-2ce6db3cb1e45a86' 
       })
       videoAd.onLoad(() => { })
       videoAd.onError((err) => {
         console.log('onError event emit', err)
+        wx.showToast({
+          title: '请稍后再试',
+        })
       })
       videoAd.onClose((res) => {
         // 用户点击了【关闭广告】按钮
@@ -310,6 +314,7 @@ Page({
           }))
           .catch(err => {
             console.log('激励视频 广告显示失败')
+            wx.hideLoading();
           })
       })
     } else {
