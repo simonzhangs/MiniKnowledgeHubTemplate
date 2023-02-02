@@ -7,7 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
+    uuid: '',
+    showbtn: '2',
     article: {} // 内容数据
   },
 
@@ -15,12 +16,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    console.log(options)
     const _ts = this;
     wx.showLoading({
       title: '加载中',
     })
     const url = 'https://mp1.91demo.top/mp3/artDetail?uuid=';
     let vurl = url + options.guid;
+    _ts.setData({
+      uuid: options.guid,
+      showbtn: options.showbtn,
+    })
     wx.request({
       url: vurl,
       method: 'GET',
@@ -41,17 +47,17 @@ Page({
           _ts.setData({
             article: obj,
           });
-		  
-		  wx.hideLoading({
-		    success: (res) => {},
-		  })
+
+          wx.hideLoading({
+            success: (res) => { },
+          })
         }
       },
       fail: (err) => {
         console.log(err);
-		wx.hideLoading({
-		  success: (res) => {},
-		})
+        wx.hideLoading({
+          success: (res) => { },
+        })
       }
     })
 

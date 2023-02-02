@@ -8,10 +8,10 @@ Page({
    */
   data: {
     artList: [],
+    auditList: [],
     inputShowed: false,
     inputVal: "",
     keyword: "",
-    guid: "",
     index: 0,
     pages: 0,
     page: 1,
@@ -29,7 +29,7 @@ Page({
       keyword: "",
       artList: [],
     });
-   // this.getArtList(1);
+    // this.getArtList(1);
   },
 
 
@@ -42,76 +42,76 @@ Page({
   search(e) {
     var keyword = this.data.inputVal.toLowerCase()
     this.setData({
-      keyword: keyword
+      keyword: keyword,
     })
     this.searchArt(1, keyword)
   },
 
-  logid() {
-    wx.cloud.callFunction({
-      // 要调用的云函数名称
-      name: 'logid',
-      // 传递给云函数的event参数
-      data: {}
-    }).then(res => {
-      console.log(res)
-    })
-  },
+  // logid() {
+  //   wx.cloud.callFunction({
+  //     // 要调用的云函数名称
+  //     name: 'logid',
+  //     // 传递给云函数的event参数
+  //     data: {}
+  //   }).then(res => {
+  //     console.log(res)
+  //   })
+  // },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     const that = this
-    
+
     //that.getArtList(1, category)
     that.setData({
       yestTime: utils.getYestMsTime()
     })
   },
 
-  getArtList: function (pageNo, category) {
-    var that = this
-    that.loading = true
-    wx.showLoading({
-      title: '加载中...',
-      mask: true,
-    })
-    if (pageNo === 1) {
-      that.setData({
-        artList: [],
-      })
-    }
-    wx.request({
-      url: 'https://mp1.91demo.top/mp3/artList',
-      data: {
-        'pageNo': pageNo,
-        'category': category,
+  // getArtList: function (pageNo, category) {
+  //   var that = this
+  //   that.loading = true
+  //   wx.showLoading({
+  //     title: '加载中...',
+  //     mask: true,
+  //   })
+  //   if (pageNo === 1) {
+  //     that.setData({
+  //       artList: [],
+  //     })
+  //   }
+  //   wx.request({
+  //     url: 'https://mp1.91demo.top/mp3/artList',
+  //     data: {
+  //       'pageNo': pageNo,
+  //       'category': category,
 
-      },
-      methed: 'GET',
-      success: (res) => {
-        that.loading = false
-        wx.hideLoading()
-        console.log(res)
-        const result = res.data;
-        if (result.code == 1) {
-          const articles = result.data;
-          that.setData({
-            page: pageNo, //当前的页号
-            pages: result.count, //总页数
-            artList: that.data.artList.concat(articles)
-          })
-        }
-      },
-      fail: (err) => {
-        that.loading = false
-        wx.hideLoading()
-        console.log(err)
-      }
-    })
+  //     },
+  //     methed: 'GET',
+  //     success: (res) => {
+  //       that.loading = false
+  //       wx.hideLoading()
+  //       console.log(res)
+  //       const result = res.data;
+  //       if (result.code == 1) {
+  //         const articles = result.data;
+  //         that.setData({
+  //           page: pageNo, //当前的页号
+  //           pages: result.count, //总页数
+  //           artList: that.data.artList.concat(articles)
+  //         })
+  //       }
+  //     },
+  //     fail: (err) => {
+  //       that.loading = false
+  //       wx.hideLoading()
+  //       console.log(err)
+  //     }
+  //   })
 
-  },
+  // },
   searchArt: function (pageNo, keyword) {
     var that = this
     that.loading = true
@@ -143,7 +143,7 @@ Page({
             pages: result.count, //总页数
             artList: that.data.artList.concat(articles)
           })
-        }else{
+        } else {
           wx.showToast({
             title: '没有找到记录',
           })
@@ -197,12 +197,9 @@ Page({
   // },
 
   jump: function (e) {
-    var that = this;
-    that.setData({
-      guid: e.currentTarget.dataset.guid,
-    })
-    console.log(e.currentTarget.dataset)
-    that.jumpToPage(e.currentTarget.dataset.guid)
+    const that = this;
+    // console.log(e.currentTarget.dataset)
+    that.jumpToPage(e.currentTarget.dataset.guid, '2')
     // if (e.currentTarget.dataset.stars >= 5) {
     //   if (videoAd) {
     //     videoAd.show().catch(() => {
@@ -220,14 +217,21 @@ Page({
 
   },
 
+  // 审核跳转
+  jumpV2: function (e) {
+    const that = this;
+    that.jumpToPageV2(e.currentTarget.dataset.guid, '1')
+  },
 
-  jumpToPage: function (guid) {
+  jumpToPage: function (guid, showbtn) {
     // 调整到文章页面 
     wx.navigateTo({
-      url: '../mkart/index?guid=' + guid,
+      url: '../mkart/index?guid=' + guid + '&showbtn=' + showbtn,
     })
 
   },
+
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -278,11 +282,11 @@ Page({
   onPullDownRefresh: function () {
     this.setData({
       artList: [],
-      keyword:"",
-      page:1
+      keyword: "",
+      page: 1
     })
     // this.getArticles(1)
-   // this.getArtList(1, this.data.category)
+    // this.getArtList(1, this.data.category)
     wx.stopPullDownRefresh()
   },
   /**
