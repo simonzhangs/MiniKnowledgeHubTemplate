@@ -64,6 +64,7 @@ Page({
     let vad1 = wx.getStorageSync("ad");
     if (utils.isEmpty(vad1)) {
       that.adFen = 6;
+      wx.setStorageSync('ad', 6);
     }else{
       that.adFen = vad1;
     }
