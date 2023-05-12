@@ -19,6 +19,21 @@
       </form>
       <view class="weui-search-bar__cancel-btn" bindtap="hideInput">取消</view>
     </view>
+
+    <!-- 查询快捷按钮-->
+    
+    <view class="button-sp-area">
+			<button class="weui-btn weui-btn_mini weui-btn_primary weui-wa-hotarea" aria-role="button" bindtap="javascript:">最流行</button>
+			<button class="weui-btn weui-btn_mini weui-btn_default weui-wa-hotarea" aria-role="button" bindtap="javascript:">最新</button>
+			<button class="weui-btn weui-btn_mini weui-btn_warn weui-wa-hotarea" aria-role="button" bindtap="javascript:">最老</button>
+		</view>
+
+    <view class="button-sp-area">
+			<button class="weui-btn weui-btn_mini weui-btn_primary weui-wa-hotarea" aria-role="button" bindtap="javascript:">小学1年级</button>
+			<button class="weui-btn weui-btn_mini weui-btn_default weui-wa-hotarea" aria-role="button" bindtap="javascript:">小学2年级</button>
+			<button class="weui-btn weui-btn_mini weui-btn_warn weui-wa-hotarea" aria-role="button" bindtap="javascript:">小学3年级</button>
+		</view>
+    
     <!-- 内容-->
     <!--循环输出-->
     <view class="weui-cells weui-cells_after-title">

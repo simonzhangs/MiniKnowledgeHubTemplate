@@ -1,16 +1,16 @@
 .weui-cell__hd {
-  font-size: 0
+  font-size: 0;
 }
 
 .weui-cell__hd image {
   margin-right: 32rpx;
   vertical-align: middle;
   width: 40rpx;
-  height: 40rpx
+  height: 40rpx;
 }
 
 image {
-  height: 100rpx
+  height: 100rpx;
 }
 
 .weui-cell__desc {
@@ -19,40 +19,46 @@ image {
 
 .weui-cells .demo_badge_tips {
   font-size: 34rpx;
-  vertical-align: middle
+  vertical-align: middle;
 }
 
-.weui-cells .demo_badge_tips+.weui-badge {
+.weui-cells .demo_badge_tips + .weui-badge {
   margin-left: 10rpx;
-  margin-right: 10rpx
+  margin-right: 10rpx;
 }
 
 .demo_badge_cells .weui-cell__hd {
   position: relative;
-  margin-right: 20rpx
+  margin-right: 20rpx;
 }
 
 .demo_badge_cells .weui-cell__hd image {
   width: 100rpx;
-  display: block
+  display: block;
 }
 
 .demo_badge_cells .weui-cell__hd .weui-badge {
   position: absolute;
-  top: -.4em;
-  right: -.4em
+  top: -0.4em;
+  right: -0.4em;
 }
 
 .demo_badge_cells .weui-cell__bd .demo_badge_title {
-  vertical-align: middle
+  vertical-align: middle;
 }
 
-.demo_badge_cells .weui-cell__bd .demo_badge_title+.weui-badge {
-  margin-left: 10rpx
+.demo_badge_cells .weui-cell__bd .demo_badge_title + .weui-badge {
+  margin-left: 10rpx;
 }
 
 .demo_badge_cells .weui-cell__bd .demo_badge_desc {
   font-size: 26rpx;
-  color: #888
+  color: #888;
 }
-
+.button-sp-area {
+  padding-top: 30rpx;
+  text-align: center;
+}
+.weui-btn_mini {
+  margin-right: 8rpx;
+}
