@@ -22,7 +22,7 @@ image {
   vertical-align: middle;
 }
 
-.weui-cells .demo_badge_tips + .weui-badge {
+.weui-cells .demo_badge_tips+.weui-badge {
   margin-left: 10rpx;
   margin-right: 10rpx;
 }
@@ -47,7 +47,7 @@ image {
   vertical-align: middle;
 }
 
-.demo_badge_cells .weui-cell__bd .demo_badge_title + .weui-badge {
+.demo_badge_cells .weui-cell__bd .demo_badge_title+.weui-badge {
   margin-left: 10rpx;
 }
 
@@ -55,10 +55,22 @@ image {
   font-size: 26rpx;
   color: #888;
 }
+
 .button-sp-area {
   padding-top: 30rpx;
   text-align: center;
 }
+
 .weui-btn_mini {
   margin-right: 8rpx;
+}
+
+.placeholder {
+  margin: 10rpx;
+  padding: 0 20rpx;
+  text-align: center;
+  background-color: var(--weui-BG-1);
+  height: 2.3em;
+  line-height: 2.3em;
+  color: var(--weui-FG-1)
 }

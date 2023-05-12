@@ -16,6 +16,8 @@ Page({
     pages: 0,
     page: 1,
     yestTime: 0,
+    op: 1, // 1 搜索查询 2 按钮查询
+    qtype: 1, // 1 最火 2 最新 3 最冷
   },
   showInput: function () {
     this.setData({
@@ -29,7 +31,7 @@ Page({
       keyword: "",
       artList: [],
     });
-    // this.getArtList(1);
+    
   },
 
 
@@ -48,16 +50,6 @@ Page({
     this.searchArt(1, keyword)
   },
 
-  // logid() {
-  //   wx.cloud.callFunction({
-  //     // 要调用的云函数名称
-  //     name: 'logid',
-  //     // 传递给云函数的event参数
-  //     data: {}
-  //   }).then(res => {
-  //     console.log(res)
-  //   })
-  // },
 
   initAdData: function () {
     const that = this;
@@ -65,7 +57,7 @@ Page({
     if (utils.isEmpty(vad1)) {
       that.adFen = 6;
       wx.setStorageSync('ad', 6);
-    }else{
+    } else {
       that.adFen = vad1;
     }
   },
@@ -82,48 +74,6 @@ Page({
     })
   },
 
-  // getArtList: function (pageNo, category) {
-  //   var that = this
-  //   that.loading = true
-  //   wx.showLoading({
-  //     title: '加载中...',
-  //     mask: true,
-  //   })
-  //   if (pageNo === 1) {
-  //     that.setData({
-  //       artList: [],
-  //     })
-  //   }
-  //   wx.request({
-  //     url: 'https://mp1.91demo.top/mp3/artList',
-  //     data: {
-  //       'pageNo': pageNo,
-  //       'category': category,
-
-  //     },
-  //     methed: 'GET',
-  //     success: (res) => {
-  //       that.loading = false
-  //       wx.hideLoading()
-  //       console.log(res)
-  //       const result = res.data;
-  //       if (result.code == 1) {
-  //         const articles = result.data;
-  //         that.setData({
-  //           page: pageNo, //当前的页号
-  //           pages: result.count, //总页数
-  //           artList: that.data.artList.concat(articles)
-  //         })
-  //       }
-  //     },
-  //     fail: (err) => {
-  //       that.loading = false
-  //       wx.hideLoading()
-  //       console.log(err)
-  //     }
-  //   })
-
-  // },
   searchArt: function (pageNo, keyword) {
     const that = this
     if (that.adFen < 2) {
@@ -189,44 +139,102 @@ Page({
     })
 
   },
-  // getArticles: function (pageNo) {
-  //   var that = this
-  //   that.loading = true
-  //   wx.showLoading({
-  //     title: '加载中...',
-  //     mask: true,
-  //   })
-  //   if (pageNo === 1) {
-  //     that.setData({
-  //       artList: [],
-  //     })
-  //   }
-  //   wx.cloud.callFunction({
-  //     // 要调用的云函数名称
-  //     name: 'getLibList',
-  //     // 传递给云函数的event参数
-  //     data: {
-  //       keyword: that.data.keyword,
-  //       pageNo: pageNo,
-  //     }
-  //   }).then(res => {
-  //     that.loading = false
-  //     wx.hideLoading()
-  //     console.log(res.result)
-  //     const articles = res.result.list
-  //     that.setData({
-  //       page: pageNo, //当前的页号
-  //       pages: res.result.pages, //总页数
-  //       artList: that.data.artList.concat(articles)
-  //     })
-  //   }).catch(err => {
-  //     // handle 
-  //     console.log(err)
-  //     that.loading = false
-  //     wx.hideLoading()
-  //   })
+  bindBtn: function (e) {
+    let btnId = e.target.id;
+    let qtype = 1;
+    switch (btnId) {
+      case "btnHot":
+        // 按浏览次数倒序排序，再按创建升序
+        qtype = 1;
+        break;
+      case "btnNew":
+        // 按创建倒序排序
+        qtype = 2;
+        break;
+      case "btnCold":
+        // 按浏览次数升序排序，再按创建升序
+        qtype = 3;
+        break;
+      default:
+        break;
+    }
+    this.setData({
+      qtype: qtype,
+      op: 2,
+    })
+    console.log(this.data.qtype);
+    wx.showToast({
+      title: 'qtype'+this.data.qtype,
+    })
+    // this.getArtList(1,qtype)
+  },
+  // 根据类型查询
+  getArtList: function (pageNo, qtype) {
+    const that = this
+    if (that.adFen < 2) {
+      // 弹窗错误
+      wx.showModal({
+        title: '提示',
+        content: '您现在使用频繁，需要观看广告补充能量',
+        confirmText: '观看广告',
+        cancelText: '关闭',
+        success(res) {
+          if (res.confirm) {
+            // 播放广告
+            that.showAd();
+          } else if (res.cancel) {
 
-  // },
+          }
+        }
+      })
+      return
+    }
+    that.loading = true
+    wx.showLoading({
+      title: '加载中...',
+      mask: true,
+    })
+    if (pageNo === 1) {
+      that.setData({
+        artList: [],
+      })
+    }
+    wx.request({
+      url: 'https://mp1.91demo.top/mp3/getArtList',
+      data: {
+        'pageNo': pageNo,
+        'qtype': qtype,
+      },
+      methed: 'GET',
+      success: (res) => {
+        that.loading = false
+        wx.hideLoading()
+        console.log(res)
+        const result = res.data;
+        if (result.code == 1) {
+          const articles = result.data;
+          that.setData({
+            page: pageNo, //当前的页号
+            pages: result.count, //总页数
+            artList: that.data.artList.concat(articles)
+          })
+          that.adFen = that.adFen - 2;
+          wx.setStorageSync('ad', that.adFen);
+        } else {
+          wx.showToast({
+            title: '没有找到记录',
+          })
+        }
+      },
+      fail: (err) => {
+        that.loading = false
+        wx.hideLoading()
+        console.log(err)
+      }
+    })
+
+  },
+  
 
   jump: function (e) {
     const that = this;
@@ -267,9 +275,9 @@ Page({
     const that = this;
     if (wx.createRewardedVideoAd) {
       videoAd = wx.createRewardedVideoAd({
-        adUnitId: 'adunit-2ce6db3cb1e45a86' 
+        adUnitId: 'adunit-2ce6db3cb1e45a86'
       })
-      videoAd.onLoad(() => { })
+      videoAd.onLoad(() => {})
       videoAd.onError((err) => {
         console.log('onError event emit', err)
         wx.showToast({
@@ -367,9 +375,16 @@ Page({
     // if (!this.loading && this.data.page < this.data.pages) {
     // 	this.getArticles(this.data.page + 1)
     // }
-    if (!this.loading && this.data.page < this.data.pages) {
-      this.searchArt(this.data.page + 1, this.data.keyword)
+    if (this.data.op === 1) {
+      if (!this.loading && this.data.page < this.data.pages) {
+        this.searchArt(this.data.page + 1, this.data.keyword)
+      }
+    } else {
+      if (!this.loading && this.data.page < this.data.pages) {
+        this.getArtList(this.data.page + 1, this.data.qtype)
+      }
     }
+
   },
 
   /**

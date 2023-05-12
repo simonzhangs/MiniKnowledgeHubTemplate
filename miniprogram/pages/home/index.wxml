@@ -3,8 +3,7 @@
     <view class="page__title">使用说明</view>
     <view class="page__desc">可以通过搜索诗人、诗句查找完整唐诗！</view>
   </view>
-  <view class="page__bd">
-
+  <view class="page__bd page__bd_spacing">
     <!-- 搜索框-->
     <view class="weui-search-bar {{inputShowed ? 'weui-search-bar_focusing' : ''}}" id="searchBar">
       <form class="weui-search-bar__form">
@@ -21,18 +20,13 @@
     </view>
 
     <!-- 查询快捷按钮-->
-    
-    <view class="button-sp-area">
-			<button class="weui-btn weui-btn_mini weui-btn_primary weui-wa-hotarea" aria-role="button" bindtap="javascript:">最流行</button>
-			<button class="weui-btn weui-btn_mini weui-btn_default weui-wa-hotarea" aria-role="button" bindtap="javascript:">最新</button>
-			<button class="weui-btn weui-btn_mini weui-btn_warn weui-wa-hotarea" aria-role="button" bindtap="javascript:">最老</button>
+    <view class="weui-flex">
+			<view class="weui-flex__item"><view class="placeholder" id="btnHot" bindtap="bindBtn">最火</view></view>
+			<view class="weui-flex__item"><view class="placeholder" id="btnNew" bindtap="bindBtn">最新</view></view>
+			<view class="weui-flex__item"><view class="placeholder" id="btnCold" bindtap="bindBtn">最冷</view></view>
 		</view>
 
-    <view class="button-sp-area">
-			<button class="weui-btn weui-btn_mini weui-btn_primary weui-wa-hotarea" aria-role="button" bindtap="javascript:">小学1年级</button>
-			<button class="weui-btn weui-btn_mini weui-btn_default weui-wa-hotarea" aria-role="button" bindtap="javascript:">小学2年级</button>
-			<button class="weui-btn weui-btn_mini weui-btn_warn weui-wa-hotarea" aria-role="button" bindtap="javascript:">小学3年级</button>
-		</view>
+    
     
     <!-- 内容-->
     <!--循环输出-->
