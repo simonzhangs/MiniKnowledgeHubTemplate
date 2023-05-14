@@ -105,6 +105,7 @@ Page({
       })
     }
     wx.request({
+      // url:'http://106.15.188.202:9981/mp3/searchArt',
       url: 'https://mp1.91demo.top/mp3/searchArt',
       data: {
         'pageNo': pageNo,
@@ -159,14 +160,12 @@ Page({
         break;
     }
     this.setData({
+      artList:[],
       qtype: qtype,
       op: 2,
     })
     console.log(this.data.qtype);
-    wx.showToast({
-      title: 'qtype'+this.data.qtype,
-    })
-    // this.getArtList(1,qtype)
+    this.getArtList(1,qtype)
   },
   // 根据类型查询
   getArtList: function (pageNo, qtype) {
@@ -200,6 +199,7 @@ Page({
       })
     }
     wx.request({
+      // url:'http://106.15.188.202:9981/mp3/getArtList',
       url: 'https://mp1.91demo.top/mp3/getArtList',
       data: {
         'pageNo': pageNo,
