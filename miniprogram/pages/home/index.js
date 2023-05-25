@@ -45,6 +45,7 @@ Page({
     var keyword = this.data.inputVal.toLowerCase()
     this.setData({
       keyword: keyword,
+      op:1,
     })
 
     this.searchArt(1, keyword)
