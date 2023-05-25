@@ -67,7 +67,7 @@ image {
 
 .placeholder {
   margin-top: 10rpx;
-  margin-left:15rpx;
+  margin-left: 15rpx;
   margin-right: 15rpx;
   margin-bottom: 10rpx;
   padding: 0 20rpx;
@@ -76,4 +76,23 @@ image {
   height: 2.3em;
   line-height: 2.3em;
   color: var(--weui-FG-1)
+}
+
+.weui-footer {
+  margin-bottom: 100rpx
+}
+
+.weui-footer_fixed-bottom {
+  margin-bottom: 0
+}
+
+.home-ad {
+  margin-bottom: 0;
+  position: fixed;
+  width: 220rpx;
+  height: 220rpx;
+  bottom: 220rpx;
+  right: 20rpx;
+  display: block;
+  box-sizing: border-box;
 }

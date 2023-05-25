@@ -1,5 +1,5 @@
 // 正式环境
-// const baseUrl = "https://mp1.91demo.top/mp3";
+const baseUrl = "https://mp1.91demo.top/mp3";
 // const baseUrl = "http://106.15.188.202:9981/mp3";
 
 const formatTime = date => {
@@ -90,7 +90,13 @@ function decodeBase64(data) {
   let decode = atob(data);
   return decodeURIComponent(decode);
 }
-
+const getUrl = (url) => {
+  // let baseUrl = getBaseUrl();
+  if (url.indexOf("://") == -1) {
+    url = baseUrl + url;
+  }
+  return url;
+};
 
 const http = ({
   url = "",
@@ -101,14 +107,14 @@ const http = ({
   //   title: "网络请求中..",
   // });
   let timeStart = Date.now();
-  // let cookie = wx.getStorageSync("sessionKey");
+  let cookie = wx.getStorageSync("sessionKey");
   return new Promise((resolve, reject) => {
     wx.request({
       url: getUrl(url),
       data: param,
       header: {
         "content-type": "application/json", // 默认值
-        // Cookie: cookie,
+        Cookie: cookie,
       },
       ...other,
       timeout: 3000,

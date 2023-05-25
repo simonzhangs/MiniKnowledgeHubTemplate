@@ -21,13 +21,19 @@
 
     <!-- 查询快捷按钮-->
     <view class="weui-flex">
-			<view class="weui-flex__item"><view class="placeholder" id="btnHot" bindtap="bindBtn">最火</view></view>
-			<view class="weui-flex__item"><view class="placeholder" id="btnNew" bindtap="bindBtn">最新</view></view>
-			<view class="weui-flex__item"><view class="placeholder" id="btnCold" bindtap="bindBtn">最冷</view></view>
-		</view>
+      <view class="weui-flex__item">
+        <view class="placeholder" id="btnHot" bindtap="bindBtn">最火</view>
+      </view>
+      <view class="weui-flex__item">
+        <view class="placeholder" id="btnNew" bindtap="bindBtn">最新</view>
+      </view>
+      <view class="weui-flex__item">
+        <view class="placeholder" id="btnCold" bindtap="bindBtn">最冷</view>
+      </view>
+    </view>
 
-    
-    
+
+
     <!-- 内容-->
     <!--循环输出-->
     <view class="weui-cells weui-cells_after-title">
@@ -46,10 +52,9 @@
     </view>
     <!--循环输出-->
 
-    
+    <view class="home-ad" wx:if="{{artList.length == 0 }}">
+      <ad-custom unit-id="adunit-45d5e60373abe030"></ad-custom>
+    </view>
   </view>
-  <view class="page__ft" wx:if="{{artList.length == 0 }}">
-    <!-- <ad unit-id="adunit-97d05ae09a0a545a" ad-type="video" ad-theme="white"></ad> -->
-    <ad unit-id="adunit-62a65ad78c1b3f40"></ad>
-  </view>
+
 </view>
