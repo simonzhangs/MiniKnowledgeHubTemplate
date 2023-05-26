@@ -19,41 +19,74 @@ Page({
     wx.showLoading({
       title: '加载中',
     })
-    const url = 'https://mp1.91demo.top/mp3/artDetail?uuid=';
-    let vurl = url + options.guid;
-    wx.request({
-      url: vurl,
-      method: 'GET',
-      success: (res) => {
-       
-        const result = res.data;
-        if (result.code == 1) {
-          let content = result.data;
-          let obj = app.towxml(content, 'markdown', {
-            theme: 'light',
-            events: {
-              tap: (e) => {
-                console.log('tap', e);
-              }
+
+    utils.httpGet('/artDetail',{
+      uuid:options.guid,
+    }).then((res)=>{
+
+      const result = res.data;
+      if (result.code == 1) {
+        let content = result.data;
+        let obj = app.towxml(content, 'markdown', {
+          theme: 'light',
+          events: {
+            tap: (e) => {
+              console.log('tap', e);
             }
-          });
+          }
+        });
 
-          _ts.setData({
-            article: obj,
-          });
+        _ts.setData({
+          article: obj,
+        });
 
-          wx.hideLoading({
-            success: (res) => { },
-          })
-        }
-      },
-      fail: (err) => {
-        console.log(err);
         wx.hideLoading({
           success: (res) => { },
         })
+      }else{
+        wx.hideLoading()
       }
+    }).catch((err)=>{
+      console.log(err);
+      wx.hideLoading({
+        success: (res) => { },
+      })
     })
+    // const url = 'https://mp1.91demo.top/mp3/artDetail?uuid=';
+    // let vurl = url + options.guid;
+    // wx.request({
+    //   url: vurl,
+    //   method: 'GET',
+    //   success: (res) => {
+       
+    //     const result = res.data;
+    //     if (result.code == 1) {
+    //       let content = result.data;
+    //       let obj = app.towxml(content, 'markdown', {
+    //         theme: 'light',
+    //         events: {
+    //           tap: (e) => {
+    //             console.log('tap', e);
+    //           }
+    //         }
+    //       });
+
+    //       _ts.setData({
+    //         article: obj,
+    //       });
+
+    //       wx.hideLoading({
+    //         success: (res) => { },
+    //       })
+    //     }
+    //   },
+    //   fail: (err) => {
+    //     console.log(err);
+    //     wx.hideLoading({
+    //       success: (res) => { },
+    //     })
+    //   }
+    // })
 
   },
 

@@ -31,7 +31,7 @@ Page({
       keyword: "",
       artList: [],
     });
-    
+
   },
 
 
@@ -45,7 +45,7 @@ Page({
     var keyword = this.data.inputVal.toLowerCase()
     this.setData({
       keyword: keyword,
-      op:1,
+      op: 1,
     })
 
     this.searchArt(1, keyword)
@@ -105,40 +105,66 @@ Page({
         artList: [],
       })
     }
-    wx.request({
-      // url:'http://106.15.188.202:9981/mp3/searchArt',
-      url: 'https://mp1.91demo.top/mp3/searchArt',
-      data: {
-        'pageNo': pageNo,
-        'keyword': keyword
-      },
-      methed: 'GET',
-      success: (res) => {
-        that.loading = false
-        wx.hideLoading()
-        console.log(res)
-        const result = res.data;
-        if (result.code == 1) {
-          const articles = result.data;
-          that.setData({
-            page: pageNo, //当前的页号
-            pages: result.count, //总页数
-            artList: that.data.artList.concat(articles)
-          })
-          that.adFen = that.adFen - 2;
-          wx.setStorageSync('ad', that.adFen);
-        } else {
-          wx.showToast({
-            title: '没有找到记录',
-          })
-        }
-      },
-      fail: (err) => {
-        that.loading = false
-        wx.hideLoading()
-        console.log(err)
+
+    utils.httpGet('/searchArt', {
+      'pageNo': pageNo,
+      'keyword': keyword,
+    }).then((res)=>{
+      that.loading = false
+      wx.hideLoading()
+      const result = res.data;
+      if (result.code == 1) {
+        const articles = result.data;
+        that.setData({
+          page: pageNo, //当前的页号
+          pages: result.count, //总页数
+          artList: that.data.artList.concat(articles)
+        })
+        that.adFen = that.adFen - 2;
+        wx.setStorageSync('ad', that.adFen);
+      } else {
+        wx.showToast({
+          title: '没有找到记录',
+        })
       }
+    }).catch((err)=>{
+      that.loading = false
+      wx.hideLoading()
     })
+    // wx.request({
+    //   // url:'http://106.15.188.202:9981/mp3/searchArt',
+    //   url: 'https://mp1.91demo.top/mp3/searchArt',
+    //   data: {
+    //     'pageNo': pageNo,
+    //     'keyword': keyword
+    //   },
+    //   methed: 'GET',
+    //   success: (res) => {
+    //     that.loading = false
+    //     wx.hideLoading()
+    //     console.log(res)
+    //     const result = res.data;
+    //     if (result.code == 1) {
+    //       const articles = result.data;
+    //       that.setData({
+    //         page: pageNo, //当前的页号
+    //         pages: result.count, //总页数
+    //         artList: that.data.artList.concat(articles)
+    //       })
+    //       that.adFen = that.adFen - 2;
+    //       wx.setStorageSync('ad', that.adFen);
+    //     } else {
+    //       wx.showToast({
+    //         title: '没有找到记录',
+    //       })
+    //     }
+    //   },
+    //   fail: (err) => {
+    //     that.loading = false
+    //     wx.hideLoading()
+    //     console.log(err)
+    //   }
+    // })
 
   },
   bindBtn: function (e) {
@@ -161,12 +187,12 @@ Page({
         break;
     }
     this.setData({
-      artList:[],
+      artList: [],
       qtype: qtype,
       op: 2,
     })
     console.log(this.data.qtype);
-    this.getArtList(1,qtype)
+    this.getArtList(1, qtype)
   },
   // 根据类型查询
   getArtList: function (pageNo, qtype) {
@@ -199,43 +225,71 @@ Page({
         artList: [],
       })
     }
-    wx.request({
-      // url:'http://106.15.188.202:9981/mp3/getArtList',
-      url: 'https://mp1.91demo.top/mp3/getArtList',
-      data: {
-        'pageNo': pageNo,
-        'qtype': qtype,
-      },
-      methed: 'GET',
-      success: (res) => {
-        that.loading = false
-        wx.hideLoading()
-        console.log(res)
-        const result = res.data;
-        if (result.code == 1) {
-          const articles = result.data;
-          that.setData({
-            page: pageNo, //当前的页号
-            pages: result.count, //总页数
-            artList: that.data.artList.concat(articles)
-          })
-          that.adFen = that.adFen - 2;
-          wx.setStorageSync('ad', that.adFen);
-        } else {
-          wx.showToast({
-            title: '没有找到记录',
-          })
-        }
-      },
-      fail: (err) => {
-        that.loading = false
-        wx.hideLoading()
-        console.log(err)
+
+    utils.httpGet('/getArtList',{
+      'pageNo': pageNo,
+      'qtype': qtype,
+    }).then((res)=>{
+      that.loading = false
+      wx.hideLoading()
+      console.log(res)
+      const result = res.data;
+      if (result.code == 1) {
+        const articles = result.data;
+        that.setData({
+          page: pageNo, //当前的页号
+          pages: result.count, //总页数
+          artList: that.data.artList.concat(articles)
+        })
+        that.adFen = that.adFen - 2;
+        wx.setStorageSync('ad', that.adFen);
+      } else {
+        wx.showToast({
+          title: '没有找到记录',
+        })
       }
+    }).catch((err)=>{
+      that.loading = false
+      wx.hideLoading()
+      console.log(err)
     })
+    // wx.request({
+    //   // url:'http://106.15.188.202:9981/mp3/getArtList',
+    //   url: 'https://mp1.91demo.top/mp3/getArtList',
+    //   data: {
+    //     'pageNo': pageNo,
+    //     'qtype': qtype,
+    //   },
+    //   methed: 'GET',
+    //   success: (res) => {
+    //     that.loading = false
+    //     wx.hideLoading()
+    //     console.log(res)
+    //     const result = res.data;
+    //     if (result.code == 1) {
+    //       const articles = result.data;
+    //       that.setData({
+    //         page: pageNo, //当前的页号
+    //         pages: result.count, //总页数
+    //         artList: that.data.artList.concat(articles)
+    //       })
+    //       that.adFen = that.adFen - 2;
+    //       wx.setStorageSync('ad', that.adFen);
+    //     } else {
+    //       wx.showToast({
+    //         title: '没有找到记录',
+    //       })
+    //     }
+    //   },
+    //   fail: (err) => {
+    //     that.loading = false
+    //     wx.hideLoading()
+    //     console.log(err)
+    //   }
+    // })
 
   },
-  
+
 
   jump: function (e) {
     const that = this;
