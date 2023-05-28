@@ -16,8 +16,9 @@ Page({
     pages: 0,
     page: 1,
     yestTime: 0,
-    op: 1, // 1 搜索查询 2 按钮查询
+    op: 1, // 1 搜索查询 2 按时间查询 3 按年级查询
     qtype: 1, // 1 最火 2 最新 3 最冷
+    grade:1,// 1-18 分别对应小初上下
   },
   showInput: function () {
     this.setData({
@@ -56,8 +57,8 @@ Page({
     const that = this;
     let vad1 = wx.getStorageSync("ad");
     if (utils.isEmpty(vad1)) {
-      that.adFen = 6;
-      wx.setStorageSync('ad', 6);
+      that.adFen = 20;
+      wx.setStorageSync('ad', 20);
     } else {
       that.adFen = vad1;
     }
@@ -77,7 +78,7 @@ Page({
 
   searchArt: function (pageNo, keyword) {
     const that = this
-    if (that.adFen < 2) {
+    if (that.adFen < 1) {
       // 弹窗错误
       wx.showModal({
         title: '提示',
@@ -120,7 +121,7 @@ Page({
           pages: result.count, //总页数
           artList: that.data.artList.concat(articles)
         })
-        that.adFen = that.adFen - 2;
+        that.adFen = that.adFen - 1;
         wx.setStorageSync('ad', that.adFen);
       } else {
         wx.showToast({
@@ -197,7 +198,7 @@ Page({
   // 根据类型查询
   getArtList: function (pageNo, qtype) {
     const that = this
-    if (that.adFen < 2) {
+    if (that.adFen < 1) {
       // 弹窗错误
       wx.showModal({
         title: '提示',
@@ -241,7 +242,7 @@ Page({
           pages: result.count, //总页数
           artList: that.data.artList.concat(articles)
         })
-        that.adFen = that.adFen - 2;
+        that.adFen = that.adFen - 1;
         wx.setStorageSync('ad', that.adFen);
       } else {
         wx.showToast({
@@ -287,6 +288,79 @@ Page({
     //     console.log(err)
     //   }
     // })
+
+  },
+
+  bindGrade: function (e) {
+    let btnId = e.target.id;
+    let grade = parseInt(btnId);
+    this.setData({
+      artList: [],
+      grade: grade,
+      op: 3,
+    })
+    console.log(this.data.qtype);
+    this.getPoemListByGrade(1, grade)
+  },
+
+  getPoemListByGrade: function (pageNo, grade) {
+    const that = this
+    if (that.adFen < 1) {
+      // 弹窗错误
+      wx.showModal({
+        title: '提示',
+        content: '您现在使用频繁，需要观看广告补充能量',
+        confirmText: '观看广告',
+        cancelText: '关闭',
+        success(res) {
+          if (res.confirm) {
+            // 播放广告
+            that.showAd();
+          } else if (res.cancel) {
+
+          }
+        }
+      })
+      return
+    }
+    that.loading = true
+    wx.showLoading({
+      title: '加载中...',
+      mask: true,
+    })
+    if (pageNo === 1) {
+      that.setData({
+        artList: [],
+      })
+    }
+
+    utils.httpGet('/getPoemListByGrade',{
+      'pageNo': pageNo,
+      'grade': grade,
+    }).then((res)=>{
+      that.loading = false
+      wx.hideLoading()
+      console.log(res)
+      const result = res.data;
+      if (result.code == 1) {
+        const articles = result.data;
+        that.setData({
+          page: pageNo, //当前的页号
+          pages: result.count, //总页数
+          artList: that.data.artList.concat(articles)
+        })
+        that.adFen = that.adFen - 1;
+        wx.setStorageSync('ad', that.adFen);
+      } else {
+        wx.showToast({
+          title: '没有找到记录',
+        })
+      }
+    }).catch((err)=>{
+      that.loading = false
+      wx.hideLoading()
+      console.log(err)
+    })
 
   },
 
@@ -343,7 +417,7 @@ Page({
         // 用户点击了【关闭广告】按钮
         if (res && res.isEnded) {
           // 正常播放结束，可以下发游戏奖励
-          that.adFen = that.adFen + 10
+          that.adFen = that.adFen + 20
           wx.setStorageSync('ad', that.adFen);
 
           wx.showToast({
@@ -434,9 +508,13 @@ Page({
       if (!this.loading && this.data.page < this.data.pages) {
         this.searchArt(this.data.page + 1, this.data.keyword)
       }
-    } else {
+    } else if(this.data.op === 2) {
       if (!this.loading && this.data.page < this.data.pages) {
         this.getArtList(this.data.page + 1, this.data.qtype)
+      }
+    } else if(this.data.op === 3){
+      if (!this.loading && this.data.page < this.data.pages) {
+        this.getPoemListByGrade(this.data.page + 1, this.data.grade)
       }
     }
 
