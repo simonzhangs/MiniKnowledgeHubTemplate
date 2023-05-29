@@ -3,6 +3,7 @@ const app = getApp();
 const utils = require('../../utils/utils.js')
 let videoAd = null;
 let adFen = 0;
+const InitFenNum = 50;
 Page({
   /**
    * 页面的初始数据
@@ -18,7 +19,7 @@ Page({
     yestTime: 0,
     op: 1, // 1 搜索查询 2 按时间查询 3 按年级查询
     qtype: 1, // 1 最火 2 最新 3 最冷
-    grade:1,// 1-18 分别对应小初上下
+    grade: 1,// 1-18 分别对应小初上下
   },
   showInput: function () {
     this.setData({
@@ -57,8 +58,8 @@ Page({
     const that = this;
     let vad1 = wx.getStorageSync("ad");
     if (utils.isEmpty(vad1)) {
-      that.adFen = 20;
-      wx.setStorageSync('ad', 20);
+      that.adFen = that.InitFenNum;
+      wx.setStorageSync('ad', that.adFen);
     } else {
       that.adFen = vad1;
     }
@@ -110,7 +111,7 @@ Page({
     utils.httpGet('/searchArt', {
       'pageNo': pageNo,
       'keyword': keyword,
-    }).then((res)=>{
+    }).then((res) => {
       that.loading = false
       wx.hideLoading()
       const result = res.data;
@@ -128,7 +129,7 @@ Page({
           title: '没有找到记录',
         })
       }
-    }).catch((err)=>{
+    }).catch((err) => {
       that.loading = false
       wx.hideLoading()
     })
@@ -227,10 +228,10 @@ Page({
       })
     }
 
-    utils.httpGet('/getArtList',{
+    utils.httpGet('/getArtList', {
       'pageNo': pageNo,
       'qtype': qtype,
-    }).then((res)=>{
+    }).then((res) => {
       that.loading = false
       wx.hideLoading()
       console.log(res)
@@ -249,7 +250,7 @@ Page({
           title: '没有找到记录',
         })
       }
-    }).catch((err)=>{
+    }).catch((err) => {
       that.loading = false
       wx.hideLoading()
       console.log(err)
@@ -334,10 +335,10 @@ Page({
       })
     }
 
-    utils.httpGet('/getPoemListByGrade',{
+    utils.httpGet('/getPoemListByGrade', {
       'pageNo': pageNo,
       'grade': grade,
-    }).then((res)=>{
+    }).then((res) => {
       that.loading = false
       wx.hideLoading()
       console.log(res)
@@ -356,7 +357,7 @@ Page({
           title: '没有找到记录',
         })
       }
-    }).catch((err)=>{
+    }).catch((err) => {
       that.loading = false
       wx.hideLoading()
       console.log(err)
@@ -406,7 +407,7 @@ Page({
       videoAd = wx.createRewardedVideoAd({
         adUnitId: 'adunit-2ce6db3cb1e45a86'
       })
-      videoAd.onLoad(() => {})
+      videoAd.onLoad(() => { })
       videoAd.onError((err) => {
         console.log('onError event emit', err)
         wx.showToast({
@@ -417,7 +418,7 @@ Page({
         // 用户点击了【关闭广告】按钮
         if (res && res.isEnded) {
           // 正常播放结束，可以下发游戏奖励
-          that.adFen = that.adFen + 20
+          that.adFen = that.adFen + that.InitFenNum;
           wx.setStorageSync('ad', that.adFen);
 
           wx.showToast({
@@ -508,11 +509,11 @@ Page({
       if (!this.loading && this.data.page < this.data.pages) {
         this.searchArt(this.data.page + 1, this.data.keyword)
       }
-    } else if(this.data.op === 2) {
+    } else if (this.data.op === 2) {
       if (!this.loading && this.data.page < this.data.pages) {
         this.getArtList(this.data.page + 1, this.data.qtype)
       }
-    } else if(this.data.op === 3){
+    } else if (this.data.op === 3) {
       if (!this.loading && this.data.page < this.data.pages) {
         this.getPoemListByGrade(this.data.page + 1, this.data.grade)
       }
