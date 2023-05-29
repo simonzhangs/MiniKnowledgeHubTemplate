@@ -3,7 +3,6 @@ const app = getApp();
 const utils = require('../../utils/utils.js')
 let videoAd = null;
 let adFen = 0;
-const InitFenNum = 50;
 Page({
   /**
    * 页面的初始数据
@@ -58,7 +57,7 @@ Page({
     const that = this;
     let vad1 = wx.getStorageSync("ad");
     if (utils.isEmpty(vad1)) {
-      that.adFen = that.InitFenNum;
+      that.adFen = 50;
       wx.setStorageSync('ad', that.adFen);
     } else {
       that.adFen = vad1;
@@ -350,7 +349,8 @@ Page({
           pages: result.count, //总页数
           artList: that.data.artList.concat(articles)
         })
-        that.adFen = that.adFen - 1;
+        that.adFen=that.adFen-1;
+        console.log('adfen,',that.adFen);
         wx.setStorageSync('ad', that.adFen);
       } else {
         wx.showToast({
@@ -418,7 +418,7 @@ Page({
         // 用户点击了【关闭广告】按钮
         if (res && res.isEnded) {
           // 正常播放结束，可以下发游戏奖励
-          that.adFen = that.adFen + that.InitFenNum;
+          that.adFen = that.adFen + 50;
           wx.setStorageSync('ad', that.adFen);
 
           wx.showToast({
