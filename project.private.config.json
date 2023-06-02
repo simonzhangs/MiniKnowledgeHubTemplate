@@ -8,7 +8,7 @@
       "list": [
         {
           "name": "demo",
-          "pathName": "pages/home/index",
+          "pathName": "pages/poem/index",
           "query": "",
           "launchMode": "default",
           "scene": null

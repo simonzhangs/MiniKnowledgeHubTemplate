@@ -1,7 +1,8 @@
 {
   "pages": [
     "pages/home/index",
-    "pages/mkart/index"
+    "pages/mkart/index",
+    "pages/poem/index"
   ],
   "window": {
     "navigationBarTextStyle": "black",

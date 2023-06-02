@@ -1,0 +1,41 @@
+<!--pages/poem/index.wxml-->
+<view class="container">
+  <view class="title">
+    <text>静夜思</text>
+  </view>
+  <view class="info">
+    <view class="dynasty"><text>[唐代]</text></view>
+    <view class="poet"><text>李白</text></view>
+  </view>
+  <!-- <view class="verses">
+    <view class="verse">
+      <text>chuang</text>
+      <text>qian</text>
+      <text>ming</text>
+      <text>yue</text>
+      <text>guang</text>
+      <text>yue</text>
+      <text>guang</text>
+    </view>
+    <view class="verse">
+      <text>窗</text><text>前</text><text>明</text><text>月</text><text>光</text><text>月</text><text>光</text>
+    </view>
+    <view class="verse">
+      <text>chuang</text><text>qian</text><text>ming</text><text>yue</text><text>guang</text>
+    </view>
+    <view class="verse">
+      <text>窗</text><text>前</text><text>明</text><text>月</text><text>光</text>
+    </view>
+  </view> -->
+
+  <view class="verses">
+    <block wx:for="{{verses}}" wx:for-item="xitem" wx:for-index="xidx" wx:key="*this">
+      <view class="verse">
+        <block wx:for="{{xitem}}" wx:for-item="yitem" wx:for-index="yidx" wx:key="*this">
+          <text>{{yitem}}</text>
+        </block>
+      </view>
+    </block>
+  </view>
+
+</view>
