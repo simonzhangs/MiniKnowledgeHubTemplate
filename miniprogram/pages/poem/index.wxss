@@ -1,7 +1,6 @@
 /* pages/poem/index.wxss */
 text {
-  font-family: 'Microsoft YaHei';
-
+  font-family: "Microsoft YaHei";
 }
 
 .container {
@@ -10,7 +9,6 @@ text {
   align-items: center;
   background-color: #f2f2f2;
 }
-
 
 .title {
   font-size: 2em;
@@ -45,10 +43,16 @@ text {
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
-
 }
 
-.verse text {
+.words {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.verse .words {
   padding: 0 10rpx;
 }
 
@@ -57,5 +61,13 @@ text {
 }
 
 .verse:nth-child(even) {
+  font-size: 1.2em;
+}
+
+.pinyin {
+  font-size: 1em;
+}
+
+.hanzi {
   font-size: 1.2em;
 }

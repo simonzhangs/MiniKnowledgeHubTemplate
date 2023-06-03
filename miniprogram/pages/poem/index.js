@@ -5,7 +5,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    verses:[['chuang','qian','ming','yue','guang'],['床','前','明','月','光'],['chuang','qian','ming','yue','guang'],['床','前','明','月','光'],],
+    // verses:[['chuang','qian','ming','yue','guang'],['床','前','明','月','光'],['chuang','qian','ming','yue','guang'],['床','前','明','月','光'],],
+    verses: [[{ 'py': 'chuang', 'hz': '窗' }, { 'py': 'qian', 'hz': '前' }, { 'py': 'ming', 'hz': '明' }, { 'py': 'yue', 'hz': '月' }, { 'py': 'guang', 'hz': '光' }], [{ 'py': 'chuang', 'hz': '窗' }, { 'py': 'qian', 'hz': '前' }, { 'py': 'ming', 'hz': '明' }, { 'py': 'yue', 'hz': '月' }, { 'py': 'guang', 'hz': '光' }]],
+
   },
 
   /**
