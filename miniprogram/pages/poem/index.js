@@ -5,16 +5,22 @@ Page({
    * 页面的初始数据
    */
   data: {
-    // verses:[['chuang','qian','ming','yue','guang'],['床','前','明','月','光'],['chuang','qian','ming','yue','guang'],['床','前','明','月','光'],],
-    verses: [[{ 'py': 'chuang', 'hz': '窗' }, { 'py': 'qian', 'hz': '前' }, { 'py': 'ming', 'hz': '明' }, { 'py': 'yue', 'hz': '月' }, { 'py': 'guang', 'hz': '光' }], [{ 'py': 'chuang', 'hz': '窗' }, { 'py': 'qian', 'hz': '前' }, { 'py': 'ming', 'hz': '明' }, { 'py': 'yue', 'hz': '月' }, { 'py': 'guang', 'hz': '光' }]],
-
+   
+    poem:{
+      title:[{'py':'jing','hz':'静'},{'py':'ye','hz':'夜'},{'py':'si','hz':'思'}],
+      dynasty:[{'py':'tang','hz':'唐'}],
+      poet:[{'py':'li','hz':'李'},{'py':'bai','hz':'白'}],
+      verses: [[{ 'py': 'chuang', 'hz': '窗' }, { 'py': 'qian', 'hz': '前' }, { 'py': 'ming', 'hz': '明' }, { 'py': 'yue', 'hz': '月' }, { 'py': 'guang', 'hz': '光' }], [{ 'py': 'chuang', 'hz': '窗' }, { 'py': 'qian', 'hz': '前' }, { 'py': 'ming', 'hz': '明' }, { 'py': 'yue', 'hz': '月' }, { 'py': 'guang', 'hz': '光' }],[{ 'py': 'chuang', 'hz': '窗' }, { 'py': 'qian', 'hz': '前' }, { 'py': 'ming', 'hz': '明' }, { 'py': 'yue', 'hz': '月' }, { 'py': 'guang', 'hz': '光' }],[{ 'py': 'chuang', 'hz': '窗' }, { 'py': 'qian', 'hz': '前' }, { 'py': 'ming', 'hz': '明' }, { 'py': 'yue', 'hz': '月' }, { 'py': 'guang', 'hz': '光' }]],
+    }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    // this.setData({
+    //   poem:options.poem,
+    // })
   },
 
   /**

@@ -9,7 +9,7 @@
         {
           "name": "demo",
           "pathName": "pages/poem/index",
-          "query": "",
+          "query": " title:'静夜思',       dynasty:'唐代',       poet:'李白',       verses: [[{ 'py': 'chuang', 'hz': '窗' }, { 'py': 'qian', 'hz': '前' }, { 'py': 'ming', 'hz': '明' }, { 'py': 'yue', 'hz': '月' }, { 'py': 'guang', 'hz': '光' }], [{ 'py': 'chuang', 'hz': '窗' }, { 'py': 'qian', 'hz': '前' }, { 'py': 'ming', 'hz': '明' }, { 'py': 'yue', 'hz': '月' }, { 'py': 'guang', 'hz': '光' }]],",
           "launchMode": "default",
           "scene": null
         }

@@ -1,76 +1,39 @@
 <!-- pages/poem/index.wxml -->
 <view class="container">
   <view class="title">
-    <text>静夜思</text>
+    <block wx:for="{{poem.title}}" wx:key="*this">
+      <view class="box">
+        <text class="pinyin">{{item.py}}</text>
+        <text class="hanzi">{{item.hz}}</text>
+      </view>
+    </block>
+
   </view>
   <view class="info">
     <view class="dynasty">
-      <text>[唐代]</text>
+      <block wx:for="{{poem.dynasty}}" wx:key="*this">
+        <view class="box">
+          <text class="pinyin">{{item.py}}</text>
+          <text class="hanzi">[{{item.hz}}]</text>
+        </view>
+      </block>
+     
     </view>
     <view class="poet">
-      <text>李白</text>
+      <block wx:for="{{poem.poet}}" wx:key="*this">
+        <view class="box">
+          <text class="pinyin">{{item.py}}</text>
+          <text class="hanzi">{{item.hz}}</text>
+        </view>
+      </block>
     </view>
   </view>
+
   <view class="verses">
-    <view class="verse">
-      <view class="words">
-        <text>chuang</text>
-        <text>窗</text>
-      </view>
-      <view class="words">
-        <text>qian</text>
-        <text>前</text>
-      </view>
-      <view class="words">
-        <text>ming</text>
-        <text>明</text>
-      </view>
-      <view class="words">
-        <text>yue</text>
-        <text>月</text>
-      </view>
-      <view class="words">
-        <text>guang</text>
-        <text>光</text>
-      </view>
-    </view>
-    <view class="verse">
-      <view class="words">
-        <text>chuang</text>
-        <text>窗</text>
-      </view>
-      <view class="words">
-        <text>qian</text>
-        <text>前</text>
-      </view>
-      <view class="words">
-        <text>ming</text>
-        <text>明</text>
-      </view>
-      <view class="words">
-        <text>yue</text>
-        <text>月</text>
-      </view>
-      <view class="words">
-        <text>guang</text>
-        <text>光</text>
-      </view>
-    </view>
-  </view>
-  <!-- <view class="verses">
-    <block wx:for="{{verses}}" wx:for-item="xitem" wx:for-index="xidx" wx:key="*this">
+    <block wx:for="{{poem.verses}}" wx:for-item="xitem" wx:for-index="xidx" wx:key="*this">
       <view class="verse">
         <block wx:for="{{xitem}}" wx:for-item="yitem" wx:for-index="yidx" wx:key="*this">
-          <text>{{yitem}}</text>
-        </block>
-      </view>
-    </block>
-  </view> -->
-  <view class="verses">
-    <block wx:for="{{verses}}" wx:for-item="xitem" wx:for-index="xidx" wx:key="*this">
-      <view class="verse">
-        <block wx:for="{{xitem}}" wx:for-item="yitem" wx:for-index="yidx" wx:key="*this">
-          <view class="words">
+          <view class="box">
             <text class="pinyin">{{yitem.py}}</text>
             <text class="hanzi">{{yitem.hz}}</text>
           </view>
