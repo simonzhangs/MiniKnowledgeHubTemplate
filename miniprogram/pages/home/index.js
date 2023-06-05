@@ -57,7 +57,7 @@ Page({
     const that = this;
     let vad1 = wx.getStorageSync("ad");
     if (utils.isEmpty(vad1)) {
-      that.adFen = 50;
+      that.adFen = 20;
       wx.setStorageSync('ad', that.adFen);
     } else {
       that.adFen = vad1;
@@ -369,7 +369,7 @@ Page({
   jump: function (e) {
     const that = this;
     // console.log(e.currentTarget.dataset)
-    that.jumpToPage(e.currentTarget.dataset.guid)
+    that.jumpToPage1(e.currentTarget.dataset.guid)
     // if (e.currentTarget.dataset.stars >= 5) {
     //   if (videoAd) {
     //     videoAd.show().catch(() => {
@@ -401,6 +401,13 @@ Page({
 
   },
 
+  jumpToPage1: function (guid) {
+    // 调整到文章页面 
+    wx.navigateTo({
+      url: '../poem/index?guid=' + guid,
+    })
+
+  },
   loadAd: function () {
     const that = this;
     if (wx.createRewardedVideoAd) {
@@ -418,7 +425,7 @@ Page({
         // 用户点击了【关闭广告】按钮
         if (res && res.isEnded) {
           // 正常播放结束，可以下发游戏奖励
-          that.adFen = that.adFen + 50;
+          that.adFen = that.adFen + 20;
           wx.setStorageSync('ad', that.adFen);
 
           wx.showToast({

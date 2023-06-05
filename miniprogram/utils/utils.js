@@ -1,6 +1,6 @@
 // 正式环境
-const baseUrl = "https://mp1.91demo.top/mp3";
-// const baseUrl = "http://106.15.188.202:9981/mp3";
+// const baseUrl = "https://mp1.91demo.top/mp3";
+const baseUrl = "http://106.15.188.202:9981/mp3";
 
 const formatTime = date => {
   const year = date.getFullYear()

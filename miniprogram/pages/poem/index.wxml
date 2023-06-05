@@ -11,10 +11,11 @@
   </view>
   <view class="info">
     <view class="dynasty">
+
       <block wx:for="{{poem.dynasty}}" wx:key="*this">
         <view class="box">
           <text class="pinyin">{{item.py}}</text>
-          <text class="hanzi">[{{item.hz}}]</text>
+          <text class="hanzi">【{{item.hz}}】</text>
         </view>
       </block>
      

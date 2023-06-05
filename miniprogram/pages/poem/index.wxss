@@ -76,25 +76,32 @@ text {
 .verses {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   white-space: pre-wrap;
   text-align: justify;
   word-break: break-all;
+  vertical-align: middle;
+  
 }
 
 .verse {
   display: flex;
   flex-direction: row;
   align-items: flex-end;
-  
+  justify-content: center;
+  vertical-align: middle;
 }
 
 
 .verse .pinyin {
   font-size: 1em;
+  vertical-align: middle;
 }
 
 .verse .hanzi {
   font-size: 1.3em;
+  vertical-align: middle;
 }
 
 
