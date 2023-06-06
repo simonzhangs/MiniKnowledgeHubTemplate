@@ -9,12 +9,6 @@ Page({
   data: {
     poem: {},
 
-    // poem:{
-    //   title:[{'py':'jing','hz':'静'},{'py':'ye','hz':'夜'},{'py':'si','hz':'思'}],
-    //   dynasty:[{'py':'tang','hz':'唐'}],
-    //   poet:[{'py':'li','hz':'李'},{'py':'bai','hz':'白'}],
-    //   verses: [[{ 'py': 'chuang', 'hz': '窗' }, { 'py': 'qian', 'hz': '前' }, { 'py': 'ming', 'hz': '明' }, { 'py': 'yue', 'hz': '月' }, { 'py': 'guang', 'hz': '光' },{'py':'','hz':'，'}], [{ 'py': 'chuang', 'hz': '窗' }, { 'py': 'qian', 'hz': '前' }, { 'py': 'ming', 'hz': '明' }, { 'py': 'yue', 'hz': '月' }, { 'py': 'guang', 'hz': '光' }],[{ 'py': 'chuang', 'hz': '窗' }, { 'py': 'qian', 'hz': '前' }, { 'py': 'ming', 'hz': '明' }, { 'py': 'yue', 'hz': '月' }, { 'py': 'guang', 'hz': '光' }],[{ 'py': 'chuang', 'hz': '窗' }, { 'py': 'qian', 'hz': '前' }, { 'py': 'ming', 'hz': '明' }, { 'py': 'yue', 'hz': '月' }, { 'py': 'guang', 'hz': '光' }]],
-    // }
   },
 
   /**
@@ -35,12 +29,11 @@ Page({
       if (result.code == 1) {
         let content = result.data;
         const obj = JSON.parse(content)
-        console.log('content,', content)
-        console.log('obj,',obj)
+        
         _ts.setData({
           poem: obj,
         });
-        console.log('p,', _ts.data.poem);
+      
         wx.hideLoading({
           success: (res) => {},
         })

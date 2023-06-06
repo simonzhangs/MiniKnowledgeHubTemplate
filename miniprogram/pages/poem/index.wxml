@@ -18,7 +18,7 @@
           <text class="hanzi">【{{item.hz}}】</text>
         </view>
       </block>
-     
+
     </view>
     <view class="poet">
       <block wx:for="{{poem.poet}}" wx:key="*this">
@@ -42,4 +42,8 @@
       </view>
     </block>
   </view>
+  <view class="ad">
+    <ad-custom unit-id="adunit-6ea15db563ffcba8"></ad-custom>
+  </view>
+
 </view>
