@@ -1,19 +1,6 @@
 const utils = require("./utils/utils.js");
 App({
-  towxml: require('/towxml/index'),
-  getText: (url, callback) => {
-    wx.request({
-      url: url,
-      header: {
-        'content-type': 'application/json'
-      },
-      success: (res) => {
-        if (typeof callback === 'function') {
-          callback(res);
-        };
-      }
-    });
-  },
+  
   login() {
     const that = this;
     let cookie = wx.getStorageSync("sessionKey");
