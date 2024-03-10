@@ -1,7 +1,7 @@
 <view class="page">
   <view class="page__hd">
     <view class="page__title">使用说明</view>
-    <view class="page__desc">可以通过搜索诗人、诗句查找完整唐诗！</view>
+    <view class="page__desc">记录自己的代码片段</view>
   </view>
   <view class="page__bd page__bd_spacing">
     <!-- 搜索框-->

@@ -5,7 +5,7 @@
   ],
   "window": {
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "唐诗",
+    "navigationBarTitleText": "代码碎片",
     "navigationBarBackgroundColor": "#EDEDED",
     "backgroundColor": "#EDEDED",
     "enablePullDownRefresh":false
