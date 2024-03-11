@@ -1,51 +1,17 @@
-// pages/poem/index.js
-const app = getApp();
-const utils = require('../../utils/utils.js');
+// pages/article/index.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    poem: {},
-
+    title :'代码片段'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
-    const _ts = this;
-    wx.showLoading({
-      title: '加载中',
-    })
-
-    utils.httpGet('/poemDetail', {
-      uuid: options.guid,
-    }).then((res) => {
-
-      const result = res.data;
-      if (result.code == 1) {
-        let content = result.data;
-        const obj = JSON.parse(content)
-        
-        _ts.setData({
-          poem: obj,
-        });
-      
-        wx.hideLoading({
-          success: (res) => {},
-        })
-      } else {
-        wx.hideLoading()
-      }
-    }).catch((err) => {
-      console.log(err);
-      wx.hideLoading({
-        success: (res) => {},
-      })
-    })
 
   },
 

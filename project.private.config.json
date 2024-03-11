@@ -1,7 +1,8 @@
 {
   "setting": {
     "urlCheck": false,
-    "compileHotReLoad": true
+    "compileHotReLoad": true,
+    "skylineRenderEnable": true
   },
   "condition": {
     "miniprogram": {

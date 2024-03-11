@@ -1,6 +1,5 @@
 const utils = require("./utils/utils.js");
 App({
-  
   login() {
     const that = this;
     let cookie = wx.getStorageSync("sessionKey");
@@ -50,7 +49,7 @@ App({
     });
   },
   onLaunch: function () {
-    this.login()
+    // this.login()
   },
 
 });

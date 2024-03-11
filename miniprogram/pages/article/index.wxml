@@ -1,0 +1,9 @@
+<!--pages/article/index.wxml-->
+<navigation-bar title="{{title}}" back="{{true}}" color="black" background="#FFF"></navigation-bar>
+<scroll-view class="scrollarea" scroll-y type="list">
+  <view class="container">
+    
+     <!-- 定义文章布局 -->
+  
+  </view>
+</scroll-view>

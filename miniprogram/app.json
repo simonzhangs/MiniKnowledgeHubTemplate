@@ -1,14 +1,11 @@
 {
   "pages": [
-    "pages/home/index",
-    "pages/poem/index"
+    "pages/index/index",
+    "pages/article/index"
   ],
   "window": {
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "代码碎片",
-    "navigationBarBackgroundColor": "#EDEDED",
-    "backgroundColor": "#EDEDED",
-    "enablePullDownRefresh":false
+    "navigationStyle": "custom"
   },
   "networkTimeout": {
     "request": 10000,
@@ -16,8 +13,16 @@
     "uploadFile": 10000,
     "downloadFile": 10000
   },
-  
   "style": "v2",
-  "sitemapLocation": "sitemap.json"
+  
+  "renderer": "skyline",
+  "rendererOptions": {
+    "skyline": {
+      "defaultDisplayBlock": true
+    }
+  },
+  "componentFramework": "glass-easel",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
  
 }

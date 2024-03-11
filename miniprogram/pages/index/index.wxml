@@ -1,0 +1,7 @@
+<!--index.wxml-->
+<navigation-bar title="{{title}}" back="{{false}}" color="black" background="#FFF"></navigation-bar>
+<scroll-view class="scrollarea" scroll-y type="list">
+  <view class="container">
+    <!-- 定义内容和布局 -->
+  </view>
+</scroll-view>
