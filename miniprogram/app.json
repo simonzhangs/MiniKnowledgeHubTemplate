@@ -4,8 +4,11 @@
     "pages/article/index"
   ],
   "window": {
+    "navigationBarBackgroundColor": "#ffffff",
     "navigationBarTextStyle": "black",
-    "navigationStyle": "custom"
+    "navigationBarTitleText": "豆子碎片",
+    "backgroundColor": "#eeeeee",
+    "backgroundTextStyle": "light"
   },
   "networkTimeout": {
     "request": 10000,
@@ -14,15 +17,6 @@
     "downloadFile": 10000
   },
   "style": "v2",
-  
-  "renderer": "skyline",
-  "rendererOptions": {
-    "skyline": {
-      "defaultDisplayBlock": false
-    }
-  },
-  "componentFramework": "glass-easel",
-  "sitemapLocation": "sitemap.json",
-  "lazyCodeLoading": "requiredComponents"
- 
+  "sitemapLocation": "sitemap.json"
+
 }
