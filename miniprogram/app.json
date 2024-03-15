@@ -4,11 +4,12 @@
     "pages/article/index"
   ],
   "window": {
-    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarBackgroundColor": "#EDEDED",
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "豆子碎片",
-    "backgroundColor": "#eeeeee",
-    "backgroundTextStyle": "light"
+    "backgroundColor": "#EDEDED",
+    "backgroundTextStyle": "light",
+    "enablePullDownRefresh": false
   },
   "networkTimeout": {
     "request": 10000,

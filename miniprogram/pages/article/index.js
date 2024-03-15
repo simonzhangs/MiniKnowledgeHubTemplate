@@ -1,17 +1,57 @@
-// pages/article/index.js
+// pages/mkart/index.js
+const app = getApp();
+const utils = require('../../utils/utils.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    title :'代码片段'
+    article: {} // 内容数据
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    
+    const _ts = this;
+    wx.showLoading({
+      title: '加载中',
+    })
+
+    utils.httpGet('/artDetail', {
+      uuid: options.guid,
+    }).then((res) => {
+
+      const result = res.data;
+      if (result.code == 1) {
+        let content = result.data;
+          let obj = app.towxml(content, 'markdown', {
+            theme: 'light',
+            events: {
+              tap: (e) => {
+                console.log('tap', e);
+              }
+            }
+          });
+
+          _ts.setData({
+            article: obj,
+          });
+
+          wx.hideLoading({
+            success: (res) => { },
+          })
+      } else {
+        wx.hideLoading()
+      }
+    }).catch((err) => {
+      console.log(err);
+      wx.hideLoading({
+        success: (res) => {},
+      })
+    })
 
   },
 
