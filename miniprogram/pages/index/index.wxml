@@ -1,7 +1,7 @@
 <view class="page">
   <view class="page__hd">
     <view class="page__title">使用说明</view>
-    <view class="page__desc">可以通过搜索诗人、诗句查找完整唐诗！</view>
+    <view class="page__desc">收集了很多经典的代码片段，是学习编程的好工具，可通过关键字查找代码片段，用于解决开发中遇到的问题。</view>
   </view>
   <view class="page__bd page__bd_spacing">
     <!-- 搜索框-->
@@ -34,52 +34,17 @@
 
     <view class="weui-flex">
       <view class="weui-flex__item">
-        <view class="placeholder" id="1" bindtap="bindGrade">小一上</view>
+        <view class="placeholder" id="go" bindtap="bindTag">Golang</view>
       </view>
       <view class="weui-flex__item">
-        <view class="placeholder" id="2" bindtap="bindGrade">小一下</view>
-      </view>
-      <view class="weui-flex__item">
-        <view class="placeholder" id="3" bindtap="bindGrade">小二上</view>
-      </view>
-      <view class="weui-flex__item">
-        <view class="placeholder" id="4" bindtap="bindGrade">小二下</view>
+        <view class="placeholder" id="rust" bindtap="bindTag">Rust</view>
       </view>
     </view>
-    <view class="weui-flex">
-      <view class="weui-flex__item">
-        <view class="placeholder" id="5" bindtap="bindGrade">小三上</view>
-      </view>
-      <view class="weui-flex__item">
-        <view class="placeholder" id="6" bindtap="bindGrade">小三下</view>
-      </view>
-      <view class="weui-flex__item">
-        <view class="placeholder" id="7" bindtap="bindGrade">小四上</view>
-      </view>
-      <view class="weui-flex__item">
-        <view class="placeholder" id="8" bindtap="bindGrade">小四下</view>
-      </view>
-    </view>
-    <view class="weui-flex">
-      <view class="weui-flex__item">
-        <view class="placeholder" id="9" bindtap="bindGrade">小五上</view>
-      </view>
-      <view class="weui-flex__item">
-        <view class="placeholder" id="10" bindtap="bindGrade">小五下</view>
-      </view>
-      <view class="weui-flex__item">
-        <view class="placeholder" id="11" bindtap="bindGrade">小六上</view>
-      </view>
-      <view class="weui-flex__item">
-        <view class="placeholder" id="12" bindtap="bindGrade">小六下</view>
-      </view>
-    </view>
-
-
+    
 
     <!-- 内容-->
     <!--循环输出-->
-    <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cells">
       <block wx:for="{{artList}}" wx:key="uuid">
         <view aria-labelledby="js_cell_l1_bd " aria-describedby="js_cell_l1_note" class="weui-cell weui-cell_access" hover-class="weui-cell_active" bindtap="jump" data-guid="{{item.uuid}}" data-stars="{{item.views}}">
           <view class="weui-cell__bd" id="js_cell_l1_bd" aria-hidden="true">

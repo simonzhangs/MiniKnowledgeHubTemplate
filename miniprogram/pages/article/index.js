@@ -20,7 +20,7 @@ Page({
       title: '加载中',
     })
 
-    utils.httpGet('/artDetail', {
+    utils.httpGet('/blogArtDetail', {
       uuid: options.guid,
     }).then((res) => {
 

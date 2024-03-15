@@ -15,9 +15,9 @@ Page({
     pages: 0,
     page: 1,
     yestTime: 0,
-    op: 1, // 1 搜索查询 2 按时间查询 3 按年级查询
+    op: 1, // 1 搜索查询 2 按时间查询 3 按标签查询
     qtype: 1, // 1 最火 2 最新 3 最冷
-    grade: 1,// 1-18 分别对应小初上下
+    tag:"",
   },
   showInput: function () {
     this.setData({
@@ -106,7 +106,7 @@ Page({
       })
     }
 
-    utils.httpGet('/searchArt', {
+    utils.httpGet('/searchBlogArt', {
       'pageNo': pageNo,
       'keyword': keyword,
     }).then((res) => {
@@ -131,40 +131,6 @@ Page({
       that.loading = false
       wx.hideLoading()
     })
-    // wx.request({
-    //   // url:'http://106.15.188.202:9981/mp3/searchArt',
-    //   url: 'https://mp1.91demo.top/mp3/searchArt',
-    //   data: {
-    //     'pageNo': pageNo,
-    //     'keyword': keyword
-    //   },
-    //   methed: 'GET',
-    //   success: (res) => {
-    //     that.loading = false
-    //     wx.hideLoading()
-    //     console.log(res)
-    //     const result = res.data;
-    //     if (result.code == 1) {
-    //       const articles = result.data;
-    //       that.setData({
-    //         page: pageNo, //当前的页号
-    //         pages: result.count, //总页数
-    //         artList: that.data.artList.concat(articles)
-    //       })
-    //       that.adFen = that.adFen - 2;
-    //       wx.setStorageSync('ad', that.adFen);
-    //     } else {
-    //       wx.showToast({
-    //         title: '没有找到记录',
-    //       })
-    //     }
-    //   },
-    //   fail: (err) => {
-    //     that.loading = false
-    //     wx.hideLoading()
-    //     console.log(err)
-    //   }
-    // })
 
   },
   bindBtn: function (e) {
@@ -226,7 +192,7 @@ Page({
       })
     }
 
-    utils.httpGet('/getArtList', {
+    utils.httpGet('/getBlogArtList', {
       'pageNo': pageNo,
       'qtype': qtype,
     }).then((res) => {
@@ -253,56 +219,22 @@ Page({
       wx.hideLoading()
       console.log(err)
     })
-    // wx.request({
-    //   // url:'http://106.15.188.202:9981/mp3/getArtList',
-    //   url: 'https://mp1.91demo.top/mp3/getArtList',
-    //   data: {
-    //     'pageNo': pageNo,
-    //     'qtype': qtype,
-    //   },
-    //   methed: 'GET',
-    //   success: (res) => {
-    //     that.loading = false
-    //     wx.hideLoading()
-    //     console.log(res)
-    //     const result = res.data;
-    //     if (result.code == 1) {
-    //       const articles = result.data;
-    //       that.setData({
-    //         page: pageNo, //当前的页号
-    //         pages: result.count, //总页数
-    //         artList: that.data.artList.concat(articles)
-    //       })
-    //       that.adFen = that.adFen - 2;
-    //       wx.setStorageSync('ad', that.adFen);
-    //     } else {
-    //       wx.showToast({
-    //         title: '没有找到记录',
-    //       })
-    //     }
-    //   },
-    //   fail: (err) => {
-    //     that.loading = false
-    //     wx.hideLoading()
-    //     console.log(err)
-    //   }
-    // })
 
   },
 
-  bindGrade: function (e) {
-    let btnId = e.target.id;
-    let grade = parseInt(btnId);
+  bindTag: function (e) {
+    let tag = e.target.id;
+    console.log('调试1，',tag);
     this.setData({
       artList: [],
-      grade: grade,
+      tag: tag,
       op: 3,
     })
     console.log(this.data.qtype);
-    this.getPoemListByGrade(1, grade)
+    this.getBlogArtListByTag(1, tag)
   },
 
-  getPoemListByGrade: function (pageNo, grade) {
+  getBlogArtListByTag: function (pageNo, tag) {
     const that = this
     if (that.adFen < 1) {
       // 弹窗错误
@@ -333,9 +265,9 @@ Page({
       })
     }
 
-    utils.httpGet('/getPoemListByGrade', {
+    utils.httpGet('/getBlogArtListByTag', {
       'pageNo': pageNo,
-      'grade': grade,
+      'tag': tag,
     }).then((res) => {
       that.loading = false
       wx.hideLoading()
@@ -367,30 +299,9 @@ Page({
 
   jump: function (e) {
     const that = this;
-    // console.log(e.currentTarget.dataset)
     that.jumpToPage(e.currentTarget.dataset.guid)
-    // if (e.currentTarget.dataset.stars >= 5) {
-    //   if (videoAd) {
-    //     videoAd.show().catch(() => {
-    //       // 失败重试 
-    //       videoAd.load()
-    //         .then(() => videoAd.show())
-    //         .catch(err => {
-    //           console.log('激励视频 广告显示失败')
-    //         })
-    //     })
-    //   }
-    // } else {
-    //   that.jumpToPage(e.currentTarget.dataset.guid)
-    // }
-
   },
 
-  // // 审核跳转
-  // jumpV2: function (e) {
-  //   const that = this;
-  //   that.jumpToPageV2(e.currentTarget.dataset.guid, '1')
-  // },
 
   jumpToPage: function (guid) {
     // 调整到文章页面 
