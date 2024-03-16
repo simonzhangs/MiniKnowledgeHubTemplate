@@ -1,7 +1,7 @@
 <view class="page">
   <view class="page__hd">
     <view class="page__title">使用说明</view>
-    <view class="page__desc">收集了很多经典的代码片段，是学习编程的好工具，可通过关键字查找代码片段，用于解决开发中遇到的问题。</view>
+    <view class="page__desc">收集了很多经典的库和代码片段，是学习编程的好工具，可通过关键字查找库或代码片段，用于解决开发中遇到的问题。</view>
   </view>
   <view class="page__bd page__bd_spacing">
     <!-- 搜索框-->
@@ -39,6 +39,12 @@
       <view class="weui-flex__item">
         <view class="placeholder" id="rust" bindtap="bindTag">Rust</view>
       </view>
+      <view class="weui-flex__item">
+        <view class="placeholder" id="mp" bindtap="bindTag">MiniApp</view>
+      </view>
+      <view class="weui-flex__item">
+        <view class="placeholder" id="h5" bindtap="bindTag">H5</view>
+      </view>
     </view>
     
 
@@ -63,6 +69,9 @@
     <view class="home-ad" wx:if="{{artList.length == 0 }}">
       <ad-custom unit-id="adunit-45d5e60373abe030"></ad-custom>
     </view>
+
   </view>
+
+  <!--footer-->
 
 </view>
