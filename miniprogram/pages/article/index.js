@@ -9,6 +9,15 @@ Page({
   data: {
     article: {} // 内容数据
   },
+  adLoad() {
+    console.log('原生模板广告加载成功')
+  },
+  adError(err) {
+    console.error('原生模板广告加载失败', err)
+  },
+  adClose() {
+    console.log('原生模板广告关闭')
+  },
 
   /**
    * 生命周期函数--监听页面加载

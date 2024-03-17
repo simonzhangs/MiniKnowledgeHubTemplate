@@ -1,23 +1,10 @@
 {
   "setting": {
     "urlCheck": false,
-    "compileHotReLoad": true,
-    "skylineRenderEnable": true
+    "compileHotReLoad": true
   },
-  "condition": {
-    "miniprogram": {
-      "list": [
-        {
-          "name": "demo",
-          "pathName": "pages/poem/index",
-          "query": " title:'静夜思',       dynasty:'唐代',       poet:'李白',       verses: [[{ 'py': 'chuang', 'hz': '窗' }, { 'py': 'qian', 'hz': '前' }, { 'py': 'ming', 'hz': '明' }, { 'py': 'yue', 'hz': '月' }, { 'py': 'guang', 'hz': '光' }], [{ 'py': 'chuang', 'hz': '窗' }, { 'py': 'qian', 'hz': '前' }, { 'py': 'ming', 'hz': '明' }, { 'py': 'yue', 'hz': '月' }, { 'py': 'guang', 'hz': '光' }]],",
-          "launchMode": "default",
-          "scene": null
-        }
-      ]
-    }
-  },
+  "condition": {},
   "description": "项目私有配置文件。此文件中的内容将覆盖 project.config.json 中的相同字段。项目的改动优先同步到此文件中。详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
   "projectname": "visit",
-  "libVersion": "3.0.2"
+  "libVersion": "2.20.2"
 }

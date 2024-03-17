@@ -1,7 +1,8 @@
 <!--pages/article/index.wxml-->
 <view class="page">
-  <ad unit-id="adunit-62a65ad78c1b3f40"></ad>
+  <ad-custom unit-id="adunit-6ea15db563ffcba8" bindload="adLoad" binderror="adError" bindclose="adClose"></ad-custom>
   <!--使用towxml-->
   <towxml nodes="{{article}}" />
+
 
 </view>
