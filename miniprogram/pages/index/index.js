@@ -17,7 +17,7 @@ Page({
     yestTime: 0,
     op: 1, // 1 搜索查询 2 按时间查询 3 按标签查询
     qtype: 1, // 1 最火 2 最新 3 最冷
-    tag:"",
+    tag: "",
   },
   showInput: function () {
     this.setData({
@@ -56,7 +56,7 @@ Page({
     const that = this;
     let vad1 = wx.getStorageSync("ad");
     if (utils.isEmpty(vad1)) {
-      that.adFen = 20;
+      that.adFen = 10;
       wx.setStorageSync('ad', that.adFen);
     } else {
       that.adFen = vad1;
@@ -157,7 +157,7 @@ Page({
       qtype: qtype,
       op: 2,
     })
-    console.log(this.data.qtype);
+    
     this.getArtList(1, qtype)
   },
   // 根据类型查询
@@ -198,7 +198,7 @@ Page({
     }).then((res) => {
       that.loading = false
       wx.hideLoading()
-      console.log(res)
+     
       const result = res.data;
       if (result.code == 1) {
         const articles = result.data;
@@ -224,13 +224,13 @@ Page({
 
   bindTag: function (e) {
     let tag = e.target.id;
-    console.log('调试1，',tag);
+    
     this.setData({
       artList: [],
       tag: tag,
       op: 3,
     })
-    console.log(this.data.qtype);
+    
     this.getBlogArtListByTag(1, tag)
   },
 
@@ -271,7 +271,7 @@ Page({
     }).then((res) => {
       that.loading = false
       wx.hideLoading()
-      console.log(res)
+     
       const result = res.data;
       if (result.code == 1) {
         const articles = result.data;
@@ -280,8 +280,8 @@ Page({
           pages: result.count, //总页数
           artList: that.data.artList.concat(articles)
         })
-        that.adFen=that.adFen-1;
-        console.log('adfen,',that.adFen);
+        that.adFen = that.adFen - 1;
+        
         wx.setStorageSync('ad', that.adFen);
       } else {
         wx.showToast({
@@ -299,6 +299,8 @@ Page({
 
   jump: function (e) {
     const that = this;
+    that.adFen = that.adFen - 1;
+    wx.setStorageSync('ad', that.adFen);
     that.jumpToPage(e.currentTarget.dataset.guid)
   },
 
@@ -316,7 +318,7 @@ Page({
       videoAd = wx.createRewardedVideoAd({
         adUnitId: 'adunit-2ce6db3cb1e45a86'
       })
-      videoAd.onLoad(() => { })
+      videoAd.onLoad(() => {})
       videoAd.onError((err) => {
         console.log('onError event emit', err)
         wx.showToast({
@@ -327,7 +329,7 @@ Page({
         // 用户点击了【关闭广告】按钮
         if (res && res.isEnded) {
           // 正常播放结束，可以下发游戏奖励
-          that.adFen = that.adFen + 20;
+          that.adFen = that.adFen + 50;
           wx.setStorageSync('ad', that.adFen);
 
           wx.showToast({
