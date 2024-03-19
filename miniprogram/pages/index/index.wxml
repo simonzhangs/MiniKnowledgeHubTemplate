@@ -77,10 +77,6 @@
     </view>
     <!--循环输出-->
 
-    <view class="home-ad" wx:if="{{artList.length == 0 }}">
-      <ad-custom unit-id="adunit-45d5e60373abe030"></ad-custom>
-    </view>
-
     <view class="weui-footer weui-footer_fixed-bottom" wx:if="{{artList.length == 0 }}">
       <view class="weui-footer__text">记得收藏哟</view>
      
