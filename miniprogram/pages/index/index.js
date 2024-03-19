@@ -1,7 +1,6 @@
 const app = getApp();
 const utils = require('../../utils/utils.js')
-let videoAd = null;
-let adFen = 0;
+
 Page({
   /**
    * 页面的初始数据
@@ -52,24 +51,11 @@ Page({
   },
 
 
-  initAdData: function () {
-    const that = this;
-    let vad1 = wx.getStorageSync("ad");
-    if (utils.isEmpty(vad1)) {
-      that.adFen = 10;
-      wx.setStorageSync('ad', that.adFen);
-    } else {
-      that.adFen = vad1;
-    }
-  },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     const that = this;
-
-    that.initAdData();
     that.setData({
       yestTime: utils.getYestMsTime()
     })
@@ -77,24 +63,7 @@ Page({
 
   searchArt: function (pageNo, keyword) {
     const that = this
-    if (that.adFen < 1) {
-      // 弹窗错误
-      wx.showModal({
-        title: '提示',
-        content: '您现在使用频繁，需要观看广告补充能量',
-        confirmText: '观看广告',
-        cancelText: '关闭',
-        success(res) {
-          if (res.confirm) {
-            // 播放广告
-            that.showAd();
-          } else if (res.cancel) {
-
-          }
-        }
-      })
-      return
-    }
+   
     that.loading = true
     wx.showLoading({
       title: '加载中...',
@@ -120,8 +89,7 @@ Page({
           pages: result.count, //总页数
           artList: that.data.artList.concat(articles)
         })
-        that.adFen = that.adFen - 1;
-        wx.setStorageSync('ad', that.adFen);
+        
       } else {
         wx.showToast({
           title: '没有找到记录',
@@ -163,24 +131,7 @@ Page({
   // 根据类型查询
   getArtList: function (pageNo, qtype) {
     const that = this
-    if (that.adFen < 1) {
-      // 弹窗错误
-      wx.showModal({
-        title: '提示',
-        content: '您现在使用频繁，需要观看广告补充能量',
-        confirmText: '观看广告',
-        cancelText: '关闭',
-        success(res) {
-          if (res.confirm) {
-            // 播放广告
-            that.showAd();
-          } else if (res.cancel) {
-
-          }
-        }
-      })
-      return
-    }
+   
     that.loading = true
     wx.showLoading({
       title: '加载中...',
@@ -207,8 +158,7 @@ Page({
           pages: result.count, //总页数
           artList: that.data.artList.concat(articles)
         })
-        that.adFen = that.adFen - 1;
-        wx.setStorageSync('ad', that.adFen);
+       
       } else {
         wx.showToast({
           title: '没有找到记录',
@@ -236,24 +186,7 @@ Page({
 
   getBlogArtListByTag: function (pageNo, tag) {
     const that = this
-    if (that.adFen < 1) {
-      // 弹窗错误
-      wx.showModal({
-        title: '提示',
-        content: '您现在使用频繁，需要观看广告补充能量',
-        confirmText: '观看广告',
-        cancelText: '关闭',
-        success(res) {
-          if (res.confirm) {
-            // 播放广告
-            that.showAd();
-          } else if (res.cancel) {
-
-          }
-        }
-      })
-      return
-    }
+    
     that.loading = true
     wx.showLoading({
       title: '加载中...',
@@ -280,9 +213,7 @@ Page({
           pages: result.count, //总页数
           artList: that.data.artList.concat(articles)
         })
-        that.adFen = that.adFen - 1;
-        
-        wx.setStorageSync('ad', that.adFen);
+       
       } else {
         wx.showToast({
           title: '没有找到记录',
@@ -300,8 +231,7 @@ Page({
   jump: function (e) {
     const that = this;
     that.adFen = that.adFen - 1;
-    wx.setStorageSync('ad', that.adFen);
-    that.jumpToPage(e.currentTarget.dataset.guid)
+    
   },
 
 
@@ -312,69 +242,7 @@ Page({
     })
   },
 
-  loadAd: function () {
-    const that = this;
-    if (wx.createRewardedVideoAd) {
-      videoAd = wx.createRewardedVideoAd({
-        adUnitId: 'adunit-2ce6db3cb1e45a86'
-      })
-      videoAd.onLoad(() => {})
-      videoAd.onError((err) => {
-        console.log('onError event emit', err)
-        wx.showToast({
-          title: '请稍后再试',
-        })
-      })
-      videoAd.onClose((res) => {
-        // 用户点击了【关闭广告】按钮
-        if (res && res.isEnded) {
-          // 正常播放结束，可以下发游戏奖励
-          that.adFen = that.adFen + 50;
-          wx.setStorageSync('ad', that.adFen);
-
-          wx.showToast({
-            title: '获得奖励',
-          })
-        } else {
-          // 播放中途退出，不下发游戏奖励
-        }
-      })
-    }
-  },
-
-  showAd: function () {
-    wx.showLoading({
-      title: '广告加载中',
-    });
-    const that = this;
-    if (videoAd) {
-
-    } else {
-      that.loadAd();
-    }
-
-    if (videoAd) {
-      videoAd.show().then(() => {
-        wx.hideLoading();
-      }).catch(() => {
-        // 失败重试
-        videoAd.load()
-          .then(() => videoAd.show().then(() => {
-            wx.hideLoading();
-          }))
-          .catch(err => {
-            console.log('激励视频 广告显示失败')
-            wx.hideLoading();
-          })
-      })
-    } else {
-      wx.hideLoading();
-      wx.showToast({
-        title: '请稍后再试',
-      })
-      return
-    }
-  },
+  
 
 
   /**
