@@ -68,9 +68,11 @@
             <view>{{item.title}}</view>
           </view>
           <view class="weui-cell__ft weui-cell__ft_in-access" aria-hidden="true">
-            <text wx:if="{{ item.createdTime > yestTime }}" id="js_cell_l1_note" aria-label="，有更新" class="weui-badge weui-badge_dot">新</text>
-            <!-- <text wx:elif="{{ item.updatedTime > item.createdTime }}" id="js_cell_l1_note" aria-label="，有更新" class="weui-badge weui-badge_dot">修</text> -->
-            <text wx:elif="{{ item.views > 100 }}" id="js_cell_l1_note" aria-label="，有更新" class="weui-badge weui-badge_dot">热</text>
+            <text wx:if="{{ item.createTime > yestTime }}" id="js_cell_l1_note" aria-label="，新" class="weui-badge weui-badge_dot">新</text>
+            <!-- <text wx:elif="{{ item.updateTime > item.createdTime }}" id="js_cell_l1_note" aria-label="，有更新" class="weui-badge weui-badge_dot">修</text> -->
+            <text wx:elif="{{ item.views > 50 }}" id="js_cell_l1_note" aria-label="，火" class="weui-badge weui-badge_dot">热</text>
+            <text wx:elif="{{ item.views > 500 }}" id="js_cell_l1_note" aria-label="，非常火" class="weui-badge weui-badge_dot">爆</text>
+            <text wx:elif="{{ item.views > 5000 }}" id="js_cell_l1_note" aria-label="，超级火" class="weui-badge weui-badge_dot">燃</text>
           </view>
         </view>
       </block>
@@ -83,7 +85,5 @@
     </view>
 
   </view>
-
-  <!--footer-->
 
 </view>

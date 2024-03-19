@@ -1,8 +1,8 @@
 <!--pages/article/index.wxml-->
 <view class="page">
-  
+
   <!--使用towxml-->
   <towxml nodes="{{article}}" />
 
-
+  
 </view>

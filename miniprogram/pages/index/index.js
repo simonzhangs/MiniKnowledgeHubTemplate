@@ -208,6 +208,7 @@ Page({
       const result = res.data;
       if (result.code == 1) {
         const articles = result.data;
+       
         that.setData({
           page: pageNo, //当前的页号
           pages: result.count, //总页数
@@ -230,8 +231,7 @@ Page({
 
   jump: function (e) {
     const that = this;
-    that.adFen = that.adFen - 1;
-    
+    that.jumpToPage(e.currentTarget.dataset.guid)
   },
 
 
