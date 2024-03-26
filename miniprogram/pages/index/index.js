@@ -303,7 +303,7 @@ Page({
       }
     } else if (this.data.op === 3) {
       if (!this.loading && this.data.page < this.data.pages) {
-        this.getPoemListByGrade(this.data.page + 1, this.data.grade)
+        this.getBlogArtListByTag(this.data.page + 1, this.data.tag)
       }
     }
 
