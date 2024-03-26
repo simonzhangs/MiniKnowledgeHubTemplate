@@ -99,7 +99,7 @@ Page({
       that.loading = false
       wx.hideLoading()
       wx.showToast({
-        title: '网络异常，请稍后重试',
+        title: '网络异常请重试',
       })
     })
 
@@ -170,9 +170,8 @@ Page({
     }).catch((err) => {
       that.loading = false
       wx.hideLoading()
-      console.log(err)
       wx.showToast({
-        title: '网络异常，请稍后重试',
+        title: '网络异常请重试',
       })
     })
 
@@ -229,9 +228,8 @@ Page({
     }).catch((err) => {
       that.loading = false
       wx.hideLoading()
-      console.log(err)
       wx.showToast({
-        title: '网络异常，请稍后重试',
+        title: '网络异常请重试',
       })
     })
 

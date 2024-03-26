@@ -49,11 +49,9 @@ Page({
       }
     }).catch((err) => {
       console.log(err);
-      wx.hideLoading({
-        success: (res) => {},
-      })
+      wx.hideLoading()
       wx.showToast({
-        title: '网络异常，请稍后重试',
+        title: '网络异常请重试',
       })
     })
 
