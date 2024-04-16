@@ -1,14 +1,15 @@
 {
   "pages": [
-    "pages/index",
-    "pages/common/common"
+    "pages/index/index",
+    "pages/article/index"
   ],
   "window": {
+    "navigationBarBackgroundColor": "#EDEDED",
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "Go技术前沿",
-    "navigationBarBackgroundColor": "#f8f8f8",
-    "backgroundColor": "#f8f8f8",
-    "enablePullDownRefresh":true
+    "navigationBarTitleText": "豆子碎片",
+    "backgroundColor": "#EDEDED",
+    "backgroundTextStyle": "light",
+    "enablePullDownRefresh": false
   },
   "networkTimeout": {
     "request": 10000,
@@ -16,8 +17,7 @@
     "uploadFile": 10000,
     "downloadFile": 10000
   },
-  
   "style": "v2",
   "sitemapLocation": "sitemap.json"
- 
+
 }

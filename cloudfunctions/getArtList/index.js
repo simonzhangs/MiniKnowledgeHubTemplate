@@ -9,22 +9,33 @@ const db = cloud.database()
 const _ = db.command
 // 云函数入口函数
 exports.main = async (event, context) => {
-  // 获取集合中的内容
+  // 获取openid，作为记录搜索记录使用
+  const wxContext = cloud.getWXContext()
+  const openid = wxContext.OPENID
+
   // 搜索获取内容
   var keyword = event.keyword
   var result = {}
-  // 获取前50项
   if (keyword !== "") {
-    result = await db.collection('artList')
+    // 当搜索不为空时，记录搜索内容
+    await db.collection('searchHis').add({
+      // data 字段表示需新增的 JSON 数据
+      data: {
+        openid: openid,
+        keyword: keyword,
+        createTime: db.serverDate()
+      }
+    })
+    result = await db.collection('homeList')
       .field({
         title: true,
-        tag: true,
-        num: true,
-        fileid: true,
+        desc: true,
+        guid:true,
+        views:true,
       })
       .where(
         _.and([{
-            status: true,
+            status: 1,
           },
           _.or([{
               title: db.RegExp({
@@ -33,34 +44,34 @@ exports.main = async (event, context) => {
               })
             },
             {
-              tag: keyword
+              desc: db.RegExp({
+                regexp: keyword,
+                options: 'i',
+              })
             }
 
           ])
 
         ])
-
-
       )
       .orderBy('createTime', 'desc')
-      .orderBy('num', 'desc')
       .limit(20)
       .get()
   } else {
-    result = await db.collection('artList')
+    result = await db.collection('homeList')
       .field({
         title: true,
-        tag: true,
-        num: true,
-        fileid: true,
+        desc: true,
+        guid:true,
+        views:true,
       })
       .where({
-        status: true,
+        status: 1,
       })
       .orderBy('createTime', 'desc')
-      .orderBy('num', 'desc')
       .limit(20)
       .get()
+      
   }
 
   return result

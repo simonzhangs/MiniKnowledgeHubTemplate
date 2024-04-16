@@ -1,46 +1,69 @@
-//app.js
-require('./libs/Mixins.js');
-
-const themeListeners = [];
+const utils = require("./utils/utils.js");
 App({
-
-  onLaunch: function () {
-    if (!wx.cloud) {
-      console.error('请使用 2.2.3 或以上的基础库以使用云能力')
-    } else {
-      wx.cloud.init({
-        env: 'visit-prod-d4ca13',
-       // env: 'visit-3c98f4',
-        traceUser: true,
-      })
-    }
-
-  },
-
-  // 引入`towxml3.0`解析方法
-  towxml: require('/towxml/index'),
-
-
-
-  themeChanged(theme) {
-    this.globalData.theme = theme;
-    themeListeners.forEach((listener) => {
-      listener(theme);
+  towxml: require('./towxml/index'),
+  getText: (url, callback) => {
+    wx.request({
+      url: url,
+      header: {
+        'content-type': 'application/json'
+      },
+      success: (res) => {
+        if (typeof callback === 'function') {
+          callback(res);
+        };
+      }
     });
   },
-  watchThemeChange(listener) {
-    if (themeListeners.indexOf(listener) < 0) {
-      themeListeners.push(listener);
+  login() {
+    const that = this;
+    let cookie = wx.getStorageSync("sessionKey");
+    let sessionTime = wx.getStorageSync("sessionTime");
+    if (!utils.isEmpty(sessionTime)) {
+      let now = Date.now();
+      // 生存时间 换算成毫秒 2592000000
+      if (now - sessionTime >= 2592000000) {
+        wx.removeStorageSync("sessionKey");
+        wx.removeStorageSync("sessionTime");
+        that.wxLogin();
+      }
+    }
+    if (utils.isEmpty(cookie)) {
+      that.wxLogin();
     }
   },
-  unWatchThemeChange(listener) {
-    const index = themeListeners.indexOf(listener);
-    if (index > -1) {
-      themeListeners.splice(index, 1);
-    }
+  wxLogin() {
+    const that = this;
+    wx.login({
+      success(res) {
+        if (res.code) {
+          //发起网络请求
+          utils
+            .httpPost("/wxlogin", {
+              code: res.code,
+            })
+            .then((res) => {
+              if (res.data.code === 1) {
+                wx.setStorageSync("sessionKey", res.header["Set-Cookie"]);
+                wx.setStorageSync('sessionTime', Date.now());
+              } else {
+                console.log(res.data.msg);
+                wx.showToast({
+                  title: "系统异常",
+                });
+              }
+            })
+            .catch((e) => {
+              console.log(e);
+              wx.showToast({
+                title: "网络异常",
+              });
+            });
+        }
+      },
+    });
   },
-  globalData: {
+  onLaunch: function () {
+    this.login()
+  },
 
-    theme: 'light', // dark
-  }
 });
