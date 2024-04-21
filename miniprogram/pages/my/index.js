@@ -1,11 +1,14 @@
 // pages/my/index.js
+const app = getApp();
+const utils = require('../../utils/utils.js')
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+   
   },
 
   /**

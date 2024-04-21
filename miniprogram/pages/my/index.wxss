@@ -1,1 +1,88 @@
 /* pages/my/index.wxss */
+.page {
+  height: 100%;
+}
+
+.page__hd {
+  padding:30rpx;
+  margin-left: 30rpx;
+}
+
+.weui-cells {
+  margin: 15rpx;
+}
+
+.button-sp-area {
+  padding-top: 30rpx;
+  text-align: center;
+}
+
+.weui-btn_mini {
+  margin-right: 8rpx;
+}
+
+.title{
+  margin-top: 10rpx;
+  margin-left: 15rpx;
+  margin-right: 15rpx;
+  margin-bottom: 20rpx;
+  padding: 0 20rpx;
+  text-align: center;
+  font-size: larger;
+}
+
+.info{
+  margin-top: 10rpx;
+  margin-left: 15rpx;
+  margin-right: 15rpx;
+  margin-bottom: 10rpx;
+  padding: 0 20rpx;
+  text-align: left;
+  font-size: small;
+}
+
+.placeholder {
+  margin-top: 10rpx;
+  margin-left: 15rpx;
+  margin-right: 15rpx;
+  margin-bottom: 10rpx;
+  padding: 0 20rpx;
+  text-align: center;
+  background-color: var(--weui-BG-1);
+  height: 2.3em;
+  line-height: 2.3em;
+  color: var(--weui-FG-1)
+}
+
+.weui-footer {
+  margin-bottom: 100rpx
+}
+
+.weui-footer_fixed-bottom {
+  margin-bottom: 0
+}
+
+.home-ad {
+  margin-bottom: 0;
+  position: fixed;
+  width: 220rpx;
+  height: 220rpx;
+  bottom: 220rpx;
+  right: 20rpx;
+  display: block;
+  box-sizing: border-box;
+}
+
+.weui-footer {
+  margin-bottom: 10rpx
+}
+
+.weui-footer_fixed-bottom {
+  margin-bottom: 0
+}
+
+.line{
+  background: #E0E3DA;
+  width: 100%;
+  height: 10rpx;
+}
