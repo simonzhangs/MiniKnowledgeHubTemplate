@@ -44,18 +44,18 @@
     </view>
     <view class="weui-flex">
       <view class="weui-flex__item">
-        <button size="mini">获取我的识别码</button>
+        <button size="mini" bind:tap="myicode">获取我的识别码</button>
       </view>
       <view class="weui-flex__item">
-        <button size="mini" bind:tap="playAd">看广告获取点数</button>
+        <button type="primary" size="mini" bind:tap="playAd">看广告获取点数</button>
       </view>
     </view>
     <view class="weui-flex">
       <view class="weui-flex__item">
-        <button size="mini">上传库代码片段</button>
+        <button size="mini" bind:tap="upart">上传库代码片段</button>
       </view>
       <view class="weui-flex__item">
-        <button size="mini">上传识别码模板</button>
+        <button size="mini" bind:tap="upicode">上传识别码模板</button>
       </view>
     </view>
     

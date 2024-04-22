@@ -44,6 +44,7 @@ Page({
   },
 
   playAd() {
+    // 限制当前用户看广告次数，半小时只允许看2次。
     wx.showLoading({
       title: '加载广告中',
     })
@@ -72,6 +73,22 @@ Page({
         title: '请重试一次',
       })
     }
+  },
+
+  myicode(){
+    wx.navigateTo({
+      url: '../myicode/index',
+    })
+  },
+  upart(){
+    wx.navigateTo({
+      url: '../upart/index',
+    })
+  },
+  upicode(){
+    wx.navigateTo({
+      url: '../upicode/index',
+    })
   },
 
   /**
