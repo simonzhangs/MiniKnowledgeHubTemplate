@@ -1,8 +1,8 @@
 <!--pages/my/index.wxml-->
 <view class="page">
   <view class="page__hd">
-    <view class="page__title">我的信息</view>
-    <view class="page__desc">可查看上传文章浏览信息，获取识别码，获取点数。点数用来查看加锁的文章。</view>
+    <view class="page__title">使用说明</view>
+    <view class="page__desc">为了更好的生态环境，我们增加了点数机制。点数可以用来浏览加锁的文章。用户可以通过观看激励广告获取点数，可以分享小程序给新用户获取点数，可以上传卡片模板获取点数，也可以上传编程开发库或代码片段获取点数。</view>
   </view>
   <view class="page__bd page__bd_spacing">
     <!-- 文章信息 -->
@@ -11,17 +11,32 @@
       <view class="title">看板信息</view>
     </view>
     <view class="weui-flex">
-      <view class="weui-flex__item"><view class="info">我的总点数：</view></view>
-      <view class="weui-flex__item"><view class="info">上传文章数：</view></view>
+      <view class="weui-flex__item">
+        <view class="info">我的总点数：{{points}}</view>
+      </view>
+      <view class="weui-flex__item">
+        <view class="info">文章获得点数：{{artnum}}</view>
+      </view>
     </view>
     <view class="weui-flex">
-      <view class="weui-flex__item"><view class="info">所有文章浏览次数：</view></view>
-      <view class="weui-flex__item"><view class="info">加锁文章浏览次数：</view></view>
+      <view class="weui-flex__item">
+        <view class="info">推广获得点数：{{sharepoints}}</view>
+      </view>
+      <view class="weui-flex__item">
+        <view class="info">模板获得点数：{{tmplpoints}}</view>
+      </view>
     </view>
     <view class="weui-flex">
-      <view class="weui-flex__item"><view class="info">推广获得点数：</view></view>
-      <view class="weui-flex__item"><view class="info">模板获得点数：</view></view>
+      <view class="weui-flex__item">
+        <view class="info">所有文章浏览次数：{{views}}</view>
+      </view>
     </view>
+    <view class="weui-flex">
+      <view class="weui-flex__item">
+        <view class="info">加锁文章浏览次数：{{lockviews}}</view>
+      </view>
+    </view>
+    
     <!-- 功能区域 -->
     <view class="line"></view>
     <view class="weui-flex">
@@ -29,20 +44,21 @@
     </view>
     <view class="weui-flex">
       <view class="weui-flex__item">
-        <view class="placeholder" id="btnHot" bindtap="bindBtn">获取识别码</view>
+        <button size="mini">获取我的识别码</button>
       </view>
       <view class="weui-flex__item">
-        <view class="placeholder" id="btnNew" bindtap="bindBtn">获取点数</view>
+        <button size="mini" bind:tap="playAd">看广告获取点数</button>
       </view>
     </view>
     <view class="weui-flex">
       <view class="weui-flex__item">
-        <view class="placeholder" id="btnNew" bindtap="bindBtn">上传文章</view>
+        <button size="mini">上传库代码片段</button>
       </view>
       <view class="weui-flex__item">
-        <view class="placeholder" id="btnCold" bindtap="bindBtn">上传识别码模板</view>
+        <button size="mini">上传识别码模板</button>
       </view>
     </view>
+    
 
     <view class="weui-footer weui-footer_fixed-bottom">
       <view class="weui-footer__text">记得收藏哟</view>
