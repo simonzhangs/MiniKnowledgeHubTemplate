@@ -1,2 +1,12 @@
 <!--pages/myicode/index.wxml-->
-<text>pages/myicode/index.wxml</text>
+<view class="page">
+  <view class="page__hd">
+    <view class="page__title">我的识别码</view>
+    <view class="page__desc">识别码是分享小程序码给新用户时，用户扫码时识别用户身份。当新用户扫码你分享的小程序码进入小程序时，你将获得推广点数。</view>
+  </view>
+  <view class="page__bd">
+   
+
+  </view>
+
+</view>

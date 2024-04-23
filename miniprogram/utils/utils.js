@@ -1,4 +1,4 @@
-import md5 from "./md5"
+const md5util = require("./md5");
 // 正式环境
 const baseUrl = "https://mp.91demo.top/mp3";
 // const baseUrl = "http://106.15.188.202:9981/mp3";
@@ -96,7 +96,8 @@ function decodeBase64(data) {
 
 function getVCode() {
   const now = getNowMsTime();
-  const md5str = md5(sharekey+now+"Eagle");
+  const str = sharekey + now + "Eagle";
+  const md5str = md5util.md5(str);
   return now+md5str;
 }
 

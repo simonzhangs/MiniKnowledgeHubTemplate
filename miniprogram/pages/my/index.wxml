@@ -14,8 +14,14 @@
       <view class="weui-flex__item">
         <view class="info">我的总点数：{{points}}</view>
       </view>
+      
+    </view>
+    <view class="weui-flex">
       <view class="weui-flex__item">
-        <view class="info">文章获得点数：{{artnum}}</view>
+        <view class="info">文章获得点数：{{sharepoints}}</view>
+      </view>
+      <view class="weui-flex__item">
+        <view class="info">广告获得点数：{{tmplpoints}}</view>
       </view>
     </view>
     <view class="weui-flex">
@@ -28,7 +34,7 @@
     </view>
     <view class="weui-flex">
       <view class="weui-flex__item">
-        <view class="info">所有文章浏览次数：{{views}}</view>
+        <view class="info">库代码片段数量：{{views}}</view>
       </view>
     </view>
     <view class="weui-flex">

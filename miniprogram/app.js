@@ -42,9 +42,12 @@ App({
               code: res.code,
             })
             .then((res) => {
+             
               if (res.data.code === 1) {
                 wx.setStorageSync("sessionKey", res.header["Set-Cookie"]);
                 wx.setStorageSync('sessionTime', Date.now());
+                console.log(res.data.data["adFreqHalfHour"]);
+                that.globalData.adFreqHalfHour = res.data.data["adFreqHalfHour"];
               } else {
                 console.log(res.data.msg);
                 wx.showToast({
@@ -65,5 +68,8 @@ App({
   onLaunch: function () {
     this.login()
   },
+  globalData:{
+    adFreqHalfHour:6,
+  }
 
 });
