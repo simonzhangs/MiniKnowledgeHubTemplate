@@ -1,6 +1,9 @@
+import md5 from "./md5"
 // 正式环境
 const baseUrl = "https://mp.91demo.top/mp3";
 // const baseUrl = "http://106.15.188.202:9981/mp3";
+const sharekey = "";
+
 
 const formatTime = date => {
   const year = date.getFullYear()
@@ -90,6 +93,13 @@ function decodeBase64(data) {
   let decode = atob(data);
   return decodeURIComponent(decode);
 }
+
+function getVCode() {
+  const now = getNowMsTime();
+  const md5str = md5(sharekey+now+"Eagle");
+  return now+md5str;
+}
+
 const getUrl = (url) => {
   // let baseUrl = getBaseUrl();
   if (url.indexOf("://") == -1) {
@@ -108,6 +118,7 @@ const http = ({
   // });
   let timeStart = Date.now();
   let cookie = wx.getStorageSync("sessionKey");
+  let vcode = getVCode();
   return new Promise((resolve, reject) => {
     wx.request({
       url: getUrl(url),
@@ -115,6 +126,7 @@ const http = ({
       header: {
         "content-type": "application/json", // 默认值
         Cookie: cookie,
+        "vcode":vcode,
       },
       ...other,
       timeout: 3000,
