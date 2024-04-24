@@ -9,12 +9,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-    points:50,
-    artnum:20,
-    views:10000,
-    lockviews:500,
-    sharepoints:20,
-    tmplpoints:10,
+    points: 50,
+    usePoints: 20,
+    shareProfit: 20,
+    adProfit: 10000,
+    artProfit: 500,
+    icodeProfit: 10,
   },
 
   loadAd() {
@@ -28,7 +28,7 @@ Page({
       })
       videoAd.onError((err) => {
         console.error('激励视频光告加载失败', err)
-        that.isLoadAd=false;
+        that.isLoadAd = false;
       })
       videoAd.onClose((res) => {
         // 用户点击了【关闭广告】按钮
@@ -48,9 +48,9 @@ Page({
     wx.showLoading({
       title: '加载广告中',
     })
-    if(!isLoadAd){
+    if (!isLoadAd) {
       this.loadAd();
-      
+
     }
     // 用户触发广告后，显示激励视频广告
     if (videoAd) {
@@ -59,8 +59,9 @@ Page({
         // 失败重试
         videoAd.load()
           .then(() => {
-            
-            videoAd.show()})
+
+            videoAd.show()
+          })
           .catch(err => {
             wx.showToast({
               title: '请重试一次',
@@ -68,24 +69,24 @@ Page({
             console.error('激励视频 广告显示失败', err)
           })
       })
-    }else{
+    } else {
       wx.showToast({
         title: '请重试一次',
       })
     }
   },
 
-  myicode(){
+  myicode() {
     wx.navigateTo({
       url: '../myicode/index',
     })
   },
-  upart(){
+  upart() {
     wx.navigateTo({
       url: '../upart/index',
     })
   },
-  upicode(){
+  upicode() {
     wx.navigateTo({
       url: '../upicode/index',
     })
