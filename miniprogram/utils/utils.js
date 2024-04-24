@@ -2,7 +2,7 @@ const md5util = require("./md5");
 // 正式环境
 const baseUrl = "https://mp.91demo.top/mp3";
 // const baseUrl = "http://106.15.188.202:9981/mp3";
-const sharekey = "";
+const sharekey = "20!I@LOVE#CHINA$24";
 
 
 const formatTime = date => {
@@ -84,6 +84,10 @@ function formatDateStr(str) {
 function getNowMsTime() {
   return new Date().getTime();
 }
+// 获取秒时间戳
+function getSecTs(){
+  return Math.floor(Date.now() / 1000);
+}
 // 获取昨天的毫秒时间戳
 function getYestMsTime() {
   return new Date().getTime() - 24 * 60 * 60 * 1000;
@@ -95,10 +99,11 @@ function decodeBase64(data) {
 }
 
 function getVCode() {
-  const now = getNowMsTime();
+  const now = getSecTs();
   const str = sharekey + now + "Eagle";
   const md5str = md5util.md5(str);
-  return now+md5str;
+  const vcode = now + md5str;
+  return vcode;
 }
 
 const getUrl = (url) => {
@@ -127,7 +132,7 @@ const http = ({
       header: {
         "content-type": "application/json", // 默认值
         Cookie: cookie,
-        "vcode":vcode,
+        "icode":vcode,
       },
       ...other,
       timeout: 3000,
@@ -172,4 +177,5 @@ module.exports = {
   decodeBase64: decodeBase64,
   httpPost: httpPost,
   httpGet: httpGet,
+  getSecTs:getSecTs,
 }

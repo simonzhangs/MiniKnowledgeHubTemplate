@@ -2,13 +2,16 @@
 <view class="page">
   <view class="page__hd">
     <view class="page__title">使用说明</view>
-    <view class="page__desc">为了更好的生态环境，我们增加了点数机制。点数可以用来浏览加锁的文章。用户可以通过观看激励广告获取点数，可以分享小程序给新用户获取点数，可以上传卡片模板获取点数，也可以上传编程开发库或代码片段获取点数。</view>
+    <view class="page__desc">为了营造更好的生态环境，我们增加了点数机制。点数可以用来浏览加锁的文章，应用识别码模板。用户可以通过以下方式获取点数：观看激励广告，分享拉新，上传识别码模板，上传编程开发库或代码片段。</view>
   </view>
   <view class="page__bd page__bd_spacing">
     <!-- 文章信息 -->
     <view class="line"></view>
     <view class="weui-flex">
       <view class="title">看板信息</view>
+      <view class="weui-flex__item">
+        <button type="default" size="mini" class="mini-btn" bind:tap="getMyStatInfo">刷新</button>
+      </view>
     </view>
     <view class="weui-flex">
       <view class="weui-flex__item">
@@ -34,7 +37,7 @@
         <view class="info">模板获得点数：{{icodeProfit}}</view>
       </view>
     </view>
-    
+
     <!-- 功能区域 -->
     <view class="line"></view>
     <view class="weui-flex">
@@ -56,7 +59,7 @@
         <button size="mini" bind:tap="upicode">上传识别码模板</button>
       </view>
     </view>
-    
+
 
     <view class="weui-footer weui-footer_fixed-bottom">
       <view class="weui-footer__text">记得收藏哟</view>

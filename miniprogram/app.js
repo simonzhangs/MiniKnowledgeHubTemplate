@@ -67,9 +67,12 @@ App({
   },
   onLaunch: function () {
     this.login()
+    const now = utils.getSecTs();
+    this.globalData.start= now;
   },
   globalData:{
     adFreqHalfHour:6,
+    start:0,
+    adCnt:0,
   }
-
 });

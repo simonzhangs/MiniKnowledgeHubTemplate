@@ -2,19 +2,19 @@
 const app = getApp();
 const utils = require('../../utils/utils.js')
 let videoAd = null;
-let isLoadAd = false;
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    points: 50,
-    usePoints: 20,
-    shareProfit: 20,
-    adProfit: 10000,
-    artProfit: 500,
-    icodeProfit: 10,
+    points: 0,
+    usePoints: 0,
+    shareProfit: 0,
+    adProfit: 0,
+    artProfit: 0,
+    icodeProfit: 0,
   },
 
   loadAd() {
@@ -34,10 +34,13 @@ Page({
         // 用户点击了【关闭广告】按钮
         if (res && res.isEnded) {
           // 正常播放结束，可以下发游戏奖励
-          console.log('1')
+          that.doAdProfit();
+
         } else {
           // 播放中途退出，不下发游戏奖励
-          console.log('2')
+          wx.showToast({
+            title: '没有获得点数哟！',
+          })
         }
       })
     }
@@ -45,13 +48,24 @@ Page({
 
   playAd() {
     // 限制当前用户看广告次数，半小时只允许看2次。
+    console.log('aaaa', app.globalData);
+    const now = utils.getSecTs();
+    if (now - app.globalData.start > 1800) {
+      app.globalData.start = now;
+      app.globalData.adCnt = 0;
+    } else {
+      if (app.globalData.adCnt > app.globalData.adFreqHalfHour) {
+        wx.showToast({
+          title: '太频繁稍后再试',
+        })
+        return
+      } else {
+        app.globalData.adCnt += 1;
+      }
+    }
     wx.showLoading({
       title: '加载广告中',
     })
-    if (!isLoadAd) {
-      this.loadAd();
-
-    }
     // 用户触发广告后，显示激励视频广告
     if (videoAd) {
       wx.hideLoading()
@@ -59,7 +73,6 @@ Page({
         // 失败重试
         videoAd.load()
           .then(() => {
-
             videoAd.show()
           })
           .catch(err => {
@@ -92,11 +105,68 @@ Page({
     })
   },
 
+  getMyStatInfo() {
+    const that = this;
+    wx.showLoading({
+      title: '获取点数信息',
+    })
+
+    utils.httpGet('/myStatInfo', {}).then((res) => {
+      wx.hideLoading()
+      const result = res.data;
+      if (result.code == 1) {
+        let content = result.data;
+
+        that.setData({
+          adProfit: content.adProfit,
+          artProfit: content.artProfit,
+          icodeProfit: content.icodeProfit,
+          shareProfit: content.shareProfit,
+          points: content.points,
+          usePoints: content.usePoints,
+        })
+      }
+    }).catch((err) => {
+      console.log(err);
+      wx.hideLoading()
+      wx.showToast({
+        title: '网络异常请重试',
+      })
+    })
+  },
+
+
+  doAdProfit() {
+    const that = this;
+    wx.showLoading({
+      title: '计算广告收益',
+    })
+
+    utils.httpPost('/adProfit', {
+      'source': '1',
+    }).then((res) => {
+      wx.hideLoading()
+      // const result = res.data;
+      // if (result.code == 1) {
+      //  wx.showToast({
+      //    title: '已获得奖励',
+      //  })
+      // }
+    }).catch((err) => {
+      console.log(err);
+      wx.hideLoading()
+      wx.showToast({
+        title: '网络异常请重试',
+      })
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    this.loadAd();
+    this.getMyStatInfo();
   },
 
   /**
@@ -125,7 +195,6 @@ Page({
    */
   onUnload() {
     videoAd = null;
-    isLoadAd = false;
   },
 
   /**
