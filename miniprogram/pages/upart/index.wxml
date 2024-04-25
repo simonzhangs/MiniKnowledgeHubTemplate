@@ -1,2 +1,71 @@
 <!--pages/upart/index.wxml-->
-<text>pages/upart/index.wxml</text>
+<view class="page">
+  <view class="weui-form">
+    <view class="weui-form__bd">
+      <view class="weui-form__text-area">
+        <h2 class="weui-form__title">调试本地TCP服务</h2>
+        <view class="weui-form__desc">打开手机WIFI后，可调试局域网内的TCP服务。</view>
+      </view>
+      <!--介绍文章说明，包含类目，名字来源-->
+      <!--库必传GitHub，代码片段必传碎片-->
+      <!--锁标志默认打开-->
+      <view class="weui-form__control-area">
+        <view class="weui-cells__group weui-cells__group_form">
+          <view class="weui-cells__title">地址信息，TCP连接禁止端口号请参考微信官方文档。</view>
+          <view class="weui-cells">
+            <view class="weui-cell weui-cell_active">
+              <view class="weui-cell__hd"><label class="weui-label">IP地址</label></view>
+              <view class="weui-cell__bd">
+                <input class="weui-input" placeholder="填写局域网IP地址" placeholder-class="weui-input__placeholder" type="digit" name="ip" bindblur="getIP"  />
+              </view>
+            </view>
+            <view class="weui-cell weui-cell_active">
+              <view class="weui-cell__hd">
+                <label class="weui-label">端口</label>
+              </view>
+              <view class="weui-cell__bd">
+                <input class="weui-input" placeholder="填写端口号" placeholder-class="weui-input__placeholder" type="number" name="port" bindblur="getPort" />
+              </view>
+            </view>
+          </view>
+          <view class="weui-cells__tips weui-cells__tips_warn " style="{{isErr ? 'display:block' : 'display:none'}}">错误提示：{{tips}}</view>
+        </view>
+        <view class="weui-cells__group weui-cells__group_form">
+          <view class="weui-cells__title">输出信息</view>
+          <view class="weui-cells weui-cells_form">
+            <view class="weui-cell" hover-class="weui-cell_active">
+              <view class="weui-cell__bd">
+                <textarea class="weui-textarea" placeholder="仅显示服务器返回信息" placeholder-class="weui-input__placeholder" rows="3" value="{{recvMsg}}" disabled></textarea>
+
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="weui-cells__group weui-cells__group_form">
+          <view class="weui-cells__title">发送信息</view>
+          <view class="weui-cells weui-cells_form">
+            <view class="weui-cell weui-cell_active weui-cell_disabled">
+              <view class="weui-cell__hd">
+                <label class="weui-label">内容</label>
+              </view>
+              <view class="weui-cell__bd">
+                <input class="weui-input" placeholder="请输入待发送内容" name="sendMsg" bindblur="getMsg"/>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="weui-form__ft">
+      <view class="weui-form__tips-area">
+        <view class="weui-form__tips">
+          {{tips}}
+        </view>
+      </view>
+      <view class="weui-form__opr-area">
+        <button aria-role="button" class="weui-btn weui-btn_warn" bind:tap="doConnServer">{{isConn?"关 闭":"连 接"}}</button>
+        <button aria-role="button" class="weui-btn weui-btn_default" bind:tap="doSendMsg" disabled="{{!isConn}}">发送内容</button>
+      </view>
+    </view>
+  </view>
+</view>

@@ -9,12 +9,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-    points: 0,
-    usePoints: 0,
-    shareProfit: 0,
-    adProfit: 0,
-    artProfit: 0,
-    icodeProfit: 0,
+    myWalletInfo: {
+      points: 0,
+      usePoints: 0,
+      shareProfit: 0,
+      adProfit: 0,
+      artProfit: 0,
+      icodeProfit: 0,
+    },
   },
 
   loadAd() {
@@ -34,7 +36,7 @@ Page({
         // 用户点击了【关闭广告】按钮
         if (res && res.isEnded) {
           // 正常播放结束，可以下发游戏奖励
-          that.doAdProfit();
+          that.app.doAdProfit();
 
         } else {
           // 播放中途退出，不下发游戏奖励
@@ -49,20 +51,13 @@ Page({
   playAd() {
     // 限制当前用户看广告次数，半小时只允许看2次。
     console.log('aaaa', app.globalData);
-    const now = utils.getSecTs();
-    if (now - app.globalData.start > 1800) {
-      app.globalData.start = now;
-      app.globalData.adCnt = 0;
-    } else {
-      if (app.globalData.adCnt > app.globalData.adFreqHalfHour) {
-        wx.showToast({
-          title: '太频繁稍后再试',
-        })
-        return
-      } else {
-        app.globalData.adCnt += 1;
-      }
+    if (!app.canPlayAd()) {
+      wx.showToast({
+        title: '太频繁稍后再试',
+      })
+      return
     }
+
     wx.showLoading({
       title: '加载广告中',
     })
@@ -116,14 +111,9 @@ Page({
       const result = res.data;
       if (result.code == 1) {
         let content = result.data;
-
+        app.globalData.myWalletInfo = content;
         that.setData({
-          adProfit: content.adProfit,
-          artProfit: content.artProfit,
-          icodeProfit: content.icodeProfit,
-          shareProfit: content.shareProfit,
-          points: content.points,
-          usePoints: content.usePoints,
+          myWalletInfo: content,
         })
       }
     }).catch((err) => {
@@ -136,30 +126,6 @@ Page({
   },
 
 
-  doAdProfit() {
-    const that = this;
-    wx.showLoading({
-      title: '计算广告收益',
-    })
-
-    utils.httpPost('/adProfit', {
-      'source': '1',
-    }).then((res) => {
-      wx.hideLoading()
-      // const result = res.data;
-      // if (result.code == 1) {
-      //  wx.showToast({
-      //    title: '已获得奖励',
-      //  })
-      // }
-    }).catch((err) => {
-      console.log(err);
-      wx.hideLoading()
-      wx.showToast({
-        title: '网络异常请重试',
-      })
-    })
-  },
 
   /**
    * 生命周期函数--监听页面加载

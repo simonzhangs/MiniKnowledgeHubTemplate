@@ -1,5 +1,6 @@
 const app = getApp();
 const utils = require('../../utils/utils.js')
+let videoAd = null;
 
 Page({
   /**
@@ -50,6 +51,72 @@ Page({
     this.searchArt(1, keyword)
   },
 
+  loadAd() {
+    const that = this;
+    if (wx.createRewardedVideoAd) {
+      videoAd = wx.createRewardedVideoAd({
+        adUnitId: 'adunit-2ce6db3cb1e45a86'
+      })
+      videoAd.onLoad(() => {
+        that.isLoadAd = true;
+      })
+      videoAd.onError((err) => {
+        console.error('激励视频光告加载失败', err)
+        that.isLoadAd = false;
+      })
+      videoAd.onClose((res) => {
+        // 用户点击了【关闭广告】按钮
+        if (res && res.isEnded) {
+          // 正常播放结束，可以下发游戏奖励
+          // 看看能不能做成全局函数
+          that.doAdProfit();
+
+        } else {
+          // 播放中途退出，不下发游戏奖励
+          wx.showToast({
+            title: '没有获得点数哟！',
+          })
+        }
+      })
+    }
+  },
+
+  playAd() {
+    // 限制当前用户看广告次数，半小时只允许看2次。
+    console.log('aaaa', app.globalData);
+    if (!app.canPlayAd()) {
+      wx.showToast({
+        title: '太频繁稍后再试',
+      })
+      return
+    }
+
+    wx.showLoading({
+      title: '加载广告中',
+    })
+    // 用户触发广告后，显示激励视频广告
+    if (videoAd) {
+      wx.hideLoading()
+      videoAd.show().catch(() => {
+        // 失败重试
+        videoAd.load()
+          .then(() => {
+            videoAd.show()
+          })
+          .catch(err => {
+            wx.showToast({
+              title: '请重试一次',
+            })
+            console.error('激励视频 广告显示失败', err)
+          })
+      })
+    } else {
+      wx.showToast({
+        title: '请重试一次',
+      })
+    }
+  },
+
 
   /**
    * 生命周期函数--监听页面加载
@@ -59,11 +126,12 @@ Page({
     that.setData({
       yestTime: utils.getYestMsTime()
     })
+    that.loadAd();
   },
 
   searchArt: function (pageNo, keyword) {
     const that = this
-   
+
     that.loading = true
     wx.showLoading({
       title: '加载中...',
@@ -89,7 +157,7 @@ Page({
           pages: result.count, //总页数
           artList: that.data.artList.concat(articles)
         })
-        
+
       } else {
         wx.showToast({
           title: '没有找到记录',
@@ -128,13 +196,13 @@ Page({
       qtype: qtype,
       op: 2,
     })
-    
+
     this.getArtList(1, qtype)
   },
   // 根据类型查询
   getArtList: function (pageNo, qtype) {
     const that = this
-   
+
     that.loading = true
     wx.showLoading({
       title: '加载中...',
@@ -152,7 +220,7 @@ Page({
     }).then((res) => {
       that.loading = false
       wx.hideLoading()
-     
+
       const result = res.data;
       if (result.code == 1) {
         const articles = result.data;
@@ -161,7 +229,7 @@ Page({
           pages: result.count, //总页数
           artList: that.data.artList.concat(articles)
         })
-       
+
       } else {
         wx.showToast({
           title: '没有找到记录',
@@ -179,19 +247,19 @@ Page({
 
   bindTag: function (e) {
     let tag = e.target.id;
-    
+
     this.setData({
       artList: [],
       tag: tag,
       op: 3,
     })
-    
+
     this.getBlogArtListByTag(1, tag)
   },
 
   getBlogArtListByTag: function (pageNo, tag) {
     const that = this
-    
+
     that.loading = true
     wx.showLoading({
       title: '加载中...',
@@ -209,17 +277,17 @@ Page({
     }).then((res) => {
       that.loading = false
       wx.hideLoading()
-     
+
       const result = res.data;
       if (result.code == 1) {
         const articles = result.data;
-       
+
         that.setData({
           page: pageNo, //当前的页号
           pages: result.count, //总页数
           artList: that.data.artList.concat(articles)
         })
-       
+
       } else {
         wx.showToast({
           title: '没有找到记录',
@@ -238,7 +306,19 @@ Page({
 
   jump: function (e) {
     const that = this;
-    that.jumpToPage(e.currentTarget.dataset.guid)
+    // TODO 获取文章内容，看看是否有锁标志，然后判断点数是否足够，不足够唤起广告。
+    const idx = e.currentTarget.dataset.idx;
+    const art = that.data.artList[idx];
+    if (art.lockstat == 1) {
+      const points = app.globalData.myWalletInfo.points
+      if (points > 0) {
+        that.jumpToPage(e.currentTarget.dataset.guid)
+      } else {
+        that.playAd();
+      }
+    } else {
+      that.jumpToPage(e.currentTarget.dataset.guid)
+    }
   },
 
 
@@ -248,8 +328,6 @@ Page({
       url: '../article/index?guid=' + guid,
     })
   },
-
-  
 
 
   /**
