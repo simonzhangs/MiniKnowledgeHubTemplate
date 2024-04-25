@@ -68,7 +68,7 @@
             <view>{{item.title}}</view>
           </view>
           <view class="weui-cell__ft weui-cell__ft_in-access" aria-hidden="true">
-            <text wx:if="{{ item.lockstat == 1 }}" id="js_cell_l1_note" aria-label="，锁" class="weui-badge weui-badge_dot">锁</text>
+            <text wx:if="{{ item.lockState == 1 }}" id="js_cell_l1_note" aria-label="，锁" class="weui-badge weui-badge_dot">锁</text>
             <text wx:elif="{{ item.createTime > yestTime }}" id="js_cell_l1_note" aria-label="，新" class="weui-badge weui-badge_dot">新</text>
             <!-- <text wx:elif="{{ item.updateTime > item.createdTime }}" id="js_cell_l1_note" aria-label="，有更新" class="weui-badge weui-badge_dot">修</text> -->
             <text wx:elif="{{ item.views > 50 }}" id="js_cell_l1_note" aria-label="，火" class="weui-badge weui-badge_dot">热</text>

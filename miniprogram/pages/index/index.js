@@ -51,6 +51,24 @@ Page({
     this.searchArt(1, keyword)
   },
 
+  // source 1 按钮点击 2 加锁文章点击
+  doAdProfit() {
+    const that = this;
+    wx.showLoading({
+      title: '计算广告收益',
+    })
+
+    utils.httpPost('/adProfit', {
+      'source': 2,
+    }).then((res) => {
+      console.log(res);
+      wx.hideLoading()
+    }).catch((err) => {
+      console.log(err);
+      wx.hideLoading()
+    })
+  },
+
   loadAd() {
     const that = this;
     if (wx.createRewardedVideoAd) {
@@ -70,7 +88,6 @@ Page({
           // 正常播放结束，可以下发游戏奖励
           // 看看能不能做成全局函数
           that.doAdProfit();
-
         } else {
           // 播放中途退出，不下发游戏奖励
           wx.showToast({
@@ -83,7 +100,7 @@ Page({
 
   playAd() {
     // 限制当前用户看广告次数，半小时只允许看2次。
-    console.log('aaaa', app.globalData);
+    
     if (!app.canPlayAd()) {
       wx.showToast({
         title: '太频繁稍后再试',
@@ -281,7 +298,6 @@ Page({
       const result = res.data;
       if (result.code == 1) {
         const articles = result.data;
-
         that.setData({
           page: pageNo, //当前的页号
           pages: result.count, //总页数
@@ -309,12 +325,17 @@ Page({
     // TODO 获取文章内容，看看是否有锁标志，然后判断点数是否足够，不足够唤起广告。
     const idx = e.currentTarget.dataset.idx;
     const art = that.data.artList[idx];
-    if (art.lockstat == 1) {
+    
+    if (art.lockState == 1) {
       const points = app.globalData.myWalletInfo.points
       if (points > 0) {
         that.jumpToPage(e.currentTarget.dataset.guid)
       } else {
-        that.playAd();
+        // that.playAd();
+        // wx.switchTab({
+        //   url: '../my/index',
+        // })
+        // 弹出对话框，询问用户，是观看广告，还是直接观看。
       }
     } else {
       that.jumpToPage(e.currentTarget.dataset.guid)

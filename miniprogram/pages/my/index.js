@@ -36,7 +36,7 @@ Page({
         // 用户点击了【关闭广告】按钮
         if (res && res.isEnded) {
           // 正常播放结束，可以下发游戏奖励
-          that.app.doAdProfit();
+          that.doAdProfit();
 
         } else {
           // 播放中途退出，不下发游戏奖励
@@ -125,7 +125,23 @@ Page({
     })
   },
 
+  // source 1 按钮点击 2 加锁文章点击
+  doAdProfit() {
+    const that = this;
+    wx.showLoading({
+      title: '计算广告收益',
+    })
 
+    utils.httpPost('/adProfit', {
+      'source': 1,
+    }).then((res) => {
+      console.log(res);
+      wx.hideLoading()
+    }).catch((err) => {
+      console.log(err);
+      wx.hideLoading()
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载

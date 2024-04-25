@@ -65,44 +65,31 @@ App({
       },
     });
   },
-  // source 1 按钮点击 2 加锁文章点击
-  doAdProfit(source) {
-    const that = this;
-    wx.showLoading({
-      title: '计算广告收益',
-    })
-
-    utils.httpPost('/adProfit', {
-      'source': source,
-    }).then((res) => {
-      console.log(res);
-      wx.hideLoading()
-    }).catch((err) => {
-      console.log(err);
-      wx.hideLoading()
-    })
-  },
+  
 
   canPlayAd() {
+    const that = this;
     const now = utils.getSecTs();
-    if (now - app.globalData.start > 1800) {
-      app.globalData.start = now;
-      app.globalData.adCnt = 0;
+    if (now - that.globalData.adStartTime > 1800) {
+      that.globalData.adStartTime = now;
+      that.globalData.adCnt = 0;
       return true;
     } else {
-      if (app.globalData.adCnt > app.globalData.adFreqHalfHour) {
+      if (that.globalData.adCnt > that.globalData.adFreqHalfHour) {
         return false;
       } else {
-        app.globalData.adCnt += 1;
+        that.globalData.adCnt += 1;
         return true;
       }
     }
   },
+
   onLaunch: function () {
     this.login()
     const now = utils.getSecTs();
     this.globalData.adStartTime = now;
   },
+  
   globalData: {
     adFreqHalfHour: 6,
     adStartTime: 0,
