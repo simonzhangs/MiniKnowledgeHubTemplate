@@ -1,5 +1,5 @@
 const app = getApp();
-const utils = require('../../utils/utils.js')
+import { httpPost, getYestMsTime, httpGet } from '../../utils/utils.js';
 let videoAd = null;
 
 Page({
@@ -18,6 +18,7 @@ Page({
     op: 1, // 1 搜索查询 2 按时间查询 3 按标签查询
     qtype: 1, // 1 最火 2 最新 3 最冷
     tag: "",
+    myWalletInfo: {},
   },
   showInput: function () {
     this.setData({
@@ -58,7 +59,7 @@ Page({
       title: '计算广告收益',
     })
 
-    utils.httpPost('/adProfit', {
+    httpPost('/adProfit', {
       'source': 2,
     }).then((res) => {
       console.log(res);
@@ -87,7 +88,8 @@ Page({
         if (res && res.isEnded) {
           // 正常播放结束，可以下发游戏奖励
           // 看看能不能做成全局函数
-          that.doAdProfit();
+          // that.doAdProfit();
+          that.jumpToPage(e.currentTarget.dataset.guid, 1)
         } else {
           // 播放中途退出，不下发游戏奖励
           wx.showToast({
@@ -100,7 +102,6 @@ Page({
 
   playAd() {
     // 限制当前用户看广告次数，半小时只允许看2次。
-    
     if (!app.canPlayAd()) {
       wx.showToast({
         title: '太频繁稍后再试',
@@ -135,16 +136,7 @@ Page({
   },
 
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    const that = this;
-    that.setData({
-      yestTime: utils.getYestMsTime()
-    })
-    that.loadAd();
-  },
+
 
   searchArt: function (pageNo, keyword) {
     const that = this
@@ -160,7 +152,7 @@ Page({
       })
     }
 
-    utils.httpGet('/searchBlogArt', {
+    httpGet('/searchBlogArt', {
       'pageNo': pageNo,
       'keyword': keyword,
     }).then((res) => {
@@ -216,6 +208,7 @@ Page({
 
     this.getArtList(1, qtype)
   },
+
   // 根据类型查询
   getArtList: function (pageNo, qtype) {
     const that = this
@@ -231,7 +224,7 @@ Page({
       })
     }
 
-    utils.httpGet('/getBlogArtList', {
+    httpGet('/getBlogArtList', {
       'pageNo': pageNo,
       'qtype': qtype,
     }).then((res) => {
@@ -288,7 +281,7 @@ Page({
       })
     }
 
-    utils.httpGet('/getBlogArtListByTag', {
+    httpGet('/getBlogArtListByTag', {
       'pageNo': pageNo,
       'tag': tag,
     }).then((res) => {
@@ -322,34 +315,71 @@ Page({
 
   jump: function (e) {
     const that = this;
-    // TODO 获取文章内容，看看是否有锁标志，然后判断点数是否足够，不足够唤起广告。
+    // 获取文章内容，看看是否有锁标志，然后判断点数是否足够，不足够唤起广告。
     const idx = e.currentTarget.dataset.idx;
     const art = that.data.artList[idx];
-    
     if (art.lockState == 1) {
       const points = app.globalData.myWalletInfo.points
       if (points > 0) {
-        that.jumpToPage(e.currentTarget.dataset.guid)
+        that.jumpToPage(e.currentTarget.dataset.guid, 2)
       } else {
         // that.playAd();
         // wx.switchTab({
         //   url: '../my/index',
         // })
-        // 弹出对话框，询问用户，是观看广告，还是直接观看。
+        // TODO 弹出对话框，询问用户，是观看广告，还是直接观看。
+
       }
     } else {
-      that.jumpToPage(e.currentTarget.dataset.guid)
+      that.jumpToPage(e.currentTarget.dataset.guid, 0)
     }
   },
 
-
-  jumpToPage: function (guid) {
+  // 0 啥都不需要 1 直接看广告 2 扣点数
+  jumpToPage: function (guid, ad) {
     // 调整到文章页面 
     wx.navigateTo({
-      url: '../article/index?guid=' + guid,
+      url: '../article/index?guid=' + guid + '&ad=' + ad,
     })
   },
 
+  getMyStatInfo() {
+    const that = this;
+    wx.showLoading({
+      title: '获取点数信息',
+    })
+
+    httpGet('/myStatInfo', {}).then((res) => {
+      wx.hideLoading()
+      const result = res.data;
+      if (result.code == 1) {
+        let content = result.data;
+        app.globalData.myWalletInfo = content;
+        that.setData({
+          myWalletInfo: content,
+        })
+      }
+    }).catch((err) => {
+      console.log(err);
+      wx.hideLoading()
+      wx.showToast({
+        title: '网络异常请重试',
+      })
+    })
+  },
+
+  /**
+     * 生命周期函数--监听页面加载
+     */
+  onLoad: function (options) {
+    console.log(options);
+    const that = this;
+    that.setData({
+      yestTime: getYestMsTime()
+    })
+    that.loadAd();
+    that.getMyStatInfo();
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

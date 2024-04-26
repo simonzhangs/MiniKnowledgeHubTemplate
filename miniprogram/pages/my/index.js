@@ -1,6 +1,6 @@
 // pages/my/index.js
 const app = getApp();
-const utils = require('../../utils/utils.js')
+import { httpGet, httpPost } from '../../utils/utils.js';
 let videoAd = null;
 
 Page({
@@ -15,7 +15,7 @@ Page({
       shareProfit: 0,
       adProfit: 0,
       artProfit: 0,
-      icodeProfit: 0,
+      cardProfit: 0,
     },
   },
 
@@ -26,18 +26,16 @@ Page({
         adUnitId: 'adunit-2ce6db3cb1e45a86'
       })
       videoAd.onLoad(() => {
-        that.isLoadAd = true;
+
       })
       videoAd.onError((err) => {
         console.error('激励视频光告加载失败', err)
-        that.isLoadAd = false;
       })
       videoAd.onClose((res) => {
         // 用户点击了【关闭广告】按钮
         if (res && res.isEnded) {
           // 正常播放结束，可以下发游戏奖励
           that.doAdProfit();
-
         } else {
           // 播放中途退出，不下发游戏奖励
           wx.showToast({
@@ -78,8 +76,9 @@ Page({
           })
       })
     } else {
+      wx.hideLoading()
       wx.showToast({
-        title: '请重试一次',
+        title: '请稍后重试',
       })
     }
   },
@@ -106,7 +105,7 @@ Page({
       title: '获取点数信息',
     })
 
-    utils.httpGet('/myStatInfo', {}).then((res) => {
+    httpGet('/myStatInfo', {}).then((res) => {
       wx.hideLoading()
       const result = res.data;
       if (result.code == 1) {
@@ -132,7 +131,7 @@ Page({
       title: '计算广告收益',
     })
 
-    utils.httpPost('/adProfit', {
+    httpPost('/adProfit', {
       'source': 1,
     }).then((res) => {
       console.log(res);
@@ -147,8 +146,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    this.setData({
+      myWalletInfo: app.globalData.myWalletInfo,
+    })
     this.loadAd();
-    this.getMyStatInfo();
+
   },
 
   /**

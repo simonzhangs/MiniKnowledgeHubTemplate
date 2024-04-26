@@ -65,7 +65,7 @@ App({
       },
     });
   },
-  
+
 
   canPlayAd() {
     const that = this;
@@ -89,7 +89,7 @@ App({
     const now = utils.getSecTs();
     this.globalData.adStartTime = now;
   },
-  
+
   globalData: {
     adFreqHalfHour: 6,
     adStartTime: 0,
@@ -100,7 +100,7 @@ App({
       shareProfit: 0,
       adProfit: 0,
       artProfit: 0,
-      icodeProfit: 0,
+      cardProfit: 0,
     },
   }
 });

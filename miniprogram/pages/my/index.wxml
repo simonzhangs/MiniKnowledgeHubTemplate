@@ -34,7 +34,7 @@
         <view class="info">推广获得点数：{{myWalletInfo.shareProfit}}</view>
       </view>
       <view class="weui-flex__item">
-        <view class="info">模板获得点数：{{myWalletInfo.icodeProfit}}</view>
+        <view class="info">模板获得点数：{{myWalletInfo.cardProfit}}</view>
       </view>
     </view>
 
