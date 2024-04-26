@@ -3,25 +3,24 @@
   <view class="weui-form">
     <view class="weui-form__bd">
       <view class="weui-form__text-area">
-        <h2 class="weui-form__title">调试本地TCP服务</h2>
-        <view class="weui-form__desc">打开手机WIFI后，可调试局域网内的TCP服务。</view>
+        <h2 class="weui-form__title">上传库代码片段</h2>
+        <view class="weui-form__desc">豆子碎片取名来源，豆子是因为小时候爱吃炒豆子，碎片取值英文snippet，翻译为碎片。豆子碎片主要收集六类相关的库或代码片段，这六类分别为Golang语言，Rust语言，H5开发，小程序开发，数据库开发以及开发环境。当上传库时，必须传Github地址。</view>
       </view>
-      <!--介绍文章说明，包含类目，名字来源-->
-      <!--库必传GitHub，代码片段必传碎片-->
+     
       <!--锁标志默认打开-->
       <view class="weui-form__control-area">
         <view class="weui-cells__group weui-cells__group_form">
-          <view class="weui-cells__title">地址信息，TCP连接禁止端口号请参考微信官方文档。</view>
+          <view class="weui-cells__title">基本信息</view>
           <view class="weui-cells">
             <view class="weui-cell weui-cell_active">
-              <view class="weui-cell__hd"><label class="weui-label">IP地址</label></view>
+              <view class="weui-cell__hd"><label class="weui-label">标题</label></view>
               <view class="weui-cell__bd">
-                <input class="weui-input" placeholder="填写局域网IP地址" placeholder-class="weui-input__placeholder" type="digit" name="ip" bindblur="getIP"  />
+                <input class="weui-input" placeholder="填写标题" placeholder-class="weui-input__placeholder" type="digit" name="ip" bindblur="getIP"  />
               </view>
             </view>
             <view class="weui-cell weui-cell_active">
               <view class="weui-cell__hd">
-                <label class="weui-label">端口</label>
+                <label class="weui-label">描述</label>
               </view>
               <view class="weui-cell__bd">
                 <input class="weui-input" placeholder="填写端口号" placeholder-class="weui-input__placeholder" type="number" name="port" bindblur="getPort" />
@@ -31,25 +30,26 @@
           <view class="weui-cells__tips weui-cells__tips_warn " style="{{isErr ? 'display:block' : 'display:none'}}">错误提示：{{tips}}</view>
         </view>
         <view class="weui-cells__group weui-cells__group_form">
-          <view class="weui-cells__title">输出信息</view>
+          <view class="weui-cells__title">代码片段</view>
           <view class="weui-cells weui-cells_form">
             <view class="weui-cell" hover-class="weui-cell_active">
               <view class="weui-cell__bd">
-                <textarea class="weui-textarea" placeholder="仅显示服务器返回信息" placeholder-class="weui-input__placeholder" rows="3" value="{{recvMsg}}" disabled></textarea>
-
+                <textarea class="weui-textarea" placeholder="请填写代码片段" placeholder-class="weui-input__placeholder" rows="3" value="{{recvMsg}}" disabled></textarea>
               </view>
             </view>
           </view>
         </view>
         <view class="weui-cells__group weui-cells__group_form">
-          <view class="weui-cells__title">发送信息</view>
+        <!--锁标志默认打开-->
+        <!--分类选择框-->
+          <view class="weui-cells__title">Github信息</view>
           <view class="weui-cells weui-cells_form">
             <view class="weui-cell weui-cell_active weui-cell_disabled">
               <view class="weui-cell__hd">
-                <label class="weui-label">内容</label>
+                <label class="weui-label">地址</label>
               </view>
               <view class="weui-cell__bd">
-                <input class="weui-input" placeholder="请输入待发送内容" name="sendMsg" bindblur="getMsg"/>
+                <input class="weui-input" placeholder="请输入Github地址" name="sendMsg" bindblur="getMsg"/>
               </view>
             </view>
           </view>
@@ -63,8 +63,8 @@
         </view>
       </view>
       <view class="weui-form__opr-area">
-        <button aria-role="button" class="weui-btn weui-btn_warn" bind:tap="doConnServer">{{isConn?"关 闭":"连 接"}}</button>
-        <button aria-role="button" class="weui-btn weui-btn_default" bind:tap="doSendMsg" disabled="{{!isConn}}">发送内容</button>
+        <button aria-role="button" class="weui-btn weui-btn_primary" bind:tap="doConnServer">提交</button>
+       
       </view>
     </view>
   </view>

@@ -362,12 +362,12 @@ Page({
 
   getMyStatInfo() {
     const that = this;
-    wx.showLoading({
-      title: '获取点数信息',
-    })
+    // wx.showLoading({
+    //   title: '获取点数信息',
+    // })
 
     httpGet('/myStatInfo', {}).then((res) => {
-      wx.hideLoading()
+      // wx.hideLoading()
       const result = res.data;
       if (result.code == 1) {
         let content = result.data;
@@ -378,7 +378,7 @@ Page({
       }
     }).catch((err) => {
       console.log(err);
-      wx.hideLoading()
+      // wx.hideLoading()
       wx.showToast({
         title: '网络异常请重试',
       })
