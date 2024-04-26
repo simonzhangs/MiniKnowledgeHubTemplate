@@ -1,7 +1,11 @@
 const app = getApp();
-import { httpPost, getYestMsTime, httpGet } from '../../utils/utils.js';
+import {
+  httpPost,
+  getYestMsTime,
+  httpGet
+} from '../../utils/utils.js';
 let videoAd = null;
-
+let lastUuid = '';
 Page({
   /**
    * 页面的初始数据
@@ -89,7 +93,7 @@ Page({
           // 正常播放结束，可以下发游戏奖励
           // 看看能不能做成全局函数
           // that.doAdProfit();
-          that.jumpToPage(e.currentTarget.dataset.guid, 1)
+          that.jumpToPage(that.lastUuid, 1)
         } else {
           // 播放中途退出，不下发游戏奖励
           wx.showToast({
@@ -323,11 +327,24 @@ Page({
       if (points > 0) {
         that.jumpToPage(e.currentTarget.dataset.guid, 2)
       } else {
+        that.lastUuid = e.currentTarget.dataset.guid;
         // that.playAd();
         // wx.switchTab({
         //   url: '../my/index',
         // })
         // TODO 弹出对话框，询问用户，是观看广告，还是直接观看。
+        wx.showModal({
+          title: '提示',
+          content: '为了更好的鼓励作者，需要观看广告',
+          success(res) {
+            if (res.confirm) {
+              console.log('用户点击确定')
+              that.playAd();
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+            }
+          }
+        })
 
       }
     } else {
@@ -369,8 +386,8 @@ Page({
   },
 
   /**
-     * 生命周期函数--监听页面加载
-     */
+   * 生命周期函数--监听页面加载
+   */
   onLoad: function (options) {
     console.log(options);
     const that = this;
@@ -406,7 +423,8 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    videoAd = null;
+    lastUuid = '';
   },
 
 
