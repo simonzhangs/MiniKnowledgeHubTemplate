@@ -5,7 +5,16 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    
+    array3: ['中国', '美国（￥）', '英国（￥）'],
+    
+    value3: 0,
+  },
+ 
+  bindPicker3Change(e) {
+    this.setData({
+      value3: e.detail.value,
+    });
   },
 
   /**
