@@ -5,6 +5,7 @@
     "pages/my/index",
     "pages/myicode/index",
     "pages/upicode/index",
+    "pages/cardtmpl/index",
     "pages/upart/index"
   ],
   "window": {

@@ -1,38 +1,11 @@
-// pages/myicode/index.js
-const app = getApp();
-import { httpGet, httpPost } from '../../utils/utils.js';
-let videoAd = null;
-
+// pages/cardtmpl/index.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    
-    
-  },
- 
-  geticode(){
-    const that = this;
-    wx.showLoading({
-      title: '获取卡片信息',
-    })
 
-    httpGet('/myICode', {}).then((res) => {
-      wx.hideLoading()
-      const result = res.data;
-      if (result.code == 1) {
-        let content = result.data;
-        console.log(content);
-      }
-    }).catch((err) => {
-      console.log(err);
-      wx.hideLoading()
-      wx.showToast({
-        title: '网络异常请重试',
-      })
-    })
   },
 
   /**
