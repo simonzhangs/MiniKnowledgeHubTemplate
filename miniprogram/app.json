@@ -6,7 +6,8 @@
     "pages/myicode/index",
     "pages/upicode/index",
     "pages/cardtmpl/index",
-    "pages/upart/index"
+    "pages/upart/index",
+    "pages/mycontact/index"
   ],
   "window": {
     "navigationBarBackgroundColor": "#EDEDED",

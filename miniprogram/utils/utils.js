@@ -63,7 +63,8 @@ function isEmpty(obj) {
 
 function guid() {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-    var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+    var r = Math.random() * 16 | 0,
+      v = c == 'x' ? r : (r & 0x3 | 0x8);
     return v.toString(16);
   });
 }
@@ -85,8 +86,21 @@ function getNowMsTime() {
   return new Date().getTime();
 }
 // 获取秒时间戳
-function getSecTs(){
+function getSecTs() {
   return Math.floor(Date.now() / 1000);
+}
+
+// 获取当前时间字符串
+function getNowStr() {
+  const date = new Date()
+  const year = date.getFullYear()
+  const month = date.getMonth() + 1
+  const day = date.getDate()
+  const hour = date.getHours()
+  const minute = date.getMinutes()
+  const second = date.getSeconds()
+
+  return [year, month, day].map(formatNumber).join('-') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
 // 获取昨天的毫秒时间戳
 function getYestMsTime() {
@@ -106,6 +120,31 @@ function getVCode() {
   return vcode;
 }
 
+function compareVersion(v1, v2) {
+  v1 = v1.split('.')
+  v2 = v2.split('.')
+  var len = Math.max(v1.length, v2.length)
+  while (v1.length < len) {
+    v1.push('0')
+  }
+
+  while (v2.length < len) {
+    v2.push('0')
+  }
+
+  for (var i = 0; i < len; i++) {
+    var num1 = parseInt(v1[i])
+    var num2 = parseInt(v2[i])
+
+    if (num1 > num2) {
+      return 1
+    } else if (num1 < num2) {
+      return -1
+    }
+  }
+  return 0
+}
+
 const getUrl = (url) => {
   // let baseUrl = getBaseUrl();
   if (url.indexOf("://") == -1) {
@@ -113,6 +152,8 @@ const getUrl = (url) => {
   }
   return url;
 };
+
+
 
 const http = ({
   url = "",
@@ -132,7 +173,7 @@ const http = ({
       header: {
         "content-type": "application/json", // 默认值
         Cookie: cookie,
-        "icode":vcode,
+        "icode": vcode,
       },
       ...other,
       timeout: 3000,
@@ -165,6 +206,69 @@ function httpPost(url, param = {}) {
   });
 }
 
+function uploadImage(url, file, param = {}) {
+  let timeStart = Date.now();
+  let cookie = wx.getStorageSync("sessionKey");
+  let vcode = getVCode();
+
+  return new Promise((resolve, reject) => {
+    wx.uploadFile({
+      url: getUrl(url),
+      filePath: file,
+      name: 'file',
+      formData: param,
+      header: {
+        Cookie: cookie,
+        "icode": vcode,
+      },
+      timeout: 10000,
+      complete: (res) => {
+        // wx.hideLoading();
+        console.log(`耗时${Date.now() - timeStart}`);
+        if (res.statusCode >= 200 && res.statusCode < 300) {
+          resolve(res);
+        } else {
+          reject(res);
+        }
+      },
+    })
+  });
+
+}
+
+function downloadImage(url, filepath) {
+  let timeStart = Date.now();
+  let cookie = wx.getStorageSync("sessionKey");
+  let vcode = getVCode();
+  let myurl = baseUrl + url + '/' + filepath;
+  return new Promise((resolve, reject) => {
+    wx.downloadFile({
+      url: myurl,
+      header: {
+        Cookie: cookie,
+        "icode": vcode,
+      },
+      complete(res) {
+        // wx.hideLoading();
+        console.log(`耗时${Date.now() - timeStart}`);
+        if (res.statusCode >= 200 && res.statusCode < 300) {
+          resolve(res);
+        } else {
+          reject(res);
+        }
+      },
+    });
+  });
+}
+
+
+
+// 以逗号分割，先替换中文逗号
+function str2arr(str) {
+  let str1 = str.replace("，", ",");
+  return str1.split(',');
+}
+
 module.exports = {
   formatTime: formatTime,
   isEmpty: isEmpty,
@@ -177,5 +281,10 @@ module.exports = {
   decodeBase64: decodeBase64,
   httpPost: httpPost,
   httpGet: httpGet,
-  getSecTs:getSecTs,
+  getSecTs: getSecTs,
+  compareVersion,
+  getNowStr,
+  uploadImage,
+  downloadImage,
+  str2arr,
 }

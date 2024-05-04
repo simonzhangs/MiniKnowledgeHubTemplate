@@ -1,6 +1,9 @@
-// pages/myicode/index.js
+// pages/mycontact/index.js
 const app = getApp();
-import { httpGet, httpPost } from '../../utils/utils.js';
+import utils, {
+  httpGet,
+  httpPost
+} from '../../utils/utils.js';
 
 Page({
 
@@ -8,11 +11,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
-    
+    qq:'',
+    vcode:'',
   },
- 
-  geticode(){
+
+  
+  getMyContact() {
     const that = this;
     const curpoints = app.getPoints();
     if(curpoints < 1) {
@@ -21,18 +25,26 @@ Page({
       })
       return 
     }
-
     wx.showLoading({
-      title: '获取卡片信息',
+      title: '获取联系方式',
     })
 
-    httpGet('/myICode', {}).then((res) => {
+    httpGet('/qq', {}).then((res) => {
       wx.hideLoading()
       const result = res.data;
       if (result.code == 1) {
         let content = result.data;
-        console.log(content);
+        console.log(content)
+        const strArr = content.split(',');
+        that.setData({
+          qq:strArr[0],
+          vcode:strArr[1],
+        })
         app.costPoints();
+      }else{
+        wx.showToast({
+          title: '点数不足',
+        })
       }
     }).catch((err) => {
       console.log(err);
@@ -42,36 +54,36 @@ Page({
       })
     })
   },
-  
-  saveToPhotosAlbum: function () {
+
+  doCopy(){
     const that = this;
-    if (utils.isEmpty(that.data.headImage)) {
+    if(utils.isEmpty(that.data.qq)){
       wx.showToast({
-        title: '请先转换图片',
+        title: '内容不能为空',
       })
-      return
+      return 
     }
-    wx.saveImageToPhotosAlbum({
-      filePath: that.data.headImage,
+
+    var content = 'QQ号：'+that.data.qq+'，验证码：'+that.data.vcode;
+    wx.setClipboardData({
+      data: content,
       success(res) {
-        wx.showToast({
-          title: '保存成功',
-        })
-      },
-      fail(err) {
-        console.log(err)
-        wx.showToast({
-          title: '请打开相册权限',
-        })
+          wx.getClipboardData({
+              success(res) {
+                  wx.showToast({
+                      title: '复制成功',
+                  })
+              }
+          })
       }
-    })
+  })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    
   },
 
   /**

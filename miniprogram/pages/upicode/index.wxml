@@ -3,50 +3,62 @@
   <view class="weui-form">
     <view class="weui-form__bd">
       <view class="weui-form__text-area">
-        <h2 class="weui-form__title">上传卡片模板</h2>
-        <view class="weui-form__desc">卡片模板是用于识别码的底图，下面有样例。</view>
+        <h2 class="weui-form__title">上传识别码卡片模板</h2>
+        <view class="weui-form__desc">卡片模板是用于识别码的底图，上传或调试卡片模板都将消耗1个点数。您上传的卡片模板被其他用户使用，您将获取点数奖励。默认样例仅作为参考。</view>
       </view>
-      <!--介绍原理-->
-      <!--查看示例-->
-      <!--二维码在图片中的位置信息-->
-      <!--图片模板介绍-->
-      <!--上传图片模板-->
+
       <view class="weui-form__control-area">
         <view class="weui-cells__group weui-cells__group_form">
-          <view class="weui-cells__title">地址信息</view>
-          <view class="weui-cells">
-            <view class="weui-cell weui-cell_active">
-              <view class="weui-cell__hd"><label class="weui-label">名称</label></view>
-              <view class="weui-cell__bd">
-                <input class="weui-input" placeholder="填写名称" placeholder-class="weui-input__placeholder" type="digit" name="ip" bindblur="getIP"  />
-              </view>
-            </view>
-            
-          </view>
-          <view class="weui-cells__tips weui-cells__tips_warn " style="{{isErr ? 'display:block' : 'display:none'}}">错误提示：{{tips}}</view>
-        </view>
-        <view class="weui-cells__group weui-cells__group_form">
-          <view class="weui-cells__title">描述</view>
+          <view class="weui-cells__title">卡片模板描述</view>
           <view class="weui-cells weui-cells_form">
             <view class="weui-cell" hover-class="weui-cell_active">
               <view class="weui-cell__bd">
-                <textarea class="weui-textarea" placeholder="简要描述" placeholder-class="weui-input__placeholder" rows="3" value="{{recvMsg}}" disabled></textarea>
-
+                <textarea class="weui-textarea" placeholder="请认真描述您的卡片模板，它将展示在模板列表中。" placeholder-class="weui-input__placeholder" rows="3" name="desc" value="{{desc}}" bindblur="bindDesc"></textarea>
               </view>
             </view>
           </view>
         </view>
-         <!--上传图片模板-->
+
+        <!--上传图片模板-->
         <view class="weui-cells__group weui-cells__group_form">
-          <view class="weui-cells__title">二维码位置信息位置信息，（x坐标，y坐标，宽度，宽度）</view>
+          <view class="weui-cells__title">卡片信息</view>
           <view class="weui-cells weui-cells_form">
+            <view class="weui-cell weui-cell_uploader">
+              <view class="weui-cell__bd">
+                <view class="weui-uploader">
+                  <view class="weui-uploader__hd">
+                    <view aria-role="option" class="weui-uploader__overview">
+                      <view class="weui-uploader__title">图片信息</view>
+                    </view>
+                    <view class="weui-uploader__tips">
+                      请选取2M内的图片，目前仅支持一张
+                    </view>
+                  </view>
+                  <view class="weui-uploader__bd">
+                    <view class="weui-uploader__files" id="uploaderFiles">
+                      <block wx:for="{{files}}" wx:key="*this">
+                        <view class="weui-uploader__file" bindtap="previewImage" id="{{item}}">
+                          <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                        </view>
+                      </block>
+                    </view>
+                    <view class="weui-uploader__input-box">
+                      <view aria-role="button" aria-label="选择图片" class="weui-uploader__input" bindtap="chooseImage"></view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
             <view class="weui-cell weui-cell_active weui-cell_disabled">
               <view class="weui-cell__hd">
                 <label class="weui-label">位置信息</label>
               </view>
               <view class="weui-cell__bd">
-                <input class="weui-input" placeholder="请输入位置信息" name="sendMsg" bindblur="getMsg"/>
+                <input class="weui-input" placeholder="请输入二维码位置信息" name="location" value="{{location}}" bindblur="bindLocation" />
               </view>
+            </view>
+            <view class="weui-cell weui-cell_active weui-cell_disabled">
+              <image style="width: 300px; height: 200px; background-color: #eeeeee;" mode="{{item.mode}}" src="{{dgImg}}" bindtap="previewDebugImage"></image>
             </view>
           </view>
         </view>
@@ -55,12 +67,13 @@
     <view class="weui-form__ft">
       <view class="weui-form__tips-area">
         <view class="weui-form__tips">
-          {{tips}}
+          二维码位置信息格式为(x,y,width,height)
         </view>
       </view>
       <view class="weui-form__opr-area">
-        <button aria-role="button" class="weui-btn weui-btn_primary" bind:tap="doConnServer">提 交</button>
-       
+        <button aria-role="button" class="weui-btn weui-btn_default" bind:tap="previewSamplesImage">预览默认样例</button>
+        <button aria-role="button" class="weui-btn weui-btn_default" bind:tap="debugCardTmpl">调试卡片模板</button>
+        <button aria-role="button" class="weui-btn weui-btn_primary" bind:tap="uploadCardTmpl">提 交</button>
       </view>
     </view>
   </view>

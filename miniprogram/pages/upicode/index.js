@@ -1,3 +1,11 @@
+const app = getApp();
+import {
+  isEmpty,
+  uploadImage,
+  downloadImage,
+  str2arr
+} from "../../utils/utils";
+
 // pages/upicode/index.js
 Page({
 
@@ -5,6 +13,150 @@ Page({
    * 页面的初始数据
    */
   data: {
+    desc: '',
+    location: '',
+    samples: ['https://mp.91demo.top/static/images/icode.webp'],
+    files: [],
+    dgImg: '',
+
+  },
+  chooseImage() {
+    const that = this;
+    wx.chooseMedia({
+      sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', ], // 可以指定来源是相册还是相机，默认二者都有
+      mediaType: ['image'],
+      count: 1,
+      success(res) {
+        // 检查第一张图片大小
+        var tempFiles = res.tempFiles;
+        var tempFileSize = tempFiles[0].size;
+        if (tempFileSize <= 2048000) {
+          let myfiles = [];
+          myfiles.push(tempFiles[0].tempFilePath);
+          console.log(myfiles);
+          that.setData({
+            files: myfiles,
+          });
+        } else {
+          wx.showToast({
+            title: '图片超过2M',
+          })
+        }
+      },
+    });
+  },
+
+  bindLocation(e) {
+    const that = this;
+    let obj = e.detail.value
+    console.log(obj)
+    that.setData({
+      location: obj
+    })
+  },
+
+  bindDesc(e) {
+    const that = this;
+    let obj = e.detail.value
+    console.log(obj)
+    that.setData({
+      desc: obj
+    })
+  },
+
+  previewImage(e) {
+    wx.previewImage({
+      current: e.currentTarget.id, // 当前显示图片的http链接
+      urls: this.data.files, // 需要预览的图片http链接列表
+    });
+  },
+
+  previewSamplesImage() {
+    const that = this;
+    wx.previewImage({
+      urls: that.data.samples, // 需要预览的图片http链接列表
+    });
+  },
+
+  previewDebugImage() {
+    const that = this;
+    wx.previewImage({
+      urls: [that.data.dgImg], // 需要预览的图片http链接列表
+    });
+  },
+
+  uploadCardTmpl() {
+    // 提交模板
+    // 申请推送订阅
+  },
+
+  async debugCardTmpl() {
+    const that = this;
+    if (isEmpty(that.data.desc)) {
+      wx.showToast({
+        title: '描述为空',
+      })
+      return
+    }
+    if (isEmpty(that.data.files)) {
+      wx.showToast({
+        title: '图片为空',
+      })
+      return
+    }
+    if (isEmpty(that.data.location)) {
+      wx.showToast({
+        title: '位置为空',
+      })
+      return
+    }
+
+    var arr = str2arr(that.data.location)
+
+    if (arr.length != 4) {
+      wx.showToast({
+        title: '位置格式错误',
+      })
+      return
+    }
+    console.log('debug,', that.data.desc, that.data.location)
+    const curpoints = app.getPoints();
+    if (curpoints < 1) {
+      wx.showToast({
+        title: '点数不足',
+      })
+      return
+    }
+
+    wx.showLoading({
+      title: '调试卡片模板',
+    })
+
+    const upResult = await uploadImage('/dgCardTemp', that.data.files[0], {
+      'x': arr[0],
+      'y': arr[1],
+      'width': arr[2],
+      'height': arr[3],
+    });
+
+    console.log(upResult);
+    const result = JSON.parse(upResult.data);
+    if (result.code == 1) {
+      wx.hideLoading();
+      app.costPoints();
+      let content = result.data;
+      const dgfiles = await downloadImage('/files', content)
+      that.setData({
+        dgImg: dgfiles.tempFilePath,
+      })
+
+    } else {
+      wx.hideLoading();
+      wx.showToast({
+        title: '点数不足',
+      })
+    }
 
   },
 

@@ -1,0 +1,29 @@
+<!--pages/mycontact/index.wxml-->
+<view class="page">
+  <view class="weui-form">
+    <view class="weui-form__bd">
+      <view class="weui-form__text-area">
+        <h2 class="weui-form__title">联系方式</h2>
+        <view class="weui-form__desc">如果您需要联系作者，可通过下方按钮获取作者的QQ联系方式，将消耗1个点数。请在加QQ好友时备注填写验证码。</view>
+      </view>
+      <view class="weui-form__control-area">
+        <view class="weui-cells__group weui-cells__group_form">
+          <view class="weui-cells">
+            <view class="weui-cell">
+            QQ 号：{{qq}}
+            </view>
+            <view class="weui-cell">
+            验证码：{{vcode}}
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="weui-form__ft">
+      <view class="weui-form__opr-area">
+        <view class="weui-btn weui-btn_primary" aria-role="button" bind:tap="getMyContact">获取联系方式</view>
+        <view class="weui-btn weui-btn_default" aria-role="button" bind:tap="doCopy">复制到剪切板</view>
+      </view>
+    </view>
+  </view>
+</view>

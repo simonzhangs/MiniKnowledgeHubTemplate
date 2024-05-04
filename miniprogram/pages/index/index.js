@@ -238,23 +238,24 @@ Page({
     const art = that.data.artList[idx];
     if (art.lockState == 1) {
       const points = app.globalData.myWalletInfo.points
-      if (points > 0) {
-        that.jumpToPage(e.currentTarget.dataset.guid, 2)
-      } else {
+      if (points <= 0) {
         // 弹出对话框，告知用户需要观看广告。
         wx.showModal({
           title: '提示',
-          content: '为了更好的鼓励作者，需要观看广告',
+          content: '您的点数不足，请先观看广告',
           success(res) {
             if (res.confirm) {
               console.log('用户点击确定')
+              wx.switchTab({
+                url: '../my/index'
+              })
              
             } else if (res.cancel) {
               console.log('用户点击取消')
             }
           }
         })
-
+        return
       }
     }
     that.jumpToPage(e.currentTarget.dataset.guid)
@@ -298,7 +299,7 @@ Page({
    */
   onLoad: function (options) {
     console.log(options);
-    that.setData({
+    this.setData({
       yestTime: getYestMsTime()
     })
     this.getMyStatInfo();
@@ -329,8 +330,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    videoAd = null;
-    lastUuid = '';
+  
   },
 
 

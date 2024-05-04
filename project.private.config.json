@@ -8,7 +8,7 @@
       "list": [
         {
           "name": "dev",
-          "pathName": "pages/myicode/index",
+          "pathName": "pages/upicode/index",
           "query": "",
           "launchMode": "default",
           "scene": null

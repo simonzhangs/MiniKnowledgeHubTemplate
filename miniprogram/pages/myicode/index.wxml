@@ -3,33 +3,26 @@
   <view class="weui-form">
     <view class="weui-form__bd">
       <view class="weui-form__text-area">
-        <h2 class="weui-form__title">我的卡片</h2>
-        <view class="weui-form__desc">将该卡片分享给新用户时，您获得点数奖励。分享过的用户扫码不会重复获取点数。可以在我的页面查看获得的推广奖励。</view>
+        <h2 class="weui-form__title">我的识别码</h2>
+        <view class="weui-form__desc">获取我的识别码卡片将消耗1个点数。将获取的识别码卡片分享给新用户时，您将获得点数奖励。分享过的用户不会重复获得点数。可在我的页面查看推广奖励。</view>
       </view>
       <view class="weui-form__control-area">
         <view class="weui-cells__group weui-cells__group_form">
+          <view class="weui-cells__title">卡片信息</view>
           <view class="weui-cells">
-            <!--选择模板按钮-->
-            <!--获取识别码画布-->
-            <!--获取识别码画布-->
-            <!--获取卡片按钮-->
-            <!--保存图片到相册-->
-            
             <view class="weui-cell">
               <image style="width: 300px; height: 200px; background-color: #eeeeee;" mode="{{item.mode}}" src="{{src}}"></image>
             </view>
-
           </view>
           <view class="weui-cells__tips">
-            <navigator class="weui-link" url="../cardtmpl/index">浏览其它模板？</navigator>
+            <navigator class="weui-link" url="../cardtmpl/index">浏览其它卡片模板？</navigator>
           </view>
         </view>
-        
       </view>
     </view>
     <view class="weui-form__ft">
       <view class="weui-form__opr-area">
-        <view class="weui-btn weui-btn_primary" aria-role="button" bind:tap="geticode">获取卡片</view>
+        <view class="weui-btn weui-btn_primary" aria-role="button" bind:tap="geticode">获取识别码卡片</view>
         <view class="weui-btn weui-btn_default" aria-role="button">保存到相册</view>
       </view>
     </view>

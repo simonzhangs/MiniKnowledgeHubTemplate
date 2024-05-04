@@ -23,7 +23,6 @@ Page({
 
     httpGet('/blogArtDetailByAd', {
       uuid: options.guid,
-      ad: options.ad,
     }).then((res) => {
 
       const result = res.data;
