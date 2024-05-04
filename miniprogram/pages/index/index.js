@@ -4,8 +4,7 @@ import {
   getYestMsTime,
   httpGet
 } from '../../utils/utils.js';
-let videoAd = null;
-let lastUuid = '';
+ 
 Page({
   /**
    * 页面的初始数据
@@ -56,92 +55,6 @@ Page({
     this.searchArt(1, keyword)
   },
 
-  // source 1 按钮点击 2 加锁文章点击
-  doAdProfit() {
-    const that = this;
-    wx.showLoading({
-      title: '计算广告收益',
-    })
-
-    httpPost('/adProfit', {
-      'source': 2,
-    }).then((res) => {
-      console.log(res);
-      wx.hideLoading()
-    }).catch((err) => {
-      console.log(err);
-      wx.hideLoading()
-    })
-  },
-
-  loadAd() {
-    const that = this;
-    if (wx.createRewardedVideoAd) {
-      videoAd = wx.createRewardedVideoAd({
-        adUnitId: 'adunit-2ce6db3cb1e45a86'
-      })
-      videoAd.onLoad(() => {
-        that.isLoadAd = true;
-      })
-      videoAd.onError((err) => {
-        console.error('激励视频光告加载失败', err)
-        that.isLoadAd = false;
-      })
-      videoAd.onClose((res) => {
-        // 用户点击了【关闭广告】按钮
-        if (res && res.isEnded) {
-          // 正常播放结束，可以下发游戏奖励
-          // 看看能不能做成全局函数
-          // that.doAdProfit();
-          that.jumpToPage(that.lastUuid, 1)
-        } else {
-          // 播放中途退出，不下发游戏奖励
-          wx.showToast({
-            title: '没有获得点数哟！',
-          })
-        }
-      })
-    }
-  },
-
-  playAd() {
-    // 限制当前用户看广告次数，半小时只允许看2次。
-    if (!app.canPlayAd()) {
-      wx.showToast({
-        title: '太频繁稍后再试',
-      })
-      return
-    }
-
-    wx.showLoading({
-      title: '加载广告中',
-    })
-    // 用户触发广告后，显示激励视频广告
-    if (videoAd) {
-      wx.hideLoading()
-      videoAd.show().catch(() => {
-        // 失败重试
-        videoAd.load()
-          .then(() => {
-            videoAd.show()
-          })
-          .catch(err => {
-            wx.showToast({
-              title: '请重试一次',
-            })
-            console.error('激励视频 广告显示失败', err)
-          })
-      })
-    } else {
-      wx.showToast({
-        title: '请重试一次',
-      })
-    }
-  },
-
-
-
-
   searchArt: function (pageNo, keyword) {
     const that = this
 
@@ -185,6 +98,7 @@ Page({
     })
 
   },
+
   bindBtn: function (e) {
     let btnId = e.target.id;
     let qtype = 1;
@@ -327,19 +241,14 @@ Page({
       if (points > 0) {
         that.jumpToPage(e.currentTarget.dataset.guid, 2)
       } else {
-        that.lastUuid = e.currentTarget.dataset.guid;
-        // that.playAd();
-        // wx.switchTab({
-        //   url: '../my/index',
-        // })
-        // TODO 弹出对话框，询问用户，是观看广告，还是直接观看。
+        // 弹出对话框，告知用户需要观看广告。
         wx.showModal({
           title: '提示',
           content: '为了更好的鼓励作者，需要观看广告',
           success(res) {
             if (res.confirm) {
               console.log('用户点击确定')
-              that.playAd();
+             
             } else if (res.cancel) {
               console.log('用户点击取消')
             }
@@ -347,16 +256,15 @@ Page({
         })
 
       }
-    } else {
-      that.jumpToPage(e.currentTarget.dataset.guid, 0)
     }
+    that.jumpToPage(e.currentTarget.dataset.guid)
   },
 
   // 0 啥都不需要 1 直接看广告 2 扣点数
-  jumpToPage: function (guid, ad) {
+  jumpToPage: function (guid) {
     // 调整到文章页面 
     wx.navigateTo({
-      url: '../article/index?guid=' + guid + '&ad=' + ad,
+      url: '../article/index?guid=' + guid,
     })
   },
 
@@ -390,12 +298,10 @@ Page({
    */
   onLoad: function (options) {
     console.log(options);
-    const that = this;
     that.setData({
       yestTime: getYestMsTime()
     })
-    that.loadAd();
-    that.getMyStatInfo();
+    this.getMyStatInfo();
   },
 
   /**
