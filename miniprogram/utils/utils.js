@@ -265,7 +265,7 @@ function downloadImage(url, filepath) {
 
 // 以逗号分割，先替换中文逗号
 function str2arr(str) {
-  let str1 = str.replace("，", ",");
+  let str1 = str.replaceAll("，", ",");
   return str1.split(',');
 }
 

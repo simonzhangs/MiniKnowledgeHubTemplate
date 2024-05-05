@@ -1,5 +1,5 @@
 const app = getApp();
-import {
+import utils, {
   isEmpty,
   uploadImage,
   downloadImage,
@@ -18,7 +18,7 @@ Page({
     samples: ['https://mp.91demo.top/static/images/icode.webp'],
     files: [],
     dgImg: '',
-
+    
   },
   chooseImage() {
     const that = this;
@@ -81,6 +81,9 @@ Page({
 
   previewDebugImage() {
     const that = this;
+    if(utils.isEmpty(that.data.dgImg)){
+      return
+    }
     wx.previewImage({
       urls: [that.data.dgImg], // 需要预览的图片http链接列表
     });
@@ -89,6 +92,111 @@ Page({
   uploadCardTmpl() {
     // 提交模板
     // 申请推送订阅
+    const that = this;
+    if (isEmpty(that.data.desc)) {
+      wx.showToast({
+        title: '描述为空',
+      })
+      return
+    }
+    if (isEmpty(that.data.files)) {
+      wx.showToast({
+        title: '图片为空',
+      })
+      return
+    }
+    if (isEmpty(that.data.location)) {
+      wx.showToast({
+        title: '位置为空',
+      })
+      return
+    }
+
+    var arr = str2arr(that.data.location)
+    console.log(arr)
+    if (arr.length != 4) {
+      wx.showToast({
+        title: '位置格式错误',
+      })
+      return
+    }
+  
+    const curpoints = app.getPoints();
+    if (curpoints < 1) {
+      wx.showToast({
+        title: '点数不足',
+      })
+      return
+    }
+
+    wx.getSetting({
+      withSubscriptions: true,
+      success (res) {
+        console.log(res.subscriptionsSetting)
+        if(isEmpty(res.subscriptionsSetting.DJrFZAlByd5L1xVLS8193hqxafgI6gj7I7n2Pprqs5k)){
+          wx.requestSubscribeMessage({
+            tmplIds: ['DJrFZAlByd5L1xVLS8193hqxafgI6gj7I7n2Pprqs5k'],
+            success (res) { 
+              console.log('sub,',res)
+              if(res.DJrFZAlByd5L1xVLS8193hqxafgI6gj7I7n2Pprqs5k=="accept"){
+                var arr = str2arr(that.data.location)
+                var f = that.data.files[0]
+                var desc = that.data.desc
+                
+                console.log(arr,f,desc)
+                that.submitCardTmpl(f,arr,desc)
+              }
+            }
+          })
+        }else{
+          if (res.subscriptionsSetting.DJrFZAlByd5L1xVLS8193hqxafgI6gj7I7n2Pprqs5k=="accept"){
+            var arr = str2arr(that.data.location)
+            var f = that.data.files[0]
+            var desc = that.data.desc
+            console.log(arr,f,desc)
+            that.submitCardTmpl(f,arr,desc)
+          }else{
+            wx.showToast({
+              title: '请打开订阅通知',
+            })
+          }
+        }
+      }
+    })
+   
+  },
+
+  submitCardTmpl(file,arr,desc){
+    wx.showLoading({
+      title: '上传卡片模板',
+    })
+    uploadImage('/upCardTmpl', file, {
+      'x': arr[0],
+      'y': arr[1],
+      'width': arr[2],
+      'height': arr[3],
+      'desc':desc,
+    }).then((res)=>{
+      wx.hideLoading();
+      console.log(res);
+      const result = JSON.parse(res.data);
+      if (result.code == 1) {
+        app.costPoints();
+        wx.showToast({
+          title: '提交成功',
+        })
+      } else {
+        wx.showToast({
+          title: result.msg,
+        })
+      }
+    }).catch((err)=>{
+      console.log(err);
+      wx.hideLoading()
+      wx.showToast({
+        title: '网络异常请重试',
+      })
+    })
   },
 
   async debugCardTmpl() {
@@ -133,7 +241,7 @@ Page({
       title: '调试卡片模板',
     })
 
-    const upResult = await uploadImage('/dgCardTemp', that.data.files[0], {
+    const upResult = await uploadImage('/dgCardTmpl', that.data.files[0], {
       'x': arr[0],
       'y': arr[1],
       'width': arr[2],

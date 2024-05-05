@@ -303,6 +303,7 @@ Page({
       yestTime: getYestMsTime()
     })
     this.getMyStatInfo();
+    // TODO 如果scene存在，将调用推荐奖励接口
   },
 
   /**
