@@ -1,5 +1,5 @@
 const app = getApp();
-import utils, {
+import  {
   isEmpty,
   uploadImage,
   downloadImage,
@@ -81,7 +81,7 @@ Page({
 
   previewDebugImage() {
     const that = this;
-    if(utils.isEmpty(that.data.dgImg)){
+    if(isEmpty(that.data.dgImg)){
       return
     }
     wx.previewImage({

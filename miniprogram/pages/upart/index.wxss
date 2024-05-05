@@ -1,1 +1,4 @@
 /* pages/upart/index.wxss */
+.page {
+	height: 100%;
+}

@@ -1,8 +1,8 @@
 // pages/mycontact/index.js
 const app = getApp();
-import utils, {
+import {
+  isEmpty,
   httpGet,
-  httpPost
 } from '../../utils/utils.js';
 
 Page({
@@ -11,19 +11,18 @@ Page({
    * 页面的初始数据
    */
   data: {
-    qq:'',
-    vcode:'',
+    qq: '',
+    vcode: '',
   },
 
-  
   getMyContact() {
     const that = this;
     const curpoints = app.getPoints();
-    if(curpoints < 1) {
+    if (curpoints < 1) {
       wx.showToast({
         title: '点数不足',
       })
-      return 
+      return
     }
     wx.showLoading({
       title: '获取联系方式',
@@ -37,11 +36,11 @@ Page({
         console.log(content)
         const strArr = content.split(',');
         that.setData({
-          qq:strArr[0],
-          vcode:strArr[1],
+          qq: strArr[0],
+          vcode: strArr[1],
         })
         app.costPoints();
-      }else{
+      } else {
         wx.showToast({
           title: '点数不足',
         })
@@ -55,35 +54,29 @@ Page({
     })
   },
 
-  doCopy(){
+  doCopy() {
     const that = this;
-    if(utils.isEmpty(that.data.qq)){
+    if (isEmpty(that.data.qq)) {
       wx.showToast({
         title: '内容不能为空',
       })
-      return 
+      return
     }
 
-    var content = 'QQ号：'+that.data.qq+'，验证码：'+that.data.vcode;
+    var content = 'QQ号：' + that.data.qq + '，验证码：' + that.data.vcode;
     wx.setClipboardData({
       data: content,
       success(res) {
-          wx.getClipboardData({
-              success(res) {
-                  wx.showToast({
-                      title: '复制成功',
-                  })
-              }
-          })
+
       }
-  })
+    })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    
+
   },
 
   /**
