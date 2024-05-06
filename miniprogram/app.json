@@ -10,15 +10,14 @@
     "pages/mycontact/index"
   ],
   "window": {
-    "navigationBarBackgroundColor": "#EDEDED",
+    "navigationBarBackgroundColor": "#ededed",
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "豆子碎片",
-    "backgroundColor": "#EDEDED",
+    "backgroundColor": "#ededed",
     "backgroundTextStyle": "light",
     "enablePullDownRefresh": false
   },
   "tabBar": {
-    
     "list": [{
       "pagePath": "pages/index/index",
       "text": "首页",

@@ -18,7 +18,6 @@ Page({
     samples: ['https://mp.91demo.top/static/images/icode.webp'],
     files: [],
     dgImg: '',
-    
   },
   chooseImage() {
     const that = this;

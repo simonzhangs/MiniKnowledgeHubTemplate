@@ -2,7 +2,8 @@ const app = getApp();
 import {
   httpPost,
   getYestMsTime,
-  httpGet
+  httpGet,
+  isEmpty
 } from '../../utils/utils.js';
  
 Page({
@@ -294,6 +295,18 @@ Page({
     })
   },
 
+  recommend(scene) {
+    const that = this;
+    httpPost('/recommendRewards', {"mid":scene}).then((res) => {
+      const result = res.data;
+      console.log(result);
+      
+    }).catch((err) => {
+      console.log(err);
+    })
+  },
+
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -304,6 +317,9 @@ Page({
     })
     this.getMyStatInfo();
     // TODO 如果scene存在，将调用推荐奖励接口
+    if(!isEmpty(options.scene)){
+       this.recommend(options.scene)
+    }
   },
 
   /**

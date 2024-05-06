@@ -1,6 +1,9 @@
 // pages/myicode/index.js
 const app = getApp();
-import { httpGet, httpPost } from '../../utils/utils.js';
+import {
+  httpGet,
+  isEmpty
+} from '../../utils/utils.js';
 
 Page({
 
@@ -8,18 +11,18 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
+    iurl: '',
     
   },
- 
-  geticode(){
+
+  geticode() {
     const that = this;
     const curpoints = app.getPoints();
-    if(curpoints < 1) {
+    if (curpoints < 1) {
       wx.showToast({
         title: '点数不足',
       })
-      return 
+      return
     }
 
     wx.showLoading({
@@ -31,7 +34,10 @@ Page({
       const result = res.data;
       if (result.code == 1) {
         let content = result.data;
-        console.log(content);
+        that.setData({
+          iurl: content,
+        })
+        console.log(content)
         app.costPoints();
       }
     }).catch((err) => {
@@ -42,17 +48,26 @@ Page({
       })
     })
   },
-  
+  previewIcodeImage() {
+    const that = this;
+    if(isEmpty(that.data.iurl)){
+      return
+    }
+    wx.previewImage({
+      urls: [that.data.iurl], // 需要预览的图片http链接列表
+    });
+  },
   saveToPhotosAlbum: function () {
     const that = this;
-    if (utils.isEmpty(that.data.headImage)) {
+    if (isEmpty(that.data.filepath)) {
       wx.showToast({
-        title: '请先转换图片',
+        title: '请先获取图片',
       })
       return
     }
+
     wx.saveImageToPhotosAlbum({
-      filePath: that.data.headImage,
+      filePath: that.data.filepath,
       success(res) {
         wx.showToast({
           title: '保存成功',
@@ -65,6 +80,7 @@ Page({
         })
       }
     })
+
   },
 
   /**

@@ -95,7 +95,7 @@
           </view>
         </view>
         <view class="weui-form__opr-area">
-          <button aria-role="button" class="weui-btn weui-btn_primary" form-type="submit">提交</button>
+          <button aria-role="button" class="weui-btn weui-btn_primary" form-type="submit">提 交</button>
 
         </view>
       </view>

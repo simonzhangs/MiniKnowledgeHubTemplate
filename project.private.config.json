@@ -8,7 +8,7 @@
       "list": [
         {
           "name": "dev",
-          "pathName": "pages/upart/index",
+          "pathName": "pages/index/index",
           "query": "",
           "launchMode": "default",
           "scene": 1001
