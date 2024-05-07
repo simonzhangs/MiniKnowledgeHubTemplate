@@ -1,5 +1,5 @@
 const app = getApp();
-import  {
+import {
   isEmpty,
   uploadImage,
   downloadImage,
@@ -18,12 +18,13 @@ Page({
     samples: ['https://mp.91demo.top/static/images/icode.webp'],
     files: [],
     dgImg: '',
+    info: '',
   },
   chooseImage() {
     const that = this;
     wx.chooseMedia({
       sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有
-      sourceType: ['album', ], // 可以指定来源是相册还是相机，默认二者都有
+      sourceType: ['album',], // 可以指定来源是相册还是相机，默认二者都有
       mediaType: ['image'],
       count: 1,
       success(res) {
@@ -80,7 +81,7 @@ Page({
 
   previewDebugImage() {
     const that = this;
-    if(isEmpty(that.data.dgImg)){
+    if (isEmpty(that.data.dgImg)) {
       return
     }
     wx.previewImage({
@@ -119,7 +120,7 @@ Page({
       })
       return
     }
-  
+
     const curpoints = app.getPoints();
     if (curpoints < 1) {
       wx.showToast({
@@ -130,31 +131,31 @@ Page({
 
     wx.getSetting({
       withSubscriptions: true,
-      success (res) {
+      success(res) {
         console.log(res.subscriptionsSetting)
-        if(isEmpty(res.subscriptionsSetting.DJrFZAlByd5L1xVLS8193hqxafgI6gj7I7n2Pprqs5k)){
+        if (isEmpty(res.subscriptionsSetting.DJrFZAlByd5L1xVLS8193hqxafgI6gj7I7n2Pprqs5k)) {
           wx.requestSubscribeMessage({
             tmplIds: ['DJrFZAlByd5L1xVLS8193hqxafgI6gj7I7n2Pprqs5k'],
-            success (res) { 
-              console.log('sub,',res)
-              if(res.DJrFZAlByd5L1xVLS8193hqxafgI6gj7I7n2Pprqs5k=="accept"){
+            success(res) {
+              console.log('sub,', res)
+              if (res.DJrFZAlByd5L1xVLS8193hqxafgI6gj7I7n2Pprqs5k == "accept") {
                 var arr = str2arr(that.data.location)
                 var f = that.data.files[0]
                 var desc = that.data.desc
-                
-                console.log(arr,f,desc)
-                that.submitCardTmpl(f,arr,desc)
+
+                console.log(arr, f, desc)
+                that.submitCardTmpl(f, arr, desc)
               }
             }
           })
-        }else{
-          if (res.subscriptionsSetting.DJrFZAlByd5L1xVLS8193hqxafgI6gj7I7n2Pprqs5k=="accept"){
+        } else {
+          if (res.subscriptionsSetting.DJrFZAlByd5L1xVLS8193hqxafgI6gj7I7n2Pprqs5k == "accept") {
             var arr = str2arr(that.data.location)
             var f = that.data.files[0]
             var desc = that.data.desc
-            console.log(arr,f,desc)
-            that.submitCardTmpl(f,arr,desc)
-          }else{
+            console.log(arr, f, desc)
+            that.submitCardTmpl(f, arr, desc)
+          } else {
             wx.showToast({
               title: '请打开订阅通知',
             })
@@ -162,10 +163,10 @@ Page({
         }
       }
     })
-   
+
   },
 
-  submitCardTmpl(file,arr,desc){
+  submitCardTmpl(file, arr, desc) {
     wx.showLoading({
       title: '上传卡片模板',
     })
@@ -174,8 +175,8 @@ Page({
       'y': arr[1],
       'width': arr[2],
       'height': arr[3],
-      'desc':desc,
-    }).then((res)=>{
+      'desc': desc,
+    }).then((res) => {
       wx.hideLoading();
       console.log(res);
       const result = JSON.parse(res.data);
@@ -189,7 +190,7 @@ Page({
           title: result.msg,
         })
       }
-    }).catch((err)=>{
+    }).catch((err) => {
       console.log(err);
       wx.hideLoading()
       wx.showToast({
@@ -252,8 +253,9 @@ Page({
     if (result.code == 1) {
       wx.hideLoading();
       app.costPoints();
-      let content = result.data;
-      const dgfiles = await downloadImage('/files', content)
+      let rspdata = result.data;
+      console.log(rspdata)
+      const dgfiles = await downloadImage('/files', rspdata)
       that.setData({
         dgImg: dgfiles.tempFilePath,
       })

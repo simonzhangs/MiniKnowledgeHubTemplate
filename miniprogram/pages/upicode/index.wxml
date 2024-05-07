@@ -49,7 +49,7 @@
                 </view>
               </view>
             </view>
-            <view class="weui-cell weui-cell_active weui-cell_disabled">
+            <view class="weui-cell weui-cell_active">
               <view class="weui-cell__hd">
                 <label class="weui-label">位置信息</label>
               </view>
@@ -57,8 +57,11 @@
                 <input class="weui-input" placeholder="请输入二维码位置信息" name="location" value="{{location}}" bindblur="bindLocation" />
               </view>
             </view>
-            <view class="weui-cell weui-cell_active weui-cell_disabled">
+            <view class="weui-cell weui-cell_active">
               <image style="width: 300px; height: 200px; background-color: #eeeeee;" mode="{{item.mode}}" src="{{dgImg}}" bindtap="previewDebugImage"></image>
+            </view>
+            <view class="weui-cell weui-cell_active">
+              <text>{{info}}</text>
             </view>
           </view>
         </view>
@@ -67,7 +70,7 @@
     <view class="weui-form__ft">
       <view class="weui-form__tips-area">
         <view class="weui-form__tips">
-          二维码位置信息格式为(x,y,width,height)
+          注意：二维码位置信息格式为(x,y,width,height)，请一定进行调试，因为在上传图片时会进行图片压缩，图片尺寸会有变化。请根据返回的图片尺寸计算二维码位置。
         </view>
       </view>
       <view class="weui-form__opr-area">

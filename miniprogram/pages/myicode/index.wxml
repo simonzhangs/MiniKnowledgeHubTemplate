@@ -3,8 +3,8 @@
   <view class="weui-form">
     <view class="weui-form__bd">
       <view class="weui-form__text-area">
-        <h2 class="weui-form__title">我的识别码</h2>
-        <view class="weui-form__desc">获取我的识别码卡片将消耗1个点数。将获取的识别码卡片分享给新用户时，您将获得点数奖励。分享过的用户不会重复获得点数。可在我的页面查看推广奖励。</view>
+        <h2 class="weui-form__title">我的分享卡片</h2>
+        <view class="weui-form__desc">获取我的分享卡片将消耗1个点数。卡片内包含识别码，将获取的卡片分享给新用户时，您将获得点数奖励。分享过的用户不会重复获得点数。可在我的页面查看推广奖励。</view>
       </view>
       <view class="weui-form__control-area">
         <view class="weui-cells__group weui-cells__group_form">

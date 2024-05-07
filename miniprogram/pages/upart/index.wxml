@@ -5,7 +5,7 @@
       <view class="weui-form__bd">
         <view class="weui-form__text-area">
           <h2 class="weui-form__title">上传库代码片段</h2>
-          <view class="weui-form__desc">豆子碎片收集编程开发库和代码片段。上传库代码片段将消耗1个点数，您上传的加锁库或代码片段被他人浏览时，您将获得点数奖励。当上传库时，必须传Github地址。目前仅限定Rust、Go、JavaScript、H5、SQL编程语言。</view>
+          <view class="weui-form__desc">豆子碎片收集编程开发库和代码片段。上传库/代码片段将消耗1个点数，您上传的加锁库或加锁代码片段被他人浏览时，您将获得点数奖励。当上传库时，必须传Github地址。目前仅限定Rust、Go、JavaScript、H5、SQL编程语言。</view>
         </view>
         <!--锁标志默认打开-->
         <view class="weui-form__control-area">
