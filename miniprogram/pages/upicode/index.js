@@ -18,7 +18,7 @@ Page({
     samples: ['https://mp.91demo.top/static/images/icode.webp'],
     files: [],
     dgImg: '',
-    info: '',
+    info: '显示调试信息',
   },
   chooseImage() {
     const that = this;
@@ -255,9 +255,11 @@ Page({
       app.costPoints();
       let rspdata = result.data;
       console.log(rspdata)
-      const dgfiles = await downloadImage('/files', rspdata)
+      var info = "底图宽高:"+rspdata.bgW+","+rspdata.bgH +"\n" + "二维码宽高:"+rspdata.qrW+","+rspdata.qrH+"\n"+"位置边长:"+rspdata.side;
+      const dgfiles = await downloadImage('/files', rspdata.url)
       that.setData({
         dgImg: dgfiles.tempFilePath,
+        info:info,
       })
 
     } else {

@@ -6,6 +6,7 @@
     "pages/myicode/index",
     "pages/upicode/index",
     "pages/cardtmpl/index",
+    "pages/cardtmpl/detail",
     "pages/upart/index",
     "pages/mycontact/index"
   ],

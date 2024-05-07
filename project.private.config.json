@@ -8,7 +8,7 @@
       "list": [
         {
           "name": "dev",
-          "pathName": "pages/index/index",
+          "pathName": "pages/cardtmpl/index",
           "query": "",
           "launchMode": "default",
           "scene": 1001

@@ -1,1 +1,14 @@
 /* pages/cardtmpl/index.wxss */
+
+.placeholder {
+	margin-top: 10rpx;
+	margin-left: 15rpx;
+	margin-right: 15rpx;
+	margin-bottom: 10rpx;
+	padding: 0 20rpx;
+	text-align: center;
+	background-color:var(--weui-BG-2);
+	height: 2.3em;
+	line-height: 2.3em;
+	color: var(--weui-FG-1)
+  }

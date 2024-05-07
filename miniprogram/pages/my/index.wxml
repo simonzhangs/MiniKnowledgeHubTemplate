@@ -63,7 +63,7 @@
         <button size="mini" bind:tap="upicode">上传卡片模板</button>
       </view>
       <view class="weui-flex__item">
-        <button size="mini" bind:tap="upart">上传库/代码片段</button>
+        <button size="mini" bind:tap="upart">上传库代码片段</button>
       </view>
     </view>
     <view class="weui-flex">
