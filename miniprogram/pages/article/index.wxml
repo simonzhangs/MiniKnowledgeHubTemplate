@@ -1,6 +1,6 @@
 <!--pages/article/index.wxml-->
 <view class="page">
-
+  <!--banner广告-->
   <!--使用towxml-->
   <towxml nodes="{{article}}" />
 

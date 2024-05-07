@@ -23,7 +23,7 @@
     <view class="weui-form__ft">
       <view class="weui-form__opr-area">
         <view class="weui-btn weui-btn_primary" aria-role="button" bind:tap="geticode">获取识别码卡片</view>
-        <view class="weui-btn weui-btn_default" aria-role="button" bind:tap="previewIcodeImage">预览保存</view>
+        <view class="weui-btn weui-btn_default" aria-role="button" bind:tap="previewIcodeImage">预览长按保存</view>
       </view>
     </view>
   </view>
