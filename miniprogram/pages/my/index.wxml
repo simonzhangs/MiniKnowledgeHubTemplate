@@ -76,7 +76,7 @@
     </view>
     <view class="weui-flex">
       <view class="weui-flex__item">
-       
+        <button size="mini" bind:tap="viewCt">浏览卡片模板</button>
       </view>
       <view class="weui-flex__item">
         <button type="primary" size="mini" bind:tap="playAd">看广告获得点数</button>

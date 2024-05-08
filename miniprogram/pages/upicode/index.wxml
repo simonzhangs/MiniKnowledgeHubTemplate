@@ -58,7 +58,7 @@
               </view>
             </view>
             <view class="weui-cell weui-cell_active">
-              <image style="width: 300px; height: 200px; background-color: #eeeeee;" mode="{{item.mode}}" src="{{dgImg}}" bindtap="previewDebugImage"></image>
+              <image style="width: 300px; height: 200px; background-color: #eeeeee;" mode="aspectFit" src="{{dgImg}}" bindtap="previewDebugImage"></image>
             </view>
             <view class="weui-cell weui-cell_active">
               <text>{{info}}</text>

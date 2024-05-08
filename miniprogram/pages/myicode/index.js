@@ -12,7 +12,6 @@ Page({
    */
   data: {
     iurl: '',
-    
   },
 
   geticode() {
@@ -50,7 +49,10 @@ Page({
   },
   previewIcodeImage() {
     const that = this;
-    if(isEmpty(that.data.iurl)){
+    if (isEmpty(that.data.iurl)) {
+      wx.showToast({
+        title: '先获取卡片',
+      })
       return
     }
     wx.previewImage({

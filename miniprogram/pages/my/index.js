@@ -27,18 +27,18 @@ Page({
     const appBaseInfo = wx.getAppBaseInfo()
 
     console.log(appBaseInfo.SDKVersion)
-    
+
     if (utils.compareVersion(appBaseInfo.SDKVersion, '2.6.0') == 1) {
       vAd = wx.createRewardedVideoAd({
         adUnitId: 'adunit-2ce6db3cb1e45a86',
       })
       vAd.onLoad(() => {
-         console.log('激励视频广告加载成功')
+        console.log('激励视频广告加载成功')
       }),
-      vAd.onError((err) => {
+        vAd.onError((err) => {
           console.error('激励视频广告加载失败,', err)
-      }),
-      vAd.onClose((res) => {
+        }),
+        vAd.onClose((res) => {
           // 用户点击了【关闭广告】按钮
           if (res && res.isEnded) {
             // 正常播放结束，可以下发游戏奖励
@@ -49,7 +49,7 @@ Page({
               title: '没有获得点数哟！',
             })
           }
-      })  
+        })
     }
   },
 
@@ -101,6 +101,13 @@ Page({
       url: '../myicode/index',
     })
   },
+
+  viewCt() {
+    wx.navigateTo({
+      url: '../cardtmpl/index',
+    })
+  },
+
   upart() {
     wx.navigateTo({
       url: '../upart/index',
@@ -149,11 +156,11 @@ Page({
     }).then((res) => {
       console.log(res);
       const myWalletInfo = that.data.myWalletInfo;
-      myWalletInfo.points +=1;
-      myWalletInfo.adProfit+=1;
+      myWalletInfo.points += 1;
+      myWalletInfo.adProfit += 1;
       myWalletInfo.updateTime = utils.getNowStr();
       that.setData({
-        myWalletInfo:myWalletInfo,
+        myWalletInfo: myWalletInfo,
       })
       app.globalData.myWalletInfo = myWalletInfo;
       wx.hideLoading()
@@ -174,7 +181,7 @@ Page({
     that.setData({
       myWalletInfo: myWalletInfo,
     })
-    
+
 
   },
 
