@@ -38,6 +38,14 @@
         <view class="info">模板获得点数：{{myWalletInfo.cardProfit}}</view>
       </view>
     </view>
+     <view class="weui-flex">
+      <view class="weui-flex__item">
+        <view class="info">系统补偿点数：{{myWalletInfo.sysaPoints}}</view>
+      </view>
+      <view class="weui-flex__item">
+        <view class="info">系统扣减点数：{{myWalletInfo.sysdPoints}}</view>
+      </view>
+    </view>
     <view class="weui-flex">
       <view class="weui-flex__item">
         <view class="info">最近更新时间：{{myWalletInfo.updateTime}}</view>
