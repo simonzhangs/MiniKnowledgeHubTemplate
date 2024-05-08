@@ -37,22 +37,12 @@ button{
   margin-bottom: 10rpx;
 }
 
-.weui-footer {
-  margin-bottom: 100rpx
-}
-
-.weui-footer_fixed-bottom {
-  margin-bottom: 0
+.weui-footer_fixed-bottom{
+  margin-bottom: 10rpx;
+  padding-bottom: 32rpx;
 }
 
 
-.weui-footer {
-  margin-bottom: 10rpx
-}
-
-.weui-footer_fixed-bottom {
-  margin-bottom: 0
-}
 
 .line{
   background: #E0E3DA;

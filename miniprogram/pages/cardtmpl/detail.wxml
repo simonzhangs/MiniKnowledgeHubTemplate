@@ -8,7 +8,7 @@
 	<view class="page__bd">
 		<view class="weui-cells">
 			<view class="weui-cell">
-				<image style="width: 300px; height: 200px; background-color: #eeeeee;" mode="aspectFit" src="{{url}}"></image>
+				<image style="width: 300px; height: 200px; background-color: #eeeeee;" mode="aspectFit" src="{{url}}" bind:tap="previewIcodeImage"></image>
 			</view>
 			<view class="weui-cell">
 				{{desc}}
@@ -17,7 +17,7 @@
 				<button type="primary" bind:tap="doApplyCardTmpl">应用卡片模板</button>
 			</view>
 			<view>
-				<button type="default" bind:tap="previewIcodeImage">预览长按保存</button>
+				<button type="default" bind:tap="saveToPhotosAlbum">保存到相册</button>
 			</view>
 			<view class="weui-cell">
 

@@ -3,7 +3,7 @@
     <!-- 卡片模板列表 -->
     <view class="page__hd">
         <view class="page__title">卡片模板列表</view>
-        <!-- <view class="page__desc"></view> -->
+        <view class="page__desc">应用卡片模板将消耗1个点数，卡片模板的作者将获得1个点数奖励。</view>
     </view>
     <view class="page__bd">
         <view class="weui-flex">
@@ -25,10 +25,9 @@
                     <view class="weui-cell__ft weui-cell__ft_in-access" aria-hidden="true"></view>
                 </view>
             </block>
-            <view class="weui-cell" wx:if="{{cardTmplList.length == 0 }}">
-                广告
-            </view>
+        </view>
+        <view class="ad" wx:if="{{cardTmplList.length==0}}">
+            <ad-custom unit-id="adunit-f1282577b2219b04"></ad-custom>
         </view>
     </view>
-    <!-- 选中后跳入详情，然后应用耗费点数。 -->
 </view>

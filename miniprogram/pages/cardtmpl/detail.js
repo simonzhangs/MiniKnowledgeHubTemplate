@@ -2,7 +2,8 @@
 const app = getApp();
 import {
   httpPost,
-  isEmpty
+  isEmpty,
+  downloadImage,
 } from '../../utils/utils.js';
 Page({
 
@@ -13,10 +14,11 @@ Page({
     id: 0,
     desc: '',
     url: '',
-    iurl:'',
+    icodeImg:'',
+    flag:0,
   },
 
-  doApplyCardTmpl() {
+  async doApplyCardTmpl() {
     const that = this;
     const curpoints = app.getPoints();
     if (curpoints < 1) {
@@ -25,45 +27,73 @@ Page({
       })
       return
     }
-    console.log(that.data.id);
+    
     wx.showLoading({
       title: '应用卡片模板',
     })
 
-    httpPost('/ayCardTmpl', {
+    const icodeResp= await httpPost('/ayCardTmpl', {
       "cardid": Number(that.data.id),
-    }).then((res) => {
-      wx.hideLoading()
-      const result = res.data;
-      console.log(result)
-      if (result.code == 1) {
-        let content = result.data;
-        that.setData({
-          iurl: content,
-        })
-        console.log(content)
-        app.costPoints();
-        wx.showToast({
-          title: '操作成功',
-        })
-      }
-    }).catch((err) => {
-      console.log(err);
-      wx.hideLoading()
-      wx.showToast({
-        title: '网络异常请重试',
+    });
+    console.log(icodeResp.data);
+    if (icodeResp.data.code == 1) {
+      const url = icodeResp.data.data;
+      const icodefiles = await downloadImage('/permanent', url);
+      that.setData({
+        icodeImg: icodefiles.tempFilePath,
+        flag:1,
       })
-    })
+      app.costPoints();
+      wx.hideLoading();
+      wx.showToast({
+        title: '应用成功',
+      })
+    }else{
+      wx.hideLoading();
+      wx.showToast({
+        title: '点数不足',
+      })
+    }
   },
 
   previewIcodeImage() {
     const that = this;
-    if(isEmpty(that.data.iurl)){
+    if(that.data.flag == 0) {
+      wx.previewImage({
+        urls: [that.data.url], 
+      });
+    }else{
+      wx.previewImage({
+        urls: [that.data.icodeImg],
+      });
+    }
+    
+  },
+
+  saveToPhotosAlbum() {
+    const that = this;
+    if (isEmpty(that.data.icodeImg)) {
+      wx.showToast({
+        title: '请先应用模板',
+      })
       return
     }
-    wx.previewImage({
-      urls: [that.data.iurl], // 需要预览的图片http链接列表
-    });
+
+    wx.saveImageToPhotosAlbum({
+      filePath: that.data.icodeImg,
+      success(res) {
+        wx.showToast({
+          title: '保存成功',
+        })
+      },
+      fail(err) {
+        console.log(err)
+        wx.showToast({
+          title: '保存失败',
+        })
+      }
+    })
+
   },
 
   /**

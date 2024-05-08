@@ -251,7 +251,6 @@ Page({
     console.log(upResult);
     const result = JSON.parse(upResult.data);
     if (result.code == 1) {
-      wx.hideLoading();
       app.costPoints();
       let rspdata = result.data;
       console.log(rspdata)
@@ -261,7 +260,7 @@ Page({
         dgImg: dgfiles.tempFilePath,
         info:info,
       })
-
+      wx.hideLoading();
     } else {
       wx.hideLoading();
       wx.showToast({

@@ -2,6 +2,7 @@
 const app = getApp();
 import {
   httpGet,
+  downloadImage,
   isEmpty
 } from '../../utils/utils.js';
 
@@ -11,7 +12,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    iurl: '',
+    icodeImg:'',
   },
 
   geticode() {
@@ -32,12 +33,13 @@ Page({
       wx.hideLoading()
       const result = res.data;
       if (result.code == 1) {
-        let content = result.data;
-        that.setData({
-          iurl: content,
-        })
-        console.log(content)
         app.costPoints();
+        let filename = result.data;
+        downloadImage("/files",filename).then((res)=>{
+          that.setData({
+            icodeImg: res.tempFilePath,
+          })
+        })
       }
     }).catch((err) => {
       console.log(err);
@@ -47,29 +49,61 @@ Page({
       })
     })
   },
+
+  async getmycard() {
+    const that = this;
+    const curpoints = app.getPoints();
+    if (curpoints < 1) {
+      wx.showToast({
+        title: '点数不足',
+      })
+      return
+    }
+
+    wx.showLoading({
+      title: '获取卡片信息',
+    })
+
+    const icodeResp = await httpGet('/myICode', {});
+    console.log(icodeResp.data);
+    if (icodeResp.data.code == 1) {
+      const url = icodeResp.data.data;
+      const icodefiles = await downloadImage('/permanent', url);
+      that.setData({
+        icodeImg: icodefiles.tempFilePath,
+      })
+      app.costPoints();
+      wx.hideLoading();
+    }else{
+      wx.hideLoading();
+      wx.showToast({
+        title: '点数不足',
+      })
+    }
+  },
   previewIcodeImage() {
     const that = this;
-    if (isEmpty(that.data.iurl)) {
+    if (isEmpty(that.data.icodeImg)) {
       wx.showToast({
-        title: '先获取卡片',
+        title: '请先获取卡片',
       })
       return
     }
     wx.previewImage({
-      urls: [that.data.iurl], // 需要预览的图片http链接列表
+      urls: [that.data.icodeImg], // 需要预览的图片http链接列表
     });
   },
   saveToPhotosAlbum: function () {
     const that = this;
-    if (isEmpty(that.data.filepath)) {
+    if (isEmpty(that.data.icodeImg)) {
       wx.showToast({
-        title: '请先获取图片',
+        title: '请先获取卡片',
       })
       return
     }
 
     wx.saveImageToPhotosAlbum({
-      filePath: that.data.filepath,
+      filePath: that.data.icodeImg,
       success(res) {
         wx.showToast({
           title: '保存成功',
@@ -78,7 +112,7 @@ Page({
       fail(err) {
         console.log(err)
         wx.showToast({
-          title: '请打开相册权限',
+          title: '保存失败',
         })
       }
     })

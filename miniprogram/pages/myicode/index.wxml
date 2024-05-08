@@ -11,7 +11,7 @@
           <view class="weui-cells__title">卡片信息</view>
           <view class="weui-cells">
             <view class="weui-cell">
-              <image style="width: 300px; height: 200px; background-color: #eeeeee;" mode="aspectFit" src="{{iurl}}"></image>
+              <image style="width: 300px; height: 200px; background-color: #eeeeee;" mode="aspectFit" src="{{icodeImg}}" bind:tap="previewIcodeImage"></image>
             </view>
           </view>
           <view class="weui-cells__tips">
@@ -22,8 +22,8 @@
     </view>
     <view class="weui-form__ft">
       <view class="weui-form__opr-area">
-        <view class="weui-btn weui-btn_primary" aria-role="button" bind:tap="geticode">获取我的卡片</view>
-        <view class="weui-btn weui-btn_default" aria-role="button" bind:tap="previewIcodeImage">预览长按保存</view>
+        <view class="weui-btn weui-btn_primary" aria-role="button" bind:tap="getmycard">获取我的卡片</view>
+        <view class="weui-btn weui-btn_default" aria-role="button" bind:tap="saveToPhotosAlbum">保存到相册</view>
       </view>
     </view>
   </view>

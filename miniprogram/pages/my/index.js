@@ -58,7 +58,7 @@ Page({
     console.log('aaaa', app.globalData);
     if (!app.canPlayAd()) {
       wx.showToast({
-        title: '太频繁稍后再试',
+        title: '半小时后再试',
       })
       return
     }
@@ -181,8 +181,6 @@ Page({
     that.setData({
       myWalletInfo: myWalletInfo,
     })
-
-
   },
 
   /**
