@@ -1,6 +1,6 @@
 // pages/mkart/index.js
 const app = getApp();
-const utils = require('../../utils/utils.js');
+import { httpGet } from '../../utils/utils.js';
 Page({
 
   /**
@@ -9,41 +9,41 @@ Page({
   data: {
     article: {} // 内容数据
   },
-  
+
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    
+
     const _ts = this;
     wx.showLoading({
       title: '加载中',
     })
 
-    utils.httpGet('/blogArtDetail', {
+    httpGet('/blogArtDetailByAd', {
       uuid: options.guid,
     }).then((res) => {
 
       const result = res.data;
       if (result.code == 1) {
         let content = result.data;
-          let obj = app.towxml(content, 'markdown', {
-            theme: 'light',
-            events: {
-              tap: (e) => {
-                console.log('tap', e);
-              }
+        let obj = app.towxml(content, 'markdown', {
+          theme: 'light',
+          events: {
+            tap: (e) => {
+              console.log('tap', e);
             }
-          });
+          }
+        });
 
-          _ts.setData({
-            article: obj,
-          });
+        _ts.setData({
+          article: obj,
+        });
 
-          wx.hideLoading({
-            success: (res) => { },
-          })
+        wx.hideLoading({
+          success: (res) => { },
+        })
       } else {
         wx.hideLoading()
       }

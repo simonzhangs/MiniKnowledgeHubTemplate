@@ -1,0 +1,4 @@
+/* pages/myicode/index.wxss */
+.page {
+	height: 100%;
+}

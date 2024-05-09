@@ -1,6 +1,11 @@
 const app = getApp();
-const utils = require('../../utils/utils.js')
-
+import {
+  httpPost,
+  getYestMsTime,
+  httpGet,
+  isEmpty
+} from '../../utils/utils.js';
+ 
 Page({
   /**
    * 页面的初始数据
@@ -17,6 +22,7 @@ Page({
     op: 1, // 1 搜索查询 2 按时间查询 3 按标签查询
     qtype: 1, // 1 最火 2 最新 3 最冷
     tag: "",
+    myWalletInfo: {},
   },
   showInput: function () {
     this.setData({
@@ -50,20 +56,9 @@ Page({
     this.searchArt(1, keyword)
   },
 
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    const that = this;
-    that.setData({
-      yestTime: utils.getYestMsTime()
-    })
-  },
-
   searchArt: function (pageNo, keyword) {
     const that = this
-   
+
     that.loading = true
     wx.showLoading({
       title: '加载中...',
@@ -75,7 +70,7 @@ Page({
       })
     }
 
-    utils.httpGet('/searchBlogArt', {
+    httpGet('/searchBlogArt', {
       'pageNo': pageNo,
       'keyword': keyword,
     }).then((res) => {
@@ -89,7 +84,7 @@ Page({
           pages: result.count, //总页数
           artList: that.data.artList.concat(articles)
         })
-        
+
       } else {
         wx.showToast({
           title: '没有找到记录',
@@ -104,6 +99,7 @@ Page({
     })
 
   },
+
   bindBtn: function (e) {
     let btnId = e.target.id;
     let qtype = 1;
@@ -128,13 +124,14 @@ Page({
       qtype: qtype,
       op: 2,
     })
-    
+
     this.getArtList(1, qtype)
   },
+
   // 根据类型查询
   getArtList: function (pageNo, qtype) {
     const that = this
-   
+
     that.loading = true
     wx.showLoading({
       title: '加载中...',
@@ -146,13 +143,13 @@ Page({
       })
     }
 
-    utils.httpGet('/getBlogArtList', {
+    httpGet('/getBlogArtList', {
       'pageNo': pageNo,
       'qtype': qtype,
     }).then((res) => {
       that.loading = false
       wx.hideLoading()
-     
+
       const result = res.data;
       if (result.code == 1) {
         const articles = result.data;
@@ -161,7 +158,7 @@ Page({
           pages: result.count, //总页数
           artList: that.data.artList.concat(articles)
         })
-       
+
       } else {
         wx.showToast({
           title: '没有找到记录',
@@ -179,19 +176,19 @@ Page({
 
   bindTag: function (e) {
     let tag = e.target.id;
-    
+
     this.setData({
       artList: [],
       tag: tag,
       op: 3,
     })
-    
+
     this.getBlogArtListByTag(1, tag)
   },
 
   getBlogArtListByTag: function (pageNo, tag) {
     const that = this
-    
+
     that.loading = true
     wx.showLoading({
       title: '加载中...',
@@ -203,23 +200,22 @@ Page({
       })
     }
 
-    utils.httpGet('/getBlogArtListByTag', {
+    httpGet('/getBlogArtListByTag', {
       'pageNo': pageNo,
       'tag': tag,
     }).then((res) => {
       that.loading = false
       wx.hideLoading()
-     
+
       const result = res.data;
       if (result.code == 1) {
         const articles = result.data;
-       
         that.setData({
           page: pageNo, //当前的页号
           pages: result.count, //总页数
           artList: that.data.artList.concat(articles)
         })
-       
+
       } else {
         wx.showToast({
           title: '没有找到记录',
@@ -238,10 +234,35 @@ Page({
 
   jump: function (e) {
     const that = this;
+    // 获取文章内容，看看是否有锁标志，然后判断点数是否足够，不足够唤起广告。
+    const idx = e.currentTarget.dataset.idx;
+    const art = that.data.artList[idx];
+    if (art.lockState == 1) {
+      const points = app.globalData.myWalletInfo.points
+      if (points <= 0) {
+        // 弹出对话框，告知用户需要观看广告。
+        wx.showModal({
+          title: '提示',
+          content: '您的点数不足，请先观看广告',
+          success(res) {
+            if (res.confirm) {
+              console.log('用户点击确定')
+              wx.switchTab({
+                url: '../my/index'
+              })
+             
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+            }
+          }
+        })
+        return
+      }
+    }
     that.jumpToPage(e.currentTarget.dataset.guid)
   },
 
-
+  // 0 啥都不需要 1 直接看广告 2 扣点数
   jumpToPage: function (guid) {
     // 调整到文章页面 
     wx.navigateTo({
@@ -249,8 +270,57 @@ Page({
     })
   },
 
-  
+  getMyStatInfo() {
+    const that = this;
+    // wx.showLoading({
+    //   title: '获取点数信息',
+    // })
 
+    httpGet('/myStatInfo', {}).then((res) => {
+      // wx.hideLoading()
+      const result = res.data;
+      if (result.code == 1) {
+        let content = result.data;
+        app.globalData.myWalletInfo = content;
+        that.setData({
+          myWalletInfo: content,
+        })
+      }
+    }).catch((err) => {
+      console.log(err);
+      // wx.hideLoading()
+      wx.showToast({
+        title: '网络异常请重试',
+      })
+    })
+  },
+
+  recommend(scene) {
+    const that = this;
+    httpPost('/recommendRewards', {"mid":scene}).then((res) => {
+      const result = res.data;
+      console.log(result);
+      
+    }).catch((err) => {
+      console.log(err);
+    })
+  },
+
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    console.log(options);
+    this.setData({
+      yestTime: getYestMsTime()
+    })
+    this.getMyStatInfo();
+    // TODO 如果scene存在，将调用推荐奖励接口
+    if(!isEmpty(options.scene)){
+       this.recommend(options.scene)
+    }
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -277,7 +347,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+  
   },
 
 
