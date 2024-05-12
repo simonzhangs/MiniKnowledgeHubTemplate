@@ -56,7 +56,7 @@
             <view class="weui-cells weui-cells_form">
               <view class="weui-cell" hover-class="weui-cell_active">
                 <view class="weui-cell__bd">
-                  <textarea class="weui-textarea" placeholder="请描述库或代码片段内容" placeholder-class="weui-input__placeholder" rows="3" name="desc" maxlength="300"></textarea>
+                  <textarea class="weui-textarea" placeholder="请描述库或代码片段内容" placeholder-class="weui-input__placeholder" rows="3" name="desc" maxlength="450"></textarea>
                 </view>
               </view>
             </view>
@@ -66,7 +66,7 @@
             <view class="weui-cells weui-cells_form">
               <view class="weui-cell" hover-class="weui-cell_active">
                 <view class="weui-cell__bd">
-                  <textarea class="weui-textarea" placeholder="请填写代码片段" placeholder-class="weui-input__placeholder" rows="3" name="snippet" maxlength="500"></textarea>
+                  <textarea class="weui-textarea" placeholder="请填写代码片段" placeholder-class="weui-input__placeholder" rows="3" name="snippet" maxlength="900"></textarea>
                 </view>
               </view>
             </view>
