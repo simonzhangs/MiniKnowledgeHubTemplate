@@ -2,9 +2,12 @@
 const app = getApp();
 import utils, {
   httpGet,
-  httpPost
+  httpPost,
+  getXMinTimeStamp,
+  diffNowTs
 } from '../../utils/utils.js';
 let vAd = null;
+let lastadTime = 0; // 上次时间戳
 Page({
 
   /**
@@ -56,6 +59,15 @@ Page({
   playAd() {
     // 限制当前用户看广告次数，半小时只允许看2次。
     console.log('aaaa', app.globalData);
+    // 当前时间戳
+    let diff = diffNowTs(lastadTime);
+
+    if (diff > 0) {
+      wx.showToast({
+        title: '请' + diff + '秒后再试',
+      })
+      return
+    }
     if (!app.canPlayAd()) {
       wx.showToast({
         title: '半小时后再试',
@@ -163,6 +175,8 @@ Page({
         myWalletInfo: myWalletInfo,
       })
       app.globalData.myWalletInfo = myWalletInfo;
+      lastadTime = getXMinTimeStamp(2);
+      app.globalData.lastadTime = lastadTime;
       wx.hideLoading()
     }).catch((err) => {
       console.log(err);
@@ -175,6 +189,7 @@ Page({
    */
   onLoad(options) {
     const that = this;
+    lastadTime = app.globalData.lastadTime;
     that.loadAd();
     let myWalletInfo = app.globalData.myWalletInfo;
     console.log('debug,', myWalletInfo)
@@ -209,6 +224,7 @@ Page({
    */
   onUnload() {
     vAd = null;
+    lastadTime = 0;
   },
 
   /**
