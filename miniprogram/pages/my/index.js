@@ -90,6 +90,11 @@ Page({
     }
   },
 
+  navFuncList() {
+    wx.navigateTo({
+      url: '../funclist/index',
+    })
+  },
   mycontact() {
     wx.navigateTo({
       url: '../mycontact/index',

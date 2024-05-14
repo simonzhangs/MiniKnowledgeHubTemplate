@@ -8,7 +8,7 @@
       "list": [
         {
           "name": "dev",
-          "pathName": "pages/cardtmpl/index",
+          "pathName": "pages/appicode/index",
           "query": "",
           "launchMode": "default",
           "scene": 1001

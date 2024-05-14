@@ -1,0 +1,10 @@
+/* pages/appicode/index.wxss */
+.page {
+	height: 100%;
+  }
+
+  text {
+	  word-break: break-all;
+  }
+
+ 

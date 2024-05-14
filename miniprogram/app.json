@@ -8,6 +8,8 @@
     "pages/cardtmpl/index",
     "pages/cardtmpl/detail",
     "pages/upart/index",
+    "pages/funclist/index",
+    "pages/appicode/index",
     "pages/mycontact/index"
   ],
   "window": {
