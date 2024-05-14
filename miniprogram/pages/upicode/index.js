@@ -133,7 +133,11 @@ Page({
       withSubscriptions: true,
       success(res) {
         console.log(res.subscriptionsSetting)
-        if (isEmpty(res.subscriptionsSetting.DJrFZAlByd5L1xVLS8193hqxafgI6gj7I7n2Pprqs5k)) {
+        if (!isEmpty(res.subscriptionsSetting.DJrFZAlByd5L1xVLS8193hqxafgI6gj7I7n2Pprqs5k) && res.subscriptionsSetting.DJrFZAlByd5L1xVLS8193hqxafgI6gj7I7n2Pprqs5k !== "accept") {
+          wx.showToast({
+            title: '请打开订阅通知',
+          })
+        } else {
           wx.requestSubscribeMessage({
             tmplIds: ['DJrFZAlByd5L1xVLS8193hqxafgI6gj7I7n2Pprqs5k'],
             success(res) {
@@ -142,24 +146,15 @@ Page({
                 var arr = str2arr(that.data.location)
                 var f = that.data.files[0]
                 var desc = that.data.desc
-
                 console.log(arr, f, desc)
                 that.submitCardTmpl(f, arr, desc)
+              } else {
+                wx.showToast({
+                  title: '请接受订阅通知',
+                })
               }
             }
           })
-        } else {
-          if (res.subscriptionsSetting.DJrFZAlByd5L1xVLS8193hqxafgI6gj7I7n2Pprqs5k == "accept") {
-            var arr = str2arr(that.data.location)
-            var f = that.data.files[0]
-            var desc = that.data.desc
-            console.log(arr, f, desc)
-            that.submitCardTmpl(f, arr, desc)
-          } else {
-            wx.showToast({
-              title: '请打开订阅通知',
-            })
-          }
         }
       }
     })
@@ -254,11 +249,11 @@ Page({
       app.costPoints();
       let rspdata = result.data;
       console.log(rspdata)
-      var info = "底图宽高:"+rspdata.bgW+","+rspdata.bgH +"\n" + "二维码宽高:"+rspdata.qrW+","+rspdata.qrH+"\n"+"位置边长:"+rspdata.side;
+      var info = "底图宽高:" + rspdata.bgW + "," + rspdata.bgH + "\n" + "二维码宽高:" + rspdata.qrW + "," + rspdata.qrH + "\n" + "位置边长:" + rspdata.side;
       const dgfiles = await downloadImage('/files', rspdata.url)
       that.setData({
         dgImg: dgfiles.tempFilePath,
-        info:info,
+        info: info,
       })
       wx.hideLoading();
     } else {
