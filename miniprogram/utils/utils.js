@@ -269,6 +269,22 @@ function str2arr(str) {
   return str1.split(',');
 }
 
+
+// 获取x分钟后时间戳
+function getXMinTimeStamp(x) {
+  var date = new Date();
+  var min = date.getMinutes();
+  date.setMinutes(min + x);
+  var timestamp = date.getTime();
+  return Math.floor(timestamp / 1000);
+}
+
+// 获取与当前时间戳的差值
+function diffNowTs(t) {
+  const now = getSecTs();
+  return t - now;
+}
+
 module.exports = {
   formatTime: formatTime,
   isEmpty: isEmpty,
@@ -287,4 +303,7 @@ module.exports = {
   uploadImage,
   downloadImage,
   str2arr,
+  getXMinTimeStamp,
+  diffNowTs,
+
 }
