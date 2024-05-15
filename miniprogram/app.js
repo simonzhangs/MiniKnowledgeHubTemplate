@@ -38,8 +38,8 @@ App({
         if (res.code) {
           //发起网络请求
           httpPost("/wxlogin", {
-              code: res.code,
-            })
+            code: res.code,
+          })
             .then((res) => {
 
               if (res.data.code === 1) {
@@ -65,11 +65,11 @@ App({
     });
   },
 
-  getPoints(){
+  getPoints() {
     return this.globalData.myWalletInfo.points
   },
 
-  costPoints(){
+  costPoints() {
     this.globalData.myWalletInfo.points -= 1;
   },
 
@@ -94,9 +94,11 @@ App({
     this.login()
     const now = getSecTs();
     this.globalData.adStartTime = now;
+    this.globalData.lastadTime = now;
   },
 
   globalData: {
+    lastadTime: 0,
     adFreqHalfHour: 6,
     adStartTime: 0,
     adCnt: 0,
@@ -107,7 +109,7 @@ App({
       adProfit: 0,
       artProfit: 0,
       cardProfit: 0,
-      updateTime:'',
+      updateTime: '',
     },
   }
 });

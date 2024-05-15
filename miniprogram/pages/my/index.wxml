@@ -32,7 +32,7 @@
     </view>
     <view class="weui-flex">
       <view class="weui-flex__item">
-        <view class="info">推广获得点数：{{myWalletInfo.shareProfit}}</view>
+        <view class="info">推荐获得点数：{{myWalletInfo.shareProfit}}</view>
       </view>
       <view class="weui-flex__item">
         <view class="info">模板获得点数：{{myWalletInfo.cardProfit}}</view>
@@ -58,25 +58,10 @@
       <view class="title">功能区域</view>
     </view>
     
+   
     <view class="weui-flex">
       <view class="weui-flex__item">
-        <button size="mini" bind:tap="myicode">获取分享卡片</button>
-      </view>
-      <view class="weui-flex__item">
-        <button size="mini" bind:tap="mycontact">获取联系方式</button>
-      </view>
-    </view>
-    <view class="weui-flex">
-      <view class="weui-flex__item">
-        <button size="mini" bind:tap="upicode">上传卡片模板</button>
-      </view>
-      <view class="weui-flex__item">
-        <button size="mini" bind:tap="upart">上传库代码片段</button>
-      </view>
-    </view>
-    <view class="weui-flex">
-      <view class="weui-flex__item">
-        <button size="mini" bind:tap="viewCt">浏览卡片模板</button>
+        <button size="mini" bind:tap="navFuncList">使用更多功能</button>
       </view>
       <view class="weui-flex__item">
         <button type="primary" size="mini" bind:tap="playAd">看广告获得点数</button>

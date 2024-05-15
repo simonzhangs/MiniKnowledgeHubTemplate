@@ -1,17 +1,18 @@
 {
   "setting": {
     "urlCheck": false,
-    "compileHotReLoad": true
+    "compileHotReLoad": true,
+    "autoAudits": true
   },
   "condition": {
     "miniprogram": {
       "list": [
         {
           "name": "dev",
-          "pathName": "pages/cardtmpl/index",
-          "query": "",
+          "pathName": "pages/index/index",
+          "query": "scene=oKhpd5UfXZ62G_GttrujfmwlVM-s",
           "launchMode": "default",
-          "scene": 1001
+          "scene": 1047
         }
       ]
     }

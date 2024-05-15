@@ -303,6 +303,7 @@ module.exports = {
   uploadImage,
   downloadImage,
   str2arr,
-  diffNowTs,
   getXMinTimeStamp,
+  diffNowTs,
+
 }

@@ -3,8 +3,8 @@ const app = getApp();
 import utils, {
   httpGet,
   httpPost,
+  diffNowTs,
   getXMinTimeStamp,
-  diffNowTs
 } from '../../utils/utils.js';
 let vAd = null;
 let lastadTime = 0; // 上次时间戳
@@ -57,8 +57,10 @@ Page({
   },
 
   playAd() {
-    // 限制当前用户看广告次数，半小时只允许看2次。
-    console.log('aaaa', app.globalData);
+    wx.showLoading({
+      title: '加载广告中',
+    })
+
     // 当前时间戳
     let diff = diffNowTs(lastadTime);
 
@@ -68,6 +70,7 @@ Page({
       })
       return
     }
+    // 限制看广告次数
     if (!app.canPlayAd()) {
       wx.showToast({
         title: '半小时后再试',
@@ -75,19 +78,19 @@ Page({
       return
     }
 
-    wx.showLoading({
-      title: '加载广告中',
-    })
     // 用户触发广告后，显示激励视频广告
     if (vAd) {
-      wx.hideLoading()
-      vAd.show().catch(() => {
+      vAd.show().then(() => [
+        wx.hideLoading()
+      ]).catch(() => {
         // 失败重试
         vAd.load()
           .then(() => {
+            wx.hideLoading()
             vAd.show()
           })
           .catch(err => {
+            wx.hideLoading()
             wx.showToast({
               title: '请重试一次',
             })
@@ -102,6 +105,11 @@ Page({
     }
   },
 
+  navFuncList() {
+    wx.navigateTo({
+      url: '../funclist/index',
+    })
+  },
   mycontact() {
     wx.navigateTo({
       url: '../mycontact/index',
@@ -175,7 +183,7 @@ Page({
         myWalletInfo: myWalletInfo,
       })
       app.globalData.myWalletInfo = myWalletInfo;
-      lastadTime = getXMinTimeStamp(2);
+      lastadTime = getXMinTimeStamp(1);
       app.globalData.lastadTime = lastadTime;
       wx.hideLoading()
     }).catch((err) => {
@@ -188,6 +196,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    lastadTime = app.globalData.lastadTime;
     const that = this;
     lastadTime = app.globalData.lastadTime;
     that.loadAd();
