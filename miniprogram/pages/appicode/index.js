@@ -6,6 +6,7 @@ import {
 } from '../../utils/utils.js';
 
 let bflag = false;
+let rflag =false;
 Page({
 
   /**
@@ -20,7 +21,7 @@ Page({
     const that = this;
     if(that.bflag){
       wx.showToast({
-        title: '不用重复获取',
+        title: '不用重复操作',
       })
       return
     }
@@ -39,13 +40,56 @@ Page({
       wx.hideLoading()
       const result = res.data;
       if (result.code == 1) {
-        let content = result.data;
-        console.log(content)
+        let content = result.data;     
         that.setData({
           icode: content.icode,
           isecret: content.isecret,
         })
         that.bflag = true;
+        app.costPoints();
+      } else {
+        wx.showToast({
+          title: '点数不足',
+        })
+      }
+    }).catch((err) => {
+      console.log(err);
+      wx.hideLoading()
+      wx.showToast({
+        title: '网络异常请重试',
+      })
+    })
+  },
+
+  resetAppIcode(){
+    const that = this;
+    if(that.rflag){
+      wx.showToast({
+        title: '不用重复操作',
+      })
+      return
+    }
+    const curpoints = app.getPoints();
+    if (curpoints < 1) {
+      wx.showToast({
+        title: '点数不足',
+      })
+      return
+    }
+    wx.showLoading({
+      title: '重置识别码密钥',
+    })
+
+    httpPost('/resetAppIcode', {}).then((res) => {
+      wx.hideLoading()
+      const result = res.data;
+      if (result.code == 1) {
+        let content = result.data;
+        that.setData({
+          icode: content.icode,
+          isecret: content.isecret,
+        })
+        that.rflag = true;
         app.costPoints();
       } else {
         wx.showToast({
@@ -112,6 +156,7 @@ Page({
    */
   onUnload() {
     bflag = false;
+    rflag = false;
   },
 
   /**

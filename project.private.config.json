@@ -8,10 +8,10 @@
       "list": [
         {
           "name": "dev",
-          "pathName": "pages/appicode/index",
-          "query": "",
+          "pathName": "pages/index/index",
+          "query": "scene=oKhpd5UfXZ62G_GttrujfmwlVM-s",
           "launchMode": "default",
-          "scene": 1001
+          "scene": 1047
         }
       ]
     }

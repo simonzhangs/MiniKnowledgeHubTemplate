@@ -297,12 +297,15 @@ Page({
 
   recommend(scene) {
     const that = this;
+
     httpPost('/recommendRewards', {"mid":scene}).then((res) => {
       const result = res.data;
-      console.log(result);
-      
+      if(result.code == 1){
+        wx.removeStorageSync('rrqrcode')
+      }
     }).catch((err) => {
       console.log(err);
+      wx.setStorageSync('rrqrcode', scene)
     })
   },
 
@@ -316,9 +319,13 @@ Page({
       yestTime: getYestMsTime()
     })
     this.getMyStatInfo();
-    // TODO 如果scene存在，将调用推荐奖励接口
+    // 如果scene存在，将调用推荐奖励接口
     if(!isEmpty(options.scene)){
        this.recommend(options.scene)
+    }
+    const scene = wx.getStorageSync('rrqrcode')
+    if(!isEmpty(scene)){
+      this.recommend(scene)
     }
   },
 
