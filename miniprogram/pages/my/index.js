@@ -171,13 +171,12 @@ Page({
       title: '计算广告收益',
     })
 
-    httpPost('/adProfit', {
-      'source': 1,
-    }).then((res) => {
-      console.log(res);
+    httpPost('/adProfit', {}).then((res) => {
+      const ps = res.data.data;
+      // console.log(res,ps);
       const myWalletInfo = that.data.myWalletInfo;
-      myWalletInfo.points += 1;
-      myWalletInfo.adProfit += 1;
+      myWalletInfo.points += ps;
+      myWalletInfo.adProfit += ps;
       myWalletInfo.updateTime = utils.getNowStr();
       that.setData({
         myWalletInfo: myWalletInfo,

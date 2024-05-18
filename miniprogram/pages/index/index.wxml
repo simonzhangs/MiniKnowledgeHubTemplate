@@ -22,39 +22,39 @@
     <!-- 查询快捷按钮-->
     <view class="weui-flex">
       <view class="weui-flex__item">
-        <view class="placeholder" id="btnHot" bindtap="bindBtn">最火</view>
+        <view class="placeholder" id="btnHot" bindtap="bindBtn" hover-class="placeholder-hover">最火</view>
       </view>
       <view class="weui-flex__item">
-        <view class="placeholder" id="btnNew" bindtap="bindBtn">最新</view>
+        <view class="placeholder" id="btnNew" bindtap="bindBtn" hover-class="placeholder-hover">最新</view>
       </view>
       <view class="weui-flex__item">
-        <view class="placeholder" id="btnCold" bindtap="bindBtn">最冷</view>
+        <view class="placeholder" id="btnCold" bindtap="bindBtn" hover-class="placeholder-hover">最冷</view>
       </view>
     </view>
     
 
     <view class="weui-flex">
       <view class="weui-flex__item">
-        <view class="placeholder" id="go" bindtap="bindTag">Golang</view>
+        <view class="placeholder" id="go" bindtap="bindTag" hover-class="placeholder-hover">Golang</view>
       </view>
       <view class="weui-flex__item">
-        <view class="placeholder" id="rust" bindtap="bindTag">Rust</view>
+        <view class="placeholder" id="rust" bindtap="bindTag" hover-class="placeholder-hover">Rust</view>
       </view>
       <view class="weui-flex__item">
-        <view class="placeholder" id="h5" bindtap="bindTag">H5</view>
+        <view class="placeholder" id="h5" bindtap="bindTag" hover-class="placeholder-hover">H5</view>
       </view>
 
 
     </view>
     <view class="weui-flex">
       <view class="weui-flex__item">
-        <view class="placeholder" id="mp" bindtap="bindTag">小程序</view>
+        <view class="placeholder" id="mp" bindtap="bindTag" hover-class="placeholder-hover">小程序</view>
       </view>
       <view class="weui-flex__item">
-        <view class="placeholder" id="db" bindtap="bindTag">数据库</view>
+        <view class="placeholder" id="db" bindtap="bindTag" hover-class="placeholder-hover">数据库</view>
       </view>
       <view class="weui-flex__item">
-        <view class="placeholder" id="ops" bindtap="bindTag">开发环境</view>
+        <view class="placeholder" id="ops" bindtap="bindTag" hover-class="placeholder-hover">开发环境</view>
       </view>
     </view>
 
