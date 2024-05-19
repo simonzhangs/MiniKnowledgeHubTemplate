@@ -279,6 +279,13 @@ function getXMinTimeStamp(x) {
   return Math.floor(timestamp / 1000);
 }
 
+
+// 获取x秒后时间戳
+function getXSecTimeStamp(x) {
+  const now = Math.floor(Date.now() / 1000);
+  return now + x;
+}
+
 // 获取与当前时间戳的差值
 function diffNowTs(t) {
   const now = getSecTs();
@@ -304,6 +311,7 @@ module.exports = {
   downloadImage,
   str2arr,
   getXMinTimeStamp,
+  getXSecTimeStamp,
   diffNowTs,
 
 }

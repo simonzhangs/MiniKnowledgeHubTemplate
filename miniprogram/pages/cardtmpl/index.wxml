@@ -8,10 +8,10 @@
     <view class="page__bd">
         <view class="weui-flex">
             <view class="weui-flex__item">
-                <view class="placeholder" id="btnHot" bindtap="bindBtn">最火</view>
+                <view class="placeholder" id="btnHot" bindtap="bindBtn" hover-class="placeholder-hover">最火</view>
             </view>
             <view class="weui-flex__item">
-                <view class="placeholder" id="btnNew" bindtap="bindBtn">最新</view>
+                <view class="placeholder" id="btnNew" bindtap="bindBtn" hover-class="placeholder-hover">最新</view>
             </view>
         </view>
         <view class="weui-cells">

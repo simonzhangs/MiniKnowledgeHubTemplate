@@ -47,6 +47,7 @@ App({
                 wx.setStorageSync('sessionTime', Date.now());
                 console.log(res.data.data["adFreqHalfHour"]);
                 that.globalData.adFreqHalfHour = res.data.data["adFreqHalfHour"];
+                that.globalData.adInterval = res.data.data["adInterval"];
               } else {
                 console.log(res.data.msg);
                 wx.showToast({
@@ -102,6 +103,7 @@ App({
     adFreqHalfHour: 6,
     adStartTime: 0,
     adCnt: 0,
+    adInterval:30,
     myWalletInfo: {
       points: 0,
       usePoints: 0,
@@ -109,6 +111,8 @@ App({
       adProfit: 0,
       artProfit: 0,
       cardProfit: 0,
+      sysaPoints:0,
+      sysdPoints:0,
       updateTime: '',
     },
   }

@@ -13,6 +13,11 @@
 	color: var(--weui-FG-1)
 }
 
+
+.placeholder-hover {
+  background-color:var(--weui-BG-0);
+}
+
 .ad {
 	margin-left: 32rpx;
 	margin-right: 32rpx;

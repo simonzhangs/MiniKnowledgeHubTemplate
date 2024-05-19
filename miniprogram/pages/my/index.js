@@ -4,7 +4,7 @@ import utils, {
   httpGet,
   httpPost,
   diffNowTs,
-  getXMinTimeStamp,
+  getXSecTimeStamp,
 } from '../../utils/utils.js';
 let vAd = null;
 let lastadTime = 0; // 上次时间戳
@@ -21,6 +21,8 @@ Page({
       adProfit: 0,
       artProfit: 0,
       cardProfit: 0,
+      sysaPoints:0,
+      sysdPoints:0,
       updateTime: '',
     },
   },
@@ -182,7 +184,8 @@ Page({
         myWalletInfo: myWalletInfo,
       })
       app.globalData.myWalletInfo = myWalletInfo;
-      lastadTime = getXMinTimeStamp(1);
+      lastadTime = getXSecTimeStamp(app.globalData.adInterval);
+      // lastadTime = getXMinTimeStamp(1);
       app.globalData.lastadTime = lastadTime;
       wx.hideLoading()
     }).catch((err) => {
