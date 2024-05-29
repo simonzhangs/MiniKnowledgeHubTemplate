@@ -24,11 +24,21 @@ App({
       if (now - sessionTime >= 2592000000) {
         wx.removeStorageSync("sessionKey");
         wx.removeStorageSync("sessionTime");
+        wx.removeStorageSync("adFreqHalfHour");
+        wx.removeStorageSync("adInterval");
+        wx.removeStorageSync("adProfit");
         that.wxLogin();
       }
     }
     if (isEmpty(cookie)) {
       that.wxLogin();
+    } else {
+      let adFreqHalfHour = wx.getStorageSync('adFreqHalfHour')
+      that.globalData.adFreqHalfHour = Number(adFreqHalfHour);
+      let adInterval = wx.getStorageSync('adInterval')
+      that.globalData.adInterval = Number(adInterval);
+      let adProfit = wx.getStorageSync('adProfit')
+      that.globalData.adProfit = Number(adProfit);
     }
   },
   wxLogin() {
@@ -43,11 +53,16 @@ App({
             .then((res) => {
 
               if (res.data.code === 1) {
+                let data = res.data;
                 wx.setStorageSync("sessionKey", res.header["Set-Cookie"]);
                 wx.setStorageSync('sessionTime', Date.now());
-                console.log(res.data.data["adFreqHalfHour"]);
-                that.globalData.adFreqHalfHour = res.data.data["adFreqHalfHour"];
-                that.globalData.adInterval = res.data.data["adInterval"];
+                wx.setStorageSync('adFreqHalfHour', data.data.adFreqHalfHour);
+                wx.setStorageSync('adInterval', data.data.adInterval);
+                wx.setStorageSync('adProfit', data.data.adProfit);
+
+                that.globalData.adFreqHalfHour = data.data.adFreqHalfHour;
+                that.globalData.adInterval = data.data.adInterval;
+                that.globalData.adProfit = data.data.adProfit;
               } else {
                 console.log(res.data.msg);
                 wx.showToast({
@@ -103,7 +118,8 @@ App({
     adFreqHalfHour: 6,
     adStartTime: 0,
     adCnt: 0,
-    adInterval:30,
+    adInterval: 30,
+    adProfit: 1,
     myWalletInfo: {
       points: 0,
       usePoints: 0,
@@ -111,8 +127,8 @@ App({
       adProfit: 0,
       artProfit: 0,
       cardProfit: 0,
-      sysaPoints:0,
-      sysdPoints:0,
+      sysaPoints: 0,
+      sysdPoints: 0,
       updateTime: '',
     },
   }

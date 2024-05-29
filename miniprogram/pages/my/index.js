@@ -21,8 +21,8 @@ Page({
       adProfit: 0,
       artProfit: 0,
       cardProfit: 0,
-      sysaPoints:0,
-      sysdPoints:0,
+      sysaPoints: 0,
+      sysdPoints: 0,
       updateTime: '',
     },
   },
@@ -166,7 +166,6 @@ Page({
     })
   },
 
-  // source 1 按钮点击 2 加锁文章点击
   doAdProfit() {
     const that = this;
     wx.showLoading({
@@ -185,7 +184,6 @@ Page({
       })
       app.globalData.myWalletInfo = myWalletInfo;
       lastadTime = getXSecTimeStamp(app.globalData.adInterval);
-      // lastadTime = getXMinTimeStamp(1);
       app.globalData.lastadTime = lastadTime;
       wx.hideLoading()
     }).catch((err) => {
@@ -198,11 +196,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    lastadTime = app.globalData.lastadTime;
     const that = this;
     that.loadAd();
+    lastadTime = app.globalData.lastadTime;
     let myWalletInfo = app.globalData.myWalletInfo;
-    console.log('debug,', myWalletInfo)
     that.setData({
       myWalletInfo: myWalletInfo,
     })

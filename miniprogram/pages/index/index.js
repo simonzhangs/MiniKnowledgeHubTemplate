@@ -5,7 +5,9 @@ import {
   httpGet,
   isEmpty
 } from '../../utils/utils.js';
- 
+
+let vAd = null;
+let hasLoadAd = false;
 Page({
   /**
    * 页面的初始数据
@@ -24,6 +26,82 @@ Page({
     tag: "",
     myWalletInfo: {},
   },
+
+  loadAd() {
+    const that = this;
+    vAd = wx.createRewardedVideoAd({
+      adUnitId: 'adunit-2ce6db3cb1e45a86',
+    })
+    vAd.onLoad(() => {
+      hasLoadAd = true
+    }),
+      vAd.onError((err) => {
+        console.error('激励视频广告加载失败,', err)
+      }),
+      vAd.onClose((res) => {
+        if (res && res.isEnded) {
+          that.doAdProfit();
+        } else {
+          wx.showToast({
+            title: '没有获得点数哟！',
+          })
+        }
+      })
+  },
+
+  playAd() {
+    wx.showLoading({
+      title: '加载广告中',
+    })
+    if (!hasLoadAd) {
+      that.loadAd();
+    }
+    // 用户触发广告后，显示激励视频广告
+    if (vAd) {
+      vAd.show().then(() => [
+        wx.hideLoading()
+      ]).catch(() => {
+        // 失败重试
+        vAd.load()
+          .then(() => {
+            wx.hideLoading()
+            vAd.show()
+          })
+          .catch(err => {
+            wx.hideLoading()
+            wx.showToast({
+              title: '请重试一次',
+            })
+            console.error('激励视频 广告显示失败', err)
+          })
+      })
+    } else {
+      wx.hideLoading()
+      wx.showToast({
+        title: '请稍后重试',
+      })
+    }
+  },
+
+  doAdProfit() {
+    const that = this;
+    httpPost('/adProfit', {}).then((res) => {
+      const ps = res.data.data;
+      // console.log(res,ps);
+      const myWalletInfo = that.data.myWalletInfo;
+      myWalletInfo.points += ps;
+      myWalletInfo.adProfit += ps;
+      myWalletInfo.updateTime = utils.getNowStr();
+      that.setData({
+        myWalletInfo: myWalletInfo,
+      })
+      app.globalData.myWalletInfo = myWalletInfo;
+
+    }).catch((err) => {
+      console.log(err);
+    })
+  },
+
   showInput: function () {
     this.setData({
       inputShowed: true
@@ -250,7 +328,7 @@ Page({
               wx.switchTab({
                 url: '../my/index'
               })
-             
+
             } else if (res.cancel) {
               console.log('用户点击取消')
             }
@@ -298,9 +376,9 @@ Page({
   recommend(scene) {
     const that = this;
 
-    httpPost('/recommendRewards', {"mid":scene}).then((res) => {
+    httpPost('/recommendRewards', { "mid": scene }).then((res) => {
       const result = res.data;
-      if(result.code == 1){
+      if (result.code == 1) {
         wx.removeStorageSync('rrqrcode')
       }
     }).catch((err) => {
@@ -320,11 +398,11 @@ Page({
     })
     this.getMyStatInfo();
     // 如果scene存在，将调用推荐奖励接口
-    if(!isEmpty(options.scene)){
-       this.recommend(options.scene)
+    if (!isEmpty(options.scene)) {
+      this.recommend(options.scene)
     }
     const scene = wx.getStorageSync('rrqrcode')
-    if(!isEmpty(scene)){
+    if (!isEmpty(scene)) {
       this.recommend(scene)
     }
   },
@@ -354,7 +432,8 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+    hasLoadAd = true;
+    vAd = null;
   },
 
 
