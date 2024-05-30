@@ -1,4 +1,4 @@
-// pages/my/index.js
+// pages/point/index.js
 const app = getApp();
 import utils, {
   httpGet,
@@ -112,14 +112,6 @@ Page({
       url: '../funclist/index',
     })
   },
-
-  
-  appicode(){
-    wx.navigateTo({
-      url: '../appicode/index',
-    })
-  },
-  
   mycontact() {
     wx.navigateTo({
       url: '../mycontact/index',
@@ -135,12 +127,6 @@ Page({
   viewCt() {
     wx.navigateTo({
       url: '../cardtmpl/index',
-    })
-  },
-
-  point() {
-    wx.navigateTo({
-      url: '../point/index',
     })
   },
 

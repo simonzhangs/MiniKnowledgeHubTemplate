@@ -4,7 +4,7 @@
     <view class="weui-form__bd">
       <view class="weui-form__text-area">
         <h2 class="weui-form__title">上传卡片模板</h2>
-        <view class="weui-form__desc">卡片模板是制作分享卡片的底图，上传或调试卡片模板都将消耗1个点数。您上传的卡片模板被其他用户使用，您将获得点数奖励。</view>
+        <view class="weui-form__desc">卡片模板是制作分享卡片的底图。您的卡片模板被其他用户采用，您将获得1个豆子点数奖励。</view>
       </view>
 
       <view class="weui-form__control-area">

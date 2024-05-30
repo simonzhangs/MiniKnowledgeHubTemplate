@@ -3,7 +3,7 @@
     <!-- 卡片模板列表 -->
     <view class="page__hd">
         <view class="page__title">卡片模板列表</view>
-        <view class="page__desc">应用卡片模板将消耗1个点数，卡片模板的作者将获得1个点数奖励。</view>
+        <view class="page__desc">应用卡片模板将消耗您1个豆子点数，卡片模板的作者将获得1个豆子点数奖励。</view>
     </view>
     <view class="page__bd">
         <view class="weui-flex">

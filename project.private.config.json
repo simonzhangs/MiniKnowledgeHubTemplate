@@ -8,7 +8,7 @@
       "list": [
         {
           "name": "dev",
-          "pathName": "pages/index/index",
+          "pathName": "pages/my/index",
           "query": "scene=oKhpd5UfXZ62G_GttrujfmwlVM-s",
           "launchMode": "default",
           "scene": 1047
