@@ -2,7 +2,7 @@
 <view class="page">
   <view class="page__hd">
     <view class="page__title">使用说明</view>
-    <view class="page__desc">为了营造更好的生态环境，我们增加了豆子点数机制。豆子点数可用来浏览加锁的文章。用户可通过以下方式获得豆子点数：观看激励广告，分享推荐拉新。</view>
+    <view class="page__desc">为了营造更好的生态环境，我们增加了豆子点数机制。豆子点数可用来浏览加锁文章。用户可通过以下方式获得豆子点数：观看激励广告，分享推荐拉新。</view>
   </view>
   <view class="page__bd page__bd_spacing">
     <!-- 功能区域 -->
@@ -24,7 +24,7 @@
 				<button size="mini" bind:tap="upicode">上传卡片模板</button>
 			</view>
       <view class="weui-flex__item">
-        <button  size="mini" bind:tap="point">看广告获奖励</button>
+        <button type = "primary" size="mini" bind:tap="point">看广告获奖励</button>
       </view>
     </view>
 

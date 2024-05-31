@@ -3,7 +3,7 @@
 	<!-- 卡片模板列表 -->
 	<view class="page__hd">
 		<view class="page__title">卡片模板详情</view>
-		<view class="page__desc">上方为卡片模板图片，下方为卡片模板介绍。</view>
+		<view class="page__desc">上方为卡片模板图片，点击可预览效果，下方为卡片模板介绍。</view>
 	</view>
 	<view class="page__bd">
 		<view class="weui-cells">

@@ -7,6 +7,7 @@ import utils, {
   getXSecTimeStamp,
 } from '../../utils/utils.js';
 let vAd = null;
+let isLoadAd = false;
 let lastadTime = 0; // 上次时间戳
 Page({
 
@@ -29,39 +30,40 @@ Page({
 
   loadAd() {
     const that = this;
-    const appBaseInfo = wx.getAppBaseInfo()
-
-    console.log(appBaseInfo.SDKVersion)
-
-    if (utils.compareVersion(appBaseInfo.SDKVersion, '2.6.0') == 1) {
-      vAd = wx.createRewardedVideoAd({
-        adUnitId: 'adunit-2ce6db3cb1e45a86',
-      })
-      vAd.onLoad(() => {
+    vAd = wx.createRewardedVideoAd({
+      adUnitId: 'adunit-2ce6db3cb1e45a86',
+    })
+    vAd.onLoad(() => {
         console.log('激励视频广告加载成功')
+        isLoadAd = true;
       }),
-        vAd.onError((err) => {
-          console.error('激励视频广告加载失败,', err)
-        }),
-        vAd.onClose((res) => {
-          // 用户点击了【关闭广告】按钮
-          if (res && res.isEnded) {
-            // 正常播放结束，可以下发游戏奖励
-            that.doAdProfit();
-          } else {
-            // 播放中途退出，不下发游戏奖励
-            wx.showToast({
-              title: '没有获得点数哟！',
-            })
-          }
-        })
-    }
+      vAd.onError((err) => {
+        console.error('激励视频广告加载失败,', err)
+      }),
+      vAd.onClose((res) => {
+        // 用户点击了【关闭广告】按钮
+        if (res && res.isEnded) {
+          // 正常播放结束，可以下发游戏奖励
+          that.doAdProfit();
+        } else {
+          // 播放中途退出，不下发游戏奖励
+          wx.showToast({
+            title: '没有获得点数哟！',
+          })
+        }
+      })
+
   },
 
   playAd() {
+    const that = this;
     wx.showLoading({
       title: '加载广告中',
     })
+
+    if (!isLoadAd) {
+      that.loadAd();
+    }
 
     // 当前时间戳
     let diff = diffNowTs(lastadTime);
@@ -105,40 +107,6 @@ Page({
         title: '请稍后重试',
       })
     }
-  },
-
-  navFuncList() {
-    wx.navigateTo({
-      url: '../funclist/index',
-    })
-  },
-  mycontact() {
-    wx.navigateTo({
-      url: '../mycontact/index',
-    })
-  },
-
-  myicode() {
-    wx.navigateTo({
-      url: '../myicode/index',
-    })
-  },
-
-  viewCt() {
-    wx.navigateTo({
-      url: '../cardtmpl/index',
-    })
-  },
-
-  upart() {
-    wx.navigateTo({
-      url: '../upart/index',
-    })
-  },
-  upicode() {
-    wx.navigateTo({
-      url: '../upicode/index',
-    })
   },
 
   getMyStatInfo() {
@@ -197,7 +165,7 @@ Page({
    */
   onLoad(options) {
     const that = this;
-    that.loadAd();
+    // that.loadAd();
     lastadTime = app.globalData.lastadTime;
     let myWalletInfo = app.globalData.myWalletInfo;
     that.setData({
@@ -231,6 +199,7 @@ Page({
    */
   onUnload() {
     vAd = null;
+    isLoadAd = false;
     lastadTime = 0;
   },
 
