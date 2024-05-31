@@ -3,7 +3,8 @@ import {
   httpPost,
   getYestMsTime,
   httpGet,
-  isEmpty
+  isEmpty,
+  getNowStr
 } from '../../utils/utils.js';
 
 let vAd = null;
@@ -33,8 +34,8 @@ Page({
       adUnitId: 'adunit-2ce6db3cb1e45a86',
     })
     vAd.onLoad(() => {
-      hasLoadAd = true
-    }),
+        hasLoadAd = true
+      }),
       vAd.onError((err) => {
         console.error('激励视频广告加载失败,', err)
       }),
@@ -50,6 +51,7 @@ Page({
   },
 
   playAd() {
+    const that = this;
     wx.showLoading({
       title: '加载广告中',
     })
@@ -91,12 +93,14 @@ Page({
       const myWalletInfo = that.data.myWalletInfo;
       myWalletInfo.points += ps;
       myWalletInfo.adProfit += ps;
-      myWalletInfo.updateTime = utils.getNowStr();
+      myWalletInfo.updateTime = getNowStr();
       that.setData({
         myWalletInfo: myWalletInfo,
       })
       app.globalData.myWalletInfo = myWalletInfo;
-
+      wx.showToast({
+        title: '获得奖励',
+      })
     }).catch((err) => {
       console.log(err);
     })
@@ -317,27 +321,28 @@ Page({
     const art = that.data.artList[idx];
     if (art.lockState == 1) {
       const points = app.globalData.myWalletInfo.points
-      if (points <= 0) {
+      if (points < 1) {
         // 弹出对话框，告知用户需要观看广告。
         wx.showModal({
           title: '提示',
-          content: '您的点数不足，请先观看广告',
+          content: '浏览加锁文章需消耗1个豆子点数，您的豆子点数不足。请观看广告，您将获得10个豆子点数。',
           success(res) {
             if (res.confirm) {
               console.log('用户点击确定')
-              wx.switchTab({
-                url: '../my/index'
-              })
-
+              that.playAd();
             } else if (res.cancel) {
               console.log('用户点击取消')
             }
           }
         })
         return
+      } else {
+        that.jumpToPage(e.currentTarget.dataset.guid)
       }
+    } else {
+      that.jumpToPage(e.currentTarget.dataset.guid)
     }
-    that.jumpToPage(e.currentTarget.dataset.guid)
+
   },
 
   // 0 啥都不需要 1 直接看广告 2 扣点数
@@ -376,7 +381,9 @@ Page({
   recommend(scene) {
     const that = this;
 
-    httpPost('/recommendRewards', { "mid": scene }).then((res) => {
+    httpPost('/recommendRewards', {
+      "mid": scene
+    }).then((res) => {
       const result = res.data;
       if (result.code == 1) {
         wx.removeStorageSync('rrqrcode')
@@ -392,6 +399,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log("index onload")
     console.log(options);
     this.setData({
       yestTime: getYestMsTime()
@@ -432,6 +440,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
+    console.log("index onunload")
     hasLoadAd = true;
     vAd = null;
   },

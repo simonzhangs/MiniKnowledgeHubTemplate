@@ -154,6 +154,9 @@ Page({
       lastadTime = getXSecTimeStamp(app.globalData.adInterval);
       app.globalData.lastadTime = lastadTime;
       wx.hideLoading()
+      wx.showToast({
+        title: '获得奖励',
+      })
     }).catch((err) => {
       console.log(err);
       wx.hideLoading()

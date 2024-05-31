@@ -115,11 +115,11 @@ App({
 
   globalData: {
     lastadTime: 0,
-    adFreqHalfHour: 6,
+    adFreqHalfHour: 30,
     adStartTime: 0,
     adCnt: 0,
-    adInterval: 30,
-    adProfit: 1,
+    adInterval: 20,
+    adProfit: 10,
     myWalletInfo: {
       points: 0,
       usePoints: 0,
