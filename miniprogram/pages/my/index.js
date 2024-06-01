@@ -7,10 +7,6 @@ Page({
   data: {
    
   },
-
-  
-
-
   
   appicode(){
     wx.navigateTo({

@@ -17,13 +17,13 @@ Page({
 
   geticode() {
     const that = this;
-    const curpoints = app.getPoints();
-    if (curpoints < 1) {
-      wx.showToast({
-        title: '点数不足',
-      })
-      return
-    }
+    // const curpoints = app.getPoints();
+    // if (curpoints < 1) {
+    //   wx.showToast({
+    //     title: '点数不足',
+    //   })
+    //   return
+    // }
 
     wx.showLoading({
       title: '获取卡片信息',
@@ -33,7 +33,7 @@ Page({
       wx.hideLoading()
       const result = res.data;
       if (result.code == 1) {
-        app.costPoints();
+        // app.costPoints();
         let filename = result.data;
         downloadImage("/files",filename).then((res)=>{
           that.setData({
@@ -52,13 +52,13 @@ Page({
 
   async getmycard() {
     const that = this;
-    const curpoints = app.getPoints();
-    if (curpoints < 1) {
-      wx.showToast({
-        title: '点数不足',
-      })
-      return
-    }
+    // const curpoints = app.getPoints();
+    // if (curpoints < 1) {
+    //   wx.showToast({
+    //     title: '点数不足',
+    //   })
+    //   return
+    // }
 
     wx.showLoading({
       title: '获取卡片信息',
@@ -72,7 +72,7 @@ Page({
       that.setData({
         icodeImg: icodefiles.tempFilePath,
       })
-      app.costPoints();
+      // app.costPoints();
       wx.hideLoading();
     }else{
       wx.hideLoading();

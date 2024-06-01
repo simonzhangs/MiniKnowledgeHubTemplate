@@ -3,14 +3,14 @@
   height: 100%;
 }
 
-.page__hd {
+/* .page__hd {
   padding:30rpx;
   margin-left: 30rpx;
-}
+} */
 
 
 .title{
-  margin-top: 20rpx;
+  margin-top: 40rpx;
   margin-left: 15rpx;
   margin-right: 15rpx;
   margin-bottom: 20rpx;

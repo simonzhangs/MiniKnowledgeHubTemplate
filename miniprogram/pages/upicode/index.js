@@ -121,13 +121,13 @@ Page({
       return
     }
 
-    const curpoints = app.getPoints();
-    if (curpoints < 1) {
-      wx.showToast({
-        title: '点数不足',
-      })
-      return
-    }
+    // const curpoints = app.getPoints();
+    // if (curpoints < 1) {
+    //   wx.showToast({
+    //     title: '点数不足',
+    //   })
+    //   return
+    // }
 
     wx.getSetting({
       withSubscriptions: true,
@@ -176,7 +176,7 @@ Page({
       console.log(res);
       const result = JSON.parse(res.data);
       if (result.code == 1) {
-        app.costPoints();
+        // app.costPoints();
         wx.showToast({
           title: '提交成功',
         })
@@ -224,13 +224,13 @@ Page({
       return
     }
     console.log('debug,', that.data.desc, that.data.location)
-    const curpoints = app.getPoints();
-    if (curpoints < 1) {
-      wx.showToast({
-        title: '点数不足',
-      })
-      return
-    }
+    // const curpoints = app.getPoints();
+    // if (curpoints < 1) {
+    //   wx.showToast({
+    //     title: '点数不足',
+    //   })
+    //   return
+    // }
 
     wx.showLoading({
       title: '调试卡片模板',
@@ -246,7 +246,7 @@ Page({
     console.log(upResult);
     const result = JSON.parse(upResult.data);
     if (result.code == 1) {
-      app.costPoints();
+      // app.costPoints();
       let rspdata = result.data;
       console.log(rspdata)
       var info = "底图宽高:" + rspdata.bgW + "," + rspdata.bgH + "\n" + "二维码宽高:" + rspdata.qrW + "," + rspdata.qrH + "\n" + "位置边长:" + rspdata.side;

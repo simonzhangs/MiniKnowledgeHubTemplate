@@ -25,13 +25,13 @@ Page({
       })
       return
     }
-    const curpoints = app.getPoints();
-    if (curpoints < 1) {
-      wx.showToast({
-        title: '点数不足',
-      })
-      return
-    }
+    // const curpoints = app.getPoints();
+    // if (curpoints < 1) {
+    //   wx.showToast({
+    //     title: '点数不足',
+    //   })
+    //   return
+    // }
     wx.showLoading({
       title: '获取识别码',
     })
@@ -46,7 +46,7 @@ Page({
           isecret: content.isecret,
         })
         that.bflag = true;
-        app.costPoints();
+        // app.costPoints();
       } else {
         wx.showToast({
           title: '点数不足',
@@ -69,13 +69,13 @@ Page({
       })
       return
     }
-    const curpoints = app.getPoints();
-    if (curpoints < 1) {
-      wx.showToast({
-        title: '点数不足',
-      })
-      return
-    }
+    // const curpoints = app.getPoints();
+    // if (curpoints < 1) {
+    //   wx.showToast({
+    //     title: '点数不足',
+    //   })
+    //   return
+    // }
     wx.showLoading({
       title: '重置识别码密钥',
     })
@@ -90,7 +90,7 @@ Page({
           isecret: content.isecret,
         })
         that.rflag = true;
-        app.costPoints();
+        // app.costPoints();
       } else {
         wx.showToast({
           title: '点数不足',

@@ -337,6 +337,7 @@ Page({
         })
         return
       } else {
+        app.costPoints();
         that.jumpToPage(e.currentTarget.dataset.guid)
       }
     } else {
