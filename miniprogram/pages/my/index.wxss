@@ -52,3 +52,9 @@ button{
 .mini-btn{
   margin-right: 10rpx;
 }
+
+
+.view-ad {
+  margin-left: 45rpx;
+  margin-right: 45rpx;
+}

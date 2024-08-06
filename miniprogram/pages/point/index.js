@@ -17,13 +17,8 @@ Page({
   data: {
     myWalletInfo: {
       points: 0,
-      usePoints: 0,
-      shareProfit: 0,
-      adProfit: 0,
-      artProfit: 0,
-      cardProfit: 0,
-      sysaPoints: 0,
-      sysdPoints: 0,
+      addpt:0,
+      subpt:0,
       updateTime: '',
     },
   },
@@ -115,7 +110,7 @@ Page({
       title: '获取点数信息',
     })
 
-    httpGet('/myStatInfo', {}).then((res) => {
+    httpGet('/mpt', {}).then((res) => {
       wx.hideLoading()
       const result = res.data;
       if (result.code == 1) {
@@ -140,7 +135,7 @@ Page({
       title: '计算广告收益',
     })
 
-    httpPost('/adProfit', {}).then((res) => {
+    httpPost('/wad', {}).then((res) => {
       const ps = res.data.data;
       // console.log(res,ps);
       const myWalletInfo = that.data.myWalletInfo;

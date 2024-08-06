@@ -21,7 +21,7 @@ Page({
       title: '加载中',
     })
 
-    httpGet('/blogArtDetailByAd', {
+    httpGet('/artd', {
       uuid: options.guid,
     }).then((res) => {
 

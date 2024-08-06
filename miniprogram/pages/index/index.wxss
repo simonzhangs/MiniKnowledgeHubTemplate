@@ -49,6 +49,11 @@
   box-sizing: border-box;
 }
 
+.view-ad {
+  margin-left: 45rpx;
+  margin-right: 45rpx;
+}
+
 
 .line{
   background: #E0E3DA;

@@ -14,31 +14,12 @@ Page({
     })
   },
   
-
-  myicode() {
-    wx.navigateTo({
-      url: '../myicode/index',
-    })
-  },
-
-  viewCt() {
-    wx.navigateTo({
-      url: '../cardtmpl/index',
-    })
-  },
-
   point() {
     wx.navigateTo({
       url: '../point/index',
     })
   },
 
-
-  upicode() {
-    wx.navigateTo({
-      url: '../upicode/index',
-    })
-  },
 
 
   /**

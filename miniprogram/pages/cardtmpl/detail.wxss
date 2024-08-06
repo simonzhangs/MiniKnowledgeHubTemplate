@@ -1,4 +1,0 @@
-/* pages/cardtmpl/detail.wxss */
-.page {
-	height: 100%;
-}

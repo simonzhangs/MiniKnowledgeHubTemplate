@@ -3,10 +3,6 @@
     "pages/index/index",
     "pages/article/index",
     "pages/my/index",
-    "pages/myicode/index",
-    "pages/upicode/index",
-    "pages/cardtmpl/index",
-    "pages/cardtmpl/detail",
     "pages/appicode/index",
     "pages/point/index"
   ],

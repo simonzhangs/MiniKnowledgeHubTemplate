@@ -36,7 +36,7 @@ Page({
       title: '获取识别码',
     })
 
-    httpPost('/applyAppIcode', {}).then((res) => {
+    httpPost('/icode', {}).then((res) => {
       wx.hideLoading()
       const result = res.data;
       if (result.code == 1) {
@@ -80,7 +80,7 @@ Page({
       title: '重置识别码密钥',
     })
 
-    httpPost('/resetAppIcode', {}).then((res) => {
+    httpPost('/rsticode', {}).then((res) => {
       wx.hideLoading()
       const result = res.data;
       if (result.code == 1) {

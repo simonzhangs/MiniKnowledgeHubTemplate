@@ -87,7 +87,7 @@ Page({
 
   doAdProfit() {
     const that = this;
-    httpPost('/adProfit', {}).then((res) => {
+    httpPost('/wad', {}).then((res) => {
       const ps = res.data.data;
       // console.log(res,ps);
       const myWalletInfo = that.data.myWalletInfo;
@@ -152,7 +152,7 @@ Page({
       })
     }
 
-    httpGet('/searchBlogArt', {
+    httpGet('/sart', {
       'pageNo': pageNo,
       'keyword': keyword,
     }).then((res) => {
@@ -225,7 +225,7 @@ Page({
       })
     }
 
-    httpGet('/getBlogArtList', {
+    httpGet('/artl', {
       'pageNo': pageNo,
       'qtype': qtype,
     }).then((res) => {
@@ -256,62 +256,6 @@ Page({
 
   },
 
-  bindTag: function (e) {
-    let tag = e.target.id;
-
-    this.setData({
-      artList: [],
-      tag: tag,
-      op: 3,
-    })
-
-    this.getBlogArtListByTag(1, tag)
-  },
-
-  getBlogArtListByTag: function (pageNo, tag) {
-    const that = this
-
-    that.loading = true
-    wx.showLoading({
-      title: '加载中...',
-      mask: true,
-    })
-    if (pageNo === 1) {
-      that.setData({
-        artList: [],
-      })
-    }
-
-    httpGet('/getBlogArtListByTag', {
-      'pageNo': pageNo,
-      'tag': tag,
-    }).then((res) => {
-      that.loading = false
-      wx.hideLoading()
-
-      const result = res.data;
-      if (result.code == 1) {
-        const articles = result.data;
-        that.setData({
-          page: pageNo, //当前的页号
-          pages: result.count, //总页数
-          artList: that.data.artList.concat(articles)
-        })
-
-      } else {
-        wx.showToast({
-          title: '没有找到记录',
-        })
-      }
-    }).catch((err) => {
-      that.loading = false
-      wx.hideLoading()
-      wx.showToast({
-        title: '网络异常请重试',
-      })
-    })
-
-  },
 
 
   jump: function (e) {
@@ -360,7 +304,7 @@ Page({
     //   title: '获取点数信息',
     // })
 
-    httpGet('/myStatInfo', {}).then((res) => {
+    httpGet('/mpt', {}).then((res) => {
       // wx.hideLoading()
       const result = res.data;
       if (result.code == 1) {
@@ -379,21 +323,6 @@ Page({
     })
   },
 
-  recommend(scene) {
-    const that = this;
-
-    httpPost('/recommendRewards', {
-      "mid": scene
-    }).then((res) => {
-      const result = res.data;
-      if (result.code == 1) {
-        wx.removeStorageSync('rrqrcode')
-      }
-    }).catch((err) => {
-      console.log(err);
-      wx.setStorageSync('rrqrcode', scene)
-    })
-  },
 
 
   /**
@@ -406,14 +335,6 @@ Page({
       yestTime: getYestMsTime()
     })
     this.getMyStatInfo();
-    // 如果scene存在，将调用推荐奖励接口
-    if (!isEmpty(options.scene)) {
-      this.recommend(options.scene)
-    }
-    const scene = wx.getStorageSync('rrqrcode')
-    if (!isEmpty(scene)) {
-      this.recommend(scene)
-    }
   },
 
   /**
@@ -465,11 +386,7 @@ Page({
       if (!this.loading && this.data.page < this.data.pages) {
         this.getArtList(this.data.page + 1, this.data.qtype)
       }
-    } else if (this.data.op === 3) {
-      if (!this.loading && this.data.page < this.data.pages) {
-        this.getBlogArtListByTag(this.data.page + 1, this.data.tag)
-      }
-    }
+    } 
 
   },
 

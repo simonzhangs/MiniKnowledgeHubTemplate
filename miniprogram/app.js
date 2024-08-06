@@ -47,7 +47,7 @@ App({
       success(res) {
         if (res.code) {
           //发起网络请求
-          httpPost("/wxlogin", {
+          httpPost("/vln", {
             code: res.code,
           })
             .then((res) => {
@@ -122,13 +122,8 @@ App({
     adProfit: 10,
     myWalletInfo: {
       points: 0,
-      usePoints: 0,
-      shareProfit: 0,
-      adProfit: 0,
-      artProfit: 0,
-      cardProfit: 0,
-      sysaPoints: 0,
-      sysdPoints: 0,
+      addpt:0,
+      subpt:0,
       updateTime: '',
     },
   }

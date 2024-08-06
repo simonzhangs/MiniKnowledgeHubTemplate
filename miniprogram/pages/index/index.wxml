@@ -31,33 +31,6 @@
         <view class="placeholder" id="btnCold" bindtap="bindBtn" hover-class="placeholder-hover">最冷</view>
       </view>
     </view>
-    
-
-    <view class="weui-flex">
-      <view class="weui-flex__item">
-        <view class="placeholder" id="go" bindtap="bindTag" hover-class="placeholder-hover">Golang</view>
-      </view>
-      <view class="weui-flex__item">
-        <view class="placeholder" id="rust" bindtap="bindTag" hover-class="placeholder-hover">Rust</view>
-      </view>
-      <view class="weui-flex__item">
-        <view class="placeholder" id="h5" bindtap="bindTag" hover-class="placeholder-hover">H5</view>
-      </view>
-
-
-    </view>
-    <view class="weui-flex">
-      <view class="weui-flex__item">
-        <view class="placeholder" id="mp" bindtap="bindTag" hover-class="placeholder-hover">小程序</view>
-      </view>
-      <view class="weui-flex__item">
-        <view class="placeholder" id="db" bindtap="bindTag" hover-class="placeholder-hover">数据库</view>
-      </view>
-      <view class="weui-flex__item">
-        <view class="placeholder" id="ops" bindtap="bindTag" hover-class="placeholder-hover">开发环境</view>
-      </view>
-    </view>
-
 
     <!-- 内容-->
     <!--循环输出-->
@@ -81,8 +54,8 @@
     <!--循环输出-->
 
     <view class="weui-footer weui-footer_fixed-bottom" wx:if="{{artList.length == 0 }}">
-      <view class="weui-footer__text">记得收藏哟</view>
-     
+      <view class="view-ad"><ad unit-id="adunit-62a65ad78c1b3f40"></ad></view>
+      <!-- <view class="weui-footer__text">记得收藏哟</view> -->
     </view>
 
   </view>

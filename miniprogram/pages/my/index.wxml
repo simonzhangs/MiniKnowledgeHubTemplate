@@ -15,21 +15,16 @@
         <button size="mini" bind:tap="appicode">获取识别码</button>
       </view>
       <view class="weui-flex__item">
-        <button size="mini" bind:tap="myicode">获取分享卡片</button>
-      </view>
-    </view>
-
-    <view class="weui-flex">
-      <view class="weui-flex__item">
-        <button size="mini" bind:tap="upicode">上传卡片模板</button>
-      </view>
-      <view class="weui-flex__item">
         <button type="primary" size="mini" bind:tap="point">看广告获奖励</button>
       </view>
+      
     </view>
 
+    
+
     <view class="weui-footer weui-footer_fixed-bottom">
-      <view class="weui-footer__text">推荐您闲暇时间观看广告，使用时就很方便哟！</view>
+      <!-- <view class="weui-footer__text">推荐您闲暇时间观看广告，使用时就很方便哟！</view> -->
+      <view class="view-ad"><ad unit-id="adunit-62a65ad78c1b3f40"></ad></view>
     </view>
   </view>
 

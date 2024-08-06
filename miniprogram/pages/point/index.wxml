@@ -16,61 +16,23 @@
                 </view>
               </view>
             </view>
+
+            <view class="weui-cell">
+              <view class="weui-flex">
+                <view class="weui-flex__item">
+                  <view class="info">获得点数：{{myWalletInfo.addpt}}</view>
+                </view>
+              </view>
+            </view>
             
             <view class="weui-cell">
               <view class="weui-flex">
                 <view class="weui-flex__item">
-                  <view class="info">消耗使用点数：{{myWalletInfo.usePoints}}</view>
+                  <view class="info">消耗点数：{{myWalletInfo.subpt}}</view>
                 </view>
               </view>
             </view>
-
-            <view class="weui-cell">
-              <view class="weui-flex">
-                <view class="weui-flex__item">
-                  <view class="info">文章获得点数：{{myWalletInfo.artProfit}}</view>
-                </view>
-              </view>
-            </view>
-           
-            <view class="weui-cell">
-              <view class="weui-flex">
-                <view class="weui-flex__item">
-                  <view class="info">广告获得点数：{{myWalletInfo.adProfit}}</view>
-                </view>
-              </view>
-            </view>
-
-            <view class="weui-cell">
-              <view class="weui-flex">
-                <view class="weui-flex__item">
-                  <view class="info">推荐获得点数：{{myWalletInfo.shareProfit}}</view>
-                </view>
-              </view>
-            </view>
-
-            <view class="weui-cell">
-              <view class="weui-flex">
-                <view class="weui-flex__item">
-                  <view class="info">模板获得点数：{{myWalletInfo.cardProfit}}</view>
-                </view>
-              </view>
-            </view>
-           
-            <!-- <view class="weui-cell">
-              <view class="weui-flex">
-                <view class="weui-flex__item">
-                  <view class="info">系统补偿点数：{{myWalletInfo.sysaPoints}}</view>
-                </view>
-              </view>
-            </view>
-            <view class="weui-cell">
-              <view class="weui-flex">
-                <view class="weui-flex__item">
-                  <view class="info">系统扣减点数：{{myWalletInfo.sysdPoints}}</view>
-                </view>
-              </view>
-            </view> -->
+         
             <view class="weui-cell">
               <view class="weui-flex">
                 <view class="weui-flex__item">
