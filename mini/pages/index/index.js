@@ -330,7 +330,6 @@ Page({
    */
   onLoad: function (options) {
     console.log("index onload")
-    console.log(options);
     this.setData({
       yestTime: getYestMsTime()
     })
