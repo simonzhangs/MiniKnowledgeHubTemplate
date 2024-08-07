@@ -163,16 +163,9 @@ Page({
    */
   onLoad(options) {
     const that = this;
-<<<<<<< HEAD:miniprogram/pages/my/index.js
-    lastadTime = app.globalData.lastadTime;
-    that.loadAd();
-    let myWalletInfo = app.globalData.myWalletInfo;
-    console.log('debug,', myWalletInfo)
-=======
     // that.loadAd();
     lastadTime = app.globalData.lastadTime;
     const myWalletInfo = app.globalData.myWalletInfo;
->>>>>>> dev:mini/pages/point/index.js
     that.setData({
       myWalletInfo: myWalletInfo,
     })
