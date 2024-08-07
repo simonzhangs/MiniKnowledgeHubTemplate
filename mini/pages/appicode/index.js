@@ -3,53 +3,47 @@ const app = getApp();
 import {
   isEmpty,
   httpPost,
+  httpGet,
 } from '../../utils/utils.js';
 
 let bflag = false;
-let rflag =false;
+let rflag = false;
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    icode:'',
-    isecret:'',
+    icode: '',
+    isecret: '',
   },
 
   getMyAppIcode() {
     const that = this;
-    if(that.bflag){
+    if (that.bflag) {
       wx.showToast({
         title: '不用重复操作',
       })
       return
     }
-    // const curpoints = app.getPoints();
-    // if (curpoints < 1) {
-    //   wx.showToast({
-    //     title: '点数不足',
-    //   })
-    //   return
-    // }
+
     wx.showLoading({
       title: '获取识别码',
     })
 
-    httpPost('/icode', {}).then((res) => {
+    httpGet('/icode', {}).then((res) => {
       wx.hideLoading()
       const result = res.data;
       if (result.code == 1) {
-        let content = result.data;     
+        let content = result.data;
         that.setData({
           icode: content.icode,
           isecret: content.isecret,
         })
         that.bflag = true;
-        // app.costPoints();
       } else {
         wx.showToast({
-          title: '点数不足',
+          title: '系统异常~',
         })
       }
     }).catch((err) => {
@@ -61,21 +55,21 @@ Page({
     })
   },
 
-  resetAppIcode(){
+  resetAppIcode() {
     const that = this;
-    if(that.rflag){
+    if (that.rflag) {
       wx.showToast({
         title: '不用重复操作',
       })
       return
     }
-    // const curpoints = app.getPoints();
-    // if (curpoints < 1) {
-    //   wx.showToast({
-    //     title: '点数不足',
-    //   })
-    //   return
-    // }
+    const curpoints = app.getPoints();
+    if (curpoints < 1) {
+      wx.showToast({
+        title: '点数不足',
+      })
+      return
+    }
     wx.showLoading({
       title: '重置识别码密钥',
     })
@@ -90,10 +84,10 @@ Page({
           isecret: content.isecret,
         })
         that.rflag = true;
-        // app.costPoints();
+        app.costPoints();
       } else {
         wx.showToast({
-          title: '点数不足',
+          title: '系统异常~',
         })
       }
     }).catch((err) => {

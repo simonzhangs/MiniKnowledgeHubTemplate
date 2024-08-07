@@ -34,8 +34,8 @@ Page({
       adUnitId: 'adunit-2ce6db3cb1e45a86',
     })
     vAd.onLoad(() => {
-        hasLoadAd = true
-      }),
+      hasLoadAd = true
+    }),
       vAd.onError((err) => {
         console.error('激励视频广告加载失败,', err)
       }),
@@ -92,7 +92,7 @@ Page({
       // console.log(res,ps);
       const myWalletInfo = that.data.myWalletInfo;
       myWalletInfo.points += ps;
-      myWalletInfo.adProfit += ps;
+      myWalletInfo.addpt += ps;
       myWalletInfo.updateTime = getNowStr();
       that.setData({
         myWalletInfo: myWalletInfo,
@@ -386,7 +386,7 @@ Page({
       if (!this.loading && this.data.page < this.data.pages) {
         this.getArtList(this.data.page + 1, this.data.qtype)
       }
-    } 
+    }
 
   },
 

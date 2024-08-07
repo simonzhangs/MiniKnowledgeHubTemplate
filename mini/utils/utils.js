@@ -1,7 +1,6 @@
 const md5util = require("./md5");
 // 正式环境
 const baseUrl = "https://mp.91demo.top/mp3";
-// const baseUrl = "http://106.15.188.202:9981/mp3";
 const sharekey = "20!I@LOVE#CHINA$24";
 
 

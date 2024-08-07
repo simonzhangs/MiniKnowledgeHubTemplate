@@ -17,8 +17,8 @@ Page({
   data: {
     myWalletInfo: {
       points: 0,
-      addpt:0,
-      subpt:0,
+      addpt: 0,
+      subpt: 0,
       updateTime: '',
     },
   },
@@ -29,9 +29,9 @@ Page({
       adUnitId: 'adunit-2ce6db3cb1e45a86',
     })
     vAd.onLoad(() => {
-        console.log('激励视频广告加载成功')
-        isLoadAd = true;
-      }),
+      console.log('激励视频广告加载成功')
+      isLoadAd = true;
+    }),
       vAd.onError((err) => {
         console.error('激励视频广告加载失败,', err)
       }),
@@ -140,7 +140,7 @@ Page({
       // console.log(res,ps);
       const myWalletInfo = that.data.myWalletInfo;
       myWalletInfo.points += ps;
-      myWalletInfo.adProfit += ps;
+      myWalletInfo.addpt += ps;
       myWalletInfo.updateTime = utils.getNowStr();
       that.setData({
         myWalletInfo: myWalletInfo,
@@ -165,7 +165,7 @@ Page({
     const that = this;
     // that.loadAd();
     lastadTime = app.globalData.lastadTime;
-    let myWalletInfo = app.globalData.myWalletInfo;
+    const myWalletInfo = app.globalData.myWalletInfo;
     that.setData({
       myWalletInfo: myWalletInfo,
     })
