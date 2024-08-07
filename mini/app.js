@@ -1,4 +1,4 @@
-import { isEmpty, httpPost, getSecTs } from "./utils/utils.js";
+import { isEmpty, httpPost, getSecTs, getNowStr } from "./utils/utils.js";
 App({
   towxml: require('./towxml/index'),
   getText: (url, callback) => {
@@ -87,6 +87,8 @@ App({
 
   costPoints() {
     this.globalData.myWalletInfo.points -= 1;
+    this.globalData.myWalletInfo.subpt += 1;
+    this.globalData.myWalletInfo.updateTime = getNowStr();
   },
 
   canPlayAd() {

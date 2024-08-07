@@ -24,7 +24,6 @@ Page({
     httpGet('/artd', {
       uuid: options.guid,
     }).then((res) => {
-
       const result = res.data;
       if (result.code == 1) {
         let content = result.data;
