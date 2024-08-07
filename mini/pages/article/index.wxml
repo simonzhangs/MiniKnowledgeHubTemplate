@@ -1,0 +1,9 @@
+<!--pages/article/index.wxml-->
+<view class="page">
+
+  <!--使用towxml-->
+  <towxml nodes="{{article}}" />
+  <!--banner广告-->
+  <ad unit-id="adunit-62a65ad78c1b3f40"></ad>
+
+</view>

@@ -1,0 +1,60 @@
+/* pages/my/index.wxss */
+.page {
+  height: 100%;
+}
+
+/* .page__hd {
+  padding:30rpx;
+  margin-left: 30rpx;
+} */
+
+
+.title{
+  margin-top: 40rpx;
+  margin-left: 15rpx;
+  margin-right: 15rpx;
+  margin-bottom: 20rpx;
+  padding: 0 20rpx;
+  text-align: center;
+  font-size: larger;
+}
+
+.info{
+  margin-top: 10rpx;
+  margin-left: 15rpx;
+  margin-right: 15rpx;
+  margin-bottom: 10rpx;
+  padding: 0 20rpx;
+  text-align: left;
+  font-size: small;
+}
+
+
+button{
+  margin-top: 15rpx;
+  margin-left: 30rpx;
+  margin-right: 30rpx;
+  margin-bottom: 15rpx;
+}
+
+.weui-footer_fixed-bottom{
+  margin-bottom: 10rpx;
+  padding-bottom: 32rpx;
+}
+
+
+.line{
+  background: #E0E3DA;
+  width: 100%;
+  height: 4rpx;
+}
+
+.mini-btn{
+  margin-right: 10rpx;
+}
+
+
+.view-ad {
+  margin-left: 45rpx;
+  margin-right: 45rpx;
+}

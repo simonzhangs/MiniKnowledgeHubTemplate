@@ -1,0 +1,31 @@
+<!--pages/my/index.wxml-->
+<view class="page">
+  <view class="page__hd">
+    <view class="page__title">使用说明</view>
+    <view class="page__desc">为了营造更好的生态环境，我们增加了豆子点数机制，豆子点数可用来浏览加锁文章。用户可观看广告获得豆子点数。</view>
+  </view>
+  <view class="page__bd page__bd_spacing">
+    <!-- 功能区域 -->
+    <view class="line"></view>
+    <view class="weui-flex">
+      <view class="title">功能区域</view>
+    </view>
+    <view class="weui-flex">
+      <view class="weui-flex__item">
+        <button size="mini" bind:tap="appicode">获取识别码</button>
+      </view>
+      <view class="weui-flex__item">
+        <button type="primary" size="mini" bind:tap="point">看广告获奖励</button>
+      </view>
+      
+    </view>
+
+    
+
+    <view class="weui-footer weui-footer_fixed-bottom">
+      <!-- <view class="weui-footer__text">推荐您闲暇时间观看广告，使用时就很方便哟！</view> -->
+      <view class="view-ad"><ad unit-id="adunit-62a65ad78c1b3f40"></ad></view>
+    </view>
+  </view>
+
+</view>

@@ -1,0 +1,42 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/article/index",
+    "pages/my/index",
+    "pages/appicode/index",
+    "pages/point/index"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#ededed",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "豆子碎片",
+    "backgroundColor": "#ededed",
+    "backgroundTextStyle": "light",
+    "enablePullDownRefresh": false
+  },
+  "tabBar": {
+    "list": [{
+      "pagePath": "pages/index/index",
+      "text": "首页",
+      "iconPath": "./images/book.png",
+      "selectedIconPath": "./images/book_selected.png"
+    }, {
+      "pagePath": "pages/my/index",
+      "text": "我的",
+      "iconPath": "./images/person.png",
+      "selectedIconPath": "./images/person_selected.png"
+    }]
+  },
+   
+  "networkTimeout": {
+    "request": 10000,
+    "connectSocket": 10000,
+    "uploadFile": 60000,
+    "downloadFile": 60000
+  },
+  "style": "v2",
+  "lazyCodeLoading": "requiredComponents",
+  "sitemapLocation": "sitemap.json"
+
+
+}
