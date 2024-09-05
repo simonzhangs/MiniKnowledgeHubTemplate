@@ -263,7 +263,7 @@ Page({
     // 获取文章内容，看看是否有锁标志，然后判断点数是否足够，不足够唤起广告。
     const idx = e.currentTarget.dataset.idx;
     const art = that.data.artList[idx];
-    if (art.lockState == 1) {
+    if (art.islock == 1) {
       const points = app.globalData.myWalletInfo.points
       if (points < 1) {
         // 弹出对话框，告知用户需要观看广告。

@@ -41,12 +41,13 @@
             <view>{{item.title}}</view>
           </view>
           <view class="weui-cell__ft weui-cell__ft_in-access" aria-hidden="true">
-            <text wx:if="{{ item.lockState == 1 }}" id="js_cell_l1_note" aria-label="，锁" class="weui-badge weui-badge_dot">锁</text>
-            <text wx:elif="{{ item.createTime > yestTime }}" id="js_cell_l1_note" aria-label="，新" class="weui-badge weui-badge_dot">新</text>
-            <!-- <text wx:elif="{{ item.updateTime > item.createdTime }}" id="js_cell_l1_note" aria-label="，有更新" class="weui-badge weui-badge_dot">修</text> -->
-            <text wx:elif="{{ item.views > 50 }}" id="js_cell_l1_note" aria-label="，火" class="weui-badge weui-badge_dot">热</text>
-            <text wx:elif="{{ item.views > 500 }}" id="js_cell_l1_note" aria-label="，非常火" class="weui-badge weui-badge_dot">爆</text>
-            <text wx:elif="{{ item.views > 5000 }}" id="js_cell_l1_note" aria-label="，超级火" class="weui-badge weui-badge_dot">燃</text>
+            <text wx:if="{{ item.islock == 1 }}" id="js_cell_l1_note" aria-label="，锁" class="weui-badge weui-badge_dot">锁</text>
+            <text wx:elif="{{ item.createtime > yestTime }}" id="js_cell_l1_note" aria-label="，新" class="weui-badge weui-badge_dot">新</text>
+            <!--<text wx:elif="{{ item.updatetime > item.createtime }}" id="js_cell_l1_note" aria-label="，有更新" class="weui-badge weui-badge_dot">改</text>-->
+            <text wx:elif="{{ item.views > 50 }}" id="js_cell_l1_note" aria-label="，火" class="weui-badge weui-badge_dot">火</text>
+            <text wx:elif="{{ item.views > 500 }}" id="js_cell_l1_note" aria-label="，两个火" class="weui-badge weui-badge_dot">炎</text>
+            <text wx:elif="{{ item.views > 5000 }}" id="js_cell_l1_note" aria-label="，三个火" class="weui-badge weui-badge_dot">焱</text>
+            <text wx:elif="{{ item.views > 50000 }}" id="js_cell_l1_note" aria-label="，四个火" class="weui-badge weui-badge_dot">燚</text>
           </view>
         </view>
       </block>
