@@ -7,7 +7,14 @@ Page({
    * 页面的初始数据
    */
   data: {
+    wrap: false,
+    isstar:false,
+    starnum:100,
     article: {} // 内容数据
+  },
+
+  doStar(){
+    console.log("调试")
   },
 
 
@@ -67,7 +74,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    wx.createSelectorQuery().select('#js_btn')
+    .boundingClientRect((rect) => {
+      if (rect.height > 48) {
+        this.setData({ wrap: true });
+      }
+    })
+    .exec();
   },
 
   /**

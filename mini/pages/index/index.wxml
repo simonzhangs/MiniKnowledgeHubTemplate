@@ -55,8 +55,8 @@
     <!--循环输出-->
 
     <view class="weui-footer weui-footer_fixed-bottom" wx:if="{{artList.length == 0 }}">
-      <view class="view-ad"><ad unit-id="adunit-62a65ad78c1b3f40"></ad></view>
-      <!-- <view class="weui-footer__text">记得收藏哟</view> -->
+      <!-- <view class="view-ad"><ad unit-id="adunit-62a65ad78c1b3f40"></ad></view> -->
+      <view class="weui-footer__text">【豆子笔记】提供技术支持</view>
     </view>
 
   </view>
