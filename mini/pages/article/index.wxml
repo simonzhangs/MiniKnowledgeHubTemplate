@@ -9,7 +9,7 @@
     </view>
     <view class="weui-bottom-fixed-opr-page__tool">
       <view class="weui-bottom-fixed-opr">
-        <button class="weui-btn weui-btn_primary" id="js_btn" aria-role="button" bind:tap="doStar" disabled="{{isstar}}">点赞（{{starnum}}）</button>
+        <button class="weui-btn weui-btn_primary" id="js_btn" aria-role="button" bind:tap="doBtnTap" disabled="{{isstar}}">{{btnName}}</button>
         <!-- <navigator class="weui-btn weui-btn_primary" id="js_btn" aria-role="button" url="javascript:;">点赞</navigator> -->
         <!-- <navigator class="weui-btn weui-btn_default" aria-role="button" url="javascript:;">取消</navigator> -->
       </view>

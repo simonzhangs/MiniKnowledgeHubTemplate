@@ -235,6 +235,7 @@ Page({
       const result = res.data;
       if (result.code == 1) {
         const articles = result.data;
+        console.log('debug,',articles);
         that.setData({
           page: pageNo, //当前的页号
           pages: result.count, //总页数
@@ -282,19 +283,19 @@ Page({
         return
       } else {
         app.costPoints();
-        that.jumpToPage(e.currentTarget.dataset.guid)
+        that.jumpToPage(e.currentTarget.dataset.guid,art.ispub,art.stars)
       }
     } else {
-      that.jumpToPage(e.currentTarget.dataset.guid)
+      that.jumpToPage(e.currentTarget.dataset.guid,art.ispub,art.stars)
     }
 
   },
 
   // 0 啥都不需要 1 直接看广告 2 扣点数
-  jumpToPage: function (guid) {
+  jumpToPage: function (guid,ispub,stars) {
     // 调整到文章页面 
     wx.navigateTo({
-      url: '../article/index?guid=' + guid,
+      url: '../article/index?guid=' + guid+'&ispub='+ispub+'&stars='+stars,
     })
   },
 

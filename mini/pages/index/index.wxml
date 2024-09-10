@@ -35,24 +35,52 @@
     <!-- 内容-->
     <!--循环输出-->
     <view class="weui-cells">
-      <block wx:for="{{artList}}" wx:key="uuid" >
-        <view aria-labelledby="js_cell_l1_bd " aria-describedby="js_cell_l1_note" class="weui-cell weui-cell_access" hover-class="weui-cell_active" bindtap="jump" data-idx="{{index}}" data-guid="{{item.uuid}}" data-stars="{{item.views}}">
+      <block wx:for="{{artList}}" wx:key="uuid">
+        <view aria-labelledby="js_cell_l1_bd " aria-describedby="js_cell_l1_note" class="weui-cell weui-cell_access" hover-class="weui-cell_active" bindtap="jump" data-idx="{{index}}" data-guid="{{item.uuid}}">
           <view class="weui-cell__bd" id="js_cell_l1_bd" aria-hidden="true">
             <view>{{item.title}}</view>
           </view>
           <view class="weui-cell__ft weui-cell__ft_in-access" aria-hidden="true">
-            <text wx:if="{{ item.islock == 1 }}" id="js_cell_l1_note" aria-label="，锁" class="weui-badge weui-badge_dot">锁</text>
-            <text wx:elif="{{ item.createtime > yestTime }}" id="js_cell_l1_note" aria-label="，新" class="weui-badge weui-badge_dot">新</text>
-            <!--<text wx:elif="{{ item.updatetime > item.createtime }}" id="js_cell_l1_note" aria-label="，有更新" class="weui-badge weui-badge_dot">改</text>-->
-            <text wx:elif="{{ item.views > 50 }}" id="js_cell_l1_note" aria-label="，火" class="weui-badge weui-badge_dot">火</text>
-            <text wx:elif="{{ item.views > 500 }}" id="js_cell_l1_note" aria-label="，两个火" class="weui-badge weui-badge_dot">炎</text>
-            <text wx:elif="{{ item.views > 5000 }}" id="js_cell_l1_note" aria-label="，三个火" class="weui-badge weui-badge_dot">焱</text>
-            <text wx:elif="{{ item.views > 50000 }}" id="js_cell_l1_note" aria-label="，四个火" class="weui-badge weui-badge_dot">燚</text>
+            <block wx:if="{{item.ispub == 0}}">
+              <text id="js_cell_l1_note" aria-label="，密" class="weui-badge weui-badge_dot">密</text>
+            </block>
+            <block wx:else>
+              <text wx:if="{{ item.islock == 1 }}" id="js_cell_l1_note" aria-label="，锁" class="weui-badge weui-badge_dot">锁</text>
+              <text wx:elif="{{ item.createtime > yestTime }}" id="js_cell_l1_note" aria-label="，新" class="weui-badge weui-badge_dot">新</text>
+              <text wx:elif="{{ item.views > 50 }}" id="js_cell_l1_note" aria-label="，火" class="weui-badge weui-badge_dot">火</text>
+              <text wx:elif="{{ item.views > 500 }}" id="js_cell_l1_note" aria-label="，两个火" class="weui-badge weui-badge_dot">炎</text>
+              <text wx:elif="{{ item.views > 5000 }}" id="js_cell_l1_note" aria-label="，三个火" class="weui-badge weui-badge_dot">焱</text>
+              <text wx:elif="{{ item.views > 50000 }}" id="js_cell_l1_note" aria-label="，四个火" class="weui-badge weui-badge_dot">燚</text>
+            </block>
           </view>
         </view>
       </block>
     </view>
-    <!--循环输出-->
+    <!--使用Panel样式-->
+    <!-- <view class="weui-panel">
+			<view class="weui-panel__hd">文字列表附来源</view>
+			<view class="weui-panel__bd">
+				<view aria-labelledby="js_p4m1_title js_a11y_comma js_p4m1_desc" aria-describedby="js_p4m1_source js_a11y_comma js_p4m1_time js_a11y_comma js_p4m1_extra" class="weui-media-box weui-media-box_text" aria-role="link">
+					<text aria-hidden="true" class="weui-media-box__title" id="js_p4m1_title">Rust是什么？</text>
+					<view class="weui-media-box__desc" aria-hidden="true" id="js_p4m1_desc"></view>
+					<view class="weui-media-box__info" aria-hidden="true">
+						<view class="weui-media-box__info__meta" aria-hidden="true" id="js_p4m1_source">私密</view>
+						<view class="weui-media-box__info__meta weui-media-box__info__meta_extra" aria-hidden="true" id="js_p4m1_time">浏览量:100</view>
+						<view class="weui-media-box__info__meta weui-media-box__info__meta_extra" aria-hidden="true" id="js_p4m1_extra">点赞量:50</view>
+					</view>
+				</view>
+
+        <view aria-labelledby="js_p4m1_title js_a11y_comma js_p4m1_desc" aria-describedby="js_p4m1_source js_a11y_comma js_p4m1_time js_a11y_comma js_p4m1_extra" class="weui-media-box weui-media-box_text" aria-role="link">
+					<text aria-hidden="true" class="weui-media-box__title" id="js_p4m1_title">Rust是什么？</text>
+					<view class="weui-media-box__desc" aria-hidden="true" id="js_p4m1_desc"></view>
+					<view class="weui-media-box__info" aria-hidden="true">
+						<view class="weui-media-box__info__meta" aria-hidden="true" id="js_p4m1_source">私密</view>
+						<view class="weui-media-box__info__meta weui-media-box__info__meta_extra" aria-hidden="true" id="js_p4m1_time">浏览量:100</view>
+						<view class="weui-media-box__info__meta weui-media-box__info__meta_extra" aria-hidden="true" id="js_p4m1_extra">点赞量:50</view>
+					</view>
+				</view>
+			</view>
+		</view> -->
 
     <view class="weui-footer weui-footer_fixed-bottom" wx:if="{{artList.length == 0 }}">
       <!-- <view class="view-ad"><ad unit-id="adunit-62a65ad78c1b3f40"></ad></view> -->

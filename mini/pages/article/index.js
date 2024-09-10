@@ -1,6 +1,9 @@
 // pages/mkart/index.js
 const app = getApp();
-import { httpGet } from '../../utils/utils.js';
+import utils, {
+  httpGet,
+  httpPost
+} from '../../utils/utils.js';
 Page({
 
   /**
@@ -8,13 +11,58 @@ Page({
    */
   data: {
     wrap: false,
-    isstar:false,
-    starnum:100,
+    btnId:1, // 1，点赞 2，申请公开
+    btnName: '点赞（0）',
+    isstar: false,
+    stars: 0,
+    ispub: 0,
+    uuid: '',
     article: {} // 内容数据
   },
 
-  doStar(){
-    console.log("调试")
+  doBtnTap() {
+    const that = this;
+    if(that.data.btnId==1){
+      // 点赞
+      if (utils.isEmpty(that.data.uuid)) {
+        wx.showToast({
+          title: 'UUID为空',
+        })
+        return
+      }
+      wx.showLoading({
+        title: '处理中...',
+      })
+      httpPost("/star", {
+        uuid: that.data.uuid,
+      }).then((res) => {
+        wx.hideLoading()
+        const result = res.data;
+        if (result.code == 1) {
+          let s = Number(that.data.stars) + 1;
+          that.setData({
+            stars: s,
+            isstar: true,
+          })
+          wx.showToast({
+            title: '点赞成功',
+          })
+        } else {
+          wx.showToast({
+            title: '点赞失败',
+          })
+        }
+      }).catch((err) => {
+        console.log(err);
+        wx.hideLoading()
+        wx.showToast({
+          title: '网络异常请重试',
+        })
+      })
+    }else{
+      console.log('申请公开')
+    }
+   
   },
 
 
@@ -22,19 +70,24 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
-    const _ts = this;
+    const that = this;
+    that.setData({
+      ispub: options.ispub,
+      stars: options.stars,
+      uuid: options.guid,
+    })
     wx.showLoading({
       title: '加载中',
     })
 
     httpGet('/artd', {
       uuid: options.guid,
+      v: '1',
     }).then((res) => {
       const result = res.data;
       if (result.code == 1) {
         let content = result.data;
-        let obj = app.towxml(content, 'markdown', {
+        let obj = app.towxml(content.artcont, 'markdown', {
           theme: 'light',
           events: {
             tap: (e) => {
@@ -43,12 +96,26 @@ Page({
           }
         });
 
-        _ts.setData({
+        let bn = "点赞（" + options.stars + "）";
+        let bi = 1;
+        if (options.ispub == '0') {
+          bn = "申请公开"
+          bi = 2;
+        } else {
+          if (content.isstar) {
+            bn = "已点赞（" + options.stars + "）";
+          }
+        }
+
+        that.setData({
           article: obj,
+          isstar: content.isstar,
+          btnName: bn,
+          btnId:bi,
         });
 
         wx.hideLoading({
-          success: (res) => { },
+          success: (res) => {},
         })
       } else {
         wx.hideLoading()
@@ -75,12 +142,14 @@ Page({
    */
   onShow() {
     wx.createSelectorQuery().select('#js_btn')
-    .boundingClientRect((rect) => {
-      if (rect.height > 48) {
-        this.setData({ wrap: true });
-      }
-    })
-    .exec();
+      .boundingClientRect((rect) => {
+        if (rect.height > 48) {
+          this.setData({
+            wrap: true
+          });
+        }
+      })
+      .exec();
   },
 
   /**
