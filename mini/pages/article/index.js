@@ -11,8 +11,7 @@ Page({
    */
   data: {
     wrap: false,
-    btnId:1, // 1，点赞 2，申请公开
-    btnName: '点赞（0）',
+    btnName: '点赞',
     isstar: false,
     stars: 0,
     ispub: 0,
@@ -22,47 +21,42 @@ Page({
 
   doBtnTap() {
     const that = this;
-    if(that.data.btnId==1){
-      // 点赞
-      if (utils.isEmpty(that.data.uuid)) {
-        wx.showToast({
-          title: 'UUID为空',
-        })
-        return
-      }
-      wx.showLoading({
-        title: '处理中...',
+    // 点赞
+    if (utils.isEmpty(that.data.uuid)) {
+      wx.showToast({
+        title: 'UUID为空',
       })
-      httpPost("/star", {
-        uuid: that.data.uuid,
-      }).then((res) => {
-        wx.hideLoading()
-        const result = res.data;
-        if (result.code == 1) {
-          let s = Number(that.data.stars) + 1;
-          that.setData({
-            stars: s,
-            isstar: true,
-          })
-          wx.showToast({
-            title: '点赞成功',
-          })
-        } else {
-          wx.showToast({
-            title: '点赞失败',
-          })
-        }
-      }).catch((err) => {
-        console.log(err);
-        wx.hideLoading()
-        wx.showToast({
-          title: '网络异常请重试',
-        })
-      })
-    }else{
-      console.log('申请公开')
+      return
     }
-   
+    wx.showLoading({
+      title: '处理中...',
+    })
+    httpPost("/star", {
+      uuid: that.data.uuid,
+    }).then((res) => {
+      wx.hideLoading()
+      const result = res.data;
+      if (result.code == 1) {
+        let s = Number(that.data.stars) + 1;
+        that.setData({
+          stars: s,
+          isstar: true,
+        })
+        wx.showToast({
+          title: '点赞成功',
+        })
+      } else {
+        wx.showToast({
+          title: '点赞失败',
+        })
+      }
+    }).catch((err) => {
+      console.log(err);
+      wx.hideLoading()
+      wx.showToast({
+        title: '网络异常请重试',
+      })
+    })
   },
 
 
@@ -84,6 +78,7 @@ Page({
       uuid: options.guid,
       v: '1',
     }).then((res) => {
+      wx.hideLoading()
       const result = res.data;
       if (result.code == 1) {
         let content = result.data;
@@ -96,29 +91,21 @@ Page({
           }
         });
 
-        let bn = "点赞（" + options.stars + "）";
-        let bi = 1;
-        if (options.ispub == '0') {
-          bn = "申请公开"
-          bi = 2;
-        } else {
-          if (content.isstar) {
-            bn = "已点赞（" + options.stars + "）";
-          }
+        let bn = "点赞";
+        let isstar = content.isstar;
+        if (isstar) {
+          bn = "已点赞";
         }
 
         that.setData({
           article: obj,
-          isstar: content.isstar,
+          isstar: isstar,
           btnName: bn,
-          btnId:bi,
         });
-
-        wx.hideLoading({
-          success: (res) => {},
-        })
       } else {
-        wx.hideLoading()
+        wx.showToast({
+          title: '系统错误请重试',
+        })
       }
     }).catch((err) => {
       console.log(err);
