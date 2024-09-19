@@ -283,19 +283,19 @@ Page({
         return
       } else {
         app.costPoints();
-        that.jumpToPage(e.currentTarget.dataset.guid,art.ispub,art.stars)
+        that.jumpToPage(e.currentTarget.dataset.guid, art.ispub, art.stars)
       }
     } else {
-      that.jumpToPage(e.currentTarget.dataset.guid,art.ispub,art.stars)
+      that.jumpToPage(e.currentTarget.dataset.guid, art.ispub, art.stars)
     }
 
   },
 
   // 0 啥都不需要 1 直接看广告 2 扣点数
-  jumpToPage: function (guid,ispub,stars) {
+  jumpToPage: function (guid, ispub, stars) {
     // 调整到文章页面 
     wx.navigateTo({
-      url: '../article/index?guid=' + guid+'&ispub='+ispub+'&stars='+stars,
+      url: '../article/index?guid=' + guid + '&ispub=' + ispub + '&stars=' + stars,
     })
   },
 
@@ -304,6 +304,12 @@ Page({
     // wx.showLoading({
     //   title: '获取点数信息',
     // })
+
+    let cookie = wx.getStorageSync("sessionKey");
+    if (isEmpty(cookie)) {
+      console.log('user not login.')
+      return
+    }
 
     httpGet('/mpt', {}).then((res) => {
       // wx.hideLoading()
@@ -334,6 +340,7 @@ Page({
     this.setData({
       yestTime: getYestMsTime()
     })
+    // get user points
     this.getMyStatInfo();
   },
 
