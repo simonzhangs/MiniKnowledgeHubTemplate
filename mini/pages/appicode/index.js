@@ -50,7 +50,7 @@ Page({
       console.log(err);
       wx.hideLoading()
       wx.showToast({
-        title: '网络异常请重试',
+        title: result.msg,
       })
     })
   },
@@ -87,7 +87,7 @@ Page({
         app.costPoints();
       } else {
         wx.showToast({
-          title: '系统异常~',
+          title: result.msg,
         })
       }
     }).catch((err) => {
