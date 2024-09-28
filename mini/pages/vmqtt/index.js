@@ -14,8 +14,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    icode: '',
-    isecret: '',
+    username: '',
+    passwd: '',
+    addr: '',
   },
 
   getMyAppIcode() {

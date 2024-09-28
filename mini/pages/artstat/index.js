@@ -15,11 +15,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    myWalletInfo: {
-      points: 0,
-      addpt: 0,
-      subpt: 0,
-      updateTime: '',
+    myArtInfo: {
+      artcnt: 0, // 总计
+      pubcnt: 0,// 公开
+      lockcnt: 0, // 加锁
+      citycnt: 0, // 同城
     },
   },
 
