@@ -23,7 +23,7 @@ Page({
     page: 1,
     yestTime: 0,
     op: 1, // 1 搜索查询 2 按时间查询 3 按标签查询
-    qtype: 1, // 1 最火 2 最新 3 最冷
+    qtype: 1, // 1 最火 2 最新 3 最冷 4 我的 5 同城 6 最赞
     tag: "",
     myWalletInfo: {},
   },
@@ -197,6 +197,18 @@ Page({
       case "btnCold":
         // 按浏览次数升序排序，再按创建升序
         qtype = 3;
+        break;
+      case "btnMy":
+        // 按创建时间倒序排序
+        qtype = 4;
+        break;
+      case "btnCity":
+        // 按创建时间倒序排序
+        qtype = 5;
+        break;
+      case "btnStar":
+        // 最赞，按照点赞次数倒序排序，再按创建时间倒序排序
+        qtype = 6;
         break;
       default:
         break;
