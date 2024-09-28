@@ -40,6 +40,20 @@
                 </view>
               </view>
             </view>
+             <view class="weui-cell">
+              <view class="weui-flex">
+                <view class="weui-flex__item">
+                  <view class="info">浏览总数：{{myArtInfo.viewcnt}}</view>
+                </view>
+              </view>
+            </view>
+             <view class="weui-cell">
+              <view class="weui-flex">
+                <view class="weui-flex__item">
+                  <view class="info">点赞总数：{{myArtInfo.starcnt}}</view>
+                </view>
+              </view>
+            </view>
           </view>
         </view>
         <!-- 今日浏览图表 -->

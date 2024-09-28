@@ -20,6 +20,8 @@ Page({
       pubcnt: 0,// 公开
       lockcnt: 0, // 加锁
       citycnt: 0, // 同城
+      viewcnt: 0,// 浏览
+      starcnt: 0,// 点赞
     },
   },
 
