@@ -19,7 +19,7 @@ Page({
     addr: '',
   },
 
-  getMyAppIcode() {
+  getMyMqttUser() {
     const that = this;
     if (that.bflag) {
       wx.showToast({
@@ -29,10 +29,10 @@ Page({
     }
 
     wx.showLoading({
-      title: '获取识别码',
+      title: '请求中',
     })
 
-    httpGet('/icode', {}).then((res) => {
+    httpGet('/mtuser', {}).then((res) => {
       wx.hideLoading()
       const result = res.data;
       if (result.code == 1) {
@@ -56,7 +56,7 @@ Page({
     })
   },
 
-  resetAppIcode() {
+  resetMyMqttUser() {
     const that = this;
     if (that.rflag) {
       wx.showToast({
@@ -72,10 +72,10 @@ Page({
       return
     }
     wx.showLoading({
-      title: '重置识别码密钥',
+      title: '请求中',
     })
 
-    httpPost('/rsticode', {}).then((res) => {
+    httpPost('/rstmtuser', {}).then((res) => {
       wx.hideLoading()
       const result = res.data;
       if (result.code == 1) {

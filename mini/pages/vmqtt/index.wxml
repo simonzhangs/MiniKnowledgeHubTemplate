@@ -24,8 +24,8 @@
     </view>
     <view class="weui-form__ft">
       <view class="weui-form__opr-area">
-        <view class="weui-btn weui-btn_primary" aria-role="button" bind:tap="getMyAppIcode">获取MQTT账户</view>
-        <view class="weui-btn weui-btn_warn" aria-role="button" bind:tap="resetAppIcode">重置MQTT密钥</view>
+        <view class="weui-btn weui-btn_primary" aria-role="button" bind:tap="getMyMqttUser">获取MQTT账户</view>
+        <view class="weui-btn weui-btn_warn" aria-role="button" bind:tap="resetMyMqttUser">重置MQTT密钥</view>
         <view class="weui-btn weui-btn_default" aria-role="button" bind:tap="doCopy">复制到剪切板</view>
       </view>
     </view>
