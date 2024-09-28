@@ -5,18 +5,30 @@ Page({
    * 页面的初始数据
    */
   data: {
-   
+
   },
-  
-  appicode(){
+  // 识别码
+  appIcode() {
     wx.navigateTo({
       url: '../appicode/index',
     })
   },
-  
+  // 获取豆子点数
   point() {
     wx.navigateTo({
       url: '../point/index',
+    })
+  },
+  // 获取mqtt账户
+  getMqtt() {
+    wx.navigateTo({
+      url: '../vmqtt/index',
+    })
+  },
+  // 获取文章统计信息
+  artStat() {
+    wx.navigateTo({
+      url: '../artstat/index',
     })
   },
 
@@ -26,7 +38,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    
+
   },
 
   /**
@@ -54,7 +66,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload() {
-  
+
   },
 
   /**

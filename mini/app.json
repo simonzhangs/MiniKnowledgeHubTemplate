@@ -4,7 +4,9 @@
     "pages/article/index",
     "pages/my/index",
     "pages/appicode/index",
-    "pages/point/index"
+    "pages/point/index",
+    "pages/vmqtt/index",
+    "pages/artstat/index"
   ],
   "window": {
     "navigationBarBackgroundColor": "#ededed",
@@ -15,19 +17,22 @@
     "enablePullDownRefresh": false
   },
   "tabBar": {
-    "list": [{
-      "pagePath": "pages/index/index",
-      "text": "首页",
-      "iconPath": "./images/book.png",
-      "selectedIconPath": "./images/book_selected.png"
-    }, {
-      "pagePath": "pages/my/index",
-      "text": "我的",
-      "iconPath": "./images/person.png",
-      "selectedIconPath": "./images/person_selected.png"
-    }]
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "./images/book.png",
+        "selectedIconPath": "./images/book_selected.png"
+      },
+      {
+        "pagePath": "pages/my/index",
+        "text": "我的",
+        "iconPath": "./images/person.png",
+        "selectedIconPath": "./images/person_selected.png"
+      }
+    ]
   },
-   
+
   "networkTimeout": {
     "request": 10000,
     "connectSocket": 10000,
@@ -37,6 +42,4 @@
   "style": "v2",
   "lazyCodeLoading": "requiredComponents",
   "sitemapLocation": "sitemap.json"
-
-
 }

@@ -98,7 +98,7 @@
 
     <view class="weui-footer weui-footer_fixed-bottom" wx:if="{{artList.length == 0 }}">
       <!-- <view class="view-ad"><ad unit-id="adunit-62a65ad78c1b3f40"></ad></view> -->
-      <view class="weui-footer__text">【豆子笔记】| www.91demo.top</view>
+      <view class="weui-footer__text">由豆子笔记提供数据| www.91demo.top</view>
     </view>
 
   </view>
