@@ -59,12 +59,12 @@
             </block>
             <block wx:else>
               <!-- 锁优先级最高，放在最后面 -->
-              <text wx:elif="{{ item.views > 50 }}" id="js_cell_l1_note" aria-label="，火" class="weui-badge weui-badge_dot">火</text>
+              <text wx:if="{{ item.views > 50 }}" id="js_cell_l1_note" aria-label="，火" class="weui-badge weui-badge_dot">火</text>
               <text wx:elif="{{ item.views > 500 }}" id="js_cell_l1_note" aria-label="，两个火" class="weui-badge weui-badge_dot">炎</text>
               <text wx:elif="{{ item.views > 5000 }}" id="js_cell_l1_note" aria-label="，三个火" class="weui-badge weui-badge_dot">焱</text>
               <text wx:elif="{{ item.views > 50000 }}" id="js_cell_l1_note" aria-label="，四个火" class="weui-badge weui-badge_dot">燚</text>
               <text wx:elif="{{ item.createtime > yestTime }}" id="js_cell_l1_note" aria-label="，新" class="weui-badge weui-badge_dot">新</text>
-              <text wx:if="{{ item.islock == 1 }}" id="js_cell_l1_note" aria-label="，锁" class="weui-badge weui-badge_dot">锁</text>
+              <text wx:elif="{{ item.islock == 1 }}" id="js_cell_l1_note" aria-label="，锁" class="weui-badge weui-badge_dot">锁</text>
             </block>
           </view>
         </view>
@@ -98,7 +98,7 @@
 
     <view class="weui-footer weui-footer_fixed-bottom" wx:if="{{artList.length == 0 }}">
       <!-- <view class="view-ad"><ad unit-id="adunit-62a65ad78c1b3f40"></ad></view> -->
-      <view class="weui-footer__text">由豆子笔记提供数据| www.91demo.top</view>
+      <view class="weui-footer__text">由豆子笔记支持| www.91demo.top</view>
     </view>
 
   </view>

@@ -25,12 +25,12 @@
         <button size="mini" bind:tap="getMqtt">获取MQTT账户</button>
       </view>
       <view class="weui-flex__item">
-        <button size="mini" bind:tap="artStat">查看文章统计信息</button>
+        <button size="mini" bind:tap="artStat">统计文章信息</button>
       </view>
     </view>
 
     <view class="weui-footer weui-footer_fixed-bottom">
-      <view class="weui-footer__text">由豆子笔记提供数据| www.91demo.top</view>
+      <view class="weui-footer__text">由豆子笔记支持| www.91demo.top</view>
       <!-- <view class="view-ad"><ad unit-id="adunit-62a65ad78c1b3f40"></ad></view> -->
     </view>
   </view>

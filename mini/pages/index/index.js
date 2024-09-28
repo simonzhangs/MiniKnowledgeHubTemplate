@@ -247,7 +247,7 @@ Page({
       const result = res.data;
       if (result.code == 1) {
         const articles = result.data;
-        // console.log('debug,',articles);
+        // console.log('debug,',result);
         that.setData({
           page: pageNo, //当前的页号
           pages: result.count, //总页数
