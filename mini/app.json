@@ -6,7 +6,8 @@
     "pages/appicode/index",
     "pages/point/index",
     "pages/vmqtt/index",
-    "pages/artstat/index"
+    "pages/artstat/index",
+    "pages/auditmsg/index"
   ],
   "window": {
     "navigationBarBackgroundColor": "#ededed",

@@ -4,7 +4,7 @@
     <view class="weui-form__bd">
       <view class="weui-form__text-area">
         <h2 class="weui-form__title">我的MQTT账户</h2>
-        <view class="weui-form__desc">MQTT账户用于对接MQTT消息。首次请使用获取MQTT账户，以后都使用重置MQTT密钥。请妥善保管账户和密钥，不要将密钥告诉他人。</view>
+        <view class="weui-form__desc">MQTT账户用于对接MQTT服务。首次请使用获取MQTT账户，以后都使用重置MQTT密钥。请妥善保管账户和密钥，不要将密钥告诉他人。</view>
       </view>
       <view class="weui-form__control-area">
         <view class="weui-cells__group weui-cells__group_form">

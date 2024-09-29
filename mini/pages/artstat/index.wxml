@@ -61,7 +61,7 @@
     </view>
     <view class="weui-form__ft">
       <view class="weui-form__opr-area">
-        <view class="weui-btn weui-btn_primary" aria-role="button" bind:tap="playAd">查看文章审核消息</view>
+        <view class="weui-btn weui-btn_default" aria-role="button" bind:tap="getArtStat">刷新</view>
       </view>
     </view>
   </view>

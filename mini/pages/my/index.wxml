@@ -13,7 +13,7 @@
     <!-- 第一排 -->
     <view class="weui-flex">
       <view class="weui-flex__item">
-        <button size="mini" bind:tap="appIcode">获取识别码</button>
+        <button size="mini" bind:tap="appIcode">我的识别码</button>
       </view>
       <view class="weui-flex__item">
         <button type="primary" size="mini" bind:tap="point">看广告获奖励</button>
@@ -22,10 +22,10 @@
     <!-- 第二排 -->
     <view class="weui-flex">
       <view class="weui-flex__item">
-        <button size="mini" bind:tap="getMqtt">获取MQTT账户</button>
+        <button size="mini" bind:tap="getMqtt">我的MQTT账户</button>
       </view>
       <view class="weui-flex__item">
-        <button size="mini" bind:tap="artStat">统计文章信息</button>
+        <button size="mini" bind:tap="artStat">文章统计信息</button>
       </view>
     </view>
 

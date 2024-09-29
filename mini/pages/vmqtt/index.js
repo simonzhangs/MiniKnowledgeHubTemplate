@@ -38,13 +38,14 @@ Page({
       if (result.code == 1) {
         let content = result.data;
         that.setData({
-          icode: content.icode,
-          isecret: content.isecret,
+          username: content.username,
+          passwd: content.passwd,
+          addr: content.addr,
         })
         that.bflag = true;
       } else {
         wx.showToast({
-          title: '系统异常~',
+          title: result.msg,
         })
       }
     }).catch((err) => {
@@ -67,7 +68,7 @@ Page({
     const curpoints = app.getPoints();
     if (curpoints < 1) {
       wx.showToast({
-        title: '点数不足',
+        title: '豆子点数不足',
       })
       return
     }
@@ -81,8 +82,9 @@ Page({
       if (result.code == 1) {
         let content = result.data;
         that.setData({
-          icode: content.icode,
-          isecret: content.isecret,
+          username: content.username,
+          passwd: content.passwd,
+          addr: content.addr,
         })
         that.rflag = true;
         app.costPoints();
@@ -102,14 +104,14 @@ Page({
 
   doCopy() {
     const that = this;
-    if (isEmpty(that.data.icode)) {
+    if (isEmpty(that.data.username)) {
       wx.showToast({
         title: '内容不能为空',
       })
       return
     }
 
-    var content = '识别码：' + that.data.icode + '，密钥：' + that.data.isecret;
+    var content = '用户名：' + that.data.username + '，密钥：' + that.data.passwd + '，连接地址：' + that.data.addr;
     wx.setClipboardData({
       data: content,
       success(res) {
