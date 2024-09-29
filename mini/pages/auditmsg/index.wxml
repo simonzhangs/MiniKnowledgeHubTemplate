@@ -1,20 +1,31 @@
 <view class="page">
-  <view class="page__hd">
-    <view class="page__title">文章审核消息</view>
-    <view class="page__desc">查看文章审核结果消息</view>
-  </view>
-  <view class="page__bd page__bd_spacing">
-    <view class="weui-cells">
-      <block wx:for="{{artAuidtList}}" wx:key="uuid">
-        <view aria-labelledby="js_cell_l1_bd " aria-describedby="js_cell_l1_note" class="weui-cell weui-cell_access" hover-class="weui-cell_active" bindtap="read" data-idx="{{index}}">
-          <view class="weui-cell__bd" id="js_cell_l1_bd" aria-hidden="true">
-            <view>{{item}}</view>
+  <view class="weui-form">
+    <view class="weui-form__bd">
+      <view class="weui-form__text-area">
+        <h2 class="weui-form__title">文章审核消息</h2>
+        <view class="weui-form__desc">查看文章审核结果消息，目前为一次性消息，看完消失。</view>
+      </view>
+      <view class="weui-form__control-area">
+        <view class="weui-cells__group weui-cells__group_form">
+          <view class="weui-cells">
+            <block wx:for="{{artAuidtList}}" wx:key="uuid">
+              <view aria-labelledby="js_cell_l1_bd " aria-describedby="js_cell_l1_note" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                <view class="weui-cell__bd" id="js_cell_l1_bd" aria-hidden="true">
+                  <view>{{item}}</view>
+                </view>
+              </view>
+            </block>
+            <view class="weui-cell" wx:if="{{artAuidtList.length == 0 }}">
+              无审核记录
+            </view>
           </view>
         </view>
-      </block>
+      </view>
     </view>
-    <view wx:if="{{artAuidtList.length == 0 }}">
-      无审核记录<button bindtap="getMyArtMsg">刷新</button>
+    <view class="weui-form__ft">
+      <view class="weui-form__opr-area">
+        <view class="weui-btn weui-btn_default" aria-role="button" bind:tap="getMyArtMsg">刷新</view>
+      </view>
     </view>
   </view>
 </view>

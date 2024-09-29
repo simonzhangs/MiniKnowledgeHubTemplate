@@ -28,18 +28,14 @@ Page({
     })
 
     httpGet('/astat', {}).then((res) => {
-      // console.log(res,ps);
+    
       wx.hideLoading();
       const result = res.data;
       if (result.code == 1) {
         let content = result.data;
+      
         that.setData({
-          artcnt: content.artcnt,
-          pubcnt: content.pubcnt,
-          lockcnt: content.lockcnt,
-          citycnt: content.citycnt,
-          viewcnt: content.viewcnt,
-          starcnt: content.starcnt,
+         myArtInfo:content,
         })
       } else {
         wx.showToast({

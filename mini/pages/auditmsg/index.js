@@ -23,9 +23,11 @@ Page({
       const result = res.data;
       if (result.code == 1) {
         let content = result.data;
-        that.setData({
-          artAuidtList: content,
-        })
+        if(!isEmpty(content)){
+          that.setData({
+            artAuidtList: content,
+          })
+        }
       } else {
         wx.showToast({
           title: result.msg,

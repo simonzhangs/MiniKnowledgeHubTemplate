@@ -22,12 +22,20 @@
     <!-- 第二排 -->
     <view class="weui-flex">
       <view class="weui-flex__item">
-        <button size="mini" bind:tap="getMqtt">我的MQTT账户</button>
+        <button size="mini" bind:tap="artAuditMsg">文章审核通知</button>
       </view>
+      
       <view class="weui-flex__item">
         <button size="mini" bind:tap="artStat">文章统计信息</button>
       </view>
     </view>
+    <!-- 第三排 -->
+    <view class="weui-flex">
+      <view class="weui-flex__item">
+        <button size="mini" bind:tap="getMqtt">我的MQTT账户</button>
+      </view> 
+    </view>
+
 
     <view class="weui-footer weui-footer_fixed-bottom">
       <view class="weui-footer__text">由豆子笔记支持| www.91demo.top</view>

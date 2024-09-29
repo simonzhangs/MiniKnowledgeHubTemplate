@@ -31,8 +31,12 @@ Page({
       url: '../artstat/index',
     })
   },
-
-
+  // 获取文章审核通知
+  artAuditMsg(){
+    wx.navigateTo({
+      url: '../auditmsg/index',
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载
