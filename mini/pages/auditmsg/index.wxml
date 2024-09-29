@@ -5,21 +5,16 @@
   </view>
   <view class="page__bd page__bd_spacing">
     <view class="weui-cells">
-      <block wx:for="{{artList}}" wx:key="uuid">
-        <view aria-labelledby="js_cell_l1_bd " aria-describedby="js_cell_l1_note" class="weui-cell weui-cell_access" hover-class="weui-cell_active" bindtap="read" data-idx="{{index}}" data-guid="{{item.uuid}}">
+      <block wx:for="{{artAuidtList}}" wx:key="uuid">
+        <view aria-labelledby="js_cell_l1_bd " aria-describedby="js_cell_l1_note" class="weui-cell weui-cell_access" hover-class="weui-cell_active" bindtap="read" data-idx="{{index}}">
           <view class="weui-cell__bd" id="js_cell_l1_bd" aria-hidden="true">
-            <view>{{item.title}}</view>
-          </view>
-          <view class="weui-cell__ft weui-cell__ft_in-access" aria-hidden="true">
-              <text wx:if="{{ item.unread }}" id="js_cell_l1_note" aria-label="，未读" class="weui-badge weui-badge_dot">未读</text>
+            <view>{{item}}</view>
           </view>
         </view>
       </block>
     </view>
-    <view class="weui-footer weui-footer_fixed-bottom" wx:if="{{artList.length == 0 }}">
-      <view class="weui-footer__text">可以清理已读消息</view>
+    <view wx:if="{{artAuidtList.length == 0 }}">
+      无审核记录<button bindtap="getMyArtMsg">刷新</button>
     </view>
-
   </view>
-
 </view>

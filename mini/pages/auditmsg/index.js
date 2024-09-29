@@ -9,23 +9,26 @@ Page({
    * 页面的初始数据
    */
   data: {
-    artList: [],
+    artAuidtList: [],
   },
-
+  // TODO，将数据存入本地文件，提供按钮可以清理。
   getMyArtMsg() {
     const that = this;
     wx.showLoading({
       title: '请求中',
     })
 
-    httpGet('/mpt', {}).then((res) => {
+    httpGet('/artmsg', {}).then((res) => {
       wx.hideLoading()
       const result = res.data;
       if (result.code == 1) {
         let content = result.data;
-        app.globalData.myWalletInfo = content;
         that.setData({
-          myWalletInfo: content,
+          artAuidtList: content,
+        })
+      } else {
+        wx.showToast({
+          title: result.msg,
         })
       }
     }).catch((err) => {
