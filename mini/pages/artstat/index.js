@@ -10,14 +10,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-    myArtInfo: {
-      artcnt: 0, // 总计
-      pubcnt: 0,// 公开
-      lockcnt: 0, // 加锁
-      citycnt: 0, // 同城
-      viewcnt: 0,// 浏览
-      starcnt: 0,// 点赞
-    },
+    artcnt: 0, // 总计
+    pubcnt: 0, // 公开
+    lockcnt: 0, // 加锁
+    citycnt: 0, // 同城
+    viewcnt: 0, // 浏览
+    starcnt: 0, // 点赞
   },
 
 
@@ -28,14 +26,18 @@ Page({
     })
 
     httpGet('/astat', {}).then((res) => {
-    
+
       wx.hideLoading();
       const result = res.data;
       if (result.code == 1) {
         let content = result.data;
-      
         that.setData({
-         myArtInfo:content,
+          artcnt: content.artcnt,
+          pubcnt: content.pubcnt,
+          lockcnt: content.lockcnt,
+          citycnt: content.citycnt,
+          viewcnt: content.viewcnt,
+          starcnt: content.starcnt,
         })
       } else {
         wx.showToast({

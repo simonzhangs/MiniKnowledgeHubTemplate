@@ -12,7 +12,7 @@
             <view class="weui-cell">
               <view class="weui-flex">
                 <view class="weui-flex__item">
-                  <view class="info">文章总数：{{myArtInfo.artcnt}}</view>
+                  <view class="info">文章总数：{{artcnt}}</view>
                 </view>
               </view>
             </view>
@@ -20,7 +20,7 @@
             <view class="weui-cell">
               <view class="weui-flex">
                 <view class="weui-flex__item">
-                  <view class="info">公开总数：{{myArtInfo.pubcnt}}</view>
+                  <view class="info">公开总数：{{pubcnt}}</view>
                 </view>
               </view>
             </view>
@@ -28,7 +28,7 @@
             <view class="weui-cell">
               <view class="weui-flex">
                 <view class="weui-flex__item">
-                  <view class="info">加锁总数：{{myArtInfo.lockcnt}}</view>
+                  <view class="info">加锁总数：{{lockcnt}}</view>
                 </view>
               </view>
             </view>
@@ -36,21 +36,21 @@
             <view class="weui-cell">
               <view class="weui-flex">
                 <view class="weui-flex__item">
-                  <view class="info">同城总数：{{myArtInfo.citycnt}}</view>
+                  <view class="info">同城总数：{{citycnt}}</view>
                 </view>
               </view>
             </view>
              <view class="weui-cell">
               <view class="weui-flex">
                 <view class="weui-flex__item">
-                  <view class="info">浏览总数：{{myArtInfo.viewcnt}}</view>
+                  <view class="info">浏览总数：{{viewcnt}}</view>
                 </view>
               </view>
             </view>
              <view class="weui-cell">
               <view class="weui-flex">
                 <view class="weui-flex__item">
-                  <view class="info">点赞总数：{{myArtInfo.starcnt}}</view>
+                  <view class="info">点赞总数：{{starcnt}}</view>
                 </view>
               </view>
             </view>
