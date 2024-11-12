@@ -3,6 +3,7 @@
   <view class="weui-bottom-fixed-opr-page  {{wrap ? 'weui-bottom-fixed-opr-page_btn-wrap' : ''}}">
     <view class="weui-bottom-fixed-opr-page__content">
       <view class="weui-bottom-fixed-opr-demo">
+        <view>下载耗时：{{dltime}}，渲染耗时：{{rdtime}}</view>
         <!--使用towxml-->
         <towxml nodes="{{article}}" />
       </view>

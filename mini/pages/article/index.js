@@ -16,7 +16,9 @@ Page({
     stars: 0,
     ispub: 0,
     uuid: '',
-    article: {} // 内容数据
+    article: {}, // 内容数据
+    dltime: 0,// 下载时间
+    rdtime: 0, // 渲染时间
   },
 
   doBtnTap() {
@@ -64,6 +66,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    let now = utils.getNowMsTime();
     const that = this;
     that.setData({
       ispub: options.ispub,
@@ -78,6 +81,8 @@ Page({
       uuid: options.guid,
       v: '1',
     }).then((res) => {
+      let n2 = utils.getNowMsTime();
+      let dltime = n2 - n1;
       wx.hideLoading()
       const result = res.data;
       if (result.code == 1) {
@@ -97,11 +102,22 @@ Page({
           bn = "已点赞";
         }
 
+
+
+
         that.setData({
           article: obj,
           isstar: isstar,
           btnName: bn,
         });
+
+        let n3 = utils.getNowMsTime();
+        let rdtime = n3 - n2;
+        that.setData({
+          dltime: dltime,
+          rdtime: rdtime,
+        })
+
       } else {
         wx.showToast({
           title: '系统错误请重试',
