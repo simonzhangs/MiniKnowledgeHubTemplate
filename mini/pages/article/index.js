@@ -66,7 +66,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    let now = utils.getNowMsTime();
+    let n1 = utils.getNowMsTime();
     const that = this;
     that.setData({
       ispub: options.ispub,
@@ -101,9 +101,6 @@ Page({
         if (isstar) {
           bn = "已点赞";
         }
-
-
-
 
         that.setData({
           article: obj,
