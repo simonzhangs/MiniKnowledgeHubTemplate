@@ -6,42 +6,55 @@ import {
   httpGet,
 } from '../../utils/utils.js';
 
-let bflag = false;
-let rflag = false;
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    icode: '',
-    isecret: '',
-    hasIcode:false,
+    vcode:'',
   },
-
-  getMyAppIcode() {
+  bindVcodeInput(e) {
+    if (e.detail.value) {
+      this.setData({
+        vcode: e.detail.value,
+      });
+    }
+  },
+  getMac(){
     const that = this;
-    if (that.bflag) {
+    if (isEmpty(that.data.vcode)) {
       wx.showToast({
-        title: '不用重复操作',
+        title: '请输入验证码',
       })
       return
     }
 
     wx.showLoading({
-      title: '获取识别码',
+      title: '处理中...',
     })
 
-    httpGet('/icode', {}).then((res) => {
+    httpGet('/gmbv', {
+      'vcode':that.data.vcode,
+    }).then((res) => {
       wx.hideLoading()
       const result = res.data;
+      console.log(res);
       if (result.code == 1) {
-        let content = result.data;
-        that.setData({
-          icode: content.icode,
-          isecret: content.isecret,
+        let mac = result.data;
+        wx.showModal({
+          title: '提示',
+          content: '将绑定客户端到该账户，客户端MAC地址：'+mac,
+          complete: (res) => {
+            if (res.cancel) {
+             console.log('用户选择了取消')
+            }
+        
+            if (res.confirm) {
+              that.bindIcode(mac)
+            }
+          }
         })
-        that.bflag = true;
       } else {
         wx.showToast({
           title: result.msg,
@@ -56,36 +69,24 @@ Page({
     })
   },
 
-  resetAppIcode() {
-    const that = this;
-    if (that.rflag) {
-      wx.showToast({
-        title: '不用重复操作',
-      })
-      return
-    }
-    const curpoints = app.getPoints();
-    if (curpoints < 1) {
-      wx.showToast({
-        title: '点数不足',
-      })
-      return
-    }
-    wx.showLoading({
-      title: '重置识别码密钥',
-    })
 
-    httpPost('/rsticode', {}).then((res) => {
-      wx.hideLoading()
+  bindIcode(mac) {
+    const that = this;
+    if (isEmpty(mac)) {
+      wx.showToast({
+        title: '绑定失败',
+      })
+      return
+    }
+
+    httpPost('/bcbm', {
+      'mac':mac,
+    }).then((res) => {
       const result = res.data;
       if (result.code == 1) {
-        let content = result.data;
-        that.setData({
-          icode: content.icode,
-          isecret: content.isecret,
+        wx.showToast({
+          title: '绑定成功',
         })
-        that.rflag = true;
-        app.costPoints();
       } else {
         wx.showToast({
           title: result.msg,
@@ -93,41 +94,18 @@ Page({
       }
     }).catch((err) => {
       console.log(err);
-      wx.hideLoading()
       wx.showToast({
-        title: '网络异常请重试',
+        title: '网络异常~',
       })
     })
   },
 
-  doCopy() {
-    const that = this;
-    if (isEmpty(that.data.icode)) {
-      wx.showToast({
-        title: '内容不能为空',
-      })
-      return
-    }
-
-    var content = '识别码：' + that.data.icode + '，密钥：' + that.data.isecret;
-    wx.setClipboardData({
-      data: content,
-      success(res) {
-
-      }
-    })
-  },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    let b = app.globalData.hasIcode;
-    if (b==1) {
-      this.setData({
-        hasIcode:true,
-      })
-    }
+
   },
 
   /**
@@ -155,8 +133,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload() {
-    bflag = false;
-    rflag = false;
+   
   },
 
   /**

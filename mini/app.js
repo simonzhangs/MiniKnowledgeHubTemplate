@@ -1,4 +1,9 @@
-import { isEmpty, httpPost, getSecTs, getNowStr } from "./utils/utils.js";
+import {
+  isEmpty,
+  httpPost,
+  getSecTs,
+  getNowStr
+} from "./utils/utils.js";
 App({
   towxml: require('./towxml/index'),
   getText: (url, callback) => {
@@ -20,25 +25,25 @@ App({
     let sessionTime = wx.getStorageSync("sessionTime");
     if (!isEmpty(sessionTime)) {
       let now = Date.now();
-      // 生存时间 换算成毫秒 2592000000
-      if (now - sessionTime >= 2592000000) {
+      // 生存时间1天 换算成毫秒 86400000
+      if (now - sessionTime >= 86400000) {
         wx.removeStorageSync("sessionKey");
         wx.removeStorageSync("sessionTime");
-        wx.removeStorageSync("adFreqHalfHour");
-        wx.removeStorageSync("adInterval");
-        wx.removeStorageSync("adProfit");
+        wx.removeStorageSync("vp");
         that.wxLogin();
       }
     }
     if (isEmpty(cookie)) {
       that.wxLogin();
     } else {
-      let adFreqHalfHour = wx.getStorageSync('adFreqHalfHour')
-      that.globalData.adFreqHalfHour = Number(adFreqHalfHour);
-      let adInterval = wx.getStorageSync('adInterval')
-      that.globalData.adInterval = Number(adInterval);
-      let adProfit = wx.getStorageSync('adProfit')
-      that.globalData.adProfit = Number(adProfit);
+      let vp = wx.getStorageSync('vp');
+      let vobj = JSON.parse(vp);
+      that.globalData.adFreqHalfHour = Number(vobj.adFreqHalfHour);
+      that.globalData.adInterval = Number(vobj.adInterval);
+      that.globalData.adProfit = Number(vobj.adProfit);
+      that.globalData.openid = vobj.openid;
+      that.globalData.hasIcode = Number(vobj.hasIcode);
+      that.globalData.hasMqtt = Number(vobj.hasMqtt);
     }
   },
   wxLogin() {
@@ -48,21 +53,32 @@ App({
         if (res.code) {
           //发起网络请求
           httpPost("/vln", {
-            code: res.code,
-          })
+              code: res.code,
+            })
             .then((res) => {
-
               if (res.data.code === 1) {
                 let data = res.data;
                 wx.setStorageSync("sessionKey", res.header["Set-Cookie"]);
                 wx.setStorageSync('sessionTime', Date.now());
-                wx.setStorageSync('adFreqHalfHour', data.data.adFreqHalfHour);
-                wx.setStorageSync('adInterval', data.data.adInterval);
-                wx.setStorageSync('adProfit', data.data.adProfit);
+                // 将所有业务参数调整为一个。
+                let vobj = {
+                  "adFreqHalfHour": data.data.adFreqHalfHour,
+                  "adInterval": data.data.adInterval,
+                  "adProfit": data.data.adProfit,
+                  "hasIcode": data.data.hasIcode,
+                  "hasMqtt": data.data.hasMqtt,
+                  "openid": data.data.openid,
+                }
+                // visit 参数
+                wx.setStorageSync('vp', JSON.stringify(vobj));
 
-                that.globalData.adFreqHalfHour = data.data.adFreqHalfHour;
-                that.globalData.adInterval = data.data.adInterval;
-                that.globalData.adProfit = data.data.adProfit;
+                that.globalData.adFreqHalfHour = Number(data.data.adFreqHalfHour);
+                that.globalData.adInterval = Number(data.data.adInterval);
+                that.globalData.adProfit = Number(data.data.adProfit);
+                // 20241117新增
+                that.globalData.openid = data.data.openid;
+                that.globalData.hasIcode = Number(data.data.hasIcode);
+                that.globalData.hasMqtt = Number(data.data.hasMqtt);
               } else {
                 console.log(res.data.msg);
                 wx.showToast({
@@ -124,9 +140,13 @@ App({
     adProfit: 10,
     myWalletInfo: {
       points: 0,
-      addpt:0,
-      subpt:0,
+      addpt: 0,
+      subpt: 0,
       updateTime: '',
     },
+    // 20241117新增字段
+    openid: '',
+    hasIcode: 0,
+    hasMqtt: 0,
   }
 });

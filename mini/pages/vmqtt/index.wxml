@@ -4,7 +4,7 @@
     <view class="weui-form__bd">
       <view class="weui-form__text-area">
         <h2 class="weui-form__title">我的MQTT账户</h2>
-        <view class="weui-form__desc">MQTT账户用于连接MQTT服务。首次使用请开通MQTT账户，开通以后都使用重置MQTT密钥。请妥善保管账户和密钥，不要将密钥告诉他人。</view>
+        <view class="weui-form__desc">MQTT账户用于连接MQTT服务。用来接收文章审核通知。请妥善保管账户和密钥，不要将密钥告诉他人。</view>
       </view>
       <view class="weui-form__control-area">
         <view class="weui-cells__group weui-cells__group_form">
@@ -19,13 +19,16 @@
             <text>MQTT地址：{{addr}}</text>
             </view>
           </view>
+          <view class="weui-cells__tips">
+            <navigator class="weui-link" url="../intromqtt/index">=> 查看详细介绍</navigator>
+          </view>
         </view>
       </view>
     </view>
     <view class="weui-form__ft">
       <view class="weui-form__opr-area">
-        <view class="weui-btn weui-btn_primary" aria-role="button" bind:tap="getMyMqttUser">开通MQTT账户</view>
-        <view class="weui-btn weui-btn_warn" aria-role="button" bind:tap="resetMyMqttUser">重置MQTT密钥</view>
+        <view wx:if="{{!hasMqtt}}" class="weui-btn weui-btn_primary" aria-role="button" bind:tap="getMyMqttUser">获取MQTT账户</view>
+        <view class="weui-btn weui-btn_warn" aria-role="button" bind:tap="resetMyMqttUser">更新MQTT密钥</view>
         <view class="weui-btn weui-btn_default" aria-role="button" bind:tap="doCopy">复制到剪切板</view>
       </view>
     </view>

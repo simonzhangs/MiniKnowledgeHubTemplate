@@ -7,7 +7,11 @@
     "pages/point/index",
     "pages/vmqtt/index",
     "pages/artstat/index",
-    "pages/auditmsg/index"
+    "pages/bindicode/index",
+    "pages/auditmsg/index",
+    "pages/introicode/index",
+    "pages/intromqtt/index",
+    "pages/introclient/index"
   ],
   "window": {
     "navigationBarBackgroundColor": "#ededed",

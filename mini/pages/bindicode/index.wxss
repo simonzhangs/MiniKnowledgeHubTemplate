@@ -1,0 +1,7 @@
+/* pages/appicode/index.wxss */
+.page {
+	height: 100%;
+  }
+
+
+ 

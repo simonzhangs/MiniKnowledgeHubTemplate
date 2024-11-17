@@ -34,6 +34,9 @@
       <view class="weui-flex__item">
         <button size="mini" bind:tap="getMqtt">我的MQTT账户</button>
       </view> 
+      <view class="weui-flex__item">
+        <button size="mini" bind:tap="bindIcode">客户端配置工具</button>
+      </view> 
     </view>
 
 

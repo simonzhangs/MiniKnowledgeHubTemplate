@@ -1,0 +1,25 @@
+<!--pages/introclient/index.wxml-->
+
+<view class="page">
+	<view class="weui-article">
+		<view aria-role="heading" aria-level="4" class="weui-article__h1">客户端配置工具</view>
+
+		<view class="weui-article__section">
+			<view class="weui-article__p">
+				为了维护豆子碎片的文章内容，我们使用Golang开发了命令行工具，用于上传和管理文章。
+			</view>
+			<view class="weui-article__p">
+				该项目已经开源，项目地址：https://gitee.com/littletow/upart-go
+			</view>
+			<view class="weui-article__p">
+				该命令行工具基于开放接口制作，使用配置文件来存储识别码信息，第一次使用工具，需要创建配置文件，并通过小程序获取识别码，然后设置到配置文件中。
+			</view>
+			<view class="weui-article__p">
+				为了提高新用户使用工具的便捷性，我们改造了工具，使工具可以自动创建配置文件，并结合小程序实现自动绑定识别码。免去手动配置的烦恼。
+			</view>
+			<view class="weui-article__p">
+				操作步骤如下：用户从项目地址下载文章上传命令行工具或自行通过源码编译，第一次使用工具会提示`gart init`进行初始化绑定账户（识别码）。当执行命令后，会弹出一个弹窗，弹窗内容显示为验证码和小程序码，扫描小程序码将打开客户端配置工具页面，输入验证码绑定即可。 
+			</view>
+		</view>
+	</view>
+</view>

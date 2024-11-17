@@ -1,4 +1,4 @@
-// pages/my/index.js
+// pages/introclient/index.js
 Page({
 
   /**
@@ -6,43 +6,6 @@ Page({
    */
   data: {
 
-  },
-  // 识别码
-  appIcode() {
-    wx.navigateTo({
-      url: '../appicode/index',
-    })
-  },
-  // 获取豆子点数
-  point() {
-    wx.navigateTo({
-      url: '../point/index',
-    })
-  },
-  // 获取mqtt账户
-  getMqtt() {
-    wx.navigateTo({
-      url: '../vmqtt/index',
-    })
-  },
-  // 获取文章统计信息
-  artStat() {
-    wx.navigateTo({
-      url: '../artstat/index',
-    })
-  },
-  // 获取文章审核通知
-  artAuditMsg(){
-    wx.navigateTo({
-      url: '../auditmsg/index',
-    })
-  },
-
-  // 配置工具
-  bindIcode(){
-    wx.navigateTo({
-      url: '../bindicode/index',
-    })
   },
 
   /**

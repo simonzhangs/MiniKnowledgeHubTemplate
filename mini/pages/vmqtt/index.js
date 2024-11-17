@@ -17,6 +17,7 @@ Page({
     username: '',
     passwd: '',
     addr: '',
+    hasMqtt:false,
   },
 
   getMyMqttUser() {
@@ -124,7 +125,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    let b = app.globalData.hasMqtt;
+    if (b==1) {
+      this.setData({
+        hasMqtt:true,
+      })
+    }
   },
 
   /**
