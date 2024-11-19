@@ -4,7 +4,9 @@ import {
   getYestMsTime,
   httpGet,
   isEmpty,
-  getNowStr
+  getNowStr,
+  getNowMsTime,
+  getReqSign,
 } from '../../utils/utils.js';
 
 let vAd = null;
@@ -14,6 +16,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    reqId: '',
     artList: [],
     inputShowed: false,
     inputVal: "",
@@ -50,11 +53,33 @@ Page({
       })
   },
 
+  getReqId() {
+    // 添加种子，添加时间戳，换取reqid
+    const that = this;
+    const seed = app.globalData.seed;
+    const ts = getNowMsTime();
+    const sign = getReqSign(seed, ts);
+    httpPost('/gari', {
+      "ts": ts,
+      "sign": sign,
+    }).then((res) => {
+      const result = res.data;
+      if (result.code == 1) {
+        let content = result.data;
+        that.setData({
+          reqId: content,
+        })
+      }
+    }).catch((err) => {
+      console.log(err);
+    })
+  },
   playAd() {
     const that = this;
     wx.showLoading({
       title: '加载广告中',
     })
+    that.getReqId();
     if (!hasLoadAd) {
       that.loadAd();
     }
@@ -87,7 +112,11 @@ Page({
 
   doAdProfit() {
     const that = this;
-    httpPost('/wad', {}).then((res) => {
+    // 添加sign，以及请求类型。
+    httpPost('/wad', {
+      "reqid": that.data.reqId,
+      "flag": 1,
+    }).then((res) => {
       const ps = res.data.data;
       // console.log(res,ps);
       const myWalletInfo = that.data.myWalletInfo;

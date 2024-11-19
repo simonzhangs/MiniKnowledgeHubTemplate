@@ -106,17 +106,35 @@ function getYestMsTime() {
   return new Date().getTime() - 24 * 60 * 60 * 1000;
 }
 
+// 获取今天凌晨零点毫秒时间戳
+function getTodayZeroMsTime() {
+  const d = new Date(new Date().setHours(0, 0, 0, 0)); // 获取当天零点时间
+  return d.getTime()
+}
+
+// 获取今天235959的时间，毫秒时间戳
+function getTodayNearZeroMsTime() {
+  const d = new Date(new Date().setHours(0, 0, 0, 0) + 24 * 60 * 60 * 1000 - 1); // 获取当天23:59:59的时间
+  return d.getTime()
+}
+
 function decodeBase64(data) {
   let decode = atob(data);
   return decodeURIComponent(decode);
 }
-
+// 获取验证码
 function getVCode() {
   const now = getSecTs();
   const str = sharekey + now + "Eagle";
   const md5str = md5util.md5(str);
   const vcode = now + md5str;
   return vcode;
+}
+// 获取reqid签名
+function getReqSign(seed, ts) {
+  const str = seed + ts + "ad";
+  const md5str = md5util.md5(str);
+  return md5str
 }
 
 function compareVersion(v1, v2) {
@@ -312,5 +330,7 @@ module.exports = {
   getXMinTimeStamp,
   getXSecTimeStamp,
   diffNowTs,
-
+  getReqSign,
+  getTodayZeroMsTime,
+  getTodayNearZeroMsTime,
 }

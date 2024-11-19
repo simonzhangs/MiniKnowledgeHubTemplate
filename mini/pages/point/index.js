@@ -5,6 +5,8 @@ import utils, {
   httpPost,
   diffNowTs,
   getXSecTimeStamp,
+  getNowMsTime,
+  getReqSign,
 } from '../../utils/utils.js';
 let vAd = null;
 let isLoadAd = false;
@@ -15,6 +17,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    reqId: '',
     myWalletInfo: {
       points: 0,
       addpt: 0,
@@ -56,6 +59,7 @@ Page({
       title: '加载广告中',
     })
 
+    that.getReqId();
     if (!isLoadAd) {
       that.loadAd();
     }
@@ -129,13 +133,38 @@ Page({
     })
   },
 
+  getReqId() {
+    // 添加种子，添加时间戳，换取reqid
+    const that = this;
+    const seed = app.globalData.seed;
+    const ts = getNowMsTime();
+    const sign = getReqSign(seed, ts);
+    httpPost('/gari', {
+      "ts": ts,
+      "sign": sign,
+    }).then((res) => {
+      const result = res.data;
+      if (result.code == 1) {
+        let content = result.data;
+        that.setData({
+          reqId: content,
+        })
+      }
+    }).catch((err) => {
+      console.log(err);
+    })
+  },
+
   doAdProfit() {
     const that = this;
     wx.showLoading({
       title: '计算广告收益',
     })
-
-    httpPost('/wad', {}).then((res) => {
+    // 添加sign，以及请求类型。
+    httpPost('/wad', {
+      "reqid": that.data.reqId,
+      "flag": 1,
+    }).then((res) => {
       const ps = res.data.data;
       // console.log(res,ps);
       const myWalletInfo = that.data.myWalletInfo;
