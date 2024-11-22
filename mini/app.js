@@ -66,9 +66,11 @@ App({
             code: res.code,
           })
             .then((res) => {
+              // console.log('调试，',res)
               if (res.data.code === 1) {
                 let data = res.data;
                 wx.setStorageSync("sessionKey", res.header["Set-Cookie"]);
+                // wx.setStorageSync("sessionKey", res.header["set-cookie"]);
                 wx.setStorageSync('sessionTime', Date.now());
                 // 将所有业务参数调整为一个。
                 let vobj = {
