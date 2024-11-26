@@ -4,7 +4,7 @@ Visit 是展示和搜索文章的前端小程序工具。Visit 项目经历多�
 
 Visit 项目在小程序端的二维码：
 
-![豆子碎片](https://www.91demo.top/visit.webp#pic_center)
+![豆子碎片](https://imgs.91demo.top/visit.webp#pic_center)
 
 ## 云环境版本
 
