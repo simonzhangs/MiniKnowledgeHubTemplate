@@ -311,7 +311,7 @@ Page({
         // 弹出对话框，告知用户需要观看广告。
         wx.showModal({
           title: '提示',
-          content: '浏览加锁文章需消耗1个豆子点数，您的豆子点数不足。请观看广告，您将获得10个豆子点数。',
+          content: '豆子点数不足，休息一下去看个广告获得豆子点数吧？',
           success(res) {
             if (res.confirm) {
               console.log('用户点击确定')
