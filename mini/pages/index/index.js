@@ -345,13 +345,13 @@ Page({
     // wx.showLoading({
     //   title: '获取点数信息',
     // })
-    console.log('2秒后调用我');
+    console.log('after 1.5 second call me');
     let cookie = wx.getStorageSync("sessionKey");
     if (isEmpty(cookie)) {
       console.log('user not login.')
       return
     }
-    console.log('有token啊');
+    console.log('token is existed');
     httpGet('/mpt', {}).then((res) => {
       // wx.hideLoading()
       const result = res.data;
@@ -382,13 +382,13 @@ Page({
     that.setData({
       yestTime: getYestMsTime()
     })
-    console.log('2秒前调用我');
-    // 延时2秒
-    setTimeout(()=>{
+    console.log('onload call me');
+    // 延时1.5秒
+    setTimeout(() => {
       // get user points
       that.getMyStatInfo();
-    },2000);
-    
+    }, 1500);
+
   },
 
   /**

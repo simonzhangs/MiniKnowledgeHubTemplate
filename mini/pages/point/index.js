@@ -194,9 +194,8 @@ Page({
     const that = this;
     // that.loadAd();
     lastadTime = app.globalData.lastadTime;
-    const myWalletInfo = app.globalData.myWalletInfo;
     that.setData({
-      myWalletInfo: myWalletInfo,
+      myWalletInfo: app.globalData.myWalletInfo,
     })
   },
 
