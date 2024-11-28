@@ -383,7 +383,7 @@ Page({
       yestTime: getYestMsTime()
     })
     console.log('onload call me');
-    // 延时2.5秒
+    // 延时获取内容
     setTimeout(() => {
       // get user points
       that.getMyStatInfo();
