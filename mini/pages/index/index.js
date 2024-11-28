@@ -345,7 +345,7 @@ Page({
     // wx.showLoading({
     //   title: '获取点数信息',
     // })
-    console.log('after 1.5 second call me');
+    console.log('after 2.5 second call me');
     let cookie = wx.getStorageSync("sessionKey");
     if (isEmpty(cookie)) {
       console.log('user not login.')
@@ -383,11 +383,11 @@ Page({
       yestTime: getYestMsTime()
     })
     console.log('onload call me');
-    // 延时1.5秒
+    // 延时2.5秒
     setTimeout(() => {
       // get user points
       that.getMyStatInfo();
-    }, 1500);
+    }, 2500);
 
   },
 
