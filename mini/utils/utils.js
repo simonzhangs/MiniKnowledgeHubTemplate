@@ -187,7 +187,7 @@ const http = ({
     wx.request({
       url: getUrl(url),
       data: param,
-      // enableHttp2:true,
+      enableHttp2:true,
       // enableQuic:true,
       header: {
         "content-type": "application/json", // 默认值

@@ -1,4 +1,4 @@
-import {
+import utils, {
   isEmpty,
   httpPost,
   getSecTs,
@@ -69,8 +69,13 @@ App({
               // console.log('调试，',res)
               if (res.data.code === 1) {
                 let data = res.data;
-                wx.setStorageSync("sessionKey", res.header["Set-Cookie"]);
-                // wx.setStorageSync("sessionKey", res.header["set-cookie"]);
+                // wx.setStorageSync("sessionKey", res.header["Set-Cookie"]);
+                // 使用http2时，cookie名称变化
+                var skey = res.header["Set-Cookie"]
+                if (isEmpty(skey)){
+                  skey = res.header["set-cookie"];
+                } 
+                wx.setStorageSync("sessionKey", skey);
                 wx.setStorageSync('sessionTime', Date.now());
                 // 将所有业务参数调整为一个。
                 let vobj = {
