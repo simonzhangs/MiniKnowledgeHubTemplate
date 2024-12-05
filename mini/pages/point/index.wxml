@@ -4,7 +4,7 @@
     <view class="weui-form__bd">
       <view class="weui-form__text-area">
         <h2 class="weui-form__title">豆子点数</h2>
-        <view class="weui-form__desc">每日打开小程序，观看广告都可获得豆子点数，豆子点数可用于浏览加锁文章。</view>
+        <view class="weui-form__desc">观看广告都可获得豆子点数，豆子点数可用于浏览加锁文章。</view>
       </view>
       <view class="weui-form__control-area">
         <view class="weui-cells__group weui-cells__group_form">

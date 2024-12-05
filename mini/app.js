@@ -25,8 +25,6 @@ App({
     let cookie = wx.getStorageSync("sessionKey");
     let sessionTime = wx.getStorageSync("sessionTime");
     if (!isEmpty(sessionTime)) {
-      // let now = Date.now();
-      // // 生存时间1天 换算成毫秒 86400000
       // if (now - sessionTime >= 86400000) {
       //   wx.removeStorageSync("sessionKey");
       //   wx.removeStorageSync("sessionTime");
@@ -34,8 +32,11 @@ App({
       //   that.wxLogin();
       // }
       // 优化，获取今天凌晨时间，比较session时间。
-      let now = getTodayZeroMsTime();
-      if (sessionTime < now) {
+      // let now = getTodayZeroMsTime();
+      // if (sessionTime < now) {
+      // 生存时间7天 换算成毫秒 604800000
+      let now = Date.now();
+      if (now - sessionTime > 604800000) {
         wx.removeStorageSync("sessionKey");
         wx.removeStorageSync("sessionTime");
         wx.removeStorageSync("vp");
@@ -72,9 +73,9 @@ App({
                 // wx.setStorageSync("sessionKey", res.header["Set-Cookie"]);
                 // 使用http2时，cookie名称变化
                 var skey = res.header["Set-Cookie"]
-                if (isEmpty(skey)){
+                if (isEmpty(skey)) {
                   skey = res.header["set-cookie"];
-                } 
+                }
                 wx.setStorageSync("sessionKey", skey);
                 wx.setStorageSync('sessionTime', Date.now());
                 // 将所有业务参数调整为一个。
