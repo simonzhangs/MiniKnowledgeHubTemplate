@@ -42,19 +42,26 @@ App({
         wx.removeStorageSync("vp");
         that.wxLogin();
       }
+      if(sessionTime < 1733625000000){
+        that.wxLogin();
+      }
     }
     if (isEmpty(cookie)) {
       that.wxLogin();
     } else {
       let vp = wx.getStorageSync('vp');
-      let vobj = JSON.parse(vp);
-      that.globalData.adFreqHalfHour = Number(vobj.adFreqHalfHour);
-      that.globalData.adInterval = Number(vobj.adInterval);
-      that.globalData.adProfit = Number(vobj.adProfit);
-      that.globalData.openid = vobj.openid;
-      that.globalData.hasIcode = Number(vobj.hasIcode);
-      that.globalData.hasMqtt = Number(vobj.hasMqtt);
-      that.globalData.seed = vobj.seed;
+      if (vp != "") {
+        let vobj = JSON.parse(vp);
+        that.globalData.adFreqHalfHour = Number(vobj.adFreqHalfHour);
+        that.globalData.adInterval = Number(vobj.adInterval);
+        that.globalData.adProfit = Number(vobj.adProfit);
+        that.globalData.openid = vobj.openid;
+        that.globalData.hasIcode = Number(vobj.hasIcode);
+        that.globalData.hasMqtt = Number(vobj.hasMqtt);
+        that.globalData.seed = vobj.seed;
+      }else{
+        that.wxLogin();
+      }
     }
   },
   wxLogin() {
