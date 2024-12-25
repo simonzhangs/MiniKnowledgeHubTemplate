@@ -1,6 +1,5 @@
 <!--pages/article/index.wxml-->
 <view class="page">
-        <view class="cost">下载耗时：{{dltime}}ms，渲染耗时：{{rdtime}}ms</view>
         <!--使用towxml-->
         <towxml nodes="{{article}}" />
 </view>

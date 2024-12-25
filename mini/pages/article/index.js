@@ -8,60 +8,48 @@ Page({
    */
   data: {
     article: {}, // 内容数据
-    dltime: 0, // 下载时间
-    rdtime: 0, // 渲染时间
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    let n1 = utils.getNowMsTime();
     const that = this;
-
     wx.showLoading({
       title: '加载中...',
     })
-
-    let url = options.uuid;
-    wx.request(url, {}).then((res) => {
-      let n2 = utils.getNowMsTime();
-      let dltime = n2 - n1;
-      wx.hideLoading()
-      const result = res.data;
-      if (result.code == 1) {
-        let content = result.data;
-        let obj = app.towxml(content.artcont, 'markdown', {
-          theme: 'light',
-          events: {
-            tap: (e) => {
-              console.log('tap', e);
-            }
-          }
-        });
-
-        that.setData({
-          article: obj,
-        });
-
-        let n3 = utils.getNowMsTime();
-        let rdtime = n3 - n2;
-        that.setData({
-          dltime: dltime,
-          rdtime: rdtime,
-        })
-
-      } else {
-        wx.showToast({
-          title: '系统错误请重试',
-        })
+    console.log(options);
+    let url = 'https://gitee.com/littletow/visit/raw/master/content/'+'languages/go.md';
+    wx.downloadFile({
+      url: url, 
+      success (res) {
+        wx.hideLoading();
+        console.log(res)
+        if (res.statusCode === 200) {
+          const tmpfile = res.tempFilePath;
+          const fs = wx.getFileSystemManager()
+          fs.readFile({
+            filePath:tmpfile,
+            encoding: 'utf8',
+            success(res) {
+              console.log(res.data)
+              let obj = app.towxml(res.data, 'markdown', {
+                theme: 'light',
+                events: {
+                  tap: (e) => {
+                    console.log('tap', e);
+                  }
+                }
+              });
+      
+              that.setData({
+                article: obj,
+              });      
+            },
+          })
+          
+        }
       }
-    }).catch((err) => {
-      console.log(err);
-      wx.hideLoading()
-      wx.showToast({
-        title: '网络异常请重试',
-      })
     })
   },
 
