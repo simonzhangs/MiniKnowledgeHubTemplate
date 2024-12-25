@@ -7,7 +7,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    uuid: '',
     article: {}, // 内容数据
     dltime: 0, // 下载时间
     rdtime: 0, // 渲染时间
@@ -19,17 +18,13 @@ Page({
   onLoad(options) {
     let n1 = utils.getNowMsTime();
     const that = this;
-    that.setData({
-      uuid: options.guid,
-    })
+
     wx.showLoading({
       title: '加载中...',
     })
 
-    httpGet('/artd', {
-      uuid: options.guid,
-      v: '1',
-    }).then((res) => {
+    let url = options.uuid;
+    wx.request(url, {}).then((res) => {
       let n2 = utils.getNowMsTime();
       let dltime = n2 - n1;
       wx.hideLoading()
@@ -45,16 +40,8 @@ Page({
           }
         });
 
-        let bn = "点赞";
-        let isstar = content.isstar;
-        if (isstar) {
-          bn = "已点赞";
-        }
-
         that.setData({
           article: obj,
-          isstar: isstar,
-          btnName: bn,
         });
 
         let n3 = utils.getNowMsTime();
