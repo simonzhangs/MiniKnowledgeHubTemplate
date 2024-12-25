@@ -1,66 +1,17 @@
 // pages/mkart/index.js
 const app = getApp();
-import utils, {
-  httpGet,
-  httpPost
-} from '../../utils/utils.js';
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    wrap: false,
-    btnName: '点赞',
-    isstar: false,
-    stars: 0,
-    ispub: 0,
     uuid: '',
     article: {}, // 内容数据
-    dltime: 0,// 下载时间
+    dltime: 0, // 下载时间
     rdtime: 0, // 渲染时间
   },
-
-  doBtnTap() {
-    const that = this;
-    // 点赞
-    if (utils.isEmpty(that.data.uuid)) {
-      wx.showToast({
-        title: 'UUID为空',
-      })
-      return
-    }
-    wx.showLoading({
-      title: '处理中...',
-    })
-    httpPost("/star", {
-      uuid: that.data.uuid,
-    }).then((res) => {
-      wx.hideLoading()
-      const result = res.data;
-      if (result.code == 1) {
-        let s = Number(that.data.stars) + 1;
-        that.setData({
-          stars: s,
-          isstar: true,
-        })
-        wx.showToast({
-          title: '点赞成功',
-        })
-      } else {
-        wx.showToast({
-          title: '点赞失败',
-        })
-      }
-    }).catch((err) => {
-      console.log(err);
-      wx.hideLoading()
-      wx.showToast({
-        title: '网络异常请重试',
-      })
-    })
-  },
-
 
   /**
    * 生命周期函数--监听页面加载
@@ -69,12 +20,10 @@ Page({
     let n1 = utils.getNowMsTime();
     const that = this;
     that.setData({
-      ispub: options.ispub,
-      stars: options.stars,
       uuid: options.guid,
     })
     wx.showLoading({
-      title: '加载中',
+      title: '加载中...',
     })
 
     httpGet('/artd', {
@@ -127,7 +76,6 @@ Page({
         title: '网络异常请重试',
       })
     })
-
   },
 
   /**
@@ -141,15 +89,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    wx.createSelectorQuery().select('#js_btn')
-      .boundingClientRect((rect) => {
-        if (rect.height > 48) {
-          this.setData({
-            wrap: true
-          });
-        }
-      })
-      .exec();
+
   },
 
   /**

@@ -1,24 +1,6 @@
 <!--pages/article/index.wxml-->
 <view class="page">
-  <view class="weui-bottom-fixed-opr-page  {{wrap ? 'weui-bottom-fixed-opr-page_btn-wrap' : ''}}">
-    <view class="weui-bottom-fixed-opr-page__content">
-      <view class="weui-bottom-fixed-opr-demo">
         <view class="cost">下载耗时：{{dltime}}ms，渲染耗时：{{rdtime}}ms</view>
         <!--使用towxml-->
         <towxml nodes="{{article}}" />
-        
-      </view>
-    </view>
-    
-    <view class="weui-bottom-fixed-opr-page__tool" wx:if="{{ispub>0}}">
-      <view class="weui-bottom-fixed-opr">
-        <button class="weui-btn weui-btn_primary" id="js_btn" aria-role="button" bind:tap="doBtnTap" disabled="{{isstar}}">{{btnName}}（{{stars}}）</button>
-        <!-- <navigator class="weui-btn weui-btn_primary" id="js_btn" aria-role="button" url="javascript:;">点赞</navigator> -->
-        <!-- <navigator class="weui-btn weui-btn_default" aria-role="button" url="javascript:;">取消</navigator> -->
-      </view>
-    </view>
-  </view>
-  <!--banner广告-->
-  <!-- <ad unit-id="adunit-62a65ad78c1b3f40"></ad> -->
-
 </view>

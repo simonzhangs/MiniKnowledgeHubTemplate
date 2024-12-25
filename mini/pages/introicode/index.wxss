@@ -1,8 +1,0 @@
-/* pages/introicode/index.wxss */
-.page {
-	background-color: var(--weui-BG-2)
-}
-
-image {
-	margin: 8rpx 0
-}

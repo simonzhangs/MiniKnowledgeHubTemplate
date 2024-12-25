@@ -1,8 +1,4 @@
 const md5util = require("./md5");
-// 正式环境
-const baseUrl = "https://mp.91demo.top/mp3";
-const sharekey = "20!I@LOVE#CHINA$24";
-
 
 const formatTime = date => {
   const year = date.getFullYear()
@@ -122,20 +118,7 @@ function decodeBase64(data) {
   let decode = atob(data);
   return decodeURIComponent(decode);
 }
-// 获取验证码
-function getVCode() {
-  const now = getSecTs();
-  const str = sharekey + now + "Eagle";
-  const md5str = md5util.md5(str);
-  const vcode = now + md5str;
-  return vcode;
-}
-// 获取reqid签名
-function getReqSign(seed, ts) {
-  const str = seed + ts + "ad";
-  const md5str = md5util.md5(str);
-  return md5str
-}
+
 
 function compareVersion(v1, v2) {
   v1 = v1.split('.')
@@ -169,117 +152,6 @@ const getUrl = (url) => {
   }
   return url;
 };
-
-
-
-const http = ({
-  url = "",
-  param = {},
-  ...other
-} = {}) => {
-  // wx.showLoading({
-  //   title: "网络请求中..",
-  // });
-  let timeStart = Date.now();
-  let cookie = wx.getStorageSync("sessionKey");
-  let vcode = getVCode();
-  return new Promise((resolve, reject) => {
-    wx.request({
-      url: getUrl(url),
-      data: param,
-      enableHttp2:true,
-      // enableQuic:true,
-      header: {
-        "content-type": "application/json", // 默认值
-        Cookie: cookie,
-        "icode": vcode,
-      },
-      ...other,
-      timeout: 3000,
-      complete: (res) => {
-        // wx.hideLoading();
-        console.log(`耗时${Date.now() - timeStart}`);
-        if (res.statusCode >= 200 && res.statusCode < 300) {
-          resolve(res);
-        } else {
-          reject(res);
-        }
-      },
-    });
-  });
-};
-
-// get方法
-function httpGet(url, param = {}) {
-  return http({
-    url,
-    param,
-  });
-}
-// post方法
-function httpPost(url, param = {}) {
-  return http({
-    url,
-    param,
-    method: "post",
-  });
-}
-
-function uploadImage(url, file, param = {}) {
-  let timeStart = Date.now();
-  let cookie = wx.getStorageSync("sessionKey");
-  let vcode = getVCode();
-
-  return new Promise((resolve, reject) => {
-    wx.uploadFile({
-      url: getUrl(url),
-      filePath: file,
-      name: 'file',
-      formData: param,
-      header: {
-        Cookie: cookie,
-        "icode": vcode,
-      },
-      timeout: 10000,
-      complete: (res) => {
-        // wx.hideLoading();
-        console.log(`耗时${Date.now() - timeStart}`);
-        if (res.statusCode >= 200 && res.statusCode < 300) {
-          resolve(res);
-        } else {
-          reject(res);
-        }
-      },
-    })
-  });
-
-}
-
-function downloadImage(url, filepath) {
-  let timeStart = Date.now();
-  let cookie = wx.getStorageSync("sessionKey");
-  let vcode = getVCode();
-  let myurl = baseUrl + url + '/' + filepath;
-  return new Promise((resolve, reject) => {
-    wx.downloadFile({
-      url: myurl,
-      header: {
-        Cookie: cookie,
-        "icode": vcode,
-      },
-      complete(res) {
-        // wx.hideLoading();
-        console.log(`耗时${Date.now() - timeStart}`);
-        if (res.statusCode >= 200 && res.statusCode < 300) {
-          resolve(res);
-        } else {
-          reject(res);
-        }
-      },
-    });
-  });
-}
-
 
 
 // 以逗号分割，先替换中文逗号
@@ -321,18 +193,13 @@ module.exports = {
   getNowMsTime: getNowMsTime,
   getYestMsTime: getYestMsTime,
   decodeBase64: decodeBase64,
-  httpPost: httpPost,
-  httpGet: httpGet,
   getSecTs: getSecTs,
   compareVersion,
   getNowStr,
-  uploadImage,
-  downloadImage,
   str2arr,
   getXMinTimeStamp,
   getXSecTimeStamp,
   diffNowTs,
-  getReqSign,
   getTodayZeroMsTime,
   getTodayNearZeroMsTime,
 }

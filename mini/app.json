@@ -1,18 +1,5 @@
 {
-  "pages": [
-    "pages/index/index",
-    "pages/article/index",
-    "pages/my/index",
-    "pages/appicode/index",
-    "pages/point/index",
-    "pages/vmqtt/index",
-    "pages/artstat/index",
-    "pages/bindicode/index",
-    "pages/auditmsg/index",
-    "pages/introicode/index",
-    "pages/intromqtt/index",
-    "pages/introclient/index"
-  ],
+  "pages": ["pages/index/index", "pages/article/index"],
   "window": {
     "navigationBarBackgroundColor": "#ededed",
     "navigationBarTextStyle": "black",
@@ -20,22 +7,6 @@
     "backgroundColor": "#ededed",
     "backgroundTextStyle": "light",
     "enablePullDownRefresh": false
-  },
-  "tabBar": {
-    "list": [
-      {
-        "pagePath": "pages/index/index",
-        "text": "首页",
-        "iconPath": "./images/book.png",
-        "selectedIconPath": "./images/book_selected.png"
-      },
-      {
-        "pagePath": "pages/my/index",
-        "text": "我的",
-        "iconPath": "./images/person.png",
-        "selectedIconPath": "./images/person_selected.png"
-      }
-    ]
   },
 
   "networkTimeout": {
