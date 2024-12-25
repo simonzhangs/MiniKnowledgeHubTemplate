@@ -8,8 +8,8 @@
     "miniprogram": {
       "list": [
         {
-          "name": "pages/bind/index",
-          "pathName": "pages/bindicode/index",
+          "name": "dev",
+          "pathName": "pages/index/index",
           "query": "",
           "launchMode": "default",
           "scene": null

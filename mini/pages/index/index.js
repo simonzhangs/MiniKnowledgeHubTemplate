@@ -5,7 +5,23 @@ Page({
    * 页面的初始数据
    */
   data: {
-    languages: [],
+    languages: [{
+      id:'go1.md',
+      img:'./../../images/note.png',
+      name:'Golang(1)',
+    },{
+      id:'go2.md',
+      img:'./../../images/note.png',
+      name:'Golang(2)',
+    },{
+      id:'go3.md',
+      img:'./../../images/note.png',
+      name:'Golang(3)',
+    },{
+      id:'rust.md',
+      img:'./../../images/note.png',
+      name:'Rust',
+    }],
     databases: [],
     tools: [],
     editors: [],

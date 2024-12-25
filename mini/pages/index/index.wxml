@@ -10,24 +10,17 @@
 			<view class="weui-panel__bd">
 				<view class="weui-media-box weui-media-box_small-appmsg">
 					<view class="weui-cells">
-						<navigator aria-labelledby="t1 t2" class="weui-cell weui-cell_active weui-cell_access weui-cell_example" url="./../article/index?id=go">
-							<view aria-hidden="true" id="t1" class="weui-cell__hd">
-								<image src="./../../images/note.png" alt></image>
-							</view>
-							<view aria-hidden="true" id="t2" class="weui-cell__bd weui-cell_primary">
-								<view>Golang</view>
-							</view>
-							<view class="weui-cell__ft"></view>
-						</navigator>
-						<navigator aria-labelledby="t3 t4" class="weui-cell weui-cell_active weui-cell_access weui-cell_example" url="javascript:">
-							<view aria-hidden="true" id="t3" class="weui-cell__hd">
-								<image src="./../../images/note.png" alt></image>
-							</view>
-							<view aria-hidden="true" id="t4" class="weui-cell__bd weui-cell_primary">
-								<view>Rust</view>
-							</view>
-							<view class="weui-cell__ft"></view>
-						</navigator>
+						<block wx:for="{{languages}}" wx:key="id">
+							<navigator aria-labelledby="t1 t2" class="weui-cell weui-cell_active weui-cell_access weui-cell_example" url="./../article/index?id={{item.id}}">
+								<view aria-hidden="true" id="t1" class="weui-cell__hd">
+									<image src="{{item.img}}" alt></image>
+								</view>
+								<view aria-hidden="true" id="t2" class="weui-cell__bd weui-cell_primary">
+									<view>{{item.name}}</view>
+								</view>
+								<view class="weui-cell__ft"></view>
+							</navigator>
+						</block>
 					</view>
 				</view>
 			</view>

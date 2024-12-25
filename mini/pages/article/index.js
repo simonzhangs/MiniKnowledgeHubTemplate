@@ -24,7 +24,7 @@ Page({
       url: url, 
       success (res) {
         wx.hideLoading();
-        console.log(res)
+        // console.log(res)
         if (res.statusCode === 200) {
           const tmpfile = res.tempFilePath;
           const fs = wx.getFileSystemManager()
@@ -32,7 +32,7 @@ Page({
             filePath:tmpfile,
             encoding: 'utf8',
             success(res) {
-              console.log(res.data)
+              // console.log(res.data)
               let obj = app.towxml(res.data, 'markdown', {
                 theme: 'light',
                 events: {
