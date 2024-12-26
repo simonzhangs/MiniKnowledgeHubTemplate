@@ -5,26 +5,83 @@ Page({
    * 页面的初始数据
    */
   data: {
-    languages: [{
-      id:'go1.md',
-      img:'./../../images/note.png',
-      name:'Golang(1)',
-    },{
-      id:'go2.md',
-      img:'./../../images/note.png',
-      name:'Golang(2)',
-    },{
-      id:'go3.md',
-      img:'./../../images/note.png',
-      name:'Golang(3)',
-    },{
-      id:'rust.md',
-      img:'./../../images/note.png',
-      name:'Rust',
+    projects: [{
+      id: 'visit.md',
+      title: '都在碎屏',
+      desc: '这是一个项目，介绍什么',
     }],
-    databases: [],
-    tools: [],
-    editors: [],
+    languages: [{
+      id: 'go.md',
+      img: './../../images/note.png',
+      name: 'Golang (1) 基础',
+    }, {
+      id: 'go2.md',
+      img: './../../images/note.png',
+      name: 'Golang (2) 循环条件',
+    }, {
+      id: 'go3.md',
+      img: './../../images/note.png',
+      name: 'Golang (3) 高级数据结构',
+    }, {
+      id: 'go4.md',
+      img: './../../images/note.png',
+      name: 'Golang (4) 并发',
+    }, {
+      id: 'rust.md',
+      img: './../../images/note.png',
+      name: 'Rust',
+    }],
+    databases: [{
+      id: 'go1.md',
+      img: './../../images/link.png',
+      name: 'Golang(1)',
+    }, {
+      id: 'go2.md',
+      img: './../../images/link.png',
+      name: 'Golang(2)',
+    }, {
+      id: 'go3.md',
+      img: './../../images/link.png',
+      name: 'Golang(3)',
+    }, {
+      id: 'rust.md',
+      img: './../../images/link.png',
+      name: 'Rust',
+    }],
+    libs: [{
+      id: 'go1.md',
+      img: './../../images/earth.png',
+      name: 'Golang(1)',
+    }, {
+      id: 'go2.md',
+      img: './../../images/earth.png',
+      name: 'Golang(2)',
+    }, {
+      id: 'go3.md',
+      img: './../../images/earth.png',
+      name: 'Golang(3)',
+    }, {
+      id: 'rust.md',
+      img: './../../images/earth.png',
+      name: 'Rust',
+    }],
+    tools: [{
+      id: 'go1.md',
+      img: './../../images/tool.png',
+      name: 'Golang(1)',
+    }, {
+      id: 'go2.md',
+      img: './../../images/tool.png',
+      name: 'Golang(2)',
+    }, {
+      id: 'go3.md',
+      img: './../../images/tool.png',
+      name: 'Golang(3)',
+    }, {
+      id: 'rust.md',
+      img: './../../images/tool.png',
+      name: 'Rust',
+    }],
   },
 
 

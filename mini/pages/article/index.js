@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    isLoading: true,
     article: {}, // 内容数据
   },
 
@@ -18,18 +19,18 @@ Page({
     wx.showLoading({
       title: '加载中...',
     })
-    console.log(options);
-    let url = 'https://gitee.com/littletow/visit/raw/master/content/'+'languages/go.md';
+    // console.log(options);
+    let url = 'https://gitee.com/littletow/visit/raw/master/content/' + options.id;
     wx.downloadFile({
-      url: url, 
-      success (res) {
+      url: url,
+      success(res) {
         wx.hideLoading();
         // console.log(res)
         if (res.statusCode === 200) {
           const tmpfile = res.tempFilePath;
           const fs = wx.getFileSystemManager()
           fs.readFile({
-            filePath:tmpfile,
+            filePath: tmpfile,
             encoding: 'utf8',
             success(res) {
               // console.log(res.data)
@@ -41,13 +42,14 @@ Page({
                   }
                 }
               });
-      
+
               that.setData({
                 article: obj,
-              });      
+                isLoading: false,
+              });
             },
           })
-          
+
         }
       }
     })
