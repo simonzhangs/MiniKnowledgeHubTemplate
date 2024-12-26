@@ -1,7 +1,7 @@
 <view class="page">
 	<view class="page__hd">
-		<view class="page__title">使用说明</view>
-		<view class="page__desc">收录了很多经典的代码片段、编程库和工具速查表，是学习编程的好工具。觉得有用就收藏一下！</view>
+		<view class="page__title">Awesome 编程</view>
+		<view class="page__desc">收录了很多经典的开源编程库和工具速查表，是学习编程的好工具。觉得有用就收藏一下！</view>
 	</view>
 	<view class="page__bd">
 		<!--写文章列表内容，取自panel排版-->
@@ -57,7 +57,7 @@
 			</view>
 		</view>
 		<view class="weui-panel">
-			<view class="weui-panel__hd">编程库</view>
+			<view class="weui-panel__hd">开源编程库</view>
 			<view class="weui-panel__bd">
 				<view class="weui-media-box weui-media-box_small-appmsg">
 					<view class="weui-cells">
