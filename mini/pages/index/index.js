@@ -11,6 +11,10 @@ Page({
       desc: '这是一个什么样的项目？它介绍了什么？如何去更好的使用它？我如何为它做贡献？',
     }],
     languages: [{
+      id: 'markdown.md',
+      img: './../../images/note.png',
+      name: 'Markdown 语法教程',
+    }, {
       id: 'go.md',
       img: './../../images/note.png',
       name: 'Golang (1) 基础',
@@ -29,58 +33,70 @@ Page({
     }, {
       id: 'rust.md',
       img: './../../images/note.png',
-      name: 'Rust',
+      name: 'Rust (1) 基础',
     }],
     databases: [{
-      id: 'go1.md',
+      id: 'redis.md',
       img: './../../images/link.png',
-      name: 'Golang(1)',
+      name: 'Redis 常用命令',
     }, {
-      id: 'go2.md',
+      id: 'sqlite3.md',
       img: './../../images/link.png',
-      name: 'Golang(2)',
+      name: 'Sqlite3',
     }, {
-      id: 'go3.md',
+      id: 'mongodb.md',
       img: './../../images/link.png',
-      name: 'Golang(3)',
+      name: 'Mongodb',
     }, {
-      id: 'rust.md',
+      id: 'mysql.md',
       img: './../../images/link.png',
-      name: 'Rust',
+      name: 'Mysql',
+    } ,{
+      id: 'postgresql.md',
+      img: './../../images/link.png',
+      name: 'Postgresql',
+    } ,{
+      id: 'oracle.md',
+      img: './../../images/link.png',
+      name: 'Oracle',
+    },{
+      id: 'sqlserver.md',
+      img: './../../images/link.png',
+      name: 'Sqlserver',
+    },{
+      id: 'minio.md',
+      img: './../../images/link.png',
+      name: 'Minio',
     }],
     libs: [{
-      id: 'go1.md',
+      id: 'gostd.md',
       img: './../../images/earth.png',
-      name: 'Golang(1)',
+      name: 'Golang 标准库',
     }, {
-      id: 'go2.md',
+      id: 'gonet.md',
       img: './../../images/earth.png',
-      name: 'Golang(2)',
-    }, {
-      id: 'go3.md',
-      img: './../../images/earth.png',
-      name: 'Golang(3)',
+      name: 'Golang 网络库',
     }, {
       id: 'rust.md',
       img: './../../images/earth.png',
       name: 'Rust',
     }],
     tools: [{
-      id: 'go1.md',
+      id: 'awk.md',
       img: './../../images/tool.png',
-      name: 'Golang(1)',
+      name: 'Awk',
     }, {
-      id: 'go2.md',
+      id: 'docker.md',
       img: './../../images/tool.png',
-      name: 'Golang(2)',
+      name: 'Docker',
     }, {
-      id: 'go3.md',
+      id: 'ffmpeg.md',
       img: './../../images/tool.png',
-      name: 'Golang(3)',
+      name: 'Ffmpeg',
     }, {
-      id: 'rust.md',
+      id: 'frp.md',
       img: './../../images/tool.png',
-      name: 'Rust',
+      name: 'Frp',
     }],
   },
 
@@ -124,7 +140,6 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
 
   },
 
