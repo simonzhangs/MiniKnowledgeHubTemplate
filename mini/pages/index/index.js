@@ -7,8 +7,8 @@ Page({
   data: {
     projects: [{
       id: 'visit.md',
-      title: '都在碎屏',
-      desc: '这是一个项目，介绍什么',
+      title: '豆子碎片',
+      desc: '这是一个什么样的项目？它介绍了什么？如何去更好的使用它？我如何为它做贡献？',
     }],
     languages: [{
       id: 'go.md',
