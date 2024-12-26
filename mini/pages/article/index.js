@@ -16,15 +16,15 @@ Page({
    */
   onLoad(options) {
     const that = this;
-    wx.showLoading({
-      title: '加载中...',
-    })
+    // wx.showLoading({
+    //   title: '加载中...',
+    // })
     // console.log(options);
     let url = 'https://gitee.com/littletow/visit/raw/master/content/' + options.id;
     wx.downloadFile({
       url: url,
       success(res) {
-        wx.hideLoading();
+        // wx.hideLoading();
         // console.log(res)
         if (res.statusCode === 200) {
           const tmpfile = res.tempFilePath;
@@ -49,7 +49,6 @@ Page({
               });
             },
           })
-
         }
       }
     })
