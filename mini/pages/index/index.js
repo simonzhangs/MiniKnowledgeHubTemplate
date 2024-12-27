@@ -15,25 +15,38 @@ Page({
       img: './../../images/note.png',
       name: 'Markdown 语法教程',
     }, {
+      id: 'bash.md',
+      img: './../../images/note.png',
+      name: 'Bash 脚本',
+    }, {
+      id: 'bat.md',
+      img: './../../images/note.png',
+      name: 'Bat 脚本',
+    }, {
       id: 'go.md',
       img: './../../images/note.png',
-      name: 'Golang (1) 基础',
-    }, {
-      id: 'go2.md',
-      img: './../../images/note.png',
-      name: 'Golang (2) 循环条件',
-    }, {
-      id: 'go3.md',
-      img: './../../images/note.png',
-      name: 'Golang (3) 高级数据结构',
-    }, {
-      id: 'go4.md',
-      img: './../../images/note.png',
-      name: 'Golang (4) 并发',
+      name: 'Golang 语言',
     }, {
       id: 'rust.md',
       img: './../../images/note.png',
-      name: 'Rust (1) 基础',
+      name: 'Rust 语言',
+    }, {
+      id: 'miniapp.md',
+      img: './../../images/note.png',
+      name: '微信小程序',
+    }, {
+      id: 'freepascal.md',
+      img: './../../images/note.png',
+      name: 'Free Pascal 语言',
+    }, {
+      id: 'c.md',
+      img: './../../images/note.png',
+      name: 'C 语言',
+    }],
+    protocols: [{
+      id: 'socks5.md',
+      img: './../../images/note.png',
+      name: 'Socks 5协议',
     }],
     databases: [{
       id: 'redis.md',
@@ -51,19 +64,19 @@ Page({
       id: 'mysql.md',
       img: './../../images/link.png',
       name: 'Mysql',
-    } ,{
+    }, {
       id: 'postgresql.md',
       img: './../../images/link.png',
       name: 'Postgresql',
-    } ,{
+    }, {
       id: 'oracle.md',
       img: './../../images/link.png',
       name: 'Oracle',
-    },{
+    }, {
       id: 'sqlserver.md',
       img: './../../images/link.png',
       name: 'Sqlserver',
-    },{
+    }, {
       id: 'minio.md',
       img: './../../images/link.png',
       name: 'Minio',
@@ -84,15 +97,43 @@ Page({
     tools: [{
       id: 'awk.md',
       img: './../../images/tool.png',
-      name: 'Awk',
+      name: 'awk',
     }, {
       id: 'docker.md',
       img: './../../images/tool.png',
-      name: 'Docker',
+      name: 'docker',
     }, {
       id: 'ffmpeg.md',
       img: './../../images/tool.png',
-      name: 'Ffmpeg',
+      name: 'ffmpeg',
+    }, {
+      id: 'netstat.md',
+      img: './../../images/tool.png',
+      name: 'netstat',
+    }, {
+      id: 'sed.md',
+      img: './../../images/tool.png',
+      name: 'sed',
+    }, {
+      id: 'vim.md',
+      img: './../../images/tool.png',
+      name: 'vim',
+    }, {
+      id: 'vim2.md',
+      img: './../../images/tool.png',
+      name: 'vim (2)',
+    }, {
+      id: 'asterisk.md',
+      img: './../../images/tool.png',
+      name: 'asterisk',
+    }, {
+      id: 'mosquitto.md',
+      img: './../../images/tool.png',
+      name: 'mosquitto',
+    }, {
+      id: 'ipterf.md',
+      img: './../../images/tool.png',
+      name: 'ipterf',
     }, {
       id: 'frp.md',
       img: './../../images/tool.png',

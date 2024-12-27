@@ -1,5 +1,9 @@
 ## Redis
 
+Redis 是一个由 Salvatore Sanfilippo 写的 key-value 存储系统，是跨平台的非关系型数据库。
+
+官网地址：https://redis.io/
+
 Redis 日常开发中常用命令。
 
 #### 设置字符串键值对

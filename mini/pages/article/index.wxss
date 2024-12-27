@@ -25,6 +25,6 @@
 }
 
 .loading__icon {
-  width: 80rpx;
-  height: 80rpx;
+  width: 160rpx;
+  height: 160rpx;
 }

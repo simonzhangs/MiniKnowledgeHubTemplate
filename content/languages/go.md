@@ -1,5 +1,9 @@
 # Golang
 
+Go（又称 Golang[4]）是 Google 开发的一种静态强类型、编译型、并发型，并具有垃圾回收功能的编程语言。
+
+Go 官方地址：https://go.dev/
+
 ## Hello World
 
 ```go
@@ -39,6 +43,23 @@ $ go get [module]
 $ go env
 # See version
 $ go version
+```
+
+## init 函数
+
+init 函数在 main 函数之前执行，可以做一些初始化操作
+
+## defer
+
+defer 是 golang 的一个特性关键字，可以在 return 之前执行。常用来做一些释放清理操作
+
+常用方法：
+
+```
+defer xxxFunc()
+defer func(){
+    // 执行一批释放清理操作
+}()
 ```
 
 ## Go 模块
