@@ -1,5 +1,7 @@
 # Firewall 防火墙
 
+firewall 是 Linux CentOS 等操作系统的防火墙。
+
 使用 rich rule 封禁 IP
 
 ```

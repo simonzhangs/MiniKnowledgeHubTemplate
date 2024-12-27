@@ -1,6 +1,6 @@
 # Golang
 
-Go（又称 Golang[4]）是 Google 开发的一种静态强类型、编译型、并发型，并具有垃圾回收功能的编程语言。
+Go（又称 Golang）是 Google 开发的一种静态强类型、编译型、并发型，并具有垃圾回收功能的编程语言。
 
 Go 官方地址：https://go.dev/
 

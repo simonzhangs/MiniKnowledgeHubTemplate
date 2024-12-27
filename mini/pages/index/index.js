@@ -86,58 +86,106 @@ Page({
       img: './../../images/earth.png',
       name: 'Golang 标准库',
     }, {
-      id: 'gonet.md',
+      id: 'golib.md',
       img: './../../images/earth.png',
-      name: 'Golang 网络库',
+      name: 'Golang 常用库',
     }, {
       id: 'rust.md',
       img: './../../images/earth.png',
-      name: 'Rust',
+      name: 'Rust 常用库',
     }],
     tools: [{
+      id: 'asterisk.md',
+      img: './../../images/tool.png',
+      name: 'Asterisk',
+    }, {
       id: 'awk.md',
       img: './../../images/tool.png',
-      name: 'awk',
+      name: 'Awk',
+    }, {
+      id: 'caddy.md',
+      img: './../../images/tool.png',
+      name: 'Caddy',
     }, {
       id: 'docker.md',
       img: './../../images/tool.png',
-      name: 'docker',
+      name: 'Docker',
     }, {
       id: 'ffmpeg.md',
       img: './../../images/tool.png',
-      name: 'ffmpeg',
+      name: 'FFmpeg',
+    }, {
+      id: 'firewall.md',
+      img: './../../images/tool.png',
+      name: 'Firewall',
+    }, {
+      id: 'frp.md',
+      img: './../../images/tool.png',
+      name: 'Frp',
+    }, {
+      id: 'git.md',
+      img: './../../images/tool.png',
+      name: 'Git',
+    }, {
+      id: 'hugo.md',
+      img: './../../images/tool.png',
+      name: 'Hugo',
+    }, {
+      id: 'iperf3.md',
+      img: './../../images/tool.png',
+      name: 'Iperf3',
+    }, {
+      id: 'mdbook.md',
+      img: './../../images/tool.png',
+      name: 'Mdbook',
+    }, {
+      id: 'mosquitto.md',
+      img: './../../images/tool.png',
+      name: 'Mosquitto',
     }, {
       id: 'netstat.md',
       img: './../../images/tool.png',
       name: 'netstat',
     }, {
+      id: 'nginx.md',
+      img: './../../images/tool.png',
+      name: 'Nginx',
+    }, {
+      id: 'rsync.md',
+      img: './../../images/tool.png',
+      name: 'Rsync',
+    }, {
+      id: 'rustdesk.md',
+      img: './../../images/tool.png',
+      name: 'Rustdesk',
+    }, {
+      id: 'scp.md',
+      img: './../../images/tool.png',
+      name: 'Scp',
+    }, {
       id: 'sed.md',
       img: './../../images/tool.png',
       name: 'sed',
     }, {
+      id: 'seelog.md',
+      img: './../../images/tool.png',
+      name: 'Log',
+    }, {
+      id: 'setip.md',
+      img: './../../images/tool.png',
+      name: 'IPconfig',
+    }, {
       id: 'vim.md',
       img: './../../images/tool.png',
-      name: 'vim',
+      name: 'vim (上)',
     }, {
       id: 'vim2.md',
       img: './../../images/tool.png',
-      name: 'vim (2)',
+      name: 'vim (下)',
     }, {
-      id: 'asterisk.md',
+      id: 'wsl.md',
       img: './../../images/tool.png',
-      name: 'asterisk',
-    }, {
-      id: 'mosquitto.md',
-      img: './../../images/tool.png',
-      name: 'mosquitto',
-    }, {
-      id: 'ipterf.md',
-      img: './../../images/tool.png',
-      name: 'ipterf',
-    }, {
-      id: 'frp.md',
-      img: './../../images/tool.png',
-      name: 'Frp',
+      name: 'Wsl',
     }],
   },
 

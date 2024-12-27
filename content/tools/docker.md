@@ -1,9 +1,16 @@
-##############################################################################
-
 # DOCKER
 
-##############################################################################
+Docker 是一个开源的应用容器引擎，基于 Go 语言 并遵从 Apache2.0 协议开源。
 
+Docker 可以让开发者打包他们的应用以及依赖包到一个轻量级、可移植的容器中，然后发布到任何流行的 Linux 机器上，也可以实现虚拟化。
+
+容器是完全使用沙箱机制，相互之间不会有任何接口（类似 iPhone 的 app）,更重要的是容器性能开销极低。
+
+Docker 网址：https://www.docker.com/
+
+## Docker 常用命令：
+
+```
 docker init # Creates Docker-related starter files
 docker build -t friendlyname . # Create image using this directory's Dockerfile
 docker run -p 4000:80 friendlyname # Run "friendlyname" mapping port 4000 to 80
@@ -29,12 +36,11 @@ docker system prune -a # Remove all unused containers, networks, images not just
 docker volume prune # Remove all unused local volumes
 docker network prune # Remove all unused networks
 
-##############################################################################
+```
 
-# DOCKER COMPOSE
+## DOCKER COMPOSE
 
-##############################################################################
-
+```
 docker-compose up # Create and start containers
 docker-compose up -d # Create and start containers in detached mode
 docker-compose down # Stop and remove containers, networks, images, and volumes
@@ -46,38 +52,32 @@ docker-compose config # Validate and view the Compose file
 docker-compose scale <service_name>=<replica> # Scale special service(s)
 docker-compose top # Display the running processes
 docker-compose run -rm -p 2022:22 web bash # Start web service and runs bash as its command, remove old container.
+```
 
-##############################################################################
+## DOCKER SERVICES
 
-# DOCKER SERVICES
-
-##############################################################################
-
+```
 docker service create <options> <image> <command> # Create new service
 docker service inspect --pretty <service_name> # Display detailed information Service(s)
 docker service ls # List Services
 docker service ps # List the tasks of Services
 docker service scale <service_name>=<replica> # Scale special service(s)
 docker service update <options> <service_name> # Update Service options
+```
 
-##############################################################################
+## DOCKER STACK
 
-# DOCKER STACK
-
-##############################################################################
-
+```
 docker stack ls # List all running applications on this Docker host
 docker stack deploy -c <composefile> <appname> # Run the specified Compose file
 docker stack services <appname> # List the services associated with an app
 docker stack ps <appname> # List the running containers associated with an app
 docker stack rm <appname> # Tear down an application
+```
 
-##############################################################################
+## DOCKER MACHINE
 
-# DOCKER MACHINE
-
-##############################################################################
-
+```
 docker-machine create --driver virtualbox myvm1 # Create a VM (Mac, Win7, Linux)
 docker-machine create -d hyperv --hyperv-virtual-switch "myswitch" myvm1 # Win10
 docker-machine env myvm1 # View basic information about your node
@@ -92,3 +92,4 @@ docker-machine stop $(docker-machine ls -q) # Stop all running VMs
 docker-machine rm $(docker-machine ls -q) # Delete all VMs and their disk images
 docker-machine scp docker-compose.yml myvm1:~ # Copy file to node's home dir
 docker-machine ssh myvm1 "docker stack deploy -c <file> <app>" # Deploy an app
+```
