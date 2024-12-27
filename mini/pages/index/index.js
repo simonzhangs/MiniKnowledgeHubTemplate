@@ -145,7 +145,7 @@ Page({
     }, {
       id: 'netstat.md',
       img: './../../images/tool.png',
-      name: 'netstat',
+      name: 'Netstat',
     }, {
       id: 'nginx.md',
       img: './../../images/tool.png',
@@ -165,7 +165,7 @@ Page({
     }, {
       id: 'sed.md',
       img: './../../images/tool.png',
-      name: 'sed',
+      name: 'Sed',
     }, {
       id: 'seelog.md',
       img: './../../images/tool.png',
@@ -177,11 +177,11 @@ Page({
     }, {
       id: 'vim.md',
       img: './../../images/tool.png',
-      name: 'vim (上)',
+      name: 'Vim (上)',
     }, {
       id: 'vim2.md',
       img: './../../images/tool.png',
-      name: 'vim (下)',
+      name: 'Vim (下)',
     }, {
       id: 'wsl.md',
       img: './../../images/tool.png',
