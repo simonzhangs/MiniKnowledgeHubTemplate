@@ -8,11 +8,12 @@ Page({
    * 页面的初始数据
    */
   data: {
+    id:'',
     isLoading: false,
     article: {}, // 内容数据
   },
 
-  jump(id) {
+  jump() {
     const that = this;
     // 判断当前拥有的豆子点数
     const isSeeAd = app.canPlayAd();
@@ -27,6 +28,7 @@ Page({
             that.playAd();
           } else if (res.cancel) {
             console.log('用户点击取消')
+            wx.navigateBack();
           }
         }
       })
@@ -35,14 +37,14 @@ Page({
       that.setData({
         isLoading: true,
       })
-      that.getArt(id);
+      that.getArt(that.data.id);
     }
   },
 
   loadAd() {
     const that = this;
     vAd = wx.createRewardedVideoAd({
-      adUnitId: 'adunit-8fae1b0724504346',
+      adUnitId: 'adunit-2ce6db3cb1e45a86',
     })
     vAd.onLoad(() => {
       hasLoadAd = true
@@ -53,7 +55,17 @@ Page({
       vAd.onClose((res) => {
         if (res && res.isEnded) {
           app.logSeeAd();
+          that.getArt(that.data.id);
         } else {
+          console.log('length,',getCurrentPages().length);
+          wx.navigateBack({
+            delta: getCurrentPages().length,
+            success: (res) => {},
+            fail: (err) => {
+              console.log(err)
+            },
+            complete: (res) => {},
+          });
           wx.showToast({
             title: '还需加油哟！',
           })
@@ -142,8 +154,11 @@ Page({
   onLoad(options) {
     // console.log(options);
     let id = options.id;
+    this.setData({
+      id:id,
+    })
     // this.getArt(options.id);
-    this.jump(id);
+    this.jump();
   },
 
   /**
@@ -171,7 +186,9 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload() {
-
+    console.log('article unload')
+    vAd = null;
+    hasLoadAd = false;
   },
 
   /**

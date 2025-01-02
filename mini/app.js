@@ -1,3 +1,4 @@
+const utils = require("./utils/utils.js");
 
 App({
   towxml: require('./towxml/index'),
