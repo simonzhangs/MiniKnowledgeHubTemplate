@@ -10,6 +10,31 @@ Page({
       title: '豆子碎片',
       desc: '这是一个什么样的项目？它介绍了什么？如何去更好的使用它？我如何为它做贡献？',
     }],
+    protocols: [{
+      id: 'mqtt.md',
+      img: './../../images/signal.png',
+      name: 'MQTT 轻量消息传输协议',
+    }, {
+      id: 'socks5.md',
+      img: './../../images/signal.png',
+      name: 'Socks5 代理协议',
+    }, {
+      id: 'tcp.md',
+      img: './../../images/signal.png',
+      name: 'TCP 网络协议',
+    }, {
+      id: 'udp.md',
+      img: './../../images/signal.png',
+      name: 'UDP 网络协议',
+    }, {
+      id: 'webrtc.md',
+      img: './../../images/signal.png',
+      name: 'WebRTC 音视频',
+    }, {
+      id: 'websocket.md',
+      img: './../../images/signal.png',
+      name: 'WebSocket 协议',
+    }],
     languages: [{
       id: 'markdown.md',
       img: './../../images/note.png',
@@ -42,11 +67,6 @@ Page({
       id: 'c.md',
       img: './../../images/note.png',
       name: 'C 语言',
-    }],
-    protocols: [{
-      id: 'socks5.md',
-      img: './../../images/note.png',
-      name: 'Socks 5协议',
     }],
     databases: [{
       id: 'redis.md',
@@ -186,6 +206,14 @@ Page({
       id: 'wsl.md',
       img: './../../images/tool.png',
       name: 'Wsl',
+    }, {
+      id: 'juicessh.md',
+      img: './../../images/tool.png',
+      name: 'JuiceSSH',
+    }, {
+      id: 'zoiper.md',
+      img: './../../images/tool.png',
+      name: 'ZoiPer',
     }],
   },
 
