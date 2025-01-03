@@ -1,7 +1,7 @@
 <view class="page">
 	<view class="page__hd">
 		<view class="page__title">Awesome 编程</view>
-		<view class="page__desc">收录了很多经典的开源编程库和编程语言基础以及常用工具速查表，是学习编程的好工具。快快收藏一下备用吧！</view>
+		<view class="page__desc">收录了很多经典的代码片段、开源编程库和编程语言基础以及常用工具速查表，是学习编程的好工具。先收藏一下备用吧！</view>
 	</view>
 	<view class="page__bd">
 		<!--写文章列表内容，取自panel排版-->

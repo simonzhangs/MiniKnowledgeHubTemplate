@@ -57,7 +57,7 @@ Page({
       vAd.onClose((res) => {
         if (res && res.isEnded) {
           app.logSeeAd();
-          that.getArt(that.data.id);
+          that.getArt(that.id);
         } else {
           console.log('length,', getCurrentPages().length);
           // 在广告还未结束时关闭，如果选择放弃，那么此处如果是小游戏广告，回退正常，如果是其它广告，回退报错，已经提交bug。
