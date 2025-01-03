@@ -2,13 +2,14 @@
 const app = getApp();
 let vAd = null;
 let hasLoadAd = false;
+// 文章id，因为不需要页面显示，直接定义在这里
+let id = '';
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    id:'',
     isLoading: false,
     article: {}, // 内容数据
   },
@@ -28,6 +29,7 @@ Page({
             that.playAd();
           } else if (res.cancel) {
             console.log('用户点击取消')
+            // 此处回退是正常的
             wx.navigateBack();
           }
         }
@@ -37,7 +39,7 @@ Page({
       that.setData({
         isLoading: true,
       })
-      that.getArt(that.data.id);
+      that.getArt(that.id);
     }
   },
 
@@ -57,14 +59,15 @@ Page({
           app.logSeeAd();
           that.getArt(that.data.id);
         } else {
-          console.log('length,',getCurrentPages().length);
+          console.log('length,', getCurrentPages().length);
+          // 在广告还未结束时关闭，如果选择放弃，那么此处如果是小游戏广告，回退正常，如果是其它广告，回退报错，已经提交bug。
           wx.navigateBack({
-            delta: getCurrentPages().length,
-            success: (res) => {},
+            delta: getCurrentPages().length, // 获取压栈几层？
+            success: (res) => { },
             fail: (err) => {
               console.log(err)
             },
-            complete: (res) => {},
+            complete: (res) => { },
           });
           wx.showToast({
             title: '还需加油哟！',
@@ -79,6 +82,7 @@ Page({
     })
     const that = this;
     if (!hasLoadAd) {
+      // 还未加载广告，则先加载广告，这是广告的核心点，如果直接在OnLoad方法中调用，页面会有卡顿现象。
       that.loadAd();
     }
     // 用户触发广告后，显示激励视频广告
@@ -102,18 +106,20 @@ Page({
       })
     } else {
       wx.hideLoading()
+      // 广告太多，会跳转到这里。需要稍后再试。
       wx.showToast({
         title: '请稍后重试',
       })
     }
   },
 
-  // 加载文章资源
+  // 加载文章资源，现在从Git获取，下载Markdown文件，然后解析文件。
   getArt(artId) {
     const that = this;
     // wx.showLoading({
     //   title: '加载中...',
     // })
+    // 修改此处可以切换Git地址
     let url = 'https://gitee.com/littletow/visit/raw/master/content/' + artId;
     wx.downloadFile({
       url: url,
@@ -121,6 +127,7 @@ Page({
         // wx.hideLoading();
         // console.log(res)
         if (res.statusCode === 200) {
+          // 下载成功后，会存储为临时文件，需要使用微信API读取文件内容。
           const tmpfile = res.tempFilePath;
           const fs = wx.getFileSystemManager()
           fs.readFile({
@@ -136,7 +143,7 @@ Page({
                   }
                 }
               });
-
+              // 将文件内容赋值给towxml组件，它会自动进行解析渲染。然后将加载动画关闭。
               that.setData({
                 article: obj,
                 isLoading: false,
@@ -154,9 +161,8 @@ Page({
   onLoad(options) {
     // console.log(options);
     let id = options.id;
-    this.setData({
-      id:id,
-    })
+    // 此处使用变量，是因为不在页面显示，如果需要在页面显示，需要在data对象中进行定义。
+    this.id = id;
     // this.getArt(options.id);
     this.jump();
   },
@@ -186,7 +192,8 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload() {
-    console.log('article unload')
+    // console.log('article unload')
+    // 置空可以避免广告报错，无法弹出新广告
     vAd = null;
     hasLoadAd = false;
   },

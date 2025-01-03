@@ -44,6 +44,7 @@ App({
     // 此处还可以写入其它初始化逻辑
   },
 
+  // 小程序每次启动都会调用
   onLaunch: function () {
     this.login();
   },
