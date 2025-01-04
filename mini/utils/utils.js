@@ -183,6 +183,90 @@ function diffNowTs(t) {
   return t - now;
 }
 
+// JSON字符串转对象数组
+function json2ObjArr(jsonStr) {
+  const objArr = JSON.parse(jsonStr);
+  return objArr;
+}
+
+// 包含JSON数据的ArrayBuffer 转对象数组
+function ab2ObjArr(content) {
+  // Convert ArrayBuffer back to JSON string
+  const decoder = new TextDecoder('utf-8');
+  const jsonStrFromBuf = decoder.decode(content);
+
+  // Parse JSON string to object array
+  const objArr = JSON.parse(jsonStrFromBuf);
+
+  return objArr;
+}
+
+/**
+* 从对象数组中根据关键词搜索，然后返回新的对象数组
+* @param {Array} items - 对象数组
+* @param {string} keyword - 搜索关键词
+* @returns {Array} - 包含匹配项的新对象数组
+*/
+function searchItems(items, keyword) {
+  // 将关键词转换为小写，忽略大小写
+  const lowerCaseKeyword = keyword.toLowerCase();
+
+  // 使用 filter 方法返回包含匹配项的新对象数组
+  return items.filter(item => {
+    // 检查对象的每个属性值是否包含关键词
+    return Object.values(item).some(value =>
+      String(value).toLowerCase().includes(lowerCaseKeyword)
+    );
+  });
+}
+
+/**
+* 从对象数组中的某些属性根据关键词搜索，然后返回新的对象数组
+* @param {Array} items - 对象数组
+* @param {string} keyword - 搜索关键词
+* @param {Array} properties - 需要搜索的属性数组
+* @returns {Array} - 包含匹配项的新对象数组
+*/
+function searchItemsV2(items, keyword, properties) {
+  // 将关键词转换为小写，忽略大小写
+  const lowerCaseKeyword = keyword.toLowerCase();
+
+  // 使用 filter 方法返回包含匹配项的新对象数组
+  return items.filter(item => {
+    // 使用 some 方法检查对象的某些属性值是否包含关键词
+    return properties.some(prop =>
+      String(item[prop]).toLowerCase().includes(lowerCaseKeyword)
+    );
+  });
+}
+
+
+/**
+* 获取指定目录的文章列表
+* @param {Array} items - 对象数组
+* @param {string} category - 要查询的目录
+* @returns {Array} - 包含匹配项的新对象数组
+*/
+function getArtListByCategory(items, category) {
+  const properties = ['category'];
+  const result = searchItemsV2(items, category, properties);
+  return result;
+}
+
+
+/**
+* 通过关键字查询并获取指定文章列表
+* @param {Array} items - 对象数组
+* @param {string} keyword - 搜索关键词
+* @returns {Array} - 包含匹配项的新对象数组
+*/
+function getArtListByKeyword(items, keyword) {
+  const properties = ['name', 'kw'];
+  const result = searchItemsV2(items, keyword, properties);
+  return result;
+}
+
+
 module.exports = {
   formatTime: formatTime,
   isEmpty: isEmpty,
@@ -202,4 +286,10 @@ module.exports = {
   diffNowTs,
   getTodayZeroMsTime,
   getTodayNearZeroMsTime,
+  json2ObjArr,
+  ab2ObjArr,
+  searchItems,
+  searchItemsV2,
+  getArtListByCategory,
+  getArtListByKeyword,
 }

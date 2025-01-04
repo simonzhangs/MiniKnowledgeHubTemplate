@@ -1,0 +1,120 @@
+<view class="page">
+	<view class="page__hd">
+		<view class="page__title">Awesome 编程</view>
+		<view class="page__desc">收录了很多经典的代码片段、开源编程库和编程语言基础以及常用工具速查表，是学习编程的好工具。先收藏一下备用吧！</view>
+	</view>
+	<view class="page__bd">
+		<!--写文章列表内容，取自panel排版-->
+		<view class="weui-panel weui-panel_access">
+			<view class="weui-panel__hd">我的项目</view>
+			<view class="weui-panel__bd">
+				<block wx:for="{{projects}}" wx:key="id">
+					<navigator class="weui-media-box weui-media-box_text" aria-role="option" url="./../article/index?id=projects/{{item.id}}">
+						<text class="weui-media-box__title">{{item.title}}</text>
+						<view class="weui-media-box__desc">{{item.desc}}</view>
+					</navigator>
+				</block>
+			</view>
+		</view>
+		<view class="weui-panel">
+			<view class="weui-panel__hd">RFC 协议</view>
+			<view class="weui-panel__bd">
+				<view class="weui-media-box weui-media-box_small-appmsg">
+					<view class="weui-cells">
+						<block wx:for="{{protocols}}" wx:key="id">
+							<navigator aria-labelledby="t1 t2" class="weui-cell weui-cell_active weui-cell_access weui-cell_example" url="./../article/index?id=protocols/{{item.id}}">
+								<view aria-hidden="true" id="t1" class="weui-cell__hd">
+									<image src="{{item.img}}" alt></image>
+								</view>
+								<view aria-hidden="true" id="t2" class="weui-cell__bd weui-cell_primary">
+									<view>{{item.name}}</view>
+								</view>
+								<view class="weui-cell__ft"></view>
+							</navigator>
+						</block>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class="weui-panel">
+			<view class="weui-panel__hd">编程语言</view>
+			<view class="weui-panel__bd">
+				<view class="weui-media-box weui-media-box_small-appmsg">
+					<view class="weui-cells">
+						<block wx:for="{{languages}}" wx:key="id">
+							<navigator aria-labelledby="t1 t2" class="weui-cell weui-cell_active weui-cell_access weui-cell_example" url="./../article/index?id=languages/{{item.id}}">
+								<view aria-hidden="true" id="t1" class="weui-cell__hd">
+									<image src="{{item.img}}" alt></image>
+								</view>
+								<view aria-hidden="true" id="t2" class="weui-cell__bd weui-cell_primary">
+									<view>{{item.name}}</view>
+								</view>
+								<view class="weui-cell__ft"></view>
+							</navigator>
+						</block>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class="weui-panel">
+			<view class="weui-panel__hd">数据库</view>
+			<view class="weui-panel__bd">
+				<view class="weui-media-box weui-media-box_small-appmsg">
+					<view class="weui-cells">
+						<block wx:for="{{databases}}" wx:key="id">
+							<navigator aria-labelledby="t1 t2" class="weui-cell weui-cell_active weui-cell_access weui-cell_example" url="./../article/index?id=databases/{{item.id}}">
+								<view aria-hidden="true" id="t1" class="weui-cell__hd">
+									<image src="{{item.img}}" alt></image>
+								</view>
+								<view aria-hidden="true" id="t2" class="weui-cell__bd weui-cell_primary">
+									<view>{{item.name}}</view>
+								</view>
+								<view class="weui-cell__ft"></view>
+							</navigator>
+						</block>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class="weui-panel">
+			<view class="weui-panel__hd">开源编程库</view>
+			<view class="weui-panel__bd">
+				<view class="weui-media-box weui-media-box_small-appmsg">
+					<view class="weui-cells">
+						<block wx:for="{{libs}}" wx:key="id">
+							<navigator aria-labelledby="t1 t2" class="weui-cell weui-cell_active weui-cell_access weui-cell_example" url="./../article/index?id=libs/{{item.id}}">
+								<view aria-hidden="true" id="t1" class="weui-cell__hd">
+									<image src="{{item.img}}" alt></image>
+								</view>
+								<view aria-hidden="true" id="t2" class="weui-cell__bd weui-cell_primary">
+									<view>{{item.name}}</view>
+								</view>
+								<view class="weui-cell__ft"></view>
+							</navigator>
+						</block>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class="weui-panel">
+			<view class="weui-panel__hd">常用工具</view>
+			<view class="weui-panel__bd">
+				<view class="weui-media-box weui-media-box_small-appmsg">
+					<view class="weui-cells">
+						<block wx:for="{{tools}}" wx:key="id">
+							<navigator aria-labelledby="t1 t2" class="weui-cell weui-cell_active weui-cell_access weui-cell_example" url="./../article/index?id=tools/{{item.id}}">
+								<view aria-hidden="true" id="t1" class="weui-cell__hd">
+									<image src="{{item.img}}" alt></image>
+								</view>
+								<view aria-hidden="true" id="t2" class="weui-cell__bd weui-cell_primary">
+									<view>{{item.name}}</view>
+								</view>
+								<view class="weui-cell__ft"></view>
+							</navigator>
+						</block>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>
