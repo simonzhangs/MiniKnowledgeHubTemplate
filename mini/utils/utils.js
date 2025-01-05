@@ -266,6 +266,11 @@ function getArtListByKeyword(items, keyword) {
   return result;
 }
 
+// 分页函数
+function paginate(array, pageSize, pageNumber) {
+  // pageNumber 是从 1 开始的
+  return array.slice((pageNumber - 1) * pageSize, pageNumber * pageSize);
+}
 
 module.exports = {
   formatTime: formatTime,
@@ -292,4 +297,5 @@ module.exports = {
   searchItemsV2,
   getArtListByCategory,
   getArtListByKeyword,
+  paginate,
 }

@@ -1,4 +1,7 @@
 const app = getApp();
+const utils = require("../../utils/utils.js");
+let vAd = null;
+let hasLoadAd = false;
 
 Page({
   /**
@@ -10,7 +13,10 @@ Page({
     inputVal: "",
     keyword: "",
     index: 0,
-    qtype: 1, // 1 最火 2 最新 3 最冷 4 我的 5 同城 6 最赞
+    pages: 0,
+    page: 1,
+    op: 1, // 1 搜索查询 2 按目录查询 
+    category: '', // 1 我的项目 2 RFC 协议 3 编程语言 4 数据库 5 开源编程库 6 常用工具
   },
 
   showInput: function () {
@@ -56,76 +62,68 @@ Page({
       })
     }
 
-    httpGet('/sart', {
-      'pageNo': pageNo,
-      'keyword': keyword,
-    }).then((res) => {
-      that.loading = false
-      wx.hideLoading()
-      const result = res.data;
-      if (result.code == 1) {
-        const articles = result.data;
-        that.setData({
-          page: pageNo, //当前的页号
-          pages: result.count, //总页数
-          artList: that.data.artList.concat(articles)
-        })
-
-      } else {
-        wx.showToast({
-          title: '没有找到记录',
-        })
-      }
-    }).catch((err) => {
-      that.loading = false
-      wx.hideLoading()
+    // console.log('artData,',app.globalData.artData);
+    const searchList = utils.getArtListByKeyword(app.globalData.artData, keyword);
+    // console.log('searchList,', searchList);
+    wx.hideLoading()
+    if (utils.isEmpty(searchList)) {
       wx.showToast({
-        title: '网络异常请重试',
+        title: '没有找到记录',
       })
-    })
+    } else {
+      const count = searchList.length / 10;
+      const articles = utils.paginate(searchList, 10, pageNo);
+      that.setData({
+        page: pageNo, //当前的页号
+        pages: count, //总页数
+        artList: that.data.artList.concat(articles)
+      })
+    }
+  
+    that.loading = false
   },
 
   bindBtn: function (e) {
     let btnId = e.target.id;
-    let qtype = 1;
+    let category = "projects";
     switch (btnId) {
       case "btnProject":
         // 我的项目
-        qtype = 1;
+        category = "projects";
         break;
       case "btnProtocol":
         // RFC协议
-        qtype = 2;
+        category = "protocols";
         break;
       case "btnCode":
         // 编程语言
-        qtype = 3;
+        category = "languages";
         break;
       case "btnDB":
         // 数据库
-        qtype = 4;
+        category = "databases";
         break;
       case "btnLib":
         // 开源编程库
-        qtype = 5;
+        category = "libs";
         break;
       case "btnTool":
         // 常用工具
-        qtype = 6;
+        category = "tools";
         break;
       default:
         break;
     }
     this.setData({
       artList: [],
-      qtype: qtype,
+      category: category,
       op: 2,
     })
-    this.getArtList(1, qtype)
+    this.getArtList(1, category)
   },
 
   // 根据类型查询
-  getArtList: function (pageNo, qtype) {
+  getArtList: function (pageNo, category) {
     const that = this
     that.loading = true
     wx.showLoading({
@@ -139,36 +137,136 @@ Page({
       })
     }
 
-    httpGet('/artl', {
-      'pageNo': pageNo,
-      'qtype': qtype,
-    }).then((res) => {
-      that.loading = false
-      wx.hideLoading()
-
-      const result = res.data;
-      if (result.code == 1) {
-        const articles = result.data;
-        // console.log('debug,',result);
-        that.setData({
-          page: pageNo, //当前的页号
-          pages: result.count, //总页数
-          artList: that.data.artList.concat(articles)
-        })
-
-      } else {
-        wx.showToast({
-          title: '没有找到记录',
-        })
-      }
-    }).catch((err) => {
-      that.loading = false
-      wx.hideLoading()
+    // console.log('artData,',app.globalData.artData);
+    const searchList = utils.getArtListByCategory(app.globalData.artData, category);
+    // console.log('btnList,', searchList);
+    wx.hideLoading()
+    if (utils.isEmpty(searchList)) {
       wx.showToast({
-        title: '网络异常请重试',
+        title: '没有找到记录',
       })
-    })
+    } else {
+      const count = searchList.length / 10;
+      const articles = utils.paginate(searchList, 10, pageNo);
+      that.setData({
+        page: pageNo, //当前的页号
+        pages: count, //总页数
+        artList: that.data.artList.concat(articles)
+      })
+    }
+    that.loading = false
+  },
 
+  // 跳转到文章页面
+  jump: function (e) {
+    const that = this;
+    // 判断今天是否观看了广告？
+    const isSeeAd = app.canPlayAd();
+    if (!isSeeAd) {
+      // 弹出对话框，告知用户需要观看广告。
+      wx.showModal({
+        title: '提示',
+        content: '一天只需看一个广告，文章即可任意浏览',
+        success(res) {
+          if (res.confirm) {
+            console.log('用户点击确定')
+            that.playAd();
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+      return
+    }
+    // 获取索引
+    const idx = e.currentTarget.dataset.idx;
+    // 获取某篇文章信息
+    const art = that.data.artList[idx];
+    if (art.label == "md") {
+      that.jumpToPage(art.category, art.id);
+    }else if(art.label == "gzh"){
+      that.jumpToGzh(art.id);
+    }
+  },
+
+  // 跳公众号页面
+  jumpToGzh:function(id){
+    wx.openOfficialAccountArticle({
+      url:id, // 公众号文章连接
+      success: res => {
+      },
+      fail: res => {
+      }
+  })
+  },
+
+  // 跳文章页面
+  jumpToPage: function (category, id) {
+    // 调整到文章页面 
+    wx.navigateTo({
+      url: '../article/index?id=' + id + '&category=' + category,
+    })
+  },
+
+
+  loadAd() {
+    const that = this;
+    vAd = wx.createRewardedVideoAd({
+      adUnitId: 'adunit-2ce6db3cb1e45a86',
+    })
+    vAd.onLoad(() => {
+        hasLoadAd = true
+      }),
+      vAd.onError((err) => {
+        console.error('激励视频广告加载失败,', err)
+      }),
+      vAd.onClose((res) => {
+        if (res && res.isEnded) {
+          app.logSeeAd();
+        } else {
+          wx.showToast({
+            title: '还需加油哟！',
+          })
+        }
+      })
+  },
+
+  playAd() {
+    wx.showLoading({
+      title: '加载广告中',
+    })
+    const that = this;
+    console.log('aa', hasLoadAd);
+    if (!hasLoadAd) {
+      // 还未加载广告，则先加载广告，这是广告的核心点，如果直接在OnLoad方法中调用，页面会有卡顿现象。
+      that.loadAd();
+    }
+    // 用户触发广告后，显示激励视频广告
+    if (vAd) {
+      vAd.show().then(() => [
+        wx.hideLoading()
+      ]).catch(() => {
+        // 失败重试
+        vAd.load()
+          .then(() => {
+            wx.hideLoading()
+            vAd.show()
+          })
+          .catch(err => {
+            wx.hideLoading()
+            wx.showToast({
+              title: '请重试一次',
+            })
+            console.error('激励视频 广告显示失败', err)
+          })
+      })
+    } else {
+      wx.hideLoading()
+      // 广告太多，会跳转到这里。需要稍后再试。
+      wx.showToast({
+        title: '请稍后重试',
+      })
+    }
   },
 
   /**
@@ -176,7 +274,6 @@ Page({
    */
   onLoad: function (options) {
     console.log("index onload")
-    // 检查是否需要更新版本
   },
 
   /**
@@ -205,20 +302,41 @@ Page({
    */
   onUnload: function () {
     console.log("index onunload")
+    // 置空可以避免广告报错，无法弹出新广告
+    vAd = null;
+    hasLoadAd = false;
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    console.log("reach bottom")
+    // 下拉触底，先判断是否有请求正在进行中
+    // 以及检查当前请求页数是不是小于数据总页数，如符合条件，则发送请求
+    if (this.data.op === 1) {
+      if (!this.loading && this.data.page < this.data.pages) {
+        this.searchArt(this.data.page + 1, this.data.keyword)
+      }
+    } else if (this.data.op === 2) {
+      if (!this.loading && this.data.page < this.data.pages) {
+        this.getArtList(this.data.page + 1, this.data.category)
+      }
+    }
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.setData({
+      artList: [],
+      keyword: "",
+      page: 1,
+      pages:0,
+      category:'',
+    })
+    wx.stopPullDownRefresh()
   },
   /**
    * 用户点击右上角分享

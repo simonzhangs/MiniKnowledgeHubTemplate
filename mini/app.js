@@ -39,10 +39,11 @@ App({
               wx.hideLoading({
                 success: (res) => {},
               })
-              console.log(res.data)
+              // console.log(res.data)
               // 记录到本地缓存
               wx.setStorageSync('artData', res.data);
-              that.globalData.artData = res.data;
+              const dataList = utils.json2ObjArr(res.data);
+              that.globalData.artData = dataList;
             },
           })
         }
@@ -69,8 +70,14 @@ App({
             filePath: tmpfile,
             encoding: 'utf8',
             success(res) {
-              console.log(res.data)
+              let now = Date.now();
+              wx.setStorageSync('chkVerTs', now);
               // 取消动画
+              wx.hideLoading({
+                success: (res) => {},
+              })
+              // console.log(res.data)
+              const onlineVersion = Number(res.data);
               // 查看本地版本号
               const artVer = wx.getStorageSync("artVer");
               if (utils.isEmpty(artVer)) {
@@ -79,8 +86,10 @@ App({
                 // 下载文章数据
                 that.dlArtData();
               } else {
+                const localVersion = Number(artVer);
+                // console.log('调试',localVersion,onlineVersion);
                 // 和线上进行对比，需要升级则重新下载数据
-                if (artVer < res.data) {
+                if (localVersion < onlineVersion) {
                   // 下载文章数据
                   that.dlArtData();
                 }
@@ -99,49 +108,38 @@ App({
 
   // logSeeAd 记录看广告？  
   logSeeAd: function () {
-    this.globalData.isSeeAd = true;
-  },
-
-  // 是否需要检查版本？每日调用一次
-  hasChkVer() {
-    return this.globalData.isChkVer
-  },
-
-  // 记录已检查版本
-  logChkVer() {
-    this.globalData.isChkVer = true;
-  },
-
-  // 重置
-  reset() {
     let now = Date.now();
-    let obj = {
-      "logTs": now,
-    }
-    wx.setStorageSync('logTs', JSON.stringify(obj));
-
-    that.globalData.isSeeAd = false; // 今天是否看了广告？
-    that.globalData.isChkVer = false;// 今天是否对比过版本号？
+    wx.setStorageSync('seeAdTs', now);
+    this.globalData.isSeeAd = true;
   },
 
   login() {
     const that = this;
-    let logTs = wx.getStorageSync("logTs");// 每次启动都加载 
-    if (!utils.isEmpty(logTs)) {
-      let logTsObj = JSON.parse(logTs);
+    // 检查版本更新
+    let chkVerTs = wx.getStorageSync("chkVerTs"); 
+    if (!utils.isEmpty(chkVerTs)) {
+      let chkVerTsNum =Number(chkVerTs);
       let tzms = utils.getTodayZeroMsTime();// 获取今日零时毫秒时间戳
-      if (logTsObj.logTs < tzms) {
-        that.reset();
+      if (chkVerTsNum < tzms) {
+        that.dlArtVersion();
+      } 
+    } else{
+      that.dlArtVersion();
+    } 
+    // 检查广告
+    let seeAdTs = wx.getStorageSync("seeAdTs"); 
+    if (!utils.isEmpty(seeAdTs)) {
+      let seeAdTsNum =Number(seeAdTs);
+      let tzms = utils.getTodayZeroMsTime();// 获取今日零时毫秒时间戳
+      if (seeAdTsNum > tzms) {
+        that.globalData.isSeeAd = true; // 今天是否看了广告？
       }
-    } else {
-      that.reset();
-    }
-    // 此处还可以写入其它初始化逻辑
+    }  
+    
     // 加载文章数据
     let artData = wx.getStorageSync("artData");// 每次启动都加载 
     if (!utils.isEmpty(artData)) {
-      // 如果数据不为空，就进行加载
-      const dataList = utils.json2ObjArr(artData)
+      const dataList = utils.json2ObjArr(artData);
       that.globalData.artData = dataList;
     }
   },
@@ -152,8 +150,7 @@ App({
   },
 
   globalData: {
-    isSeeAd: true, // 是否看了广告？
-    isChkVer: true, // 是否对比了版本号？
+    isSeeAd: false, // 是否看了广告？
     artData: [],// 文章数据列表
   },
 
