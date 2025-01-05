@@ -20,6 +20,9 @@ App({
   dlArtData: function () {
     const that = this;
     // 下载数据动画
+    wx.showLoading({
+      title: '数据加载中..',
+    })
     wx.downloadFile({
       url: 'https://gitee.com/littletow/visit/raw/master/content/data.json',
       success(res) {
@@ -33,6 +36,9 @@ App({
             encoding: 'utf8',
             success(res) {
               // 取消动画
+              wx.hideLoading({
+                success: (res) => {},
+              })
               console.log(res.data)
               // 记录到本地缓存
               wx.setStorageSync('artData', res.data);
@@ -48,6 +54,9 @@ App({
   dlArtVersion: function () {
     const that = this;
     // 下载版本号加载动画
+    wx.showLoading({
+      title: '版本检测中..',
+    })
     wx.downloadFile({
       url: 'https://gitee.com/littletow/visit/raw/master/content/VERSION',
       success(res) {

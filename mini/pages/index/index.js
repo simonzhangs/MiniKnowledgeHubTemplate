@@ -5,232 +5,178 @@ Page({
    * 页面的初始数据
    */
   data: {
-    /**
-    * 在content文件夹，存放markdown原始内容。
-    * 当新增文件时，需要更新对应的分类数组，添加新的文件索引内容。
-    * 当更新文件内容时，此处不需要进行更新。
-    * 当添加新的文件夹类目时，此处需要更新，根据新的文件夹名称调整数组和wxml页面。
-    * 每次升级小程序时，检查此处的数据是否和content中的内容是否匹配？
-    * 此处的id，就是content中的文件名。
-    */
-    projects: [{
-      id: 'visit.md',
-      title: '豆子碎片',
-      desc: '这是一个什么样的项目？它介绍了什么？如何去更好的使用它？我如何为它做贡献？',
-    }],
-    protocols: [{
-      id: 'mqtt.md',
-      img: './../../images/signal.png',
-      name: 'MQTT 轻量消息传输协议',
-    }, {
-      id: 'socks5.md',
-      img: './../../images/signal.png',
-      name: 'Socks5 代理协议',
-    }, {
-      id: 'tcp.md',
-      img: './../../images/signal.png',
-      name: 'TCP 网络协议',
-    }, {
-      id: 'udp.md',
-      img: './../../images/signal.png',
-      name: 'UDP 网络协议',
-    }, {
-      id: 'webrtc.md',
-      img: './../../images/signal.png',
-      name: 'WebRTC 音视频',
-    }, {
-      id: 'websocket.md',
-      img: './../../images/signal.png',
-      name: 'WebSocket 协议',
-    }],
-    languages: [{
-      id: 'markdown.md',
-      img: './../../images/note.png',
-      name: 'Markdown 语法教程',
-    }, {
-      id: 'bash.md',
-      img: './../../images/note.png',
-      name: 'Bash 脚本',
-    }, {
-      id: 'bat.md',
-      img: './../../images/note.png',
-      name: 'Bat 脚本',
-    }, {
-      id: 'go.md',
-      img: './../../images/note.png',
-      name: 'Golang 语言',
-    }, {
-      id: 'rust.md',
-      img: './../../images/note.png',
-      name: 'Rust 语言',
-    }, {
-      id: 'miniapp.md',
-      img: './../../images/note.png',
-      name: '微信小程序',
-    }, {
-      id: 'freepascal.md',
-      img: './../../images/note.png',
-      name: 'Free Pascal 语言',
-    }, {
-      id: 'c.md',
-      img: './../../images/note.png',
-      name: 'C 语言',
-    }],
-    databases: [{
-      id: 'redis.md',
-      img: './../../images/link.png',
-      name: 'Redis 常用命令',
-    }, {
-      id: 'sqlite3.md',
-      img: './../../images/link.png',
-      name: 'Sqlite3',
-    }, {
-      id: 'mongodb.md',
-      img: './../../images/link.png',
-      name: 'Mongodb',
-    }, {
-      id: 'mysql.md',
-      img: './../../images/link.png',
-      name: 'Mysql',
-    }, {
-      id: 'postgresql.md',
-      img: './../../images/link.png',
-      name: 'Postgresql',
-    }, {
-      id: 'oracle.md',
-      img: './../../images/link.png',
-      name: 'Oracle',
-    }, {
-      id: 'sqlserver.md',
-      img: './../../images/link.png',
-      name: 'Sqlserver',
-    }, {
-      id: 'minio.md',
-      img: './../../images/link.png',
-      name: 'Minio',
-    }],
-    libs: [{
-      id: 'gostd.md',
-      img: './../../images/earth.png',
-      name: 'Golang 标准库',
-    }, {
-      id: 'golib.md',
-      img: './../../images/earth.png',
-      name: 'Golang 常用库',
-    }, {
-      id: 'rust.md',
-      img: './../../images/earth.png',
-      name: 'Rust 常用库',
-    }],
-    tools: [{
-      id: 'asterisk.md',
-      img: './../../images/tool.png',
-      name: 'Asterisk',
-    }, {
-      id: 'awk.md',
-      img: './../../images/tool.png',
-      name: 'Awk',
-    }, {
-      id: 'caddy.md',
-      img: './../../images/tool.png',
-      name: 'Caddy',
-    }, {
-      id: 'docker.md',
-      img: './../../images/tool.png',
-      name: 'Docker',
-    }, {
-      id: 'ffmpeg.md',
-      img: './../../images/tool.png',
-      name: 'FFmpeg',
-    }, {
-      id: 'firewall.md',
-      img: './../../images/tool.png',
-      name: 'Firewall',
-    }, {
-      id: 'frp.md',
-      img: './../../images/tool.png',
-      name: 'Frp',
-    }, {
-      id: 'git.md',
-      img: './../../images/tool.png',
-      name: 'Git',
-    }, {
-      id: 'hugo.md',
-      img: './../../images/tool.png',
-      name: 'Hugo',
-    }, {
-      id: 'iperf3.md',
-      img: './../../images/tool.png',
-      name: 'Iperf3',
-    }, {
-      id: 'mdbook.md',
-      img: './../../images/tool.png',
-      name: 'Mdbook',
-    }, {
-      id: 'mosquitto.md',
-      img: './../../images/tool.png',
-      name: 'Mosquitto',
-    }, {
-      id: 'netstat.md',
-      img: './../../images/tool.png',
-      name: 'Netstat',
-    }, {
-      id: 'nginx.md',
-      img: './../../images/tool.png',
-      name: 'Nginx',
-    }, {
-      id: 'rsync.md',
-      img: './../../images/tool.png',
-      name: 'Rsync',
-    }, {
-      id: 'rustdesk.md',
-      img: './../../images/tool.png',
-      name: 'Rustdesk',
-    }, {
-      id: 'scp.md',
-      img: './../../images/tool.png',
-      name: 'Scp',
-    }, {
-      id: 'sed.md',
-      img: './../../images/tool.png',
-      name: 'Sed',
-    }, {
-      id: 'seelog.md',
-      img: './../../images/tool.png',
-      name: 'Log',
-    }, {
-      id: 'setip.md',
-      img: './../../images/tool.png',
-      name: 'IPconfig',
-    }, {
-      id: 'vim.md',
-      img: './../../images/tool.png',
-      name: 'Vim (上)',
-    }, {
-      id: 'vim2.md',
-      img: './../../images/tool.png',
-      name: 'Vim (下)',
-    }, {
-      id: 'wsl.md',
-      img: './../../images/tool.png',
-      name: 'Wsl',
-    }, {
-      id: 'juicessh.md',
-      img: './../../images/tool.png',
-      name: 'JuiceSSH',
-    }, {
-      id: 'zoiper.md',
-      img: './../../images/tool.png',
-      name: 'ZoiPer',
-    }],
+    artList: [],
+    inputShowed: false,
+    inputVal: "",
+    keyword: "",
+    index: 0,
+    qtype: 1, // 1 最火 2 最新 3 最冷 4 我的 5 同城 6 最赞
   },
 
+  showInput: function () {
+    this.setData({
+      inputShowed: true
+    });
+  },
+
+  hideInput: function () {
+    this.setData({
+      inputVal: "",
+      inputShowed: false,
+      keyword: "",
+      artList: [],
+    });
+  },
+
+  inputTyping: function (e) {
+    this.setData({
+      inputVal: e.detail.value
+    });
+  },
+
+  search(e) {
+    var keyword = this.data.inputVal.toLowerCase()
+    this.setData({
+      keyword: keyword,
+      op: 1,
+    })
+    this.searchArt(1, keyword)
+  },
+
+  searchArt: function (pageNo, keyword) {
+    const that = this;
+    that.loading = true
+    wx.showLoading({
+      title: '加载中...',
+      mask: true,
+    })
+    if (pageNo === 1) {
+      that.setData({
+        artList: [],
+      })
+    }
+
+    httpGet('/sart', {
+      'pageNo': pageNo,
+      'keyword': keyword,
+    }).then((res) => {
+      that.loading = false
+      wx.hideLoading()
+      const result = res.data;
+      if (result.code == 1) {
+        const articles = result.data;
+        that.setData({
+          page: pageNo, //当前的页号
+          pages: result.count, //总页数
+          artList: that.data.artList.concat(articles)
+        })
+
+      } else {
+        wx.showToast({
+          title: '没有找到记录',
+        })
+      }
+    }).catch((err) => {
+      that.loading = false
+      wx.hideLoading()
+      wx.showToast({
+        title: '网络异常请重试',
+      })
+    })
+  },
+
+  bindBtn: function (e) {
+    let btnId = e.target.id;
+    let qtype = 1;
+    switch (btnId) {
+      case "btnProject":
+        // 我的项目
+        qtype = 1;
+        break;
+      case "btnProtocol":
+        // RFC协议
+        qtype = 2;
+        break;
+      case "btnCode":
+        // 编程语言
+        qtype = 3;
+        break;
+      case "btnDB":
+        // 数据库
+        qtype = 4;
+        break;
+      case "btnLib":
+        // 开源编程库
+        qtype = 5;
+        break;
+      case "btnTool":
+        // 常用工具
+        qtype = 6;
+        break;
+      default:
+        break;
+    }
+    this.setData({
+      artList: [],
+      qtype: qtype,
+      op: 2,
+    })
+    this.getArtList(1, qtype)
+  },
+
+  // 根据类型查询
+  getArtList: function (pageNo, qtype) {
+    const that = this
+    that.loading = true
+    wx.showLoading({
+      title: '加载中...',
+      mask: true,
+    })
+
+    if (pageNo === 1) {
+      that.setData({
+        artList: [],
+      })
+    }
+
+    httpGet('/artl', {
+      'pageNo': pageNo,
+      'qtype': qtype,
+    }).then((res) => {
+      that.loading = false
+      wx.hideLoading()
+
+      const result = res.data;
+      if (result.code == 1) {
+        const articles = result.data;
+        // console.log('debug,',result);
+        that.setData({
+          page: pageNo, //当前的页号
+          pages: result.count, //总页数
+          artList: that.data.artList.concat(articles)
+        })
+
+      } else {
+        wx.showToast({
+          title: '没有找到记录',
+        })
+      }
+    }).catch((err) => {
+      that.loading = false
+      wx.hideLoading()
+      wx.showToast({
+        title: '网络异常请重试',
+      })
+    })
+
+  },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     console.log("index onload")
+    // 检查是否需要更新版本
   },
 
   /**
