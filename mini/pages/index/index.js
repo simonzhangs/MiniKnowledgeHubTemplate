@@ -79,7 +79,7 @@ Page({
         artList: that.data.artList.concat(articles)
       })
     }
-  
+
     that.loading = false
   },
 
@@ -184,20 +184,20 @@ Page({
     const art = that.data.artList[idx];
     if (art.label == "md") {
       that.jumpToPage(art.category, art.id);
-    }else if(art.label == "gzh"){
+    } else if (art.label == "gzh") {
       that.jumpToGzh(art.id);
     }
   },
 
   // 跳公众号页面
-  jumpToGzh:function(id){
+  jumpToGzh: function (id) {
     wx.openOfficialAccountArticle({
-      url:id, // 公众号文章连接
+      url: id, // 公众号文章连接
       success: res => {
       },
       fail: res => {
       }
-  })
+    })
   },
 
   // 跳文章页面
@@ -215,14 +215,17 @@ Page({
       adUnitId: 'adunit-2ce6db3cb1e45a86',
     })
     vAd.onLoad(() => {
-        hasLoadAd = true
-      }),
+      hasLoadAd = true
+    }),
       vAd.onError((err) => {
         console.error('激励视频广告加载失败,', err)
       }),
       vAd.onClose((res) => {
         if (res && res.isEnded) {
           app.logSeeAd();
+          wx.showToast({
+            title: '谢谢观看！',
+          })
         } else {
           wx.showToast({
             title: '还需加油哟！',
@@ -333,8 +336,8 @@ Page({
       artList: [],
       keyword: "",
       page: 1,
-      pages:0,
-      category:'',
+      pages: 0,
+      category: '',
     })
     wx.stopPullDownRefresh()
   },
