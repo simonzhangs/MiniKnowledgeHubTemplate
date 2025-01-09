@@ -24,7 +24,7 @@ App({
       title: '数据加载中..',
     })
     wx.downloadFile({
-      url: 'https://gitee.com/littletow/visit/raw/master/content/data.json',
+      url: 'https://gitee.com/simonzhangs/mini-knowledge-hub-template/raw/master/content/data.json',
       success(res) {
         // console.log(res)
         if (res.statusCode === 200) {
@@ -59,7 +59,7 @@ App({
       title: '版本检测中..',
     })
     wx.downloadFile({
-      url: 'https://gitee.com/littletow/visit/raw/master/content/VERSION',
+      url: 'https://github.com/simonzhangs/MiniKnowledgeHubTemplate/raw/master/content/VERSION',
       success(res) {
         // console.log(res)
         if (res.statusCode === 200) {
@@ -73,9 +73,7 @@ App({
               let now = Date.now();
               wx.setStorageSync('chkVerTs', now);
               // 取消动画
-              wx.hideLoading({
-                success: (res) => {},
-              })
+              wx.hideLoading();
               // console.log(res.data)
               const onlineVersion = Number(res.data);
               // 查看本地版本号
@@ -118,7 +116,7 @@ App({
     // 检查版本更新
     let chkVerTs = wx.getStorageSync("chkVerTs"); 
     if (!utils.isEmpty(chkVerTs)) {
-      let chkVerTsNum =Number(chkVerTs);
+      let chkVerTsNum = Number(chkVerTs);
       let tzms = utils.getTodayZeroMsTime();// 获取今日零时毫秒时间戳
       if (chkVerTsNum < tzms) {
         that.dlArtVersion();

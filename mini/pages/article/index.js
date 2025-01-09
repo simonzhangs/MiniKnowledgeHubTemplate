@@ -18,7 +18,7 @@ Page({
     //   title: '加载中...',
     // })
     // 修改此处可以切换Git地址
-    let url = 'https://gitee.com/littletow/visit/raw/master/content/'+category+'/' + artId;
+    let url = 'https://gitee.com/simonzhangs/mini-knowledge-hub-template/raw/master/content/'+category+'/' + artId;
     wx.downloadFile({
       url: url,
       success(res) {
