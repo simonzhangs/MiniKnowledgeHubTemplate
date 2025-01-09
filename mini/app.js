@@ -17,7 +17,7 @@ App({
   },
 
   // 下载 data.json 文件
-  dlArtData: function () {
+  dlArtData () {
     const that = this;
     // 下载数据动画
     wx.showLoading({
@@ -59,7 +59,7 @@ App({
       title: '版本检测中..',
     })
     wx.downloadFile({
-      url: 'https://github.com/simonzhangs/MiniKnowledgeHubTemplate/raw/master/content/VERSION',
+      url: 'https://gitee.com/simonzhangs/mini-knowledge-hub-template/raw/master/content/VERSION',
       success(res) {
         // console.log(res)
         if (res.statusCode === 200) {
@@ -148,7 +148,7 @@ App({
   },
 
   globalData: {
-    isSeeAd: false, // 是否看了广告？
+    isSeeAd: true, // 是否看了广告？，未开通流量主，先关闭广告
     artData: [],// 文章数据列表
   },
 
