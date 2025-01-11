@@ -1,17 +1,17 @@
 [
   {
-    "id": "visit.md",
-    "name": "豆子碎片",
-    "kw": "",
-    "category": "projects",
-    "label": "md"
-  },
-  {
-    "id": "https://mp.weixin.qq.com/s/JaH2zh0so9sOTJ9IXE8qRQ",
-    "name": "公众号关联小程序入口",
+    "id": "https://mp.weixin.qq.com/s/eIB7m5eVsgLil19PgNKupw",
+    "name": "前往公众号",
     "kw": "公众号，小程序",
     "category": "projects",
     "label": "gzh"
+  },
+  {
+    "id": "visit.md",
+    "name": "项目来源",
+    "kw": "",
+    "category": "projects",
+    "label": "md"
   },
   {
     "id": "mqtt.md",
@@ -166,6 +166,13 @@
     "kw": "",
     "category": "databases",
     "label": "md"
+  },
+  {
+    "id": "https://mp.weixin.qq.com/s/nnKcHe58DenipC6bDXLkSA",
+    "name": "私人ChatGPT网页应用",
+    "kw": "前端开源",
+    "category": "libs",
+    "label": "gzh"
   },
   {
     "id": "gostd.md",

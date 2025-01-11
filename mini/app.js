@@ -112,17 +112,16 @@ App({
   },
 
   login() {
-    const that = this;
     // 检查版本更新
     let chkVerTs = wx.getStorageSync("chkVerTs"); 
     if (!utils.isEmpty(chkVerTs)) {
       let chkVerTsNum = Number(chkVerTs);
       let tzms = utils.getTodayZeroMsTime();// 获取今日零时毫秒时间戳
       if (chkVerTsNum < tzms) {
-        that.dlArtVersion();
+        this.dlArtVersion();
       } 
     } else{
-      that.dlArtVersion();
+      this.dlArtVersion();
     } 
     // 检查广告
     let seeAdTs = wx.getStorageSync("seeAdTs"); 
@@ -130,7 +129,7 @@ App({
       let seeAdTsNum =Number(seeAdTs);
       let tzms = utils.getTodayZeroMsTime();// 获取今日零时毫秒时间戳
       if (seeAdTsNum > tzms) {
-        that.globalData.isSeeAd = true; // 今天是否看了广告？
+        this.globalData.isSeeAd = true; // 今天是否看了广告？
       }
     }  
     
@@ -138,7 +137,7 @@ App({
     let artData = wx.getStorageSync("artData");// 每次启动都加载 
     if (!utils.isEmpty(artData)) {
       const dataList = utils.json2ObjArr(artData);
-      that.globalData.artData = dataList;
+      this.globalData.artData = dataList;
     }
   },
 

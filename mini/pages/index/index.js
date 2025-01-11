@@ -190,7 +190,7 @@ Page({
   },
 
   // 跳公众号页面
-  jumpToGzh: function (id) {
+  jumpToGzh(id) {
     wx.openOfficialAccountArticle({
       url: id, // 公众号文章连接
       success: res => {

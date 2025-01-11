@@ -26,7 +26,7 @@
         <view class="placeholder" id="btnProject" bindtap="bindBtn" hover-class="placeholder-hover">我的项目</view>
       </view>
       <view class="weui-flex__item">
-        <view class="placeholder" id="btnProtocol" bindtap="bindBtn" hover-class="placeholder-hover">RFC 协议</view>
+        <view class="placeholder" id="btnLib" bindtap="bindBtn" hover-class="placeholder-hover">开源编程库</view>
       </view>
       <view class="weui-flex__item">
         <view class="placeholder" id="btnCode" bindtap="bindBtn" hover-class="placeholder-hover">编程语言</view>
@@ -38,7 +38,7 @@
         <view class="placeholder" id="btnDB" bindtap="bindBtn" hover-class="placeholder-hover">数据库</view>
       </view>
       <view class="weui-flex__item">
-        <view class="placeholder" id="btnLib" bindtap="bindBtn" hover-class="placeholder-hover">开源编程库</view>
+        <view class="placeholder" id="btnProtocol" bindtap="bindBtn" hover-class="placeholder-hover">RFC 协议</view>
       </view>
       <view class="weui-flex__item">
         <view class="placeholder" id="btnTool" bindtap="bindBtn" hover-class="placeholder-hover">常用工具</view>
@@ -60,8 +60,9 @@
     </view>
    
     <view class="weui-footer weui-footer_fixed-bottom" wx:if="{{artList.length == 0 }}">
-      <view class="view-ad"><ad unit-id="adunit-62a65ad78c1b3f40"></ad></view>
+      <view class="view-ad">
+        <ad unit-id="adunit-62a65ad78c1b3f40"></ad>
+      </view>
     </view>
-
   </view>
 </view>
